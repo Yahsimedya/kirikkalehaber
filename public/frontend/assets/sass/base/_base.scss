@@ -1,0 +1,25 @@
+// .container {
+//     @media (min-width: 1200) {
+//         width: 1056px !important;
+
+//     }
+// }
+*,
+*::after,
+*::before {
+	margin:0;
+	box-sizing: inherit;
+
+}
+a {
+    color: $color-black;
+
+}
+a,:hover {
+    text-decoration: none !important;
+}
+  @font-face{
+    font-family:FontAwesome;
+    font-display: swap;
+    src:url(fonts/fontawesome-webfont.eot?v=4.5.0);
+}

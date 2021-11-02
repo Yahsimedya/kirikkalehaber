@@ -1,0 +1,47 @@
+// COLORS
+
+$color-primary:#55c57a;
+$color-primary-light:#7ed56f;
+$color-primary-dark:#28b485;
+$color-gray-dark: #777;
+$color-white: rgb(255, 255, 255);
+$color-black: #000;
+$color-gray-light-1: #f7f7f7;
+$color-gray-dark-2: #eee;
+$color-gray-dark-3: #999;
+$color-bordo: rgb(189, 8, 8);
+$color-red: red;
+$color-secondary-light: #ffb900;
+$color-secondary-dark: #ff6600;
+
+$color-blue-light: #2998ff;
+$color-blue-dark: #5643fa;
+
+$siyaset-bg : linear-gradient(-10deg, #15a6e0, #40c0f0);
+$acikmavi-bg :linear-gradient(-10deg, #d2ecfc, #4d9cbc);
+$somon-bg :#fe7652; 
+$sari-bg :linear-gradient(-10deg, #fcd90f, #eebb0d);
+$yesil-bg: linear-gradient(-10deg, #66a030, #aeca21);
+$tatli-gri: #393838;
+$koyumavi-bg :linear-gradient(-10deg, #004994, #22a7e0);
+
+/// BORDER COLORS MİXİNS ////
+
+$color-1:#d3830b;
+$color-2:#54a349 ;
+$color-3:rgb(101, 173, 34);
+$color-4:#C23E50; // Foto galeri rakamları
+$color-5:#2da187;
+$color-6:#0b5bb3;
+
+
+
+// FONT SİZES
+
+$default-font-size: 1.6rem; // this used every paragraphs, button text, in the h3
+
+//grid
+$grid-width:114rem; /*Rows width */
+$gutter-vertical:8rem;/* rows bottom space dimensions margin-bottom 80 px each row */
+$gutter-vertical-small:6rem;
+$gutter-horizontal:6rem; /* columns margins right dimensions */

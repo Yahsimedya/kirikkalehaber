@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/vendor/sitemap/styles/sitemapindex.xsl" type="text/xsl"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<sitemap>
+		<loc>https://localhost:8000/sitemap-page-0.xml</loc>
+			<lastmod>2021-11-02T00:00:00+03:00</lastmod>
+		</sitemap>
+	<sitemap>
+		<loc>https://localhost:8000/sitemap-page-1.xml</loc>
+			<lastmod>2021-11-02T00:00:00+03:00</lastmod>
+		</sitemap>
+	<sitemap>
+		<loc>http://localhost:8000/sitemap-images-0.xml</loc>
+			<lastmod>2021-11-02T00:00:00+03:00</lastmod>
+		</sitemap>
+	<sitemap>
+		<loc>http://localhost:8000/sitemap-images-1.xml</loc>
+			<lastmod>2021-11-02T00:00:00+03:00</lastmod>
+		</sitemap>
+	<sitemap>
+		<loc>http://localhost:8000/sitemap-categories.xml</loc>
+			<lastmod>2021-11-02T00:00:00+03:00</lastmod>
+		</sitemap>
+	<sitemap>
+		<loc>http://localhost:8000/sitemap-districts.xml</loc>
+			<lastmod>2021-11-02T00:00:00+03:00</lastmod>
+		</sitemap>
+	<sitemap>
+		<loc>http://localhost:8000/sitemap-fotogaleri.xml</loc>
+			<lastmod>2021-11-02T00:00:00+03:00</lastmod>
+		</sitemap>
+	<sitemap>
+		<loc>http://localhost:8000/sitemap-videogaleri.xml</loc>
+			<lastmod>2021-11-02T00:00:00+03:00</lastmod>
+		</sitemap>
+	<sitemap>
+		<loc>https://localhost</loc>
+			<lastmod>2021-11-02T00:00:00+03:00</lastmod>
+		</sitemap>
+</sitemapindex>

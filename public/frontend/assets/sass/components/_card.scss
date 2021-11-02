@@ -1,0 +1,61 @@
+.kart {
+border-radius: unset !important;
+border:none !important;
+@media (max-width: 768px) {
+   padding: 0;
+
+}
+// padding: 1rem !important;
+    &-dark {
+        background-color: #f8f8f8;
+    }
+
+&-margin:not(:last-child){
+    margin-right: -2px !important;
+    }
+    
+&-width {
+
+    width: 100%;
+    // @media (max-width: 768px) {
+    //     width: 100% !important;
+
+    // }
+}    
+&-list-width {
+    
+    // width: 23.5rem;
+
+    @media (max-width: 768px) {
+        width: 100% !important;
+    }
+
+    haber-buton {
+        background-image: linear-gradient(-50deg, #eb0102, #000000);
+    }
+}
+&-haber-buton {
+    background-image: linear-gradient(-50deg, #000000, #4b4747);
+        border-top: 1px solid red;
+}
+&-body {
+    // padding: 12px 10px 12px 10px !important;
+    // font-family: Poppins;
+    // min-height: 107px;
+
+    padding: 12px 10px 12px 10px !important;
+    font-family: Poppins;
+    // max-height: 80px;
+    min-height: 51px;
+    word-break: break-word;
+    font-weight: 700;
+}
+
+&_img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+
+} 

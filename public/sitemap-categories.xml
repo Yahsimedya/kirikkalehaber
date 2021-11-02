@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/vendor/sitemap/styles/xml.xsl" type="text/xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+	<url>
+	<loc>https://localhost/3-sayfa/1</loc>
+		<priority>0.4</priority>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://localhost/gundem/2</loc>
+		<priority>0.4</priority>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://localhost/siyaset/3</loc>
+		<priority>0.4</priority>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://localhost/egitim/4</loc>
+		<priority>0.4</priority>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://localhost/ekonomi/5</loc>
+		<priority>0.4</priority>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://localhost/spor/6</loc>
+		<priority>0.4</priority>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://localhost/saglik/7</loc>
+		<priority>0.4</priority>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://localhost/kultur-sanat/8</loc>
+		<priority>0.4</priority>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://localhost/teknoloji/9</loc>
+		<priority>0.4</priority>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://localhost/ozel-haber/10</loc>
+		<priority>0.4</priority>
+		<changefreq>daily</changefreq>
+	</url>
+	<url>
+	<loc>https://localhost/dunya/11</loc>
+		<priority>0.4</priority>
+		<changefreq>daily</changefreq>
+	</url>
+</urlset>
+

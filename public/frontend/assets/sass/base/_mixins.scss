@@ -1,0 +1,45 @@
+// $color-1: red ;
+// $color-2: #09099c ;
+// $color-3: #0e9c09 ;
+// $color-4: #9c0909 ;
+// $color-5: #ce7005 ;
+// $color-6: #9c0988 ;
+
+// $steps: 6;
+$border-colors-list: $color-1 $color-2 $color-3 $color-4 $color-5 $color-6;
+$colors-list: #111 #222 #333 #444 #555 #533;
+
+@each $current-color in $colors-list {
+    $i: index($colors-list, $current-color);
+    .bordercolor-#{$i} {
+        color: $current-color;
+        // background-color: nth($background-colors-list, $i);
+        border-top: 1px solid nth($border-colors-list, $i);
+    }
+}
+// @for $i from 0 to $steps {
+
+// 	.bordercolor-#{$i+1} {
+//         // @if $i + 1 == 0 {
+//         $percentage: $i*1%;
+// // $renk: $color-$i;
+//         // background: mix($color-1, $color-2, percentage($i / ($steps - 1)));
+//         border-top: solid;
+//         border-color: mix($color-1, $color-5, percentage($i / ($steps - 1)));
+//         // border-color: mix($color-1, $color-2, percentage($i / ($steps - 1)));
+//         // border-color: mix($color-1, $color-2, $percentage);
+
+//         // border-color: $color-1,$color-2,$color-3;
+
+//     // }
+// }
+// }
+
+// $colors-list: #b01b1b #272795 #1b721b #cd9123 black;
+// @each $current-color in $colors-list {
+//     $i: index($colors-list, $current-color);
+//     .bordercolor-#{$i} { 
+//         border-top: solid;
+//         border-color: $current-color;
+//     }
+// }
