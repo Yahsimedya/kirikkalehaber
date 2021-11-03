@@ -1,6 +1,6 @@
 @extends('main.home_master')
 @section('title',$seoset->meta_title)
-@section('meta_keywords',$seoset->meta_keywords)
+@section('meta_keywords',$seoset->meta_keyword)
 @section('meta_description',htmlspecialchars_decode(stripslashes($seoset->meta_description),ENT_QUOTES))
 @section('google_analytics',$seoset->google_analytics)
 @section('google_verification',$seoset->google_verification)
