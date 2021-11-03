@@ -14,7 +14,7 @@
     ?>
     <style>
         .anamanset-pagination > .swiper-pagination-bullet-active {
-            background-color: {{$themeSetting[0]->siteColorTheme}}                 !important;
+            background-color: {{$themeSetting[0]->siteColorTheme}}!important;
         }
 
         .pagination-1 > .swiper-pagination-bullet-active, .pagination-2 > .swiper-pagination-bullet-active {

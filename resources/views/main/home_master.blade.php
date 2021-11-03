@@ -7,12 +7,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     <meta name="csrf-token" content="{{csrf_token()}}"><!-- Otmatik alt kategori seçmek için ekledik-->
-    <title>@yield('title','A default title')</title>
-    <meta name="keywords" content="@yield('meta_keywords','meta açıklama')">
-    <meta name="description" content="@yield('meta_description','default description')">
+    <title>@yield('title')</title>
+    <meta name="keywords" content="@yield('meta_keywords')">
+    <meta name="description" content="@yield('meta_description')">
     <link rel="canonical" href="{{url()->current()}}"/>
-    <meta name="google-site-verification" content="@yield('google_verification','google Doğrulama')"/>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=@yield('google_verification','google Doğrulama')"></script>
+    <meta name="google-site-verification" content="@yield('google_verification')"/>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=@yield('google_verification')"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -22,7 +22,7 @@
 
         gtag('js', new Date());
 
-        gtag('config', '@yield('google_verification','google Doğrulama')');
+        gtag('config', '@yield('google_verification')');
     </script>
     <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
 

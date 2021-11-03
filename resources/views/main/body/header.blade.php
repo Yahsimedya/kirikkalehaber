@@ -1,7 +1,7 @@
 @php
     use App\Models\Category;
 use App\Models\WebsiteSetting;
-    $category=Category::limit(6)->get();
+    $category=Category::limit(11)->get();
     $websetting=WebsiteSetting::first();
     $themeSetting=DB::table('themes')->get();
 $themeSetting=DB::table('themes')->get();

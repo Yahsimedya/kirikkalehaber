@@ -208,7 +208,8 @@ class ExtraController extends Controller
 
     public function GetDistrict($id) // türkiye haritasında illere tıkladığında il detay sayfasına gider
     {
-//dd(str_slug($id));
+
+
         $sehirsay = Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
                 ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
                 ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
@@ -218,18 +219,9 @@ class ExtraController extends Controller
                 ->latest('updated_at')
                 ->count();
 
-//        $alldistrict=District::get();
-//foreach ($alldistrict as $il) {
-//      $isim=$il->district_tr;
-//    echo str_slug($isim);
-//
-//}
-
-
         $sehir = District::where('slug', $id)
                 ->first();
 
-//        $ilce = Subdistrict::where('district_id',$id)->first();
 
         $districts = Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
                 ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
@@ -581,7 +573,6 @@ class ExtraController extends Controller
 
         $tag = Tag::get();
         foreach ($tag as $item) {
-//            print_r($item);
             $nextrelated =
                     Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                         ->leftjoin('tags', 'tags.id', 'post_tags.tag_id')
@@ -616,44 +607,39 @@ class ExtraController extends Controller
 
     public function CategoryPost($slug, $id)
     {
-        $category =Cache::remember("category", Carbon::now()->addYear(), function () {
-            if (Cache::has('category')) return Cache::has('category');
-            return Category::latest()->where('id', $id)->orderBy('id', 'desc')->first();
-        });
+        $category =Category::latest()->where('id', $id)->orderBy('id', 'desc')->first();
 
-        $manset =Cache::remember("manset", Carbon::now()->addYear(), function () {
-            if (Cache::has('manset')) return Cache::has('manset');
-            return  Post::join('categories', 'posts.category_id', 'categories.id')
+
+
+        $manset =
+            Post::join('categories', 'posts.category_id', 'categories.id')
                 ->select('posts.*', 'categories.category_tr', 'categories.category_en')
                 ->where('posts.category_id', $id)->where('posts.manset', 1)
                 ->orderBy('created_at', 'desc')
                 ->limit(25)->get();
-        });
-        $count =Cache::remember("count", Carbon::now()->addYear(), function () {
-            if (Cache::has('count')) return Cache::has('count');
-            return  Post::join('categories', 'posts.category_id', 'categories.id')
+
+
+        $count = Post::join('categories', 'posts.category_id', 'categories.id')
                 ->select('posts.*', 'categories.category_tr', 'categories.category_en')
                 ->where('posts.category_id', $id)
                 ->count();
-        });
-        $catpost =Cache::remember("catpost", Carbon::now()->addYear(), function () {
-            if (Cache::has('catpost')) return Cache::has('catpost');
-            return  Post::join('categories', 'posts.category_id', 'categories.id')
+
+
+        $catpost =  Post::join('categories', 'posts.category_id', 'categories.id')
                 ->select('posts.*', 'categories.category_tr', 'categories.category_en')
                 ->where('posts.category_id', $id)->orWhere('posts.manset', NULL)->offset(1)
                 ->paginate(20);
-        });
+
+
 //        if ($catpost->count() == 0) {
 //            return redirect('/');
 //        }
-        $nextnews =Cache::remember("nextnews", Carbon::now()->addYear(), function () {
-            if (Cache::has('nextnews')) return Cache::has('nextnews');
-            return  Post::join('categories', 'posts.category_id', 'categories.id')
+        $nextnews =  Post::join('categories', 'posts.category_id', 'categories.id')
                 ->select('posts.*', 'categories.category_tr', 'categories.category_en')
                 ->where('posts.category_id', $id)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
                 ->inRandomOrder()->limit(10)
                 ->get();
-        });
+
         return view('main.body.category_post', compact('manset', 'category', 'catpost', 'nextnews', 'count'));
 
 
@@ -714,12 +700,8 @@ class ExtraController extends Controller
     public function yazilar($id)
     {
 
-        $yazi = Cache::remember("yazi", Carbon::now()->addYear(), function () {
-            if (Cache::has('yazi')) return Cache::has('yazi');
-            return AuthorsPost::where('authors_id', '=', $id)->get();});
-        $yazar = Cache::remember("yazar", Carbon::now()->addYear(), function () {
-            if (Cache::has('yazar')) return Cache::has('yazar');
-            return Authors::where('id', '=', $id)->get();});
+        $yazi = AuthorsPost::where('authors_id', '=', $id)->get();
+        $yazar =  Authors::where('id', '=', $id)->get();
 
         return view('main.body.authors_writes', compact('yazi', 'yazar'));
     }
@@ -727,14 +709,10 @@ class ExtraController extends Controller
     public function yazilars($id)
     {
 
-        $yazi =Cache::remember("yazi", Carbon::now()->addYear(), function () {
-            if (Cache::has('yazi')) return Cache::has('yazi');
-            return  AuthorsPostwhere('id', '=', $id)->get();
-        });
-        $yazar =Cache::remember("yazar", Carbon::now()->addYear(), function () {
-            if (Cache::has('yazar')) return Cache::has('yazar');
-            return  Authorswhere('id', '=', $id)->get();
-        });
+        $yazi =  AuthorsPostwhere('id', '=', $id)->get();
+
+        $yazar =  Authorswhere('id', '=', $id)->get();
+
         return view('main.body.authors_writes', compact('yazi', 'yazar'));
     }
 

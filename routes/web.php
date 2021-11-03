@@ -27,6 +27,7 @@ use App\Http\Controllers\Backend\AuthorController;
 use App\Http\Controllers\Backend\CornerPostsController;
 use App\Http\Controllers\Frontend\SitemapController;
 use App\Http\Controllers\ThemeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,6 +70,7 @@ Route::get('/install', function () {
 
 
 
+
 // ADMİN Routes
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard', function () {
@@ -86,7 +88,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Artisan::call('route:clear');
         Artisan::call('config:clear');
         Artisan::call('view:clear');
+
+
+
+
         return view('admin.index');
+
     })->name('cacheClean');
 
 
