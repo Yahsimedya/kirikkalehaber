@@ -284,7 +284,7 @@
                                                     <span>Video</span>
                                                 </div>
                                             @elseif($slider[$i]->flahtag==1)
-                                                <div class="flashhaber top-left">
+                                                <div class="flashhaber top-right">
                                                     <span>Flaş Flaş</span>
                                                 </div>
                                             @elseif($slider[$i]->attentiontag==1)

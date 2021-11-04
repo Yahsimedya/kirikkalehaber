@@ -8136,6 +8136,12 @@ img.lazyload:not([src]) {
   left: 22px !important;
   right: unset !important; }
 
+.top-right {
+  bottom: unset !important;
+  top: 31px !important;
+  right: 22px !important;
+  left: unset !important; }
+
 .haberedikkat {
   position: absolute;
   right: 22px;
