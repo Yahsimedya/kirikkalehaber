@@ -70,7 +70,7 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-(function webpackMissingModule() { throw new Error("Cannot find module \"C:\\laragon\\www\\laravel_kirikkalehaber1\\frontend\\assets\\js\\svg-turkiye-haritasi.js\""); }());
+(function webpackMissingModule() { throw new Error("Cannot find module \"C:\\laragon\\www\\kirikkalehaber\\frontend\\assets\\js\\svg-turkiye-haritasi.js\""); }());
 
 
 /***/ })

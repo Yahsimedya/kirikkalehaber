@@ -13,12 +13,51 @@
 
     ?>
     <style>
+
+
+        .flashlightHeadline {
+            border-radius: 5px;
+            border-color:white;
+            border-style: solid;
+            border-width: 0px 5px 5px 0px;
+            margin-top: 1px;
+            text-align: left;
+            width: 120px;
+            height: 30px;
+            background: red;
+            animation: animasyonHeadline 1s infinite;
+        }
+        /*@keyframes animasyonHeadline {*/
+        /*    from {background-color: red;}*/
+        /*    to {background-color: black;}*/
+        /*}*/
+        .flashlightVideo {
+            border-radius: 5px;
+            border-color:white;
+            border-style: solid;
+            border-width: 0px 5px 5px 0px;
+            margin-top: 1px;
+            text-align: left;
+            width: 90px;
+            height: 30px;
+            background: red;
+            animation: animasyonVideo 1s infinite;
+        }
+        @keyframes animasyonVideo {
+            from {background-color: darkblue;}
+            to {background-color: black;}
+        }
+
+
+
+
+
         .anamanset-pagination > .swiper-pagination-bullet-active {
-            background-color: {{$themeSetting[0]->siteColorTheme}} !important;
+            background-color: {{$themeSetting[0]->siteColorTheme}}   !important;
         }
 
         .pagination-1 > .swiper-pagination-bullet-active, .pagination-2 > .swiper-pagination-bullet-active {
-            background-color: {{$themeSetting[0]->siteColorTheme}}                  !important;
+            background-color: {{$themeSetting[0]->siteColorTheme}}                    !important;
         }
 
         .media.media-weather {
@@ -26,6 +65,7 @@
             position: relative;
             overflow: visible;
         }
+
 
         .siyaset {
             background-image: linear-gradient(-10deg, {{$themeSetting[0]->economy}}, {{$themeSetting[0]->economy}}) !important;
@@ -239,8 +279,22 @@
 
         </div>
         <!--AÇILIP KAPANABİLİR REKLAM ALANI-->
-        <div class="container mt-5">
+        <div class="container mt-2">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12 pb-2 d-none d-md-block padding-left kartlar">
+                    <div class="card shadow  d-inline-block  "><a href="haber-kavga-ettigi-amcasini-sokak-ortasinda-tabancayla-vurdu-120422">
+                            <div class="sondakika top-leftBox">
+                                <span>Son Dakika</span>
+                            </div>
+                            <img class="card-img-top lazy" height="180" src="{{asset('image/foto-1.png')}}"  alt="Kavga ettiği amcasını sokak ortasında tabancayla vurdu" style="">
+                            <div class="card-body align-middle d-table-cell">
+                                <p class="card-baslik text-left d-table-cell"><b class="card-kisalt">Kavga ettiği amcasını sokak ortasında tabancayla vurdu</b></p>
+{{--                                <span class="card__kategori position-absolute">3. Sayfa</span>--}}
+                            </div></a>
+                    </div>
+                </div>
 
+            </div>
             <div class="row">
 
                 <div class="col-md-8 col-12 col-sm-8 text-danger mb-2">
@@ -248,7 +302,7 @@
                         <div class="swiper-wrapper" style="height:100%;">
 
                             @for($i=0;$i<=24;$i++)
-                                <div class="swiper-slide">
+                                <div class="swiper-slide" style="position:relative">
                                     <a href="{{URL::to('/'.str_slug($slider[$i]->title_tr).'/'.$slider[$i]->id.'/'.'haberi')}}">
                                         <div class="position-relative">
 
@@ -256,6 +310,21 @@
                                                  width="100%"
                                                  data-src="{{ asset($slider[$i]->image) }}"/>
 
+                                            @if($slider[$i]->headline==1)
+                                                <div class="sondakikaSlider top-left">
+                                                    <span>Son Dakika</span>
+                                                </div>
+                                            @endif
+                                            @if($slider[$i]->posts_video != "" || $slider[$i]->posts_video!=null)
+                                                <div class="yazi"
+                                                     style="position: absolute; left:5%;top:90%; text-align:right; transform:translateY(-50%);">
+                                                    <div class="flashlightVideo">
+                                                        <div class="col-lg-6" style="background-color: transparent;color: white">
+                                                           <i class="fa fa-play" >Video</i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </div>
                                     </a>
                                 </div>

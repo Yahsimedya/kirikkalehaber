@@ -72,7 +72,7 @@ font-weight: 400;
 
     &__body {
         top: 35% !important;
-        color: white !important;
+        color: $color-white !important;
         z-index: 999 !important;
         width: 100% !important;
          
@@ -92,7 +92,7 @@ font-weight: 400;
         float: left;
         padding: 6px 13px;
                 text-decoration: none;
-        border: 1px solid #d2d7d3;
+        border: 1px solid $color-gray-dark-3;
         margin: 0 3px;
         line-height: 19px !important;
 
@@ -107,7 +107,7 @@ font-weight: 400;
         color: $color-white;
       }
       & a:hover:not(.active)   {
-        background-color: #d2d7d3;
+        background-color: $color-gray-dark-2;
       }
   }
       //////////////////PAGİNATİON BİTER ///////////////////
@@ -140,7 +140,7 @@ font-weight: 400;
     transform: translate(-50%, -13%);
     width: 90%;
     font-size: 25px;
-    text-shadow: 3px 2px 4px black;
+    text-shadow: 3px 2px 4px $color-black;
     text-align: center;
     line-height: 30px;
     font-family: inherit;
@@ -148,13 +148,13 @@ font-weight: 400;
     @media (max-width: 768px) {
         position: absolute;
         left: 50%;
-        color: #fff;
+        color: $color-white;
         z-index: 9999;
         bottom: 0;
         transform: translate(-50%, 17%);
         width: 100%;
         font-size: 14px;
-        text-shadow: 3px 2px 4px black;
+        text-shadow: 3px 2px 4px $color-black;
         text-align: center;
         line-height: 30px;
         font-family: inherit;
@@ -176,7 +176,7 @@ font-weight: 400;
     padding: 0.20rem 1.20rem;
 margin-bottom: 0;
 /* background-color: rgb(107, 183, 112); */
-border-bottom: 1px solid rgba(160, 3, 3, 0.9) !important;
+border-bottom: 1px solid $color-bordo !important;
 // background-image: linear-gradient(-10deg, #2da086, #58f5d2);
 background-image: $yesil-bg;
 
@@ -233,7 +233,7 @@ bottom: 90px;
 right: 0;
 font-size: 10px;
 color: $color-white;
-background: #a9a4a4;
+background: $color-gray-dark-3;
 }
 }
 .galeri {
@@ -247,14 +247,14 @@ background: #a9a4a4;
     border-radius: 50%;
     width: 30px;
     height: 30px;
-    background: #48484880;
+    background: $color-gray-dark-4;
     text-align: center;
     }
     &_img {
         left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(transparent 50%,#000);
+    background-image: linear-gradient(transparent 50%,$color-black);
     top:0;
     }
     &_text {
@@ -268,7 +268,7 @@ background: #a9a4a4;
 
 .search {
     right: 5px !important;
-    background-color: #fd0000 !important;
+    background-color: $color-red !important;
 }
 
 // head reklam alanı
@@ -277,8 +277,8 @@ background: #a9a4a4;
     right: 10%;
     
     &__link {
-        color: #000;
-        background-color: #ffffff;
+        color: $color-black;
+        background-color: $color-white;
         padding: 0px 5px 3px 5px;
         text-decoration: none;
         position: absolute;
@@ -311,7 +311,7 @@ background: #a9a4a4;
        
     }
     &-dots {
-        border-bottom: 3px solid #e0dfdf;
+        border-bottom: 3px solid $color-white;
         bottom: -35px !important;
                 & li {
             width: 4% !important;
@@ -363,7 +363,7 @@ background: #a9a4a4;
        
     }
     &-dots {
-        border-bottom: 3px solid #e0dfdf;
+        border-bottom: 3px solid $color-gray-dark-2;
         bottom: -35px !important;
                 & li {
             width: 4% !important;
@@ -386,7 +386,7 @@ background: #a9a4a4;
         font-size: 15px;
         font-family: Poppins,sans-serif;
         font-weight: 500;
-        border-bottom: 3px solid red !important;
+        border-bottom: 3px solid $color-red !important;
         font-weight: 500 !important;
         
     }
@@ -439,19 +439,19 @@ right: 25px !important;
     //     line-height: 43px;
     // }
     & .youtube {
-        background: red;
+        background: $color-red;
     }  
     & .facebook {
-        background: #3b5998;
+        background: $facebook;
     }
     & .twitter {
-        background: #1dcaff;
+        background: $twitter;
     }
     & .whatsapp {
-        background: #03c66a;
+        background: $whatsapp;
     }
     & .linkedin {
-        background: #0e76a8;
+        background: $linkedin;
     }
     
 }
@@ -474,40 +474,26 @@ right: 25px !important;
 z-index: 2;
 }
 
-
-
 // FOTO GALERİ SWİPER SLİDER
 .slider1 , .slider2 >.swiper-wrapper {
     height: 138px !important;
 }
 .next-1,.prev-1,.next-2,.prev-2{
-border: 2px solid red;
+border: 2px solid $color-red;
 border-radius: 50%;
 width: 25px !important;
 height: 25px !important;
-color: red !important;
+color: $color-red !important;
 font-weight: bolder;
 font-family: Poppins !important;
 }
 .swiper-slide__foto {
-    // position: absolute;
-    // left: 30px;
-    // top: 0;
-    // width: 174px;
-    // height: 154px;
-    // overflow: hidden;
     position: absolute;
-    /* left: 30px; */
     top: 9px;
-    /* width: 174px; */
-    /* height: 154px; */
     overflow: hidden;
 
     & img {
-        // margin: -8px 0px 0px -15px;
-        // width: 200px;
-        // height: 120px;
-        // overflow: hidden;
+
 
         margin: -8px 0px 0px 0px;
         width: 180px;
@@ -518,45 +504,6 @@ font-family: Poppins !important;
     
 }
 .yazi-span {
-//     vertical-align: middle;
-// /* display: none; */
-// height: 159px;
-// font-family: Poppins,sans-serif;
-// font-size: 14px;
-// font-weight: 400;
-// color: #333;
-// line-height: 135%;
-// width: 49%;
-// float: right;
-// position: relative;
-// left: 64%;
-// top: 50%;
-// transform: translate(-8%, -30%);
-// text-align: center;
-
-
-
-// vertical-align: middle;
-/* display: none; */
-// height: 159px;
-// font-family: Poppins,sans-serif;
-// font-size: 14px;
-// font-weight: 400;
-// color: #333;
-// line-height: 135%;
-// width: 50%;
-// float: right;
-// position: absolute;
-// left: 54%;
-// top: 50%;
-// transform: translate(-6%, -21%);
-// text-align: center;
-
-
-
-
-
-
 vertical-align: middle;
     height: 159px;
     font-family: Poppins,sans-serif;
@@ -578,7 +525,7 @@ width: 6px !important;
     height: 6px !important;
 }
 .pagination-1 >.swiper-pagination-bullet-active,.pagination-2 > .swiper-pagination-bullet-active{
-    background: red !important;
+    background: $color-red !important;
 }
 .swiper-button-next:after,.swiper-button-prev:after {
     font-size: 10px !important;
@@ -616,7 +563,7 @@ width: 6px !important;
     font-size: 12px;
     color: $color-white;
     opacity: 1;
-    background: rgba(0, 0, 0, 0);
+    background: $color-black;
     border: 1px solid $color-white;
 
 }
@@ -633,7 +580,7 @@ width: 6px !important;
 }
 .surmanset > .swiper-pagination-bullet-active {
     background: $color-white !important;
-    color: red;
+    color: $color-red;
 }
 .surmanset-slider >.swiper-wrapper {
     height: 100% !important;
@@ -659,7 +606,7 @@ width: 6px !important;
     font-size: 12px;
     color: $color-white;
     opacity: 1;
-    background: #343a40;
+    background: $tatli-gri;
     border: 1px solid $color-white;
     border-radius: unset;
     margin: 0 !important;
@@ -704,10 +651,10 @@ object-fit: cover;
     text-align: center;
     line-height: 33px;
     font-size: 12px;
-    color: #0d0d0d;
+    color: $color-black;
     opacity: 1;
-    background: white !important;
-    border-right: 1px solid #e31c1d3d;
+    background: $color-white !important;
+    // border-right: 1px solid #e31c1d3d;
         border-radius: unset;
     margin: 0 !important;
     padding: 0;
@@ -718,10 +665,10 @@ object-fit: cover;
         /* text-align: center; */
         /* line-height: 33px; */
         /* font-size: 12px; */
-        color: #0d0d0d;
+        color:  $color-black;
         opacity: 1;
-        background: gray !important;
-            border-right: 1px solid #e31c1d3d;
+        background: $color-gray-dark !important;
+            // border-right: 1px solid #e31c1d3d;
         border-radius: unset;
         margin: 2px !important;
         padding: 0;
@@ -774,10 +721,10 @@ object-fit: cover;
     text-align: center;
     line-height: 33px;
     font-size: 12px;
-    color: #0d0d0d;
+    color: $color-black;
     opacity: 1;
     background: none !important;
-    border-right: 1px solid #e31c1d3d;
+    // border-right: 1px solid #e31c1d3d;
         border-radius: unset;
     margin: 0 !important;
     padding: 0;
@@ -806,7 +753,7 @@ object-fit: cover;
             font-family: Poppins;
         }
         &-rakam {
-            color: #d82826;
+            color: $color-red;
             font-weight: 700;
             font-size: 24px;
             font-style: normal;
@@ -822,7 +769,7 @@ object-fit: cover;
             &:hover  .detay__liste-rakam {
     
                 transform: scale(1.4);
-                color: #114f90;
+                color: $color-blue-dark;
                 transition: .4s all ease;
             }
         }
@@ -835,7 +782,7 @@ object-fit: cover;
             font-family: Poppins;
     &::before {
         content: '';
-        background: #fd722f;
+        background: $somon-bg;
         position: absolute;
         top: 26px;
         left: 0px;
@@ -845,7 +792,7 @@ object-fit: cover;
     }
     &::after {
         content: '';
-        background: #c1c1c1;
+        background: $color-gray-dark-3;
         position: absolute;
         top: 30px;
         left: 0px;
@@ -950,16 +897,16 @@ object-fit: cover;
     &-text {
         font-weight: 500;
         font-family: inherit;
-        color:#999;
+        color:$color-gray-dark-3;
     }
 }
 
 .text-shadow {
-    text-shadow: 0px 2px 5px #2d2c2c;
+    text-shadow: 0px 2px 5px $tatli-gri;
 
 }
 .text-shadow-dark {
-    text-shadow: 1px 1px 3px #000000;
+    text-shadow: 1px 1px 3px $color-black;
 }
 .link-sil, .link-sil:hover {
 
@@ -1056,8 +1003,8 @@ select.minimal {
   
   select.minimal:focus {
     background-image:
-      linear-gradient(45deg, green 50%, transparent 50%),
-      linear-gradient(135deg, transparent 50%, green 50%),
+      linear-gradient(45deg, $color-3 50%, transparent 50%),
+      linear-gradient(135deg, transparent 50%, $color-3 50%),
       linear-gradient(to right, #ccc, #ccc);
     background-position:
       calc(100% - 15px) 1em,
@@ -1068,12 +1015,12 @@ select.minimal {
       5px 5px,
       1px 1.5em;
     background-repeat: no-repeat;
-    border-color: green;
+    border-color: $color-3;
     outline: 0;
   }
   select:-moz-focusring {
     color: transparent;
-    text-shadow: 0 0 0 #000;
+    text-shadow: 0 0 0 $color-black;
   }
 /// HAVA DURUMU SELECT
 
@@ -1082,7 +1029,7 @@ select.minimal {
 }
 .list-group-item {
     border:none !important;
-    border-top: 1px solid rgba(0,0,0,0.125) !important;
+    border-top: 1px solid $tatli-gri !important;
     padding: 5px 0px 5px 10px !important;
 
 }
@@ -1115,5 +1062,34 @@ img.lazyload:not([src]) {
     }
     & p {
         color: #006726;font-size: 13px;font-weight: 700;/* position: relative; */margin-left: 7px; margin-bottom: 0
+    }
+}
+.sondakika {
+    position: absolute;
+    right: 22px;
+    top: 31px;
+    transform: rotate(-9deg);
+    z-index: 9;
+    &::before {
+        ontent: "";
+        position: absolute;
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+        top: 4px;
+        right: 4px;
+        z-index: -1;
+    }
+    & span {
+        height: 36px;
+    line-height: 34px;
+    font-size: 22px;
+    font-weight: 700;
+    background-color: #b70b19;
+    padding: 0 13px;
+    z-index: 1;
+    display: block;
+    animation: lastMin 1s infinite;
+    color: #fff;
     }
 }

@@ -8043,6 +8043,93 @@ img.lazyload:not([src]) {
     margin-left: 7px;
     margin-bottom: 0; }
 
+.top-left {
+  right: unset !important;
+  left: 22px !important;
+  bottom: unset;
+  top: 31px; }
+
+.sondakikaSlider {
+  position: absolute;
+  right: 22px;
+  top: 31px;
+  transform: rotate(-9deg);
+  z-index: 9; }
+  .sondakikaSlider::before {
+    content: '';
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    top: 4px;
+    right: 4px;
+    z-index: -1; }
+  .sondakikaSlider span {
+    height: 25px;
+    line-height: 25px;
+    font-size: 15px;
+    font-weight: 700;
+    background-color: #b70b19;
+    padding: 0 13px;
+    z-index: 1;
+    display: block;
+    animation: lastMin 1s infinite;
+    color: #fff; }
+
+@-webkit-keyframes lastMinSlider {
+  0% {
+    background-color: #222; }
+  30% {
+    background-color: #c90914; }
+  60% {
+    background-color: #c90914; }
+  90% {
+    background-color: #222; }
+  100% {
+    background-color: #222; } }
+
+.top-leftBox {
+  right: unset !important;
+  left: 18px !important;
+  bottom: unset;
+  top: 31px; }
+
+.sondakika {
+  position: absolute;
+  right: 22px;
+  top: 166px;
+  transform: rotate(0deg);
+  z-index: 9; }
+  .sondakika::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #f1f1f1; }
+  .sondakika span {
+    height: 25px;
+    line-height: 25px;
+    font-size: 15px;
+    font-weight: 700;
+    background-color: #b70b19;
+    padding: 0 13px;
+    z-index: 1;
+    display: block;
+    animation: lastMin 1s infinite;
+    color: #fff; }
+
+@-webkit-keyframes lastMin {
+  0% {
+    background-color: #222; }
+  30% {
+    background-color: #c90914; }
+  60% {
+    background-color: #c90914; }
+  90% {
+    background-color: #222; }
+  100% {
+    background-color: #222; } }
+
 .navbar {
   font-family: "Poppins"; }
 

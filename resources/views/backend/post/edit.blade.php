@@ -209,6 +209,9 @@
                             </div> --}}
                         </fieldset>
                     </div>
+                    <div class="col-md-12">
+                        <h3>Haber Alanları</h3>
+                    </div>
                     <div class="col-md-3 mb-3">
 
                     <div class="form-check">
@@ -227,7 +230,6 @@
                     </div> --}}
                 </div>
                 <div class="col-md-3 mb-3">
-
                     <div class="form-check">
                         <label class="form-check-label">
                             <input type="checkbox" name="manset" value="1" @php if($post->manset==1) {echo "checked";}@endphp class="form-check-input-styled-primary"  data-fouc>
@@ -262,7 +264,49 @@
                         </label>
                     </div>
                 </div>
+                    <div class="col-md-12">
+                        <h3>Görsel Etiketleri</h3>
+                    </div>
+                    <div class="col-md-3 mb-3">
 
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" name="surmanset" value="1"  @php if($post->surmanset==1) {echo "checked";}@endphp class="form-check-input-styled-primary"  data-fouc>
+                                Sürmanşet
+
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" name="surmanset" value="1"  @php if($post->surmanset==1) {echo "checked";}@endphp class="form-check-input-styled-primary"  data-fouc>
+                                Sürmanşet
+
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" name="surmanset" value="1"  @php if($post->surmanset==1) {echo "checked";}@endphp class="form-check-input-styled-primary"  data-fouc>
+                                Sürmanşet
+
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" name="surmanset" value="1"  @php if($post->surmanset==1) {echo "checked";}@endphp class="form-check-input-styled-primary"  data-fouc>
+                                Sürmanşet
+
+                            </label>
+                        </div>
+                    </div>
 
 
                     <div class="col-md-12">
