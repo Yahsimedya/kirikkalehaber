@@ -211,30 +211,30 @@ class ExtraController extends Controller
 
 
         $sehirsay = Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
-                ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
-                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
-                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
-                ->where('districts.slug', $id)
-                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-                ->latest('updated_at')
-                ->count();
+            ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
+            ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
+            ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
+            ->where('districts.slug', $id)
+            ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
+            ->latest('updated_at')
+            ->count();
 
         $sehir = District::where('slug', $id)
-                ->first();
+            ->first();
 
 
         $districts = Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
-                ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
-                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
-                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
-                ->where('districts.slug', $id)
-                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'districts.district_keywords', 'districts.district_description', 'subdistricts.subdistrict_tr'])
-                ->latest('updated_at')->limit(50)
-                ->get();
+            ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
+            ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
+            ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
+            ->where('districts.slug', $id)
+            ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'districts.district_keywords', 'districts.district_description', 'subdistricts.subdistrict_tr'])
+            ->latest('updated_at')->limit(50)
+            ->get();
 
         $subdistricts =  Subdistrict::leftjoin('districts', 'districts.id', '=', 'subdistricts.district_id')
-                ->where('districts.slug', $id)
-                ->get();
+            ->where('districts.slug', $id)
+            ->get();
         $alldistrict = District::get();
 
         return view('main.body.district', compact('districts', 'sehir', 'sehirsay', 'subdistricts', 'alldistrict'));
@@ -381,21 +381,21 @@ class ExtraController extends Controller
         $slider =Cache::remember("slider", Carbon::now()->addYear(), function () {
             if (Cache::has('slider')) return Cache::has('slider'); //here am simply trying Laravel Collection method -find
             return Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
-            ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
-            ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
-            ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
-            ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-            ->where('status', 1)->latest('id')
-            ->get();
-        });
-
-        $home = Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
                 ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
                 ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
                 ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
                 ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-                ->where('status', 1)->latest('updated_at')->limit(10)
+                ->where('status', 1)->latest('id')
                 ->get();
+        });
+
+        $home = Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
+            ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
+            ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
+            ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
+            ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
+            ->where('status', 1)->latest('updated_at')
+            ->get();
         $sagmanset = Cache::remember("sagmanset", Carbon::now()->addYear(), function () {
             if (Cache::has('sagmanset')) return Cache::has('sagmanset'); //here am simply trying Laravel Collection method -find
 
@@ -412,23 +412,23 @@ class ExtraController extends Controller
 //        }
         $ekonomi = Cache::remember("ekeonomi", Carbon::now()->addYear(), function () {
             if (Cache::has('ekeonomi')) return Cache::has('ekeonomi');
-            return Post::where('category_id', '=', 5)->where('featured', '==', 0)->limit(1)->orderByDesc('id')->get();
+            return Post::where('category_id', '=', 5)->where('featured', '=', 0)->limit(9)->latest('updated_at')->get();
 
         });
 
         $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () {
             if (Cache::has('gundem')) return Cache::has('gundem');
-            return Post::where('category_id', '=', 2)->where('featured', '==', 0)->limit(9)->orderByDesc('id')->get();
+            return Post::where('category_id', '=', 2)->where('featured', '=', 0)->limit(9)->latest('updated_at')->get();
         });
 
         $siyaset = Cache::remember("siyaset", Carbon::now()->addYear(), function () {
             if (Cache::has('siyaset')) return Cache::has('siyaset');
-            return Post::where('category_id', '=', 3)->where('featured', '==', 0)->limit(9)->orderByDesc('id')->get();
+            return Post::where('category_id', '=', 3)->where('featured', '=', 1)->where('status','=',1)->limit(9)->latest('updated_at')->get();
         });
 
         $spor = Cache::remember("spor", Carbon::now()->addYear(), function () {
             if (Cache::has('spor')) return Cache::has('spor');
-            return Post::where('category_id', '=', 6)->where('featured', '==', 0)->limit(9)->orderByDesc('id')->get();
+            return Post::where('category_id', '=', 6)->where('featured', '=', 0)->limit(10)->latest('updated_at')->get();
         });
         $themeSetting = Cache::remember("themeSetting", Carbon::now()->addYear(), function () {
             if (Cache::has('themeSetting')) return Cache::has('themeSetting');
@@ -502,8 +502,10 @@ class ExtraController extends Controller
                     $icon = '<i  style="font-size: 20px;" class="wi wi-day-sunny"></i>';
                 } elseif ($data['d1'] == "CB") {
                     $icon = '<i  style="font-size: 20px;" class="wi wi-cloudy"></i>';
+                }elseif ($data['d1'] == "SIS") {
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
                 } else {
-                    $icon = '';
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-na"></i>';
                 }
 
 
@@ -554,31 +556,31 @@ class ExtraController extends Controller
         $comments = Comments::where('id', '=', $id)->get();
 
         $slider =  Post::latest('created_at')
-                ->where('status', 1)->where('category_id', $post->category_id)
-                ->offset(1)->limit(10)
-                ->get();
+            ->where('status', 1)->where('category_id', $post->category_id)
+            ->offset(1)->limit(10)
+            ->get();
 
         $ads =Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
 //            ->join('ads','ad_categories.id','ads.category_id')
-                    ->select(['ads.*', 'ad_categories.id'])
-                    ->where('status', 1)
-                    ->whereIN('ad_categories.id', [1, 2, 3, 12]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
-                    ->get();
+            ->select(['ads.*', 'ad_categories.id'])
+            ->where('status', 1)
+            ->whereIN('ad_categories.id', [1, 2, 3, 12]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
+            ->get();
 
         $related = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
-                    ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
-                    ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                    ->where('posts.id', $id)->latest()
-                    ->get();
+            ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
+            ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
+            ->where('posts.id', $id)->latest()
+            ->get();
 
         $tag = Tag::get();
         foreach ($tag as $item) {
             $nextrelated =
-                    Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
-                        ->leftjoin('tags', 'tags.id', 'post_tags.tag_id')
-                        ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                        ->where('post_tags.tag_id', $item->id)->latest()
-                        ->get();
+                Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+                    ->leftjoin('tags', 'tags.id', 'post_tags.tag_id')
+                    ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
+                    ->where('post_tags.tag_id', $item->id)->latest()
+                    ->get();
 
 //            $nextrelated = Post::leftjoin('post_tags','posts.id','post_tags.post_id')
 //                ->leftjoin('tags','tags.id','post_tags.tag_id')
@@ -620,25 +622,25 @@ class ExtraController extends Controller
 
 
         $count = Post::join('categories', 'posts.category_id', 'categories.id')
-                ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-                ->where('posts.category_id', $id)
-                ->count();
+            ->select('posts.*', 'categories.category_tr', 'categories.category_en')
+            ->where('posts.category_id', $id)
+            ->count();
 
 
         $catpost =  Post::join('categories', 'posts.category_id', 'categories.id')
-                ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-                ->where('posts.category_id', $id)->orWhere('posts.manset', NULL)->offset(1)
-                ->paginate(20);
+            ->select('posts.*', 'categories.category_tr', 'categories.category_en')
+            ->where('posts.category_id', $id)->orWhere('posts.manset', NULL)->offset(1)
+            ->paginate(20);
 
 
 //        if ($catpost->count() == 0) {
 //            return redirect('/');
 //        }
         $nextnews =  Post::join('categories', 'posts.category_id', 'categories.id')
-                ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-                ->where('posts.category_id', $id)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
-                ->inRandomOrder()->limit(10)
-                ->get();
+            ->select('posts.*', 'categories.category_tr', 'categories.category_en')
+            ->where('posts.category_id', $id)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
+            ->inRandomOrder()->limit(10)
+            ->get();
 
         return view('main.body.category_post', compact('manset', 'category', 'catpost', 'nextnews', 'count'));
 
@@ -651,10 +653,8 @@ class ExtraController extends Controller
 
         $searchText = $request['searchtext'];
         $json = Post::orWhere('title_tr', 'LIKE', '%' . $searchText . '%')->orWhere('title_en', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_tr', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_en', 'LIKE', '%' . $searchText . '%')->get();
-        $searchNews =Cache::remember("searchNews", Carbon::now()->addYear(), function () {
-            if (Cache::has('searchNews')) return Cache::has('searchNews');
-            return $this->change($json);
-        });
+        $searchNews = $this->change($json);
+
         return \view('main.body.search', compact('searchNews'));
     }
 

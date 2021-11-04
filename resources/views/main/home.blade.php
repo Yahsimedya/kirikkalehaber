@@ -7,18 +7,18 @@
 @section('content')
     <?php
     $socials = DB::table('socials')->get();
-    $kurlar=Session::get('kurlar');
-    $veri=Session::get('havadurumu');
-    $icon=Session::get('icon');
+    $kurlar = Session::get('kurlar');
+    $veri = Session::get('havadurumu');
+    $icon = Session::get('icon');
 
     ?>
     <style>
         .anamanset-pagination > .swiper-pagination-bullet-active {
-            background-color: {{$themeSetting[0]->siteColorTheme}}!important;
+            background-color: {{$themeSetting[0]->siteColorTheme}} !important;
         }
 
         .pagination-1 > .swiper-pagination-bullet-active, .pagination-2 > .swiper-pagination-bullet-active {
-            background-color: {{$themeSetting[0]->siteColorTheme}}                 !important;
+            background-color: {{$themeSetting[0]->siteColorTheme}}                  !important;
         }
 
         .media.media-weather {
@@ -145,20 +145,20 @@
                     },
                 })
             });
-{{--            e = $('#ilsec').val();--}}
-{{--// var str =$(this).serialize();--}}
-{{--            $.ajax({--}}
-{{--                type: "POST",--}}
-{{--                url: "{{  route('il.stabilhome') }}",--}}
-{{--                headers: {'X-CSRF-TOKEN': '{{csrf_token()}}'},--}}
-{{--                data: $('#havadurum').serialize(),--}}
-{{--                success: function (donen) {--}}
-{{--                    veri = donen;--}}
-{{--                    $('#ilsec').attr("disabled", false);--}}
-{{--                    $('#cek').html(veri);--}}
-{{--// console.log();--}}
-{{--                },--}}
-{{--            })--}}
+            {{--            e = $('#ilsec').val();--}}
+            {{--// var str =$(this).serialize();--}}
+            {{--            $.ajax({--}}
+            {{--                type: "POST",--}}
+            {{--                url: "{{  route('il.stabilhome') }}",--}}
+            {{--                headers: {'X-CSRF-TOKEN': '{{csrf_token()}}'},--}}
+            {{--                data: $('#havadurum').serialize(),--}}
+            {{--                success: function (donen) {--}}
+            {{--                    veri = donen;--}}
+            {{--                    $('#ilsec').attr("disabled", false);--}}
+            {{--                    $('#cek').html(veri);--}}
+            {{--// console.log();--}}
+            {{--                },--}}
+            {{--            })--}}
         });
 
     </script>
@@ -649,10 +649,10 @@
                                                     <td class="text-uppercase">İkindi</td>
                                                     <td class="font-weight-bold ikindi">{{$vakitler["ikindi"]}}
 
-{{--                                                        @if($now<$ikindi)--}}
-{{--                                                            {{ $dateDiff = Carbon\Carbon::now()->diffInMinutes($ikindi,false)}}--}}
+                                                        {{--                                                        @if($now<$ikindi)--}}
+                                                        {{--                                                            {{ $dateDiff = Carbon\Carbon::now()->diffInMinutes($ikindi,false)}}--}}
 
-{{--                                                        @endif--}}
+                                                        {{--                                                        @endif--}}
 
                                                     </td>
                                                     <td>
@@ -783,8 +783,8 @@
             <div class="row">
                 @foreach($ekonomi as $homes)
 
+                    @if($homes->featured ==null|| $homes->featured ==0)
 
-                    @if($homes->featured ==null )
 
                         <div class="col-md-4 float-left mb-3  ">
                             <div class="card kart kart-width kart-margin shadow" style="">
@@ -799,8 +799,8 @@
                             </div>
                         </div>
 
-                    @endif
 
+                    @endif
 
 
 
@@ -885,22 +885,21 @@
                 @foreach($gundem as $homes)
 
 
-                    @if($homes->featured ==null|| $homes->featured ==0)
 
-                        <div class="col-md-4 float-left mb-3  ">
-                            <div class="card kart kart-width kart-margin shadow" style="">
-                                <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
-                                    <img
-                                        class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
-                                        alt="Card image cap"></a>
-                                <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
-                                    <p class="card-text "
-                                       style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$homes->title_tr}}</p>
-                                </div>
+
+                    <div class="col-md-4 float-left mb-3  ">
+                        <div class="card kart kart-width kart-margin shadow" style="">
+                            <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
+                                <img
+                                    class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
+                                    alt="Card image cap"></a>
+                            <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
+                                <p class="card-text "
+                                   style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$homes->title_tr}}</p>
                             </div>
                         </div>
+                    </div>
 
-                    @endif
 
 
 
@@ -908,39 +907,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="container">
-            <div class="row">
-                @php
 
-                    @endphp
-                <div class="col-md-12 padding-0">
-
-                    @for($i=0;$i<=5;$i++)
-
-
-
-                        @if($home[$i]->category_id ==1)
-
-                            <div class="col-md-4 float-left mb-3 kart ">
-                                <div class="card kart kart-width kart-margin shadow" style="">
-                                    <a href="{{URL::to('/'.str_slug($home[$i]->title_tr).'/'.$home[$i]->id.'/'.'haberi')}}">
-                                        <img
-                                            class="img-fluid kart_img lazyload" data-src="{{asset($home[$i]->image)}}"
-                                            alt="Card image cap"></a>
-                                    <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
-                                        <p class="card-text"
-                                           style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">
-                                            {{$home[$i]->title_tr}}
-
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                    @endfor
-                </div>
-            </div>
-        </div>
 
         <div class="container">
             <div class="row">
@@ -969,18 +936,20 @@
 
                         @foreach($home as $homes)
 
-                            @if($homes->category_id ==3 && $homes->featured==1)
+                            @if($homes->category_id == 3 && $homes->featured==1)
+
                                 <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                             <img class="img-fluid kart_img lazyload"
                                                  data-src="{{asset($homes->image)}}"/><a/>
                                             <div class="card-body kart-body  bordercolor-5 border-3 text-dark">
-                                                <p class="card-text text-danger"
+                                                <p class="card-text"
                                                    style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">
 
                                                     {{$homes->title_tr}}
                                                 </p>
+
                                             </div>
                                     </div>
                                 </div>
@@ -1005,22 +974,22 @@
                 @foreach($siyaset as $homes)
 
 
-                    @if($homes->featured ==null|| $homes->featured ==0)
 
-                        <div class="col-md-4 float-left mb-3  ">
-                            <div class="card kart kart-width kart-margin shadow" style="">
-                                <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
-                                    <img
-                                        class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
-                                        alt="Card image cap"></a>
-                                <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
-                                    <p class="card-text"
-                                       style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$homes->title_tr}}</p>
-                                </div>
+
+
+                    <div class="col-md-4 float-left mb-3  ">
+                        <div class="card kart kart-width kart-margin shadow" style="">
+                            <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
+                                <img
+                                    class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
+                                    alt="Card image cap"></a>
+                            <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
+                                <p class="card-text"
+                                   style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$homes->title_tr}}</p>
                             </div>
                         </div>
+                    </div>
 
-                    @endif
 
 
 
@@ -1116,54 +1085,61 @@
         </div>
         <div class="container">
 
-            <div class="row mt-3">
-                @foreach($spor as $homes)
+            <div class="row">
+
+                <div class="col-lg-8">
+                    <div class="row mt-3">
+                        @foreach($spor as $homes)
 
 
-                    @if($homes->featured ==null|| $homes->featured ==0)
 
-                        <div class="col-md-4 float-left mb-3  ">
-                            <div class="card kart kart-width kart-margin shadow" style="">
-                                <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
-                                    <img
-                                        class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
-                                        alt="Card image cap"></a>
-                                <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
-                                    <p class="card-text"
-                                       style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$homes->title_tr}}</p>
+
+                            <div class="col-md-6 float-left mb-3  ">
+                                <div class="card kart kart-width kart-margin shadow" style="">
+                                    <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
+                                        <img
+                                            class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
+                                            alt="Card image cap"></a>
+                                    <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
+                                        <p class="card-text"
+                                           style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$homes->title_tr}}</p>
+                                    </div>
                                 </div>
                             </div>
+
+
+
+
+
+                        @endforeach
+
+
+                    </div>
+                </div>
+                <div class="col-lg-4" style="">
+                    <div class="row mt-3">
+                        <div class="col-md-12 ">
+                            <div class="card-header card-spor  position-relative">
+                                <div class=" card-spor__link text-left pad text-center">
+                                    <!--<img class="img-fluid lazyload" style="margin: 1px 15px 0px -21px;" width="30" height="30" data-src="./img/superlig.png">--><b>Süper
+                                        Lig</b> Puan Durumu
+                                </div>
+                            </div>
+
+                        @include('main.body.puan-durumu')
+
+                        <!--PUAN TABLOSU-->
                         </div>
 
-                    @endif
-
-
-
-
-                @endforeach
+                    </div>
+                </div>
             </div>
         </div>
+
+
+
+
         <div class="container">
-
-            <div class="row mt-3">
-
-
-                <!-- PUAN TABLOSU -->
-
-                <div class="col-md-4 ">
-                    <div class="card-header card-spor  position-relative">
-                        <div class=" card-spor__link text-left pad text-center">
-                            <!--<img class="img-fluid lazyload" style="margin: 1px 15px 0px -21px;" width="30" height="30" data-src="./img/superlig.png">--><b>Süper
-                                Lig</b> Puan Durumu
-                        </div>
-                    </div>
-
-                @include('main.body.puan-durumu')
-
-                <!--PUAN TABLOSU-->
-                </div>
-
-            </div>
 
 
             <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css"> -->
@@ -1184,6 +1160,7 @@
                         </div>
                     </div>
                 </div>
+        </div>
 
 
 @endsection

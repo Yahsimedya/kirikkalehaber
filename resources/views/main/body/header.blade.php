@@ -13,6 +13,8 @@ $gelenil=Session::get('gelenil');
 @endphp
 
 <style>
+
+
     .dropdown:hover .dropdown-menu {
         display: block;
         margin-top: 0;
@@ -26,7 +28,76 @@ $gelenil=Session::get('gelenil');
     .table-borderless > thead > tr > th {
         border: none;
     }
+
+
+
+    .closed{
+
+        color: {{$themeSetting[0]->siteColorTheme}};
+        top:20px;
+        right:50px;
+        font-size:1.7em;
+        cursor:pointer;
+        display:none;
+        z-index:999;
+        -webkit-transform:rotate(0deg);
+        transform:rotate(0deg);
+        -webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        transition:         all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .closed:hover{
+        font-size:2.4em;
+        -webkit-transform:rotate(360deg);
+        transform:rotate(360deg);
+    }
+    /*-------------- saerch section -----------*/
+    .searchd{
+        position:relative;
+        top:70%;
+        left:15%;
+        -webkit-transform:translate(-50%, -50%);
+        transform:translate(-50%, -50%);
+        border-radius:1000px;
+        width:0;
+        height:0;
+        background: #3f3f3f;
+        -webkit-transition: all .4s linear;
+        transition:  all .4s linear;
+    }
+
+    .searchd i{
+        padding-top:10px ;
+
+        font-size:1.7em;
+        cursor:pointer;
+    }
+
+    .searchd .input{
+        position:absolute;
+        top:50%;
+        left:50%;
+        -webkit-transform:translate(-50%, -50%);
+        transform:translate(-50%, -50%);
+        width:350px;
+        height:40px;
+        background:transparent;
+        border:none;
+        outline:none;
+        border-bottom:3px solid {{$themeSetting[0]->siteColorTheme}};
+        color: #ffffff;
+        font-size:1.3em;
+        display:none;
+    }
+
+
+    .searchd.open{
+        height:4000px;
+        width:4000px;
+    }
 </style>
+
+
 @foreach($themeSetting as $navbar)
 @if($navbar->header==0)
     <nav id="navbar_top"
@@ -268,15 +339,40 @@ $gelenil=Session::get('gelenil');
 
 
                 {{--        </div>--}}
-                <div class="col-md-2 my-auto">
+
+
+
+
+
+
+
+
+
+
+                <div>
                     <form class="form-inline mt-1 mt-md-0 position-relative" action="{{route('search')}}" method="POST">
                         @csrf
+                        <div class="closed">
+                            <i class="fa fa-close"></i>
+                        </div>
+                        <div class="searchd">
+                            <i class="fa fa-search" style="color: {{$themeSetting[0]->siteColorTheme}}"></i>
+                            <input type="text" name="searchtext" class="input mt-5" placeholder="Arama Yap">
+                        </div>
+
+                            <!----- close button
+
+                            <form class="form-inline mt-1 mt-md-0 position-relative" action="{{route('search')}}" method="POST">
+
                         <input class="form-control mr-sm-2 rounded-pill" name="searchtext" type="text" placeholder="Arama Yap"
                                style="width: 150px; ">
                         <button class="btn btn-primary my-2 my-sm-0 rounded-pill position-absolute search"
                                 style=" background-color:  {{$themeSetting[0]->siteColorTheme}} !important;" type="submit"><i
                                 class="fa fa-search"></i>
-                        </button>
+                        </button>----->
+
+
+
                     </form>
 
                 </div>
@@ -391,4 +487,23 @@ $gelenil=Session::get('gelenil');
 
 
 
+
+<script>
+    (function($){
+        var search_button = $('.fa-search'),
+            close_button  = $('.closed'),
+            input = $('.input');
+        search_button.on('click',function(){
+            $(this).parent().addClass('open');
+            close_button.fadeIn(500);
+            input.fadeIn(500);
+        });
+
+        close_button.on('click',function(){
+            search_button.parent().removeClass('open');
+            close_button.fadeOut(500);
+            input.fadeOut(500);
+        });
+    })(jQuery);
+</script>
 

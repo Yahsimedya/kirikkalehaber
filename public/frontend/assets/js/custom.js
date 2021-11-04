@@ -31,7 +31,7 @@ $(".detay-pagination>.swiper-pagination-bullet").hover(function () {
     $(this).trigger("click");
 });
 
- 
+
 // swiper = new Swiper(".surmanset-slider", {
 //     direction: "vertical",
 //     slidesPerView: 1,
@@ -50,4 +50,4 @@ $(".detay-pagination>.swiper-pagination-bullet").hover(function () {
 // $(".surmanset>.swiper-pagination-bullet").hover(function () {
 //     $(this).trigger("click");
 // })
-  
+
