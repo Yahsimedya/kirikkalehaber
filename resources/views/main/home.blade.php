@@ -15,41 +15,6 @@
     <style>
 
 
-        .flashlightHeadline {
-            border-radius: 5px;
-            border-color:white;
-            border-style: solid;
-            border-width: 0px 5px 5px 0px;
-            margin-top: 1px;
-            text-align: left;
-            width: 120px;
-            height: 30px;
-            background: red;
-            animation: animasyonHeadline 1s infinite;
-        }
-        /*@keyframes animasyonHeadline {*/
-        /*    from {background-color: red;}*/
-        /*    to {background-color: black;}*/
-        /*}*/
-        .flashlightVideo {
-            border-radius: 5px;
-            border-color:white;
-            border-style: solid;
-            border-width: 0px 5px 5px 0px;
-            margin-top: 1px;
-            text-align: left;
-            width: 90px;
-            height: 30px;
-            background: red;
-            animation: animasyonVideo 1s infinite;
-        }
-        @keyframes animasyonVideo {
-            from {background-color: darkblue;}
-            to {background-color: black;}
-        }
-
-
-
 
 
         .anamanset-pagination > .swiper-pagination-bullet-active {
@@ -209,9 +174,7 @@
                 <div class="simple-marquee-container" style="z-index: 999;">
                     <a href="sondakika.php">
                         <div class="marquee-sibling">
-
                             Son Dakika
-
                         </div>
                     </a>
                     <div class="marquee">
@@ -281,18 +244,22 @@
         <!--AÇILIP KAPANABİLİR REKLAM ALANI-->
         <div class="container mt-2">
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-12 pb-2 d-none d-md-block padding-left kartlar">
-                    <div class="card shadow  d-inline-block  "><a href="haber-kavga-ettigi-amcasini-sokak-ortasinda-tabancayla-vurdu-120422">
-                            <div class="sondakika top-leftBox">
-                                <span>Son Dakika</span>
-                            </div>
-                            <img class="card-img-top lazy" height="180" src="{{asset('image/foto-1.png')}}"  alt="Kavga ettiği amcasını sokak ortasında tabancayla vurdu" style="">
-                            <div class="card-body align-middle d-table-cell">
-                                <p class="card-baslik text-left d-table-cell"><b class="card-kisalt">Kavga ettiği amcasını sokak ortasında tabancayla vurdu</b></p>
-                                {{--                                <span class="card__kategori position-absolute">3. Sayfa</span>--}}
-                            </div></a>
+                @foreach($surmanset as $row)
+                    <div class="col-lg-3 col-md-6 col-sm-12 pb-2 d-none d-md-block padding-left kartlar">
+                        <div class="card shadow  d-inline-block  ">
+                            <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
+                                <div class="sondakika top-leftBox">
+                                    <span>Son Dakika</span>
+                                </div>
+                                <img class="card-img-top lazy" height="180" src="{{asset($row->image)}}"  alt="Kavga ettiği amcasını sokak ortasında tabancayla vurdu" style="">
+                                <div class="card-body align-middle d-table-cell">
+                                    <p class="card-baslik text-left d-table-cell"><b class="card-kisalt">{{$row->title_tr}}</b></p>
+                                    {{--                                <span class="card__kategori position-absolute">3. Sayfa</span>--}}
+                                </div></a>
+                        </div>
                     </div>
-                </div>
+                @endforeach
+
 
             </div>
             <div class="row">

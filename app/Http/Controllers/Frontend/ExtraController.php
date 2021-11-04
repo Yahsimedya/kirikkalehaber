@@ -396,6 +396,13 @@ class ExtraController extends Controller
             ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
             ->where('status', 1)->latest('updated_at')
             ->get();
+        $surmanset = Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
+            ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
+            ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
+            ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
+            ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
+            ->where('status', 1)->latest('updated_at')->limit(4)
+            ->get();
         $sagmanset = Cache::remember("sagmanset", Carbon::now()->addYear(), function () {
             if (Cache::has('sagmanset')) return Cache::has('sagmanset'); //here am simply trying Laravel Collection method -find
 
@@ -526,7 +533,7 @@ class ExtraController extends Controller
 
         Session::put('havadurumu', $veri['sicaklik']);
 
-        return view('main.home', compact('home','slider', 'ekonomi', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
+        return view('main.home', compact('home','slider', 'ekonomi','surmanset', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 
