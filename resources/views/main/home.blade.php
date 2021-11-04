@@ -31,10 +31,6 @@
         /*    from {background-color: red;}*/
         /*    to {background-color: black;}*/
         /*}*/
-        @keyframes animasyonHeadline {
-            from {background-color: red;}
-            to {background-color: black;}
-        }
         .flashlightVideo {
             border-radius: 5px;
             border-color:white;
@@ -293,7 +289,7 @@
                             <img class="card-img-top lazy" height="180" src="{{asset('image/foto-1.png')}}"  alt="Kavga ettiği amcasını sokak ortasında tabancayla vurdu" style="">
                             <div class="card-body align-middle d-table-cell">
                                 <p class="card-baslik text-left d-table-cell"><b class="card-kisalt">Kavga ettiği amcasını sokak ortasında tabancayla vurdu</b></p>
-{{--                                <span class="card__kategori position-absolute">3. Sayfa</span>--}}
+                                {{--                                <span class="card__kategori position-absolute">3. Sayfa</span>--}}
                             </div></a>
                     </div>
                 </div>
@@ -317,13 +313,6 @@
                                             @if($slider[$i]->headline==1)
                                                 <div class="sondakikaSlider top-left">
                                                     <span>Son Dakika</span>
-                                                <div class="col-lg-12 yazi"
-                                                     style="position: absolute; left:75%;top:10% ;transform:translateY(-50%);">
-                                                    <div class=" flashlightHeadline">
-                                                        <div class="col-lg-9" style="background-color: transparent;color: white;">
-                                                            Son Dakika
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             @endif
                                             @if($slider[$i]->posts_video != "" || $slider[$i]->posts_video!=null)
@@ -331,7 +320,7 @@
                                                      style="position: absolute; left:5%;top:90%; text-align:right; transform:translateY(-50%);">
                                                     <div class="flashlightVideo">
                                                         <div class="col-lg-6" style="background-color: transparent;color: white">
-                                                           <i class="fa fa-play" >Video</i>
+                                                            <i class="fa fa-play" >Video</i>
                                                         </div>
                                                     </div>
                                                 </div>
