@@ -44,6 +44,9 @@ class Post extends Model
         'post_month',
         'status',
         'posts_video',
+        'headlinetag',
+        'flahtag',
+        'attentiontag',
 
 
     ];

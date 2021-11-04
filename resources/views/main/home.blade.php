@@ -277,21 +277,27 @@
                                                  width="100%"
                                                  data-src="{{ asset($slider[$i]->image) }}"/>
 
-                                            @if($slider[$i]->headline==1)
+                                            @if($slider[$i]->headlinetag==1)
                                                 <div class="sondakikaSlider top-left">
                                                     <span>Son Dakika</span>
                                                 </div>
                                             @endif
                                             @if($slider[$i]->posts_video != "" || $slider[$i]->posts_video!=null)
-                                                <div class="yazi"
-                                                     style="position: absolute; left:5%;top:90%; text-align:right; transform:translateY(-50%);">
-                                                    <div class="flashlightVideo">
-                                                        <div class="col-lg-6" style="background-color: transparent;color: white">
-                                                            <i class="fa fa-play" >Video</i>
-                                                        </div>
-                                                    </div>
+                                                <div class="sondakikaSlider top-left">
+                                                    <span>video</span>
                                                 </div>
                                             @endif
+                                            @if($slider[$i]->flahtag==1)
+                                                <div class="sondakikaSlider top-left">
+                                                    <span>flahtag</span>
+                                                </div>
+                                            @endif
+                                            @if($slider[$i]->attentiontag==1)
+                                                <div class="sondakikaSlider top-left">
+                                                    <span>attentiontag</span>
+                                                </div>
+                                            @endif
+
                                         </div>
                                     </a>
                                 </div>

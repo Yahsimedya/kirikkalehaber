@@ -35,6 +35,7 @@ class PostController extends Controller
 
     public function AddPost()
     {
+
         $category = DB::table('categories')->get();
         $district = DB::table('districts')->get();
         $tags = Tag::orderBy('name', 'asc')->get();
@@ -57,6 +58,7 @@ class PostController extends Controller
 
     public function CreatePosts(Request $request)
     {
+
         $validatedData = $request->validate(
             [
 
