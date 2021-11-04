@@ -275,28 +275,30 @@
                         <h3>Görsel Etiketleri</h3>
                     </div>
                     <div class="col-md-3 mb-3">
+{{--                        <label class="custom-control custom-control-warning custom-radio mb-2">--}}
+{{--                            <input type="radio" class="custom-control-input" name="radio_contextual_colors">--}}
+{{--                            <span class="custom-control-label">Warning</span>--}}
+{{--                        </label>--}}
+                            <label class="custom-control custom-control-warning custom-radio mb-2">
+                                <input type="radio" name="headlinetag" value="1"  @php if($post->headlinetag==1) {echo "checked";} @endphp class="custom-control-input"  data-fouc>
+                                <span class="custom-control-label">Son Dakika</span>
+                            </label>
 
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" name="headlinetag" value="1"  @php if($post->headlinetag==1) {echo "checked";} @endphp class="form-check-input-styled-primary"  data-fouc>
-                                Son Dakika
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="form-radio">
+                            <label class="custom-control custom-control-warning custom-radio mb-2">
+                                <input type="radio" name="flahtag" value="1"  @php if($post->flahtag==1) {echo "checked";} @endphp class="custom-control-input"  data-fouc>
+                                <span class="custom-control-label"> Flaş Flaş</span>
+
                             </label>
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" name="flahtag" value="1"  @php if($post->flahtag==1) {echo "checked";} @endphp class="form-check-input-styled-primary"  data-fouc>
-                                Flaş Flaş
-
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" name="attentiontag" value="1"  @php if($post->attentiontag==1) {echo "checked";}@endphp class="form-check-input-styled-primary"  data-fouc>
-                                Bu Habere Dikkat!
+                        <div class="form-radio">
+                            <label class="custom-control custom-control-warning custom-radio mb-2">
+                                <input type="radio" name="attentiontag" value="1"  @php if($post->attentiontag==1) {echo "checked";}@endphp class="custom-control-input"  data-fouc>
+                                <span class="custom-control-label">Bu Habere Dikkat!</span>
                             </label>
                         </div>
                     </div>
@@ -612,4 +614,14 @@
               });
           });
      </script>
+<!--- radio butonlarının bir defa seçilmesini sağlıyor -->
+    <script>
+        $(document).ready(function () {
+            $('input[type=radio]').change(function() {
+                // When any radio button on the page is selected,
+                // then deselect all other radio buttons.
+                $('input[type=radio]:checked').not(this).prop('checked', false);
+            });
+        });
+    </script>
 @endsection
