@@ -197,7 +197,9 @@ class PostController extends Controller
         $post['headline'] = $request->headline == null ? 0 : 1;
         $post['featured'] = $request->featured == null ? 0 : 1;
         $post['surmanset'] = $request->surmanset == null ? 0 : 1;
-
+        $post['attentiontag'] = $request->attentiontag == null ? 0 : 1;
+        $post['flahtag'] = $request->flahtag == null ? 0 : 1;
+        $post['headlinetag'] = $request->headlinetag == null ? 0 : 1;
 
         $post->tag()->sync($tagIds);
 
