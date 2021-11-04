@@ -13,12 +13,51 @@
 
     ?>
     <style>
+
+
+        .flashlightHeadline {
+            border-radius: 5px;
+            border-color:white;
+            border-style: solid;
+            border-width: 0px 5px 5px 0px;
+            margin-top: 1px;
+            text-align: left;
+            width: 120px;
+            height: 30px;
+            background: red;
+            animation: animasyonHeadline 1s infinite;
+        }
+        @keyframes animasyonHeadline {
+            from {background-color: red;}
+            to {background-color: black;}
+        }
+        .flashlightVideo {
+            border-radius: 5px;
+            border-color:white;
+            border-style: solid;
+            border-width: 0px 5px 5px 0px;
+            margin-top: 1px;
+            text-align: left;
+            width: 90px;
+            height: 30px;
+            background: red;
+            animation: animasyonVideo 1s infinite;
+        }
+        @keyframes animasyonVideo {
+            from {background-color: darkblue;}
+            to {background-color: black;}
+        }
+
+
+
+
+
         .anamanset-pagination > .swiper-pagination-bullet-active {
-            background-color: {{$themeSetting[0]->siteColorTheme}} !important;
+            background-color: {{$themeSetting[0]->siteColorTheme}}   !important;
         }
 
         .pagination-1 > .swiper-pagination-bullet-active, .pagination-2 > .swiper-pagination-bullet-active {
-            background-color: {{$themeSetting[0]->siteColorTheme}}                  !important;
+            background-color: {{$themeSetting[0]->siteColorTheme}}                    !important;
         }
 
         .media.media-weather {
@@ -26,6 +65,7 @@
             position: relative;
             overflow: visible;
         }
+
 
         .siyaset {
             background-image: linear-gradient(-10deg, {{$themeSetting[0]->economy}}, {{$themeSetting[0]->economy}}) !important;
@@ -248,7 +288,7 @@
                         <div class="swiper-wrapper" style="height:100%;">
 
                             @for($i=0;$i<=24;$i++)
-                                <div class="swiper-slide">
+                                <div class="swiper-slide" style="position:relative">
                                     <a href="{{URL::to('/'.str_slug($slider[$i]->title_tr).'/'.$slider[$i]->id.'/'.'haberi')}}">
                                         <div class="position-relative">
 
@@ -256,6 +296,26 @@
                                                  width="100%"
                                                  data-src="{{ asset($slider[$i]->image) }}"/>
 
+                                            @if($slider[$i]->headline==1)
+                                                <div class="col-lg-12 yazi"
+                                                     style="position: absolute; left:75%;top:10% ;transform:translateY(-50%);">
+                                                    <div class=" flashlightHeadline">
+                                                        <div class="col-lg-9" style="background-color: transparent;color: white;">
+                                                            Son Dakika
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                            @if($slider[$i]->posts_video != "" || $slider[$i]->posts_video!=null)
+                                                <div class="yazi"
+                                                     style="position: absolute; left:5%;top:90%; text-align:right; transform:translateY(-50%);">
+                                                    <div class="flashlightVideo">
+                                                        <div class="col-lg-6" style="background-color: transparent;color: white">
+                                                           <i class="fa fa-play" >Video</i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </div>
                                     </a>
                                 </div>

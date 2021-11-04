@@ -423,7 +423,7 @@ class ExtraController extends Controller
 
         $siyaset = Cache::remember("siyaset", Carbon::now()->addYear(), function () {
             if (Cache::has('siyaset')) return Cache::has('siyaset');
-            return Post::where('category_id', '=', 3)->where('featured', '=', 1)->where('status','=',1)->limit(9)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 3)->where('featured', '=', 0)->where('status','=',1)->limit(9)->latest('updated_at')->get();
         });
 
         $spor = Cache::remember("spor", Carbon::now()->addYear(), function () {
@@ -599,10 +599,8 @@ class ExtraController extends Controller
     //Fixed Page Open
     public function Sayfa($id)
     {
-        $fixedPage = Cache::remember("fixedPage", Carbon::now()->addYear(), function () {
-            if (Cache::has('fixedPage')) return Cache::has('fixedPage');
-            return FixedPage::where('id', '=', $id)->get();
-        });
+        $fixedPage =  DB::table('fixedpage')->where('id', '=', $id)->get();
+
         return view('main.body.fixedpapers', compact('fixedPage'));
     }
 
