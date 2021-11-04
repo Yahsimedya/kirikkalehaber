@@ -272,29 +272,24 @@
                                 <div class="swiper-slide" style="position:relative">
                                     <a href="{{URL::to('/'.str_slug($slider[$i]->title_tr).'/'.$slider[$i]->id.'/'.'haberi')}}">
                                         <div class="position-relative">
-
                                             <img class="img-fluid slider-foto swiper-lazy  min-height lazyload"
                                                  width="100%"
                                                  data-src="{{ asset($slider[$i]->image) }}"/>
-
                                             @if($slider[$i]->headlinetag==1)
                                                 <div class="sondakikaSlider top-left">
-                                                    <span>Bu Habere Dikkat</span>
+                                                    <span>Son Dakika</span>
                                                 </div>
-                                            @endif
-                                            @if($slider[$i]->posts_video != "" || $slider[$i]->posts_video!=null)
+                                            @elseif($slider[$i]->posts_video != "" || $slider[$i]->posts_video!=null)
                                                 <div class="videohaber top-left">
-                                                    <span>video</span>
+                                                    <span>Video</span>
                                                 </div>
-                                            @endif
-                                            @if($slider[$i]->flahtag==1)
+                                            @elseif($slider[$i]->flahtag==1)
                                                 <div class="flashhaber top-left">
-                                                    <span>flahtag</span>
+                                                    <span>Flaş Flaş</span>
                                                 </div>
-                                            @endif
-                                            @if($slider[$i]->attentiontag==1)
+                                            @elseif($slider[$i]->attentiontag==1)
                                                 <div class="haberedikkat top-left">
-                                                    <span>attentiontag</span>
+                                                    <span>Bu Habere Dikkat</span>
                                                 </div>
                                             @endif
 
