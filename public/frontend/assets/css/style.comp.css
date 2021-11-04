@@ -8065,9 +8065,9 @@ img.lazyload:not([src]) {
     right: 4px;
     z-index: -1; }
   .sondakikaSlider span {
-    height: 25px;
-    line-height: 25px;
-    font-size: 15px;
+    height: 36px;
+    line-height: 34px;
+    font-size: 22px;
     font-weight: 700;
     background-color: #b70b19;
     padding: 0 13px;
@@ -8130,11 +8130,11 @@ img.lazyload:not([src]) {
   100% {
     background-color: #222; } }
 
-.top-right {
-  bottom: unset !important;
-  top: 31px !important;
-  right: 22px !important;
-  left: unset !important; }
+.bottom-left {
+  top: unset !important;
+  bottom: 31px !important;
+  left: 22px !important;
+  right: unset !important; }
 
 .haberedikkat {
   position: absolute;
