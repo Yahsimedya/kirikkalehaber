@@ -31,6 +31,10 @@
         /*    from {background-color: red;}*/
         /*    to {background-color: black;}*/
         /*}*/
+        @keyframes animasyonHeadline {
+            from {background-color: red;}
+            to {background-color: black;}
+        }
         .flashlightVideo {
             border-radius: 5px;
             border-color:white;
@@ -313,6 +317,13 @@
                                             @if($slider[$i]->headline==1)
                                                 <div class="sondakikaSlider top-left">
                                                     <span>Son Dakika</span>
+                                                <div class="col-lg-12 yazi"
+                                                     style="position: absolute; left:75%;top:10% ;transform:translateY(-50%);">
+                                                    <div class=" flashlightHeadline">
+                                                        <div class="col-lg-9" style="background-color: transparent;color: white;">
+                                                            Son Dakika
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             @endif
                                             @if($slider[$i]->posts_video != "" || $slider[$i]->posts_video!=null)
