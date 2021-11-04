@@ -707,9 +707,9 @@ class ExtraController extends Controller
     public function yazilars($id)
     {
 
-        $yazi =  AuthorsPostwhere('id', '=', $id)->get();
+        $yazi =  AuthorsPost::where('id', '=', $id)->get();
 
-        $yazar =  Authorswhere('id', '=', $id)->get();
+        $yazar =  Authors::where('id', '=', $id)->get();
 
         return view('main.body.authors_writes', compact('yazi', 'yazar'));
     }
