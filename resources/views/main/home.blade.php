@@ -279,21 +279,21 @@
 
                                             @if($slider[$i]->headlinetag==1)
                                                 <div class="sondakikaSlider top-left">
-                                                    <span>Son Dakika</span>
+                                                    <span>Bu Habere Dikkat</span>
                                                 </div>
                                             @endif
                                             @if($slider[$i]->posts_video != "" || $slider[$i]->posts_video!=null)
-                                                <div class="sondakikaSlider top-left">
+                                                <div class="videohaber top-left">
                                                     <span>video</span>
                                                 </div>
                                             @endif
                                             @if($slider[$i]->flahtag==1)
-                                                <div class="sondakikaSlider top-left">
+                                                <div class="flashhaber top-left">
                                                     <span>flahtag</span>
                                                 </div>
                                             @endif
                                             @if($slider[$i]->attentiontag==1)
-                                                <div class="sondakikaSlider top-left">
+                                                <div class="haberedikkat top-left">
                                                     <span>attentiontag</span>
                                                 </div>
                                             @endif
