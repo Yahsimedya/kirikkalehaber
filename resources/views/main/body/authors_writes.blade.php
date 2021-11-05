@@ -94,12 +94,10 @@
                     <div class="list-group detay__liste mt-3">
                         @php
                             $i=0;
-                             $nextnews = DB::table('authors_posts')
-               ->latest('updated_at')->where('status', 1)->where('authors_id','=',$yazars->id)
-               ->get();
+
 
                         @endphp
-                        @foreach ($nextnews as $row )
+                        @foreach ($nextauthors_posts as $row )
                             @php
 
                                 $i++;

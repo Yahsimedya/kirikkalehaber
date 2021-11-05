@@ -48,7 +48,7 @@ class ExtraController extends Controller
 
 
         ini_set('max_execution_time', 0);
-        $habereski = DB::table('haber')->get();
+        $habereski = DB::table('haber')->get();//eklenecek eski haber tablosu
         $yeniData = array();
         DB::beginTransaction();
         $savedcount = 0;
@@ -119,10 +119,44 @@ class ExtraController extends Controller
         } else {
             DB::commit();
         }
-
+return $this->OldDBkoseyazisi();
 
     }
-    public function OldDB(){
+
+    public function OldDBkoseyazisi(){
+        ini_set('max_execution_time', 0);
+        $koseyazisieski = DB::table('kose_yazilari')->get();//eklenecek eski köşe yazıları tablosu
+        $yeniData = array();
+        DB::beginTransaction();
+        $savedcount = 0;
+        $unsavedcount = 0;
+
+        for ($i = 1; $i <= count($koseyazisieski) - 1; $i++) {
+            $yenikoseyazisi = AuthorsPost::insert([
+                "id" => $koseyazisieski[$i]->koseyazisi_id,
+                "authors_id" => 1,
+                "text" => $koseyazisieski[$i]->koseyazisi_detay,
+                "title" => $koseyazisieski[$i]->koseyazisi_baslik,
+                "created_at" => $koseyazisieski[$i]->koseyazisi_zaman,
+                "updated_at" => $koseyazisieski[$i]->koseyazisi_zaman,
+                "status" => $koseyazisieski[$i]->koseyazisi_durum==null?1:$koseyazisieski[$i]->koseyazisi_durum,
+                "image" => "",
+                "keywords" => $koseyazisieski[$i]->koseyazisi_keyword,
+                "description" => $koseyazisieski[$i]->koseyazisi_description,
+            ]);
+            if ($yenikoseyazisi > 0) {
+                $savedcount++;
+            } else {
+                $unsavedcount++;
+            }
+
+        }
+        if ($unsavedcount > 0) {
+            DB::rollBack();
+        } else {
+            DB::commit();
+        }
+return "Veri taşıma başarılı";
 
     }
 
@@ -708,20 +742,24 @@ class ExtraController extends Controller
     public function yazilar($id)
     {
 
-        $yazi = AuthorsPost::where('authors_id', '=', $id)->get();
+        $yazi = AuthorsPost::where('authors_id', '=', $id)->limit(10)->get();
         $yazar =  Authors::where('id', '=', $id)->get();
-
-        return view('main.body.authors_writes', compact('yazi', 'yazar'));
+        $nextauthors_posts = DB::table('authors_posts')
+            ->latest('updated_at')->where('status', 1)->where('authors_id','=',$id)->limit(10)
+            ->get();
+        return view('main.body.authors_writes', compact('yazi', 'yazar','nextauthors_posts'));
     }
 
     public function yazilars($id)
     {
 
-        $yazi =  AuthorsPost::where('id', '=', $id)->get();
-
+        $yazi =  AuthorsPost::where('id', '=', $id)->limit(10)->get();
+        $nextauthors_posts = DB::table('authors_posts')
+            ->latest('updated_at')->where('status', 1)->where('authors_id','=',$id)->limit(10)
+            ->get();
         $yazar =  Authors::where('id', '=', $id)->get();
 
-        return view('main.body.authors_writes', compact('yazi', 'yazar'));
+        return view('main.body.authors_writes', compact('yazi', 'yazar','nextauthors_posts'));
     }
 
 
