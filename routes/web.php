@@ -92,7 +92,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
 
 
-        return view('admin.index');
+        return redirect()->back();
 
     })->name('cacheClean');
 
