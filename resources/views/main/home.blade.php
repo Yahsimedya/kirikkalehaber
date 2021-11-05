@@ -275,23 +275,25 @@
                                             <img class="img-fluid slider-foto swiper-lazy  min-height lazyload"
                                                  width="100%"
                                                  data-src="{{ asset($slider[$i]->image) }}"/>
+                                            @if(isset($slider[$i]->posts_video))
+                                                <div class="videohaber bottom-left">
+                                                    <span><i class="fa fa-play"></i> Video</span>
+                                                </div>
+                                            @endif
                                             @if($slider[$i]->headlinetag==1)
                                                 <div class="sondakikaSlider top-left">
                                                     <span>Son Dakika</span>
                                                 </div>
-                                            @elseif($slider[$i]->posts_video != "" || $slider[$i]->posts_video!=null)
-                                                <div class="videohaber top-left">
-                                                    <span>Video</span>
-                                                </div>
                                             @elseif($slider[$i]->flahtag==1)
-                                                <div class="flashhaber top-right">
+                                                <div class="flashhaber top-left">
                                                     <span>Flaş Flaş</span>
                                                 </div>
                                             @elseif($slider[$i]->attentiontag==1)
-                                                <div class="haberedikkat bottom-left">
+                                                <div class="haberedikkat top-left">
                                                     <span>Bu Habere Dikkat</span>
                                                 </div>
                                             @endif
+
 
                                         </div>
                                     </a>
