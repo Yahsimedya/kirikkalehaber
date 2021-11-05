@@ -30,70 +30,69 @@ $gelenil=Session::get('gelenil');
     }
 
 
-    .closed {
-
-        color: {{$themeSetting[0]->siteColorTheme}};
-        top: 20px;
-        right: 50px;
-        font-size: 1.7em;
-        cursor: pointer;
-        display: none;
-        z-index: 999;
-        -webkit-transform: rotate(0deg);
-        transform: rotate(0deg);
+    .close{
+        position:absolute;
+        color:#fff;
+        top:20px;
+        right:50px;
+        font-size:1.7em;
+        cursor:pointer;
+        display:none;
+        z-index:999999;
+        -webkit-transform:rotate(0deg);
+        transform:rotate(0deg);
         -webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        transition:         all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
 
-    .closed:hover {
-        font-size: 2.4em;
-        -webkit-transform: rotate(360deg);
-        transform: rotate(360deg);
+    .close:hover{
+        font-size:2.4em;
+        -webkit-transform:rotate(360deg);
+        transform:rotate(360deg);
     }
-
     /*-------------- saerch section -----------*/
-    .searchd {
-        position: relative;
-        top: 70%;
-        left: 15%;
-        -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        border-radius: 1000px;
-        width: 0;
-        height: 0;
-        background: #3f3f3f;
+    .search{
+        position:absolute;
+        top:50%;
+        left:50%;
+        -webkit-transform:translate(-50%, -50%);
+        transform:translate(-50%, -50%);
+        border-radius:1000px;
+        width:0;
+        height:0;
+        background:#03a9f4;
         -webkit-transition: all .4s linear;
-        transition: all .4s linear;
+        transition:  all .4s linear;
+        z-index: 9999;
     }
 
-    .searchd i {
-        padding-top: 10px;
-
-        font-size: 1.7em;
-        cursor: pointer;
+    .search i{
+        color:#03a9f4;
+        font-size:1.7em;
+        cursor:pointer;
     }
 
-    .searchd .input {
+    .search .input{
         position: absolute;
-        top: 50%;
-        left: 50%;
+        top: 57%;
+        left: 38%;
         -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, 11%);
         width: 350px;
         height: 40px;
         background: transparent;
         border: none;
         outline: none;
-        border-bottom: 3px solid{{$themeSetting[0]->siteColorTheme}};
-        color: #ffffff;
+        border-bottom: 3px solid #eee;
+        color: #eee;
         font-size: 1.3em;
         display: none;
     }
 
 
-    .searchd.open {
-        height: 4000px;
-        width: 4000px;
+    .search.open{
+        height:4000px;
+        width:4000px;
     }
 </style>
 
@@ -213,9 +212,9 @@ $gelenil=Session::get('gelenil');
         <section class="border-top border-danger border-3 " style="background-color:white;">
             <div class="container" style="background-color:white;">
                 <div class="row">
-                    <div class=" col-md-2 mr-auto my-auto"><a class="justify-content-start" href="{{URL::to('/')}}">
+                    <div class=" col-md-2 col-12 mr-auto my-auto text-center p-2"><a class="justify-content-start" href="{{URL::to('/')}}">
                             <img width="150" src="{{asset($websetting->logo)}}" alt=""></a></div>
-                    <div class="col-md-4 p-2 ml-auto my-auto">
+                    <div class="col-md-4 d-none d-md-block p-2 ml-auto my-auto">
                         <ul class="d-flex flex-wrap list-group-horizontal-sm d-inline-block my-auto  float-right">
                             <li class="deger  list-unstyled mr-2 d-flex align-items-center">
                                 @if(number_format($kurlar['DOLAR']['oranyonu'],2)>0)
@@ -266,13 +265,13 @@ $gelenil=Session::get('gelenil');
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-1 my-auto border-left border-right text-center">
+                    <div class="col-md-1 col-4 my-auto border-left border-right text-center">
                 <span style="color:#31958a; font-size: 13px ">{{$gelenil}}<br>
 
                 {!! $icon !!}
                 {{$veri}}&deg;</span>
                     </div>
-                    <div class="col-md-2 my-auto text-success text-center" style="font-size: 13px">
+                    <div class="col-md-2 col-5 my-auto text-success text-center" style="font-size: 13px">
                         @php $now = Carbon\Carbon::now()->format('H:i');
                   $imsak = $vakitler["imsak"];
                                 $gunes = $vakitler['gunes'];
@@ -348,14 +347,14 @@ $gelenil=Session::get('gelenil');
                     {{--        </div>--}}
 
 
-                    <div>
+                    <div class="col-md-2 col-2">
                         <form class="form-inline mt-1 mt-md-0 position-relative" action="{{route('search')}}"
                               method="POST">
                             @csrf
-                            <div class="closed">
+                            <div class="close">
                                 <i class="fa fa-close"></i>
                             </div>
-                            <div class="searchd">
+                            <div class="search mt-2">
                                 <i class="fa fa-search" style="color: {{$themeSetting[0]->siteColorTheme}}"></i>
                                 <input type="text" name="searchtext" class="input mt-5" placeholder="Arama Yap">
                             </div>
@@ -489,17 +488,17 @@ $gelenil=Session::get('gelenil');
 
 
 <script>
-    (function ($) {
+    (function($){
         var search_button = $('.fa-search'),
-            close_button = $('.closed'),
+            close_button  = $('.close'),
             input = $('.input');
-        search_button.on('click', function () {
+        search_button.on('click',function(){
             $(this).parent().addClass('open');
             close_button.fadeIn(500);
             input.fadeIn(500);
         });
 
-        close_button.on('click', function () {
+        close_button.on('click',function(){
             search_button.parent().removeClass('open');
             close_button.fadeOut(500);
             input.fadeOut(500);
