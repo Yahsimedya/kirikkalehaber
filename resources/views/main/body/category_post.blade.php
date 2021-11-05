@@ -30,7 +30,7 @@ $themeSetting=DB::table('themes')->get();
 @foreach ($manset as $row)
 
 <div class="swiper-slide">
-<a href="@if (session()->get('lang') == 'turkish'){{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}@else{{URL::to('/'.str_slug($row->title_en).'/'.$row->id.'/'.'haberi')}} @endif ">
+<a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}} ">
 
         <div class="position-relative">
             <img src="{{asset($row->image)}}" class="img-fluid slider-foto swiper-lazy" alt="">
@@ -61,11 +61,11 @@ $themeSetting=DB::table('themes')->get();
                 </div>
                 @foreach ($catpost as $row)
                 <div class="col-md-6">
-                    <a href="@if (session()->get('lang') == 'turkish'){{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}@else{{URL::to('/'.str_slug($row->title_en).'/'.$row->id.'/'.'haberi')}} @endif">
+                    <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
                 <div class="card kart kart-width shadow mb-2" style="">
                     <img class="img-fluid kart_img" src="{{asset($row->image)}}" />
                     <div class="card-body kart-body  bordercolor-6 border-3 text-dark">
-                        <p class="card-text">@if (session()->get('lang') == 'turkish'){{$row->title_tr}}@else{{$row->title_en}} @endif</p>
+                        <p class="card-text">{{$row->title_tr}}</p>
                     </div>
                 </div>
                     </a>
@@ -83,10 +83,10 @@ $themeSetting=DB::table('themes')->get();
         </div>
                          @foreach ($nextnews as $row )
 
-            <a href="@if (session()->get('lang') == 'turkish'){{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}@else{{URL::to('/'.$row->slug_en.'/'.$row->id.'/'.'haberi')}}@endif"><div class="card kart kart-width shadow mb-2" style="">
+            <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}"><div class="card kart kart-width shadow mb-2" style="">
                 <img class="img-fluid kart_img" src="{{asset($row->image)}}" />
                 <div class="card-body kart-body  bordercolor-6 border-3 text-dark">
-                    <p class="card-text">@if (session()->get('lang') == 'turkish'){{$row->title_tr}}@else{{$row->title_en}} @endif</p>
+                    <p class="card-text">{{$row->title_tr}}</p>
                 </div>
             </div></a>
             @endforeach

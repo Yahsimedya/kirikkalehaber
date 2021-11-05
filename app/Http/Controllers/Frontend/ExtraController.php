@@ -122,6 +122,9 @@ class ExtraController extends Controller
 
 
     }
+    public function OldDB(){
+
+    }
 
 
     public function PhotoGalleryDetail($photogalery)
