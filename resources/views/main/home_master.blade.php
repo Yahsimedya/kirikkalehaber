@@ -25,22 +25,8 @@
         gtag('config', '@yield('google_verification')');
     </script>
     <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
-
-
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" integrity="undefined" crossorigin="anonymous">    <link rel="preload" href="{{asset('frontend/assets/css/custom-red.css')}}" as="style" onload="this.rel='stylesheet'"
-    onerror="this.href='stylesheet'"> --}}
     <link rel="preload" href="{{mix('frontend/assets/css/combine.css')}}" as="style" onload="this.rel='stylesheet'" onerror="this.href='stylesheet'">
 
-{{--    <link rel="stylesheet" href="{{asset('frontend/assets/css/weather-icons.css')}}">--}}
-
-    {{-- <link rel="stylesheet" href="{{asset('frontend/assets/css/owl.transitions.css')}}"> --}}
-<!-- magnific popup styles -->
-{{--    <link rel="stylesheet" href="{{asset('frontend/assets/css/magnific-popup.css')}}">--}}
-{{--    <link rel="stylesheet" href="{{asset('frontend/assets/css/svg-turkiye-haritasi.css')}}">--}}
-    <!-- Türkiye Haritası css -->
-
-    {{-- <link rel="stylesheet" href="css/style.comp.css"> --}}
-    <script rel="preload" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- FONT AWESOME-->
     <link rel="preload" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" as="style"
           onload="this.rel='stylesheet'" onerror="this.href='stylesheet' " defer>
@@ -61,24 +47,17 @@
     <link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" as="style"
           onload="this.rel='stylesheet'" onerror="this.href='stylesheet' ">
     <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
+{{--    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>--}}
     <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css"
-          href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css"/>
-
-    <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css"> -->
-    <!-- <script src="js/jqu.js" async></script> -->
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-{{--<script type="module" src="{{asset('frontend/assets/js/lazysizes.min.js')}}" async=""></script>--}}
-    <script rel="preload" src="{{mix('frontend/assets/js/combine.js')}}"></script>
+    <script rel="preload" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"
-            async></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script rel="preload" src="{{mix('frontend/assets/js/combine.js')}}"></script>
+{{--    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js" async></script>--}}
+{{--    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>--}}
+{{--    <script src="{{mix('js/swiper-bundle.js')}}"></script>--}}
+
 {{--    <script type="text/javascript" src="{{asset('frontend/assets/js/marquee.js')}}"></script>--}}
 {{--    <script type="text/javascript" src="{{asset('frontend/assets/js/svg-turkiye-haritasi.js')}}"></script>--}}
 
