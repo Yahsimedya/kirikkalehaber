@@ -286,7 +286,7 @@
                                                 </div>
                                             @elseif($slider[$i]->flahtag==1)
                                                 <div class="flashhaber top-left">
-                                                    <span>Flaş Flaş</span>
+                                                    <span>Flaş Haber</span>
                                                 </div>
                                             @elseif($slider[$i]->attentiontag==1)
                                                 <div class="haberedikkat top-left">
