@@ -88,6 +88,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Artisan::call('route:clear');
         Artisan::call('config:clear');
         Artisan::call('view:clear');
+        Artisan::call('optimize');
 
 
 

@@ -790,23 +790,19 @@
                      style="background-color:{{$themeSetting[0]->siteColorTheme}}!important;">
                     <div class="swiper-wrapper">
                         <!-------------ECONOMY FEATURED---->
-                        @foreach ($featured as $row )
-                            @if($row->category_id ==5)
+                        @foreach ($ekonomi as $row )
                                 <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
                                         <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}"><img
                                                 class="img-fluid kart_img lazyload" data-src="{{asset($row->image)}}"/>
                                         </a>
                                         <div class="card-body kart-body  bordercolor-5 border-3 text-dark">
-                                            <p class="card-text"
-                                               style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">
-
+                                            <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">
                                                 {{ $row->title_tr}}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                            @endif
 
 
 
@@ -882,11 +878,9 @@
                 <h4 class="pt-2 pb-2 ana-baslik">Öne Çıkan Gündem Haberleri</h4>
                 <!-- <div class="row"> -->
                 <div class="swiper-container ekonomi">
-                    <div class="swiper-wrapper" style="background-color: orange">
-
-
-                        @foreach($featured as $homes)
-                            @if($row->category_id ==2)
+                    <div class="swiper-wrapper" style="background-color: {{$themeSetting[0]->agenda}}">
+                        @foreach($gundem as $homes)
+                            @if($homes->featured ==1)
                             <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
@@ -895,10 +889,7 @@
                                         <div class="card-body kart-body  bordercolor-5 border-3 text-dark">
                                             <p class="card-text"
                                                style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">
-
                                                 {{ $homes->title_tr}}
-
-
                                             </p>
                                         </div>
                                     </div>
@@ -932,10 +923,7 @@
         <div class="container pt-2 pb-2">
             <div class="row">
                 @foreach($gundem as $homes)
-
-
-
-
+                    @if($homes->featured ==0)
                     <div class="col-md-4 float-left mb-3  ">
                         <div class="card kart kart-width kart-margin shadow" style="">
                             <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
@@ -948,7 +936,7 @@
                             </div>
                         </div>
                     </div>
-
+@endif
 
 
 
@@ -983,9 +971,8 @@
                     <div class="swiper-wrapper">
 
 
-                        @foreach($featured as $homes)
-
-                            @if($homes->category_id == 3 && $homes->featured==1)
+                        @foreach($siyaset as $homes)
+                            @if($homes->featured ==1)
 
                                 <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
@@ -1021,6 +1008,8 @@
         <div class="container pt-2 pb-2">
             <div class="row">
                 @foreach($siyaset as $homes)
+                    @if($homes->featured ==0)
+
                     <div class="col-md-4 float-left mb-3  ">
                         <div class="card kart kart-width kart-margin shadow" style="">
                             <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
@@ -1033,6 +1022,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -1076,8 +1066,8 @@
                 <div class="swiper-container spor">
                     <div class="swiper-wrapper">
 
-                        @foreach($featured as $homes)
-                            @if($homes->category_id ==6 && $homes->featured==1)
+                        @foreach($spor as $homes)
+                            @if($homes->featured ==1)
 
                                 <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
@@ -1129,9 +1119,7 @@
                 <div class="col-lg-8">
                     <div class="row mt-3">
                         @foreach($spor as $homes)
-
-
-
+                            @if($homes->featured ==0)
 
                             <div class="col-md-6 float-left mb-3  ">
                                 <div class="card kart kart-width kart-margin shadow" style="">
@@ -1145,14 +1133,8 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
+                            @endif
                         @endforeach
-
-
                     </div>
                 </div>
                 <div class="col-lg-4" style="">

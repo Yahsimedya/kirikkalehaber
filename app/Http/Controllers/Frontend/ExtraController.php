@@ -415,22 +415,11 @@ return "Veri taşıma başarılı";
             if (Cache::has('video_gallary')) return Cache::has('video_gallary');
             return  Post::where('posts_video', '!=', NULL)->limit(5)->get();
         });
-        $featured =Cache::remember("featured", Carbon::now()->addYear(), function () {
-            if (Cache::has('featured')) return Cache::has('featured'); //here am simply trying Laravel Collection method -find
-            return Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
-                ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
-                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
-                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
-                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-                ->where('status', 1)->where('featured',1)->latest('updated_at')->limit(1)
-                ->get();
-        });
-
         $home = Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
             ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
             ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
             ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
-            ->select(['posts.*', 'categories.category_tr'])
+            ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
             ->where('status', 1)->latest('updated_at')
             ->get();
         $surmanset = Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
@@ -462,17 +451,17 @@ return "Veri taşıma başarılı";
 
         $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () {
             if (Cache::has('gundem')) return Cache::has('gundem');
-            return Post::where('category_id', '=', 2)->where('featured', '=', 0)->limit(9)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 2)->where('status',1)->limit(9)->latest('updated_at')->get();
         });
 
         $siyaset = Cache::remember("siyaset", Carbon::now()->addYear(), function () {
             if (Cache::has('siyaset')) return Cache::has('siyaset');
-            return Post::where('category_id', '=', 3)->where('featured', '=', 0)->where('status','=',1)->limit(9)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 3)->where('status',1)->where('status','=',1)->limit(9)->latest('updated_at')->get();
         });
 
         $spor = Cache::remember("spor", Carbon::now()->addYear(), function () {
             if (Cache::has('spor')) return Cache::has('spor');
-            return Post::where('category_id', '=', 6)->where('featured', '=', 0)->limit(6)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 6)->where('status',1)->limit(6)->latest('updated_at')->get();
         });
         $themeSetting = Cache::remember("themeSetting", Carbon::now()->addYear(), function () {
             if (Cache::has('themeSetting')) return Cache::has('themeSetting');
@@ -570,7 +559,7 @@ return "Veri taşıma başarılı";
 
         Session::put('havadurumu', $veri['sicaklik']);
 
-        return view('main.home', compact('home','featured', 'ekonomi','surmanset', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
+        return view('main.home', compact('home', 'ekonomi','surmanset', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 
