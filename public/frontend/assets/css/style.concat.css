@@ -8094,13 +8094,13 @@ img.lazyload:not([src]) {
   bottom: unset;
   top: 31px; }
 
-.sondakika, .haberedikkat {
+.sondakika {
   position: absolute;
   right: 22px;
   top: 166px;
   transform: rotate(0deg);
   z-index: 9; }
-  .sondakika::before, .haberedikkat::before {
+  .sondakika::before {
     content: '';
     position: absolute;
     background-color: #fff;
@@ -8109,7 +8109,7 @@ img.lazyload:not([src]) {
     top: 4px;
     right: 4px;
     z-index: -1; }
-  .sondakika span, .haberedikkat span {
+  .sondakika span {
     height: 25px;
     line-height: 25px;
     font-size: 15px;
@@ -8133,22 +8133,10 @@ img.lazyload:not([src]) {
   100% {
     background-color: #222; } }
 
-.bottom-left {
-  top: unset !important;
-  bottom: 31px !important;
-  left: 22px !important;
-  right: unset !important; }
-
-.top-right {
-  bottom: unset !important;
-  top: 31px !important;
-  right: 22px !important;
-  left: unset !important; }
-
 .haberedikkat {
   position: absolute;
   right: 22px;
-  top: 5px;
+  top: 166px;
   transform: rotate(0deg);
   z-index: 9; }
   .haberedikkat::before {
@@ -8161,6 +8149,101 @@ img.lazyload:not([src]) {
     right: 4px;
     z-index: -1; }
   .haberedikkat span {
+    height: 25px;
+    line-height: 25px;
+    font-size: 15px;
+    font-weight: 700;
+    background-color: #08abff;
+    padding: 0 13px;
+    z-index: 1;
+    display: block;
+    animation: lastMindikkat 1s infinite;
+    color: #fff; }
+
+@-webkit-keyframes lastMindikkat {
+  0% {
+    background-color: #222; }
+  30% {
+    background-color: #08abff; }
+  60% {
+    background-color: #08abff; }
+  90% {
+    background-color: #222; }
+  100% {
+    background-color: #222; } }
+
+.flashhaber {
+  position: absolute;
+  right: 22px;
+  top: 166px;
+  transform: rotate(0deg);
+  z-index: 9; }
+  .flashhaber::before {
+    content: '';
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    top: 4px;
+    right: 4px;
+    z-index: -1; }
+  .flashhaber span {
+    height: 25px;
+    line-height: 25px;
+    font-size: 15px;
+    font-weight: 700;
+    background-color: #ffcc07;
+    padding: 0 13px;
+    z-index: 1;
+    display: block;
+    animation: lastMinflash 1s infinite;
+    color: #fff; }
+
+@-webkit-keyframes lastMinflash {
+  0% {
+    background-color: #222;
+    color: #fff; }
+  30% {
+    background-color: #ffcc07;
+    color: #222; }
+  60% {
+    background-color: #ffcc07;
+    color: #222; }
+  90% {
+    background-color: #222;
+    color: #fff; }
+  100% {
+    background-color: #222;
+    color: #fff; } }
+
+.bottom-left {
+  top: unset !important;
+  bottom: 31px !important;
+  left: 22px !important;
+  right: unset !important; }
+
+.top-right {
+  bottom: unset !important;
+  top: 31px !important;
+  right: 22px !important;
+  left: unset !important; }
+
+.haberedikkatSlider {
+  position: absolute;
+  right: 22px;
+  top: 5px;
+  transform: rotate(0deg);
+  z-index: 9; }
+  .haberedikkatSlider::before {
+    content: '';
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    top: 4px;
+    right: 4px;
+    z-index: -1; }
+  .haberedikkatSlider span {
     height: 36px;
     line-height: 34px;
     font-size: 22px;
@@ -8184,13 +8267,13 @@ img.lazyload:not([src]) {
   100% {
     background-color: #222; } }
 
-.flashhaber {
+.flashhaberSlider {
   position: absolute;
   right: 22px;
   top: 5px;
   transform: rotate(0deg);
   z-index: 9; }
-  .flashhaber::before {
+  .flashhaberSlider::before {
     content: '';
     position: absolute;
     background-color: #fff;
@@ -8199,7 +8282,7 @@ img.lazyload:not([src]) {
     top: 4px;
     right: 4px;
     z-index: -1; }
-  .flashhaber span {
+  .flashhaberSlider span {
     height: 36px;
     line-height: 34px;
     font-size: 22px;

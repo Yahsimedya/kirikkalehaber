@@ -248,9 +248,19 @@
                     <div class="col-lg-3 col-md-6 col-sm-12 pb-2 d-none d-md-block padding-left kartlar">
                         <div class="card shadow  d-inline-block  ">
                             <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
-                                <div class="sondakika top-leftBox">
-                                    <span>Son Dakika</span>
-                                </div>
+                                @if($row->headlinetag==1)
+                                    <div class="sondakika top-left">
+                                        <span>Son Dakika</span>
+                                    </div>
+                                @elseif($row->flahtag==1)
+                                    <div class="flashhaber top-left">
+                                        <span>Flaş Haber</span>
+                                    </div>
+                                @elseif($row->attentiontag==1)
+                                    <div class="haberedikkat top-left">
+                                        <span>Bu Habere Dikkat</span>
+                                    </div>
+                                @endif
                                 <img class="card-img-top lazy" height="180" src="{{asset($row->image)}}"  alt="Kavga ettiği amcasını sokak ortasında tabancayla vurdu" style="">
                                 <div class="card-body align-middle d-table-cell">
                                     <p class="card-baslik text-left d-table-cell"><b class="card-kisalt">{{$row->title_tr}}</b></p>
@@ -270,26 +280,26 @@
 
                             @for($i=0;$i<=24;$i++)
                                 <div class="swiper-slide" style="position:relative">
-                                    <a href="{{URL::to('/'.str_slug($slider[$i]->title_tr).'/'.$slider[$i]->id.'/'.'haberi')}}">
+                                    <a href="{{URL::to('/'.str_slug($home[$i]->title_tr).'/'.$home[$i]->id.'/'.'haberi')}}">
                                         <div class="position-relative">
                                             <img class="img-fluid slider-foto swiper-lazy  min-height lazyload"
                                                  width="100%"
-                                                 data-src="{{ asset($slider[$i]->image) }}"/>
-                                            @if(isset($slider[$i]->posts_video))
+                                                 data-src="{{ asset($home[$i]->image) }}"/>
+                                            @if(isset($home[$i]->posts_video))
                                                 <div class="videohaber bottom-left">
                                                     <span><i class="fa fa-play"></i> Video</span>
                                                 </div>
                                             @endif
-                                            @if($slider[$i]->headlinetag==1)
+                                            @if($home[$i]->headlinetag==1)
                                                 <div class="sondakikaSlider top-left">
                                                     <span>Son Dakika</span>
                                                 </div>
-                                            @elseif($slider[$i]->flahtag==1)
-                                                <div class="flashhaber top-left">
+                                            @elseif($home[$i]->flahtag==1)
+                                                <div class="flashhaberSlider top-left">
                                                     <span>Flaş Haber</span>
                                                 </div>
-                                            @elseif($slider[$i]->attentiontag==1)
-                                                <div class="haberedikkat top-left">
+                                            @elseif($home[$i]->attentiontag==1)
+                                                <div class="haberedikkatSlider top-left">
                                                     <span>Bu Habere Dikkat</span>
                                                 </div>
                                             @endif
@@ -780,8 +790,8 @@
                      style="background-color:{{$themeSetting[0]->siteColorTheme}}!important;">
                     <div class="swiper-wrapper">
                         <!-------------ECONOMY FEATURED---->
-                        @foreach ($home as $row )
-                            @if($row->category_id ==5 && $row->featured==1)
+                        @foreach ($featured as $row )
+                            @if($row->category_id ==5)
                                 <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
                                         <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}"><img
@@ -875,9 +885,9 @@
                     <div class="swiper-wrapper" style="background-color: orange">
 
 
-                        @foreach($home as $homes)
-                            @if( $homes->featured==1)
-                                <div class="swiper-slide" style="">
+                        @foreach($featured as $homes)
+                            @if($row->category_id ==2)
+                            <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                             <img class="img-fluid kart_img lazyload"
@@ -973,7 +983,7 @@
                     <div class="swiper-wrapper">
 
 
-                        @foreach($home as $homes)
+                        @foreach($featured as $homes)
 
                             @if($homes->category_id == 3 && $homes->featured==1)
 
@@ -1011,11 +1021,6 @@
         <div class="container pt-2 pb-2">
             <div class="row">
                 @foreach($siyaset as $homes)
-
-
-
-
-
                     <div class="col-md-4 float-left mb-3  ">
                         <div class="card kart kart-width kart-margin shadow" style="">
                             <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
@@ -1028,11 +1033,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
                 @endforeach
             </div>
         </div>
@@ -1076,7 +1076,7 @@
                 <div class="swiper-container spor">
                     <div class="swiper-wrapper">
 
-                        @foreach($home as $homes)
+                        @foreach($featured as $homes)
                             @if($homes->category_id ==6 && $homes->featured==1)
 
                                 <div class="swiper-slide" style="">
