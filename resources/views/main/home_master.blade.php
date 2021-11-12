@@ -25,7 +25,7 @@
         gtag('config', '@yield('google_verification')');
     </script>
     <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
-    <link rel="preload" href="{{mix('frontend/assets/css/combine.css')}}" as="style" onload="this.rel='stylesheet'" onerror="this.href='stylesheet'">
+    <link rel="stylesheet" href="{{mix('frontend/assets/css/combine.css')}}" as="style" onload="this.rel='stylesheet'" onerror="this.href='stylesheet'">
 
     <!-- FONT AWESOME-->
     <link rel="preload" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" as="style"

@@ -119,11 +119,12 @@ class ExtraController extends Controller
         } else {
             DB::commit();
         }
-return $this->OldDBkoseyazisi();
+        return $this->OldDBkoseyazisi();
 
     }
 
-    public function OldDBkoseyazisi(){
+    public function OldDBkoseyazisi()
+    {
         ini_set('max_execution_time', 0);
         $koseyazisieski = DB::table('kose_yazilari')->get();//eklenecek eski köşe yazıları tablosu
         $yeniData = array();
@@ -139,7 +140,7 @@ return $this->OldDBkoseyazisi();
                 "title" => $koseyazisieski[$i]->koseyazisi_baslik,
                 "created_at" => $koseyazisieski[$i]->koseyazisi_zaman,
                 "updated_at" => $koseyazisieski[$i]->koseyazisi_zaman,
-                "status" => $koseyazisieski[$i]->koseyazisi_durum==null?1:$koseyazisieski[$i]->koseyazisi_durum,
+                "status" => $koseyazisieski[$i]->koseyazisi_durum == null ? 1 : $koseyazisieski[$i]->koseyazisi_durum,
                 "image" => "",
                 "keywords" => $koseyazisieski[$i]->koseyazisi_keyword,
                 "description" => $koseyazisieski[$i]->koseyazisi_description,
@@ -156,7 +157,7 @@ return $this->OldDBkoseyazisi();
         } else {
             DB::commit();
         }
-return "Veri taşıma başarılı";
+        return "Veri taşıma başarılı";
 
     }
 
@@ -225,7 +226,7 @@ return "Veri taşıma başarılı";
             if (Cache::has('seoset')) return Cache::has('seoset');
             return Seos::first();
         });
-        $posts =Cache::remember("posts", Carbon::now()->addYear(), function () {
+        $posts = Cache::remember("posts", Carbon::now()->addYear(), function () {
             if (Cache::has('posts')) return Cache::has('posts');
             return Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
                 ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
@@ -269,7 +270,7 @@ return "Veri taşıma başarılı";
             ->latest('updated_at')->limit(50)
             ->get();
 
-        $subdistricts =  Subdistrict::leftjoin('districts', 'districts.id', '=', 'subdistricts.district_id')
+        $subdistricts = Subdistrict::leftjoin('districts', 'districts.id', '=', 'subdistricts.district_id')
             ->where('districts.slug', $id)
             ->get();
         $alldistrict = District::get();
@@ -370,74 +371,93 @@ return "Veri taşıma başarılı";
             ]
         ];
 
+        $curl = curl_init();
 
-// $vakitler=$db->genelsorgu("SELECT * FROM ");
-        $site = file_get_contents("https://namazvakitleri.diyanet.gov.tr/tr-TR/9635/kirikkale-icin-namaz-vakti");
-        preg_match_all('@<div class="tpt-title">(.*?)</div>@si', $site, $vakitisim);
-        preg_match_all('@<div class="tpt-time">(.*?)</div>@si', $site, $vakitzaman);
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.collectapi.com/pray/all?data.city=kirikkale",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "authorization: apikey 3GTrRbeRLxIJcguNWQlMjD:71hXZkhlz9XeAdcmRSST3B",
+                "content-type: application/json"
+            ),
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
 
-//        for ($i = 0; $i < 1; $i++) {
-//            @$imsak = $vakitzaman[0][0];
-//            @$ogle = $vakitzaman[1][2];
-//            @$ikindi = $vakitzaman[1][3];
-//            @$aksam = $vakitzaman[1][4];
-//            @$yatsi = $vakitzaman[1][5];
-//
-//        dd($vakitisim);
-//print_r($vakitisim);
-        if ($vakitzaman[0] != NULL) {
-            $vakitler = array(
-                "imsak" => strip_tags($vakitzaman[0][0]),
-                "gunes" => $vakitzaman[1][1],
-                "ogle" => $vakitzaman[1][2],
-                "ikindi" => $vakitzaman[1][3],
-                "aksam" => $vakitzaman[1][4],
-                "yatsi" => $vakitzaman[1][5],
-
-            );
-        } else {
-
-            $vakitler = array(
-
-                "imsak" => 0,
-                "gunes" => 0,
-                "ogle" => 0,
-                "ikindi" => 0,
-                "aksam" => 0,
-                "yatsi" => 0,
-            );
-
-        }
+        curl_close($curl);
+        $result = json_decode($response, true);
+        $vakitler = array(
+            "imsak" => $result['result'][0]['saat'],
+            "gunes" => $result['result'][1]['saat'],
+            "ogle" => $result['result'][2]['saat'],
+            "ikindi" => $result['result'][3]['saat'],
+            "aksam" => $result['result'][4]['saat'],
+            "yatsi" => $result['result'][5]['saat'],
+        );
         Session::put('vakitler', $vakitler);
+
         Session::put('kurlar', $kurlar);
 
-        $video_gallary =Cache::remember("video_gallary", Carbon::now()->addYear(), function () {
+        $video_gallary = Cache::remember("video_gallary", Carbon::now()->addYear(), function () {
             if (Cache::has('video_gallary')) return Cache::has('video_gallary');
-            return  Post::where('posts_video', '!=', NULL)->limit(5)->get();
+            return Post::where('posts_video', '!=', NULL)->limit(5)->get();
         });
-        $home = Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
-            ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
-            ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
-            ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
-            ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-            ->where('status', 1)->latest('updated_at')
-            ->get();
-        $surmanset = Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
-            ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
-            ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
-            ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
-            ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-            ->where('status', 1)->latest('updated_at')->limit(4)
-            ->get();
+//        $home =
+////            Cache::remember("home", Carbon::now()->addYear(), function () {
+////            if (Cache::has('home')) return Cache::has('home');
+//            Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
+//                ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
+//                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
+//                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
+//                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
+//                ->where('status', 1)->latest('updated_at')
+//                ->get();
+////            });
+
+        $home = Cache::remember("home", Carbon::now()->addYear(), function () {
+            if (Cache::has('home')) return Cache::has('home');
+            return Post::where('status', 1)
+                ->latest('created_at')
+                ->get();
+        });
+
+//        $surmanset =
+////            Cache::remember("surmanset", Carbon::now()->addYear(), function () {
+////            if (Cache::has('surmanset')) return Cache::has('surmanset');
+//            Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
+//                ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
+//                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
+//                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
+//                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
+//                ->where('status', 1)->latest('updated_at')->limit(4)
+//                ->get();
+////            });
+
+        $surmanset = Cache::remember("surmanset", Carbon::now()->addYear(), function () {
+            if (Cache::has('surmanset')) return Cache::has('surmanset');
+            return Post::where('status', 1)
+                ->where('surmanset', 1)
+                ->with('category')
+                ->limit(4)
+                ->latest('updated_at')
+                ->get();
+        });
+
         $sagmanset = Cache::remember("sagmanset", Carbon::now()->addYear(), function () {
             if (Cache::has('sagmanset')) return Cache::has('sagmanset'); //here am simply trying Laravel Collection method -find
 
             return Post::whereIn('category_id', [1, 2, 3])->where('status', 1)->latest('updated_at')->limit(15)->get();
         });
 
-        $sehir =Cache::remember("sehir", Carbon::now()->addYear(), function () {
+        $sehir = Cache::remember("sehir", Carbon::now()->addYear(), function () {
             if (Cache::has('sehir')) return Cache::has('sehir');
-            return  Sehirler::orderByRaw('sehir_ad')->get();    });
+            return Sehirler::orderByRaw('sehir_ad')->get();
+        });
 //        $category = Category::latest()->get();
 //        dd($category->id);
 //        foreach ($category as $cat) {
@@ -445,23 +465,23 @@ return "Veri taşıma başarılı";
 //        }
         $ekonomi = Cache::remember("ekeonomi", Carbon::now()->addYear(), function () {
             if (Cache::has('ekeonomi')) return Cache::has('ekeonomi');
-            return Post::where('category_id', '=', 5)->where('featured', '=', 0)->limit(9)->latest('updated_at')->get();
+            return Post::where('category_id', 5)->where('status', 1)->limit(9)->latest('updated_at')->get();
 
         });
 
         $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () {
             if (Cache::has('gundem')) return Cache::has('gundem');
-            return Post::where('category_id', '=', 2)->where('status',1)->limit(9)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 2)->where('status', 1)->limit(9)->latest('updated_at')->get();
         });
 
         $siyaset = Cache::remember("siyaset", Carbon::now()->addYear(), function () {
             if (Cache::has('siyaset')) return Cache::has('siyaset');
-            return Post::where('category_id', '=', 3)->where('status',1)->where('status','=',1)->limit(9)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 3)->where('status', 1)->limit(9)->latest('updated_at')->get();
         });
 
         $spor = Cache::remember("spor", Carbon::now()->addYear(), function () {
             if (Cache::has('spor')) return Cache::has('spor');
-            return Post::where('category_id', '=', 6)->where('status',1)->limit(6)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 6)->where('status', 1)->limit(6)->latest('updated_at')->get();
         });
         $themeSetting = Cache::remember("themeSetting", Carbon::now()->addYear(), function () {
             if (Cache::has('themeSetting')) return Cache::has('themeSetting');
@@ -483,6 +503,7 @@ return "Veri taşıma başarılı";
                 ->where('status', 1)
                 ->whereIN('ad_categories.id', [9, 15, 16, 17, 18, 19, 20, 21, 22, 23]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
                 ->get();
+
         });
 
         $seoset = Cache::remember("seoset", Carbon::now()->addYear(), function () {
@@ -535,7 +556,7 @@ return "Veri taşıma başarılı";
                     $icon = '<i  style="font-size: 20px;" class="wi wi-day-sunny"></i>';
                 } elseif ($data['d1'] == "CB") {
                     $icon = '<i  style="font-size: 20px;" class="wi wi-cloudy"></i>';
-                }elseif ($data['d1'] == "SIS") {
+                } elseif ($data['d1'] == "SIS") {
                     $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
                 } else {
                     $icon = '<i  style="font-size: 20px;" class="wi wi-na"></i>';
@@ -559,7 +580,7 @@ return "Veri taşıma başarılı";
 
         Session::put('havadurumu', $veri['sicaklik']);
 
-        return view('main.home', compact('home', 'ekonomi','surmanset', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
+        return view('main.home', compact('home', 'ekonomi', 'surmanset', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 
@@ -581,50 +602,77 @@ return "Veri taşıma başarılı";
                  ->where('posts.id','=', $id)->first();
          });*/
 
-        $post =
-            Post::latest('updated_at')->where('status', '=', 1)
-                ->where('id', '=', $id)->first();
+//        $post = Post::latest('updated_at')->where('status', '=', 1)
+//                ->where('id', '=', $id)->first();
+        $post = Post::find($id);
+//        dd($post);
+        $comments = Comments::where('posts_id', $id)->where('status', 1)->get();
 
-
-        $comments = Comments::where('id', '=', $id)->get();
-
-        $slider =  Post::latest('created_at')
-            ->where('status', 1)->where('category_id', $post->category_id)
-            ->offset(1)->limit(10)
+//dd($comments);
+//        $slider =  Post::latest('created_at')
+//            ->where('status', 1)->where('category_id', $post->category_id)
+//            ->offset(1)->limit(10)
+//            ->get();
+        $slider = Post::latest('updated_at')
+            ->with('category')
+            ->limit(10)
             ->get();
 
-        $ads =Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
-//            ->join('ads','ad_categories.id','ads.category_id')
-            ->select(['ads.*', 'ad_categories.id'])
-            ->where('status', 1)
-            ->whereIN('ad_categories.id', [1, 2, 3, 12]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
-            ->get();
+        $ads =
+//            Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
+////            ->join('ads','ad_categories.id','ads.category_id')
+//            ->select(['ads.*', 'ad_categories.id'])
+//            ->where('status', 1)
+//            ->whereIN('ad_categories.id', [1, 2, 3, 12]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
+//            ->get();
+            Ad::latest('updated_at')
+                ->where('status', 1)
+                ->whereIn('id', [1, 2, 3, 12])
+                ->with('adcategory')
+                ->get();
+        $related =
+            Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+                ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
+                ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
+                ->where('posts.id', $id)->latest()
+                ->limit(10)
+                ->get();
+//            Post::
+//                with('tags')
+//                ->find($id)
+//                ->latest()
+//                ->limit(10)
+//                ->get();
+//        dd($related);
+        $random = Post::inRandomOrder()->limit(3)->get();
 
-        $related = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
-            ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
-            ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-            ->where('posts.id', $id)->latest()
-            ->get();
-
-        $tag = Tag::get();
-        foreach ($tag as $item) {
-            $nextrelated =
-                Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
-                    ->leftjoin('tags', 'tags.id', 'post_tags.tag_id')
-                    ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                    ->where('post_tags.tag_id', $item->id)->latest()
-                    ->get();
+//        $tag = Tag::get();
+//        foreach ($tag as $item) {
+        $nextrelated =
+//                Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+//                    ->leftjoin('tags', 'tags.id', 'post_tags.tag_id')
+//                    ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
+//                    ->where('post_tags.tag_id', $item->id)->latest()
+//                    ->get();
+            Post::latest('updated_at')
+                ->where('id', $id)
+                ->with(['tag' => function ($query) {
+                    // $query->sum('quantity');
+                    $query->select('name'); // without `order_id`
+                }
+                ])
+                ->get();
 
 //            $nextrelated = Post::leftjoin('post_tags','posts.id','post_tags.post_id')
 //                ->leftjoin('tags','tags.id','post_tags.tag_id')
 //                ->select(['posts.*','post_tags.post_id','tags.name'])
 //                ->get();
-        }
+//        }
 
 //        $related= $post->posttags()->post_id;
 //        $related=$this->belongsToMany(Post::class, 'post_tags', 'tags');
 
-        return view('main.body.single_post', compact('post', 'ads', 'slider', 'related', 'nextrelated', 'comments', 'id'));
+        return view('main.body.single_post', compact('post', 'ads', 'random', 'slider', 'related', 'nextrelated', 'comments', 'id'));
 
 
     }
@@ -632,7 +680,7 @@ return "Veri taşıma başarılı";
     //Fixed Page Open
     public function Sayfa($id)
     {
-        $fixedPage =  DB::table('fixedpage')->where('id', '=', $id)->get();
+        $fixedPage = DB::table('fixedpage')->where('id', '=', $id)->get();
 
         return view('main.body.fixedpapers', compact('fixedPage'));
     }
@@ -640,8 +688,7 @@ return "Veri taşıma başarılı";
 
     public function CategoryPost($slug, $id)
     {
-        $category =Category::latest()->where('id', $id)->orderBy('id', 'desc')->first();
-
+        $category = Category::latest()->where('id', $id)->orderBy('id', 'desc')->first();
 
 
         $manset =
@@ -658,7 +705,7 @@ return "Veri taşıma başarılı";
             ->count();
 
 
-        $catpost =  Post::join('categories', 'posts.category_id', 'categories.id')
+        $catpost = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
             ->where('posts.category_id', $id)->orWhere('posts.manset', NULL)->offset(1)
             ->paginate(20);
@@ -667,7 +714,7 @@ return "Veri taşıma başarılı";
 //        if ($catpost->count() == 0) {
 //            return redirect('/');
 //        }
-        $nextnews =  Post::join('categories', 'posts.category_id', 'categories.id')
+        $nextnews = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
             ->where('posts.category_id', $id)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
             ->inRandomOrder()->limit(10)
@@ -720,7 +767,7 @@ return "Veri taşıma başarılı";
 
     public function TumKategoriler()
     {
-        $allcategories =Cache::remember("allcategories", Carbon::now()->addYear(), function () {
+        $allcategories = Cache::remember("allcategories", Carbon::now()->addYear(), function () {
             if (Cache::has('allcategories')) return Cache::has('allcategories');
             return Category::get();
         });
@@ -732,23 +779,23 @@ return "Veri taşıma başarılı";
     {
 
         $yazi = AuthorsPost::where('authors_id', '=', $id)->limit(10)->get();
-        $yazar =  Authors::where('id', '=', $id)->get();
+        $yazar = Authors::where('id', '=', $id)->get();
         $nextauthors_posts = DB::table('authors_posts')
-            ->latest('updated_at')->where('status', 1)->where('authors_id','=',$id)->limit(10)
+            ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
             ->get();
-        return view('main.body.authors_writes', compact('yazi', 'yazar','nextauthors_posts'));
+        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
     }
 
     public function yazilars($id)
     {
 
-        $yazi =  AuthorsPost::where('id', '=', $id)->limit(10)->get();
+        $yazi = AuthorsPost::where('id', '=', $id)->limit(10)->get();
         $nextauthors_posts = DB::table('authors_posts')
-            ->latest('updated_at')->where('status', 1)->where('authors_id','=',$id)->limit(10)
+            ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
             ->get();
-        $yazar =  Authors::where('id', '=', $id)->get();
+        $yazar = Authors::where('id', '=', $id)->get();
 
-        return view('main.body.authors_writes', compact('yazi', 'yazar','nextauthors_posts'));
+        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
     }
 
 

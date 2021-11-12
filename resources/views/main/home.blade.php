@@ -247,6 +247,7 @@
                 @foreach($surmanset as $row)
                     <div class="col-lg-3 col-md-6 col-sm-12 pb-2 d-none d-md-block padding-left kartlar">
                         <div class="card shadow  d-inline-block  ">
+{{--                            {{$row->category->category_tr}}--}}
                             <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
                                 @if($row->headlinetag==1)
                                     <div class="sondakika top-left">
@@ -791,7 +792,8 @@
                     <div class="swiper-wrapper">
                         <!-------------ECONOMY FEATURED---->
                         @foreach ($ekonomi as $row )
-                                <div class="swiper-slide" style="">
+                            @if($row->featured ==1)
+                            <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
                                         <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}"><img
                                                 class="img-fluid kart_img lazyload" data-src="{{asset($row->image)}}"/>
@@ -803,6 +805,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            @endif
 
 
 

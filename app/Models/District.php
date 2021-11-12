@@ -18,4 +18,7 @@ class District extends Model
         'district_order',
 
     ];
+//    public function posts(){
+//        return $this->belongsTo(Post::class,'district_id','id');
+//    }
 }

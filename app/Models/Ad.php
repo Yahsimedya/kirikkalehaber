@@ -17,4 +17,7 @@ class Ad extends Model
         'ad_code',
 
     ];
+    public function adcategory() {
+        return $this->belongsTo(AdCategory::class);
+    }
 }

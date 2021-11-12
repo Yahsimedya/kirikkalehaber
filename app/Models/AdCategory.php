@@ -12,4 +12,6 @@ class AdCategory extends Model
         'id',
         'title',
     ];
+
 }
+

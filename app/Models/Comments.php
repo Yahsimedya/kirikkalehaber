@@ -14,4 +14,7 @@ class Comments extends Model
         'posts_id',
         'created_at',
     ];
+//    public function posts(){
+//        return $this->hasmany(Post::class);
+//    }
 }

@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+require('laravel-mix-purgecss');
 
 /*
  |--------------------------------------------------------------------------
@@ -13,7 +14,9 @@ const mix = require('laravel-mix');
 
 // mix.copy('node_modules/swiper/swiper-bundle.js','public/js');
 
+
 mix.js('resources/js/app.js', 'public/js')
+
 .combine([
     'public/frontend/assets/js/lazysizes.min.js',
     'public/frontend/assets/js/marquee.js',
@@ -30,5 +33,7 @@ mix.js('resources/js/app.js', 'public/js')
       'node_modules/slick-carousel/slick/slick.scss',
 
     ],'public/frontend/assets/css/combine.css')
-    .sourceMaps();
+
+.sourceMaps();
+
 mix.version();

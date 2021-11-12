@@ -4,7 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\hasMany;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
@@ -53,8 +56,17 @@ class Post extends Model
     public function category() {
         return $this->belongsTo(Category::class);
     }
-    public function posttags() {
-        return $this->belongsTo(PostTag::class);
+    public function subcategory() {
+        return $this->belongsTo(Subcategory::class);
+    }
+    public function districts() {
+        return $this->belongsTo(District::class,'district_id');
+    }
+    public function subdistricts() {
+        return $this->belongsTo(Subdistrict::class);
+    }
+    public function comment() {
+        return $this->belongsTo(Comments::class);
     }
     public function tag()
     {

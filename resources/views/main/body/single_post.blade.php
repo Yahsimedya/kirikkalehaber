@@ -61,7 +61,7 @@ $themeSetting=DB::table('themes')->get();
                         </div>
                         <img src="" alt="">
                     </div>
-                    <ul class="detay__kategori list-unstyled pb-3 social-icons">
+                    <ul class="detay__kategori list-unstyled pb-3 social-icons font-weight-bold">
                         <!-- <li class="float-left mr-2"><i class="fa fa-circle  text-danger pr-1"></i>Kategori : Gündem</li> -->
                         <li class="float-left mr-2"><i class="fa fa-calendar-alt  text-danger pr-1">
                                 </i> {{ \Carbon\Carbon::parse($post->created_at)->isoFormat('DD MMMM YYYY') }}</li>
@@ -70,6 +70,10 @@ $themeSetting=DB::table('themes')->get();
                         </li>
                         <li class="float-left mr-2"><i class="fa fa-user  text-danger pr-1"></i>
                             {{ url('/') }} </li>
+                        <li class="float-left mr-2"> <span class="text-danger">İL:</span> {{ $post->districts->district_tr}}
+                        </li>
+                        <li class="float-left mr-2"><span class="text-danger">Kategori:</span>{{ $post->category->category_tr}}
+                        </li>
                         <a target="_blank"
                            href="https://www.facebook.com/sharer.php?u={{ URL::to('/' . str_slug($post->title_tr) . '/' . $post->id . '/' . 'haberi') }}"
                            class="facebook">
@@ -181,7 +185,6 @@ $themeSetting=DB::table('themes')->get();
 
                         <div class="col-md-12 shadow-lg p-3 mt-3 bg-light">
                             <h3 class="text-dark">Haber Yorumları</h3>
-
                             @foreach($comments as $comment)
                                 <hr>
                                 <span class="text-dark"><i class="fa fa-user pr-1"></i>{{$comment->name}}</span>
@@ -287,20 +290,17 @@ $themeSetting=DB::table('themes')->get();
                     </div>
                 </div>
                 @php
-                    $random =DB::table('posts')->where('category_id',$post->category_id)->where('manset',1)->where('status',1)->orderBy('updated_at','desc')->inRandomOrder()->limit(3)->get();
                 @endphp
                 @foreach ( $random as $row)
 
-                    <a target="_blank" href="">
+                    <a target="_blank" href="{{'/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi'}}">
                         <div class="card kart kart-width shadow mt-3">
                             <img src="{{asset($row->image)}}" class="img-fluid kart_img" alt="">
                             <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
                                 <p class="card-text card-kisalt">
-                                    @if (session()->get('lang') == 'english')
-                                        {{ Str::ucFirst($row->title_en) }}
-                                    @else
+
                                         {{ Str::ucFirst($row->title_tr) }}
-                                    @endif</p>
+                                    </p>
                             </div>
                         </div>
                     </a>
