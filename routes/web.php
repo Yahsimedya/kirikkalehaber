@@ -42,6 +42,7 @@ use App\Http\Controllers\ThemeController;
 
 
 
+
 Route::get('/', function () {
 
     return view('main.home');
@@ -68,8 +69,10 @@ Route::get('/install', function () {
     return "Kurulum Tamamlandı";
 });
 
-
-
+Route::get('/startbot', function () {
+    Artisan::call('schedule:work');
+    return redirect()->back();
+});
 
 // ADMİN Routes
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
@@ -183,6 +186,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/iha/ihaxmlread', [IhaController::class, 'ihaxmlread'])->name('ihaxmlread.iha');
     Route::get('/iha/editPage/{id}', [IhaController::class, 'Editpage'])->name('editpage.iha');
     Route::post('/iha/add', [IhaController::class, 'iha'])->name('post.iha');
+
     Route::post('/iha/Userupdate', [IhaController::class, 'Userupdate'])->name('setting.userupdate');
     Route::get('/iha/Settingindex', [IhaController::class, 'Settingindex'])->name('setting.settingindex');
     Route::post('/iha/userAdd', [IhaController::class, 'UserAdd'])->name('settingiha.useradd');

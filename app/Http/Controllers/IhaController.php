@@ -9,6 +9,7 @@ use http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Storage;
 
 class IhaController extends Controller
@@ -64,10 +65,10 @@ class IhaController extends Controller
     public function Userupdate(Request $request)
     {
         $iha = array();
-
         $iha['iha_usercode'] = $request->iha_usercode;
         $iha['iha_username'] = $request->iha_username;
         $iha['iha_password'] = $request->iha_password;
+        $iha['auto_Bot'] = $request->auto_Bot=="on"?1:0;
         $iha['iha_rss'] = $request->iha_rss;
 
         \DB::table('iha')->where('id', '=', $request->id)->update($iha);
@@ -173,13 +174,17 @@ class IhaController extends Controller
 
                 $i = 0;
                 foreach ($icerik->item as $kanal) {
-
+                    $sehirnameXml = Str::title($kanal->Sehir);
+//dd($districtName->id);
                     $i++;
                     $haberkodu = $kanal->HaberKodu;
                     $ustkategori = $kanal->UstKategori;
                     $Kategori = $kanal->Kategori;
-                    $Sehir = $kanal->Sehir;
-                    $SonDakika = $kanal->SonDakika;
+                   // $Sehir = $kanal->Sehir;
+                    //her ikisinide küçük harflere çevirip eşleştir ve geriye plaka kodu gönder
+
+                    $sehirs=District::where('district_tr',$sehirnameXml)->get();
+
                     $title = $kanal->title;
                     $description = $kanal->description;
                     $pubDate = $kanal->pubDate;
@@ -193,11 +198,11 @@ class IhaController extends Controller
 
                     $news[$i]['UstKategori'] = $ustkategori;
                     $news[$i]['Kategori'] = $Kategori;
-                    $news[$i]['Sehir'] = $SonDakika;
+                  //  $news[$i]['Sehir'] = $SonDakika;
                     $news[$i]['description'] = $description;
                     $news[$i]['resim'] = $images;
                     $news[$i]['pubDate'] = $pubDate;
-                    $news[$i]['Sehir'] = $Sehir;
+                    $news[$i]['Sehir'] = $sehirs;
                     $news[$i]['haberkodu'] = $haberkodu;
                     $news[$i]['SonHaberGuncellenmeTarihi'] = $SonHaberGuncellenmeTarihi;
                     $news[$i]['video'] = $videos;
@@ -211,7 +216,7 @@ class IhaController extends Controller
             $category = Category::latest()->paginate(20);
             $district = District::latest()->get();
 
-            return view('backend.iha.add', compact('count',  'news', 'category', 'district'));
+          return view('backend.iha.add', compact('count',  'news', 'category', 'district'));
 
         }
     }
@@ -231,24 +236,18 @@ class IhaController extends Controller
 
         // $tarih=date("d-M-Y");
         $jpegklasor = "jpeg";
-        $webpklasor = "webp";
 
         $filenamejpeg = $dir . "/" . $year . "/" . $month;
-        $filenamewebp = "../img/" . "$dir" . "/" . $jpegklasor . "/" . $year;
 
         $filenamejpegay = $dir . "/" . $year . "/" . $month;
-        $filenamewebpay = "../img/" . "$dir" . "/" . $webpklasor . "/" . $year . "/" . $month;
 
-        if (file_exists($filenamejpeg) && file_exists($filenamewebp)) {
+        if (file_exists($filenamejpeg)) {
             if (file_exists($filenamejpegay) == false) {
                 mkdir($filenamejpegay, 0777, true);
             }
-            if (file_exists($filenamewebpay) == false) {
-                mkdir($filenamewebpay, 0777, true);
-            }
+
         } else {
             mkdir($filenamejpeg, 0777, true);
-            mkdir($filenamewebp, 0777, true);
         }
 
 
@@ -265,7 +264,6 @@ class IhaController extends Controller
         ob_end_clean();
         imagedestroy($image);
         $content = imagecreatefromstring($cont);
-        $output = $filenamewebpay . "/" . $isim . '.webp';
 
         imagedestroy($content);
 

@@ -187,9 +187,10 @@
                                             </select>
                                         </div>
                                         <div class="col-xs-12 col-md-12">
-                                            <label>İller</label>
+                                            <label>İller </label>
                                             <input type="hidden" name="user_id" value="{{Auth::id()}}">
                                             <select name="district" id="" class="form-control">
+                                                <option value="{{$news[$i]['Sehir'][0]->id}}">{{$news[$i]['Sehir'][0]->district_tr}}</option>
 
                                                 @foreach ($district as $districts  )
                                                     <option value="{{$districts->id}}">{{$districts->district_tr}}</option>
@@ -217,7 +218,7 @@
 
                             <div class="row">
 
-                                @for($k=1;$k<=count($news[$i]['resim']['image']);$k++)
+                                @for($k=1;$k<=1;$k++)
 
 
                                     <input type="hidden" name="orderImages{{$k}}"

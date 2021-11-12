@@ -46,6 +46,18 @@
 
                 </div>
 
+                <div class="form-check form-check-center form-check-switchery form-check-switchery-md">
+                    <label class="form-check-label">
+                        Otomatik Haber Botu
+                        <input type="checkbox" name="auto_Bot" class="form-input-switchery" @if($data->auto_Bot==1) checked @endif data-fouc>
+                    </label>
+                </div>
+
+
+
+
+
+
                 <div align="right" class="box-footer">
                     <button type="submit" class="btn btn-success" name="iha_insert">Güncelle</button>
                 </div>

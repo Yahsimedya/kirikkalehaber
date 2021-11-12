@@ -38,7 +38,7 @@ class CreatePostsTable extends Migration
             $table->integer('headline')->nullable();
             $table->integer('featured')->nullable();
             $table->integer('surmanset')->nullable();
-
+            $table->string('haber_iha_kod')->unique()->nullable();
             $table->integer('headlinetag')->nullable();
             $table->integer('flahtag')->nullable();
             $table->integer('attentiontag')->nullable();

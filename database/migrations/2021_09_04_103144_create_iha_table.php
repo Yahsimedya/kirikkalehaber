@@ -19,6 +19,7 @@ class CreateIhaTable extends Migration
             $table->string('iha_usercode');
             $table->string('iha_password');
             $table->string('iha_rss');
+            $table->boolean('auto_Bot')->default(0);
             $table->timestamps();
         });
     }
