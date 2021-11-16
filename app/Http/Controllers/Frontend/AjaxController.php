@@ -7,9 +7,12 @@ use App\Models\District;
 use App\Models\Post;
 use App\Models\Sehirler;
 use App\Models\Tag;
+use App\Models\Vakitler;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
+
 
 class AjaxController extends Controller
 {
@@ -309,91 +312,78 @@ class AjaxController extends Controller
     public function NamazVakit(Request $request)
     {
 //        return $request->sehirsec;
+        /*********** ZAMANLANMIş GÖREV *//////////
 
+        $curl = curl_init();
 
-        $gelenil = $request->sehirsec;
-        $sehir =Cache::remember("sehir", Carbon::now()->addYear(), function () {
-            if (Cache::has('sehir')) return Cache::has('sehir');
-            return Sehirler::where('id', $gelenil)->first();});
-        $ilceid = $sehir->ilce_id;
-//        dd($sehir);
-//        $ilce_id = $cek['ilce_id'];
-//        $sehir = $cek['sehir_id'];
-//        $sehir_ad = strtoupper($cek["sehir_ad"]);
-//       return response()->json([
-//            'gelenil'=>"yunus",
-//
-//        ],200);
-        function vakit($e)
-        {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $e);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            $vakitgetir = curl_exec($ch);
-            curl_close($ch);
-            return $vakitgetir;
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://ezanvakti.herokuapp.com/vakitler/9635",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+        $result = json_decode($response, true);
+//        dd($result);
+        for ($i=0; $i<30;$i++) {
+//            echo $result[$i]['Aksam'];
+            $tarih=$result[$i]['MiladiTarihKisa'];
+            $vakitler = array(
+                "imsak" => $result[$i]['Imsak'],
+                "gunes" => $result[$i]['Gunes'],
+                "ogle" => $result[$i]['Ogle'],
+                "ikindi" => $result[$i]['Ikindi'],
+                "aksam" => $result[$i]['Aksam'],
+                "yatsi" => $result[$i]['Yatsi'],
+                "date" => $tarih
+            );
+//            dd($vakitler[$i]);
+
+            $vakit= Vakitler::updateOrCreate($vakitler); exit;
+//           $vakit->save();
+
         }
 
-        // $vakitler=$db->genelsorgu("SELECT * FROM ");
-        $site = file_get_contents("https://namazvakitleri.diyanet.gov.tr/tr-TR/" . $ilceid . "/" . $gelenil . "-icin-namaz-vakti");
-        preg_match_all('@<div class="tpt-title">(.*?)</div>@si', $site, $vakitisim);
-        preg_match_all('@<div class="tpt-time">(.*?)</div>@si', $site, $vakitzaman);
-        //  file_get_contents($vakitler);
-        // $veriler=json_decode($vakitler,true);
-        $vakitisimsayi = count($vakitisim[0]) - 2;
-        $vakitizamansayi = count($vakitzaman[0]) - 1;
-        //  print_r($vakitisim);
-        //  print_r($vakitzaman);
-        // exit;
-        //  $gelenkayitSayisi=count($vakitisim)-1;
-//        for ($i = 0; $i < 1; $i++) {
-//            @$imsak = $vakitzaman[0][0];
-//            @$ogle = $vakitzaman[1][2];
-//            @$ikindi = $vakitzaman[1][3];
-//            @$aksam = $vakitzaman[1][4];
-//            @$yatsi = $vakitzaman[1][5];
-//            //  echo @$ogle =$vakitisim[$i];
-//            //  echo @$ikindi =$vakitisim[$i];
-//            //  echo @$aksam =$vakitisim[$i];
-//            //  echo @$yatsi =$vakitisim[$i];
-//        }
-//         $data=
-        @$imsak = $vakitzaman[0][0];
-        @$gunes = $vakitzaman[1][1];
-        @$ogle = $vakitzaman[1][2];
-        @$ikindi = $vakitzaman[1][3];
-        @$aksam = $vakitzaman[1][4];
-        @$yatsi = $vakitzaman[1][5];
-//        return $data= '
-//     <div class="table-responsive">
-//
-//     <table class="table bg-white shadow">
-//     <!-- <caption>List of users</caption> -->
-//     <thead>
-//       <tr>
-//         <th class="text-center" scope="col">Şehir</th>
-//         <th class="text-center" scope="col">imsak</th>
-//         <th class="text-center" scope="col">Öğle</th>
-//         <th class="text-center" scope="col">İkindi</th>
-//         <th class="text-center" scope="col">Akşam</th>
-//         <th class="text-center" scope="col">Yatsı</th>
-//
-//       </tr>
-//     </thead>
-//     <tbody>
-//       <tr class="text-center">
-//         <th scope="row"><span class="text-danger">'.$gelenil.'</span></th>
-//         <td>'.strip_tags($imsak).'</td>
-//         <td>'.strip_tags($ogle).'</td>
-//         <td>'.strip_tags($ikindi).'</td>
-//         <td>'.strip_tags($aksam).'</td>
-//         <td>'.strip_tags($yatsi).'</td>
-//       </tr>
-//
-//     </tbody>
-//   </table>
-//   </div>';
+        /*********** ZAMANLANMIş GÖREV *//////////
+
+        $gelenil = $request->sehirsec;
+        $sehir =
+             Sehirler::where('id', $gelenil)->first();
+        $ilceid = $sehir->ilce_id;
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.collectapi.com/pray/all?data.city=".str::slug($sehir->sehir_ad),
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "authorization: apikey 3GTrRbeRLxIJcguNWQlMjD:71hXZkhlz9XeAdcmRSST3B",
+                "content-type: application/json"
+            ),
+        ));
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+        $result = json_decode($response, true);
+        @$imsak = $result['result'][0]['saat'];
+        @$gunes = $result['result'][1]['saat'];
+        @$ogle = $result['result'][2]['saat'];
+        @$ikindi =$result['result'][3]['saat'];
+        @$aksam = $result['result'][4]['saat'];
+        @$yatsi = $result['result'][5]['saat'];
 
 //        $imsakSor=$now>$imsak ? '<i class="fas fa-check-circle text-warning"></i>' :'<i class="fas fa-hourglass text-warning"></i>';
         $mytime = Carbon::now()->format('H:i');
@@ -409,28 +399,21 @@ class AjaxController extends Controller
             $okunmadurumuAksam = "fas fa-check-circle text-warning";
         }
 
-
         if ($imsak>$mytime) {
             $okunmadurumuİMSAK = "fas fa-check-circle text-success";
         }
 
-
         if ($ogle<$mytime) {
-
             $okunmadurumuOGLE = "fas fa-check-circle text-warning";
         }
-
         if ($ikindi<$mytime) {
             $okunmadurumuİKİNDİ = "fas fa-check-circle text-warning";
         }
         if ($yatsi<$mytime) {
             $okunmadurumuYATSI = "fas fa-check-circle text-warning";
         }
-
-
         return $data = ' <table class="table table-borderless text-light" >
         <tbody>
-
 <tr class="p-2" data-hour="03:26" data-time-name="imsak">
             <td class="text-center"><i class="wi wi-day-fog text-warning"></i></td>
             <td class="text-uppercase">İmsak</td>
@@ -471,9 +454,7 @@ class AjaxController extends Controller
         </tr>
         </tbody>
     </table>';
-
     }
-
     public function IlGetir(Request $request)
     {
 

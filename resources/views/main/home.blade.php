@@ -169,7 +169,7 @@
     </script>
     @if (!empty($sondakika[0]->headline))
 
-        <section class="section-sdk position-absolute w-100 mb-5" style="margin-top:0px;">
+        <section class="section-sdk position-relative d-flex w-100 mb-5" style="margin-top:0px;">
             <div class="container ">
                 <div class="simple-marquee-container" style="z-index: 999;">
                     <a href="sondakika.php">
@@ -516,7 +516,7 @@
                                 @else
                                     <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
                                 @endif
-                                {{ number_format($kurlar['ceyrekaltin']['satis'],3) }}</div>
+                                {{ $kurlar['ceyrekaltin']['satis'] }}</div>
 
                         </div>
                         <div class="col-md-3 col-3 float-left text-dark text-center"><b>Altın</b>

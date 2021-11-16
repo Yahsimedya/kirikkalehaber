@@ -21,6 +21,7 @@ use App\Models\Subdistrict;
 use App\Models\Tag;
 use App\Models\Theme;
 use App\Models\User;
+use App\Models\Vakitler;
 use App\Models\WebsiteSetting;
 use Carbon\Carbon;
 use GuzzleHttp\ClientInterface;
@@ -316,7 +317,7 @@ class ExtraController extends Controller
         $sondakika = Cache::remember("headline", Carbon::now()->addYear(), function () {
             if (Cache::has('headline')) return Cache::has('headline');
             return Post::where('posts.headline', 1)
-                ->where('created_at', '>', Carbon::now()->subDay(1))
+                ->where('updated_at', '>', Carbon::now()->subDay(1))
                 ->where('status', 1)
                 ->limit(5)
                 ->get();
@@ -371,36 +372,22 @@ class ExtraController extends Controller
             ]
         ];
 
-        $curl = curl_init();
+         $date = Carbon::now()->format('d.m.Y');
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.collectapi.com/pray/all?data.city=kirikkale",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => array(
-                "authorization: apikey 3GTrRbeRLxIJcguNWQlMjD:71hXZkhlz9XeAdcmRSST3B",
-                "content-type: application/json"
-            ),
-        ));
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
+$vakit=Vakitler::where('date',$date)->get();
 
-        curl_close($curl);
-        $result = json_decode($response, true);
         $vakitler = array(
-            "imsak" => $result['result'][0]['saat'],
-            "gunes" => $result['result'][1]['saat'],
-            "ogle" => $result['result'][2]['saat'],
-            "ikindi" => $result['result'][3]['saat'],
-            "aksam" => $result['result'][4]['saat'],
-            "yatsi" => $result['result'][5]['saat'],
+            "imsak" => $vakit[0]['imsak'],
+            "gunes" => $vakit[0]['gunes'],
+            "ogle" => $vakit[0]['ogle'],
+            "ikindi" => $vakit[0]['ikindi'],
+            "aksam" => $vakit[0]['aksam'],
+            "yatsi" => $vakit[0]['yatsi'],
         );
         Session::put('vakitler', $vakitler);
 
+
+//dd($kurlar);
         Session::put('kurlar', $kurlar);
 
         $video_gallary = Cache::remember("video_gallary", Carbon::now()->addYear(), function () {

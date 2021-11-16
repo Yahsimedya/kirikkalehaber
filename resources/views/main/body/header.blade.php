@@ -248,7 +248,7 @@ $gelenil=Session::get('gelenil');
                                 <div class="d-inline-block" style="font-size: 13px; line-height: 14px;"><span
                                         style="font-weight: bold">Ç.Altın</span><br/>
                                     <span
-                                        style="font-size: 13px;">{{ number_format($kurlar['ceyrekaltin']['satis'],3) }}</span>
+                                        style="font-size: 13px;">{{ number_format((float)$kurlar['ceyrekaltin']['satis'],3) }}</span>
                                 </div>
                             </li>
                             <li class="deger  list-unstyled mr-2 d-flex align-items-center">

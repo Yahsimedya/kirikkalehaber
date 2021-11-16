@@ -62,9 +62,11 @@
 {{--    <script type="text/javascript" src="{{asset('frontend/assets/js/svg-turkiye-haritasi.js')}}"></script>--}}
 
 
-
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6265404652403069"
+            crossorigin="anonymous"></script>
 
     @include('main.body.header')
+
 </head>
 
 <body>
