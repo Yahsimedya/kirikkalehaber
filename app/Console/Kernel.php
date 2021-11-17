@@ -29,7 +29,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+       // php artisan make:command NamazVakitleri --command=namaz:cron
         Commands\DemoCron::class,
+        Commands\NamazVakitleri::class
     ];
 
     /**
@@ -40,12 +42,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('demo:cron')
-            ->everyMinute();
+        $schedule->command('demo:cron')->everyFiveMinutes();
+        $schedule->command('namaz:cron')->monthlyOn(15, '00:00');
         ///php artisan schedule:run ile tek sefer çalışıyor
         ///php artisan schedule:work ile devamlı çalışıyor
-
-
     }
 
 

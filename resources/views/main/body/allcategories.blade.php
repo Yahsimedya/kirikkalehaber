@@ -11,7 +11,7 @@
                 <div class="row">
                     @foreach($allcategories as $detail)
 
-                        <div class="col-sm-3">
+                        <div class="col-lg-3">
                             <div class="container">
                                 <div class="container">
                                     <a href="{{ URL::to('/' . str_slug($detail->category_tr) . '/' . $detail->id) }}">
@@ -19,14 +19,11 @@
 
 
                                             <div class="card-body" style="text-align: center">
-                                                <i class="fa fa-paperclip w-100 text-center pt-3 pb-3 text-secondary"></i>
+                                                <i class="fa @if($detail->category_icon!="") {{$detail->category_icon }} @else fa fa-paperclip @endif{{$detail->category_icon}}  w-100 text-center pt-1 pb-1 text-secondary"></i>
 
-                                                @if (session()->get('lang') == 'english')
-                                                    {{ $detail->category_en }}
-                                                @else
-                                                    {{ $detail->category_tr }}
 
-                                                @endif
+                                                    {{$detail->category_tr }}
+
                                             </div>
                                         </div>
                                     </a>
@@ -48,7 +45,7 @@
 
 
                                         <div class="card-body" style="text-align: center">
-                                            <i class="fa fa-paperclip w-100 text-center pt-3 pb-3 text-secondary"></i>
+                                            <i class="fa fa-paperclip w-100 text-center pt-1 pb-1 text-secondary"></i>
 
                                             Yerel
                                         </div>

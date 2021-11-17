@@ -586,7 +586,7 @@
                                         <div style="color:{{$themeSetting[0]->siteColorTheme}}!important;"
                                              class="text-center text-orange-400  pt-2 pb-2">{{Str::limit($author->name,17)}}</div>
                                         <div
-                                            class="text-center text-orange-400 font-weight-thin pt-2 pb-2">{{$author->title}}</div>
+                                            class="text-center text-orange-400 font-weight-thin " style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$author->title}}</div>
                                     </a>
                                 </div>
                             @endforeach

@@ -123,7 +123,6 @@ class IhaController extends Controller
 
             $exec = curl_exec($ch);
 
-            //  print_r($exec);
 
             $olustur = file_put_contents('dene.xml', $exec);
         } else if ($sehir == 0 && $kategori == 0 && $ustkategori == 0) {
@@ -174,6 +173,7 @@ class IhaController extends Controller
 
                 $i = 0;
                 foreach ($icerik->item as $kanal) {
+
                     $sehirnameXml = Str::title($kanal->Sehir);
 //dd($districtName->id);
                     $i++;

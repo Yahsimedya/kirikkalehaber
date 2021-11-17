@@ -22,7 +22,7 @@ class Vakitlers extends Migration
             $table->string('ikindi')->nullable();
             $table->string('aksam')->nullable();
             $table->string('yatsi')->nullable();
-            $table->string('tarih');
+            $table->string('date');
             $table->timestamps();
 
         });

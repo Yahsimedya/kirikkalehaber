@@ -6,7 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Limitless - Responsive Web Application Kit by Eugene Kopyov</title>
     <meta name="csrf-token" content="{{csrf_token()}}"><!-- Otmatik alt kategori seçmek için ekledik-->
+    <!-- FONT AWESOME-->
+    <link rel="preload" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" as="style"
+          onload="this.rel='stylesheet'" onerror="this.href='stylesheet' " defer>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" defer>
+    <link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" as="style"
+          onload="this.rel='stylesheet'" onerror="this.href='stylesheet' ">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- FONT AWESOME-->
+    <!-- POPPİNS FONT-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap"
+          rel="stylesheet">
+    <!-- POPPİNS FONT-->
+    <link rel="preload" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" as="style"
+          onload="this.rel='stylesheet'" onerror="this.href='stylesheet' " defer>
+
+    <link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" as="style"
+          onload="this.rel='stylesheet'" onerror="this.href='stylesheet' ">
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
           type="text/css">

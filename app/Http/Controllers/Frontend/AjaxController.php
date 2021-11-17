@@ -313,7 +313,7 @@ class AjaxController extends Controller
     {
 //        return $request->sehirsec;
         /*********** ZAMANLANMIş GÖREV *//////////
-
+/*
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
@@ -350,7 +350,7 @@ class AjaxController extends Controller
 //           $vakit->save();
 
         }
-
+*/
         /*********** ZAMANLANMIş GÖREV *//////////
 
         $gelenil = $request->sehirsec;
