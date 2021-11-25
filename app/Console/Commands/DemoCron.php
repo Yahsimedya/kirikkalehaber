@@ -171,8 +171,13 @@ class DemoCron extends Command
                         $data['status'] = 0;
                         $data['haber_iha_kod'] = $haberkodu;
                         $data['created_at'] = Carbon::now();
+                        Artisan::call('cache:clear');
+                        Artisan::call('route:clear');
+                        Artisan::call('config:clear');
+                        Artisan::call('view:clear');
+                        Artisan::call('optimize');
                         DB::table('posts')->insert($data);
-///php artisan schedule:work ile çalışıyor
+///php artisan schedule:run ile çalışıyor
                     }
                 }
             }
