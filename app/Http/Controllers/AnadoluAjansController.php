@@ -29,7 +29,7 @@ class AnadoluAjansController extends Controller
         ]);
 
         $news = $crawler->crawl([
-            "start_date" => "2021-09-16T00:00:00Z",
+            "start_date" => "2021a-09-16T00:00:00Z",
 
 
         ]);

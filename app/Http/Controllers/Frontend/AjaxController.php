@@ -525,7 +525,7 @@ class AjaxController extends Controller
         return $data = '<div class="col-md-4">
                 <a href="#">
                     <div class="card kart kart-width shadow mb-2" style="">
-                        <img class="img-fluid kart_img" src="http://127.0.0.1:8000/image/postimg/2021/6/60d3515740252.60d2f6cd6dbb1-kirikkalede aranan bes firari.png">
+                        <img class="img-fluid kart_img" src="http://127.0.0.1:8000/image/postimg/2021a/6/60d3515740252.60d2f6cd6dbb1-kirikkalede aranan bes firari.png">
                         <div class="card-body kart-body  bordercolor-6 border-3 text-dark">
                             <p class="card-text"> </p>
                         </div>

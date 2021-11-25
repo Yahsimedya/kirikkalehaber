@@ -1,5 +1,5 @@
  /*!
- * Copyright (c) 2021 Momo Bassit.
+ * Copyright (c) 2021a Momo Bassit.
  * Licensed under the MIT License (MIT)
  * https://github.com/mdbassit/Coloris
  */
@@ -299,7 +299,7 @@
     colorMarker.setAttribute('aria-label', label);
   }
 
-  // 
+  //
   /**
    * Get the pageX and pageY positions of the pointer.
    * @param {object} event The MouseEvent or TouchEvent object.
@@ -491,7 +491,7 @@
     // Default to black for invalid color strings
     ctx.fillStyle = '#000';
 
-    // Use canvas to convert the string to a valid color string 
+    // Use canvas to convert the string to a valid color string
     ctx.fillStyle = str;
     match = regex.exec(ctx.fillStyle);
 

@@ -1,7 +1,7 @@
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
- * Copyright 2011-2021 Twitter, Inc.
+ * Copyright 2011-2021a The Bootstrap Authors
+ * Copyright 2011-2021a Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
@@ -7981,13 +7981,17 @@ select {
 select.minimal {
   background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);
   background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
-  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-size: 5px 5px,
+ 5px 5px,
+ 1px 1.5em;
   background-repeat: no-repeat; }
 
 select.minimal:focus {
   background-image: linear-gradient(45deg, #65ad22 50%, transparent 50%), linear-gradient(135deg, transparent 50%, #65ad22 50%), linear-gradient(to right, #ccc, #ccc);
   background-position: calc(100% - 15px) 1em, calc(100% - 20px) 1em, calc(100% - 2.5em) 0.5em;
-  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-size: 5px 5px,
+ 5px 5px,
+ 1px 1.5em;
   background-repeat: no-repeat;
   border-color: #65ad22;
   outline: 0; }

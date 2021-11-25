@@ -254,7 +254,7 @@ class IhaController extends Controller
         $content = file_get_contents($request->image);
 
         file_put_contents(realpath($filenamejpegay) . '/' . $benzersiz . "-" . $isim . "." . 'jpg', $content);
-        //image/postimg//2021/09"
+        //image/postimg//2021a/09"
         $imagesArray[0] = $filenamejpeg . "/" . $benzersiz . "-" . $isim . '.jpg';
         $image = imagecreatefromstring(file_get_contents($request->image));
 
