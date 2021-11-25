@@ -2,171 +2,51 @@
 <?xml-stylesheet href="/vendor/sitemap/styles/xml.xsl" type="text/xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
 	<url>
-	<loc>https://www.youtube.com/watch?v=q-86YcCl-yo</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-11-01T12:26:13+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=wSgnmmbAh0g</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-10-29T17:14:29+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=KBPoIVm7u-E</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-10-29T11:54:35+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=WiVS_Ettmyg</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-10-25T10:40:20+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=Pr7pAxIhNfA</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-10-22T14:05:41+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=rNU-Ozx26Dc</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-10-21T11:31:09+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=xVegL-yBVNI</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-10-19T14:16:17+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=Jp-VH-Mhzdc</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-10-19T14:12:45+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=XW3HnxH5UTM</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-10-18T11:05:10+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=AfX5uWLpDjo</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-10-11T17:47:02+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=zszSzZCXRlY</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-10-11T17:45:39+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=dGyEbxo9aRU</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-10-11T17:44:00+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=8etnxJmo8IY</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-10-08T17:26:59+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=L6QBHZg6YDE</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-10-08T17:14:12+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=hiNG22ucNhE</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-10-07T18:02:12+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=87ij1T8WK0M</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-10-04T17:33:52+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=7Qrd97OPvsM</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-09-25T10:14:33+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=lcxkax0U4KQ</loc>
-		<priority>0.8</priority>
-		<lastmod>2021-02-16T11:33:26+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=ZQ_mqEwfU1g</loc>
-		<priority>0.8</priority>
-		<lastmod>2020-10-22T13:20:47+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=0HEwrczekKU</loc>
+	<loc>https://localhost/dezavantajli-ogrencilere-sazli-sozlu-egitim/263/haberi</loc>
 		<priority>0.8</priority>
 		<lastmod>2020-10-22T12:44:09+03:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://www.youtube.com/watch?v=f2698A_87wE</loc>
+	<loc>https://localhost/karantina-evleri-dezenfekte-ediliyor/116/haberi</loc>
 		<priority>0.8</priority>
 		<lastmod>2020-08-22T17:10:50+03:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://www.youtube.com/watch?v=kwJrTqrmH64</loc>
+	<loc>https://localhost/kirikkalede-bir-mahalle-karantinaya-alindi/115/haberi</loc>
 		<priority>0.8</priority>
 		<lastmod>2020-08-22T17:10:20+03:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://www.youtube.com/watch?v=7IW1K7_C-Cg</loc>
+	<loc>https://localhost/kirikkaledeki-ilginc-olusum-gorenleri-sasirtiyor/114/haberi</loc>
 		<priority>0.8</priority>
 		<lastmod>2020-08-20T22:49:53+03:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://www.youtube.com/watch?v=4_y9T9oUv_A</loc>
+	<loc>https://localhost/yuzlerce-yillik-bir-lezzet-efsanesi-keskin-tavasi/93/haberi</loc>
 		<priority>0.8</priority>
 		<lastmod>2020-08-14T17:36:02+03:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://www.youtube.com/watch?v=QL2duzZc6GY</loc>
+	<loc>https://localhost/kirikkalede-taziyeler-yasaklandi-dugunler-4-saate-indirildi/91/haberi</loc>
 		<priority>0.8</priority>
 		<lastmod>2020-08-14T17:35:15+03:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://www.youtube.com/watch?v=DfVRjvEyW38</loc>
+	<loc>https://localhost/mhpli-vekil-cocuklara-ozel-yaptirdigi-maskeleri-oyun-parklarinda-dagitti/90/haberi</loc>
 		<priority>0.8</priority>
 		<lastmod>2020-08-14T17:34:51+03:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 	<url>
-	<loc>https://www.youtube.com/watch?v=Pcy7gwcihrI</loc>
+	<loc>https://localhost/ayni-kavsakta-iki-benzer-kaza/86/haberi</loc>
 		<priority>0.8</priority>
 		<lastmod>2020-08-13T15:36:34+03:00</lastmod>
-		<changefreq>daily</changefreq>
-	</url>
-	<url>
-	<loc>https://www.youtube.com/watch?v=&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/jxROjNmeFQQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</loc>
-		<priority>0.8</priority>
-		<lastmod>2020-07-25T13:18:38+03:00</lastmod>
 		<changefreq>daily</changefreq>
 	</url>
 </urlset>

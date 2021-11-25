@@ -112,7 +112,7 @@ class SitemapController extends Controller
                 $counter = 0;
                 $sitemapCounter++;
             }
-            $sitemapvideogaleri->add("https://www.youtube.com/watch?v=" . $v->posts_video, $v->created_at, 0.8, "daily");
+            $sitemapvideogaleri->add("https://" . $host . "/" . str_slug($v->title_tr)."/".$v->id."/haberi", $v->created_at, 0.8, "daily");
             $counter++;
         }
         if (!empty($sitemaphome->model->getItems())) {
