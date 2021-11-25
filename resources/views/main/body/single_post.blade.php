@@ -293,7 +293,7 @@ $themeSetting=DB::table('themes')->get();
                 @endphp
                 @foreach ( $random as $row)
 
-                    <a target="_blank" href="{{'/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi'}}">
+                    <a target="_blank" href="{{'/'.str_slug($row->title_tr).'-'.$row->id}}">
                         <div class="card kart kart-width shadow mt-3">
                             <img src="{{asset($row->image)}}" class="img-fluid kart_img" alt="">
                             <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
@@ -328,7 +328,7 @@ $themeSetting=DB::table('themes')->get();
                     @endphp
                     @foreach ($nextnews as $row )
                         @php $i++; @endphp
-                        <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}" class="list-group-item list-group-item-action detay__liste-item ">
+                        <a href="{{URL::to('/'.str_slug($row->title_tr).'-'.$row->id)}}" class="list-group-item list-group-item-action detay__liste-item ">
                             <i class="detay__liste-rakam d-table-cell align-middle">{{$i}}</i>
                             <span class="d-table-cell">
                             @if (session()->get('lang') == 'english')

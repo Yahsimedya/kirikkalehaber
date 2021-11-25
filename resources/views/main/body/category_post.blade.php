@@ -30,11 +30,13 @@ $themeSetting=DB::table('themes')->get();
 @foreach ($manset as $row)
 
 <div class="swiper-slide">
-<a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}} ">
+<a href="{{URL::to('/'.str_slug($row->title_tr).'-'.$row->id)}} ">
 
         <div class="position-relative">
             <img src="{{asset($row->image)}}" class="img-fluid slider-foto swiper-lazy" alt="">
-
+            <div class="kartlar__effect position-absolute">
+                <p class="ana-manset-text">{{$row->title_tr}}</p>
+            </div>
         </div>
 
 <div class="swiper-lazy-preloader swiper-lazy-preloader-white">
@@ -61,7 +63,7 @@ $themeSetting=DB::table('themes')->get();
                 </div>
                 @foreach ($catpost as $row)
                 <div class="col-md-6">
-                    <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
+                    <a href="{{URL::to('/'.str_slug($row->title_tr).'-'.$row->id)}}">
                 <div class="card kart kart-width shadow mb-2" style="">
                     <img class="img-fluid kart_img" src="{{asset($row->image)}}" />
                     <div class="card-body kart-body  bordercolor-6 border-3 text-dark">
@@ -83,7 +85,7 @@ $themeSetting=DB::table('themes')->get();
         </div>
                          @foreach ($nextnews as $row )
 
-            <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}"><div class="card kart kart-width shadow mb-2" style="">
+            <a href="{{URL::to('/'.str_slug($row->title_tr).'-'.$row->id)}}"><div class="card kart kart-width shadow mb-2" style="">
                 <img class="img-fluid kart_img" src="{{asset($row->image)}}" />
                 <div class="card-body kart-body  bordercolor-6 border-3 text-dark">
                     <p class="card-text">{{$row->title_tr}}</p>
@@ -105,7 +107,7 @@ $themeSetting=DB::table('themes')->get();
 @php
     $i++;
 @endphp
-                <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}" class="list-group-item list-group-item-action detay__liste-item ">
+                <a href="{{URL::to('/'.str_slug($row->title_tr).'-'.$row->id)}}" class="list-group-item list-group-item-action detay__liste-item ">
             <i class="detay__liste-rakam d-table-cell align-middle">{{$i}}</i>
             <span class="d-table-cell">{{$row->title_tr}}</span>
             </a>
