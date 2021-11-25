@@ -8,7 +8,6 @@
 
     @endphp
     <div class="content">
-
         <!-- 2 columns form -->
         <div class="card">
             <div class="card-header header-elements-inline">
@@ -26,7 +25,7 @@
                 <form action="{{route('update.post', $post)}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" value="{{$post->image}}" name="old_image" class="form-control tokenfield">
-
+                    <input type="hidden" value="{{Auth::user()->id}}" name="user_id">
                     <div class="row">
                         <div class="col-md-6">
                             <fieldset>

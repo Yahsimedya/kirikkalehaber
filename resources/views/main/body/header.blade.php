@@ -5,8 +5,47 @@ use App\Models\WebsiteSetting;
     $websetting=WebsiteSetting::first();
     $themeSetting=DB::table('themes')->get();
 $themeSetting=DB::table('themes')->get();
+if(!empty(Session::get('kurlar'))) {
 $vakitler=Session::get('vakitler');
+} else {
+$vakitler = array(
+            "imsak" => '0',
+            "gunes" => '0',
+            "ogle" => '0',
+            "ikindi" => '0',
+            "aksam" => '0',
+            "yatsi" => '0',
+        );
+}
+if(!empty(Session::get('kurlar'))) {
 $kurlar=Session::get('kurlar');
+} else{
+    $kurlar=[
+         'DOLAR' => [
+                'oran' => '0',
+                'oranyonu' => 0,00,
+                'satis' => '0'
+
+            ],
+            'EURO' => [
+                'oran' => '0',
+                'oranyonu' => 0,00,
+                'satis' => '0'
+            ],
+            'ALTIN' => [
+                'oran' => '0',
+                'oranyonu' => 0,00,
+                'satis' => '0'
+
+            ],
+            'ceyrekaltin' => [
+                'oran' => '0',
+                'oranyonu' => 0,00,
+                'satis' => '0'
+            ]
+
+];
+}
 $veri=Session::get('havadurumu');
 $icon=Session::get('icon');
 $gelenil=Session::get('gelenil');
@@ -215,6 +254,7 @@ $gelenil=Session::get('gelenil');
                     <div class=" col-md-2 col-12 mr-auto my-auto text-center p-2"><a class="justify-content-start" href="{{URL::to('/')}}">
                             <img width="150" src="{{asset($websetting->logo)}}" alt=""></a></div>
                     <div class="col-md-4 d-none d-md-block p-2 ml-auto my-auto">
+                        @if($kurlar)
                         <ul class="d-flex flex-wrap list-group-horizontal-sm d-inline-block my-auto  float-right">
                             <li class="deger  list-unstyled mr-2 d-flex align-items-center">
                                 @if(number_format($kurlar['DOLAR']['oranyonu'],2)>0)
@@ -264,6 +304,7 @@ $gelenil=Session::get('gelenil');
                                 </div>
                             </li>
                         </ul>
+                            @endif
                     </div>
                     <div class="col-md-1 col-4 my-auto border-left border-right text-center">
                 <span style="color:#31958a; font-size: 13px ">{{$gelenil}}<br>

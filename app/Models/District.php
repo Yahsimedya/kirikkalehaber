@@ -19,6 +19,9 @@ class District extends Model
 
     ];
 //    public function posts(){
-//        return $this->belongsTo(Post::class,'district_id','id');
+//        return $this->hasMany(Post::class,'district_id');
+//    }
+//    public function posts(){
+//        return $this->hasmany(Post::class);
 //    }
 }

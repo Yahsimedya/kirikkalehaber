@@ -52,16 +52,16 @@
      $avaraj=strip_tags($puanlar[0][9]);
      $puan=strip_tags($puanlar[0][10]);
      if($i<3 ){
-        echo'<tr class="table-puan border-left border-success" style="max-height:5px!important;border-left-width:5px !important;font-size:10px;font-weight:200!important;"> ';
+        echo'<tr class="table-puan border-left border-success" > ';
      } else if($son_uc<$i) {
-        echo'<tr class="table-puan border-left border-danger" style="border-left-width:5px !important;font-size:10px;font-weight:200!important;"> ';
+        echo'<tr class="table-puan border-left border-danger" > ';
 
       } else {
-    echo'<tr class="table-puan" style="max-height:2px; font-size:10px;font-weight:200!important;" >';
+    echo'<tr class="table-puan" >';
     }
       if ($i<3){
           echo '<td align="center" style="background-color:#28a745;color:white;" >'.($i+1).'</td>
-              <th scope="row" style="font-size:10px;font-weight:200!important;">'.$takimismi.'</th>
+              <th scope="row" style="font-size:13px;font-weight:500!important;">'.$takimismi.'</th>
               <td align="center" >'.$galibiyet.'</td>
               <td align="center" >'.$beraberlik.'</td>
               <td align="center" >'.$malubiyet.'</td>
@@ -71,7 +71,7 @@
      }
        elseif ($son_uc<$i){
           echo '<td align="center" style="background-color:red;color:white" >'.($i+1).'</td>
-                    <th scope="row" style="font-size:10px;font-weight:200!important;">'.$takimismi.'</th>
+                    <th scope="row" style="font-size:13px;font-weight:500!important;">'.$takimismi.'</th>
               <td align="center" >'.$galibiyet.'</td>
               <td align="center" >'.$beraberlik.'</td>
               <td align="center" >'.$malubiyet.'</td>
@@ -81,7 +81,7 @@
      }
       else{
            echo '<td align="center" >'.($i+1).'</td>
-                 <th scope="row" style="font-size:10px;font-weight:200!important;">'.$takimismi.'</th>
+                 <th scope="row" style="font-size:13px;font-weight:500!important;">'.$takimismi.'</th>
               <td align="center" >'.$galibiyet.'</td>
               <td align="center" >'.$beraberlik.'</td>
               <td align="center" >'.$malubiyet.'</td>

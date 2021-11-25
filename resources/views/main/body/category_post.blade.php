@@ -1,8 +1,8 @@
 @extends('main.home_master')
 
-@section('title',$category->category_tr." Haberleri")
-@section('meta_keywords',$category->category_keywords)
-@section('meta_description',$category->category_description)
+{{--@section('title',$category->category_tr." Haberleri")--}}
+{{--@section('meta_keywords',$category->category_keywords)--}}
+{{--@section('meta_description',$category->category_description)--}}
 @section('content')
 <?php
 $themeSetting=DB::table('themes')->get();

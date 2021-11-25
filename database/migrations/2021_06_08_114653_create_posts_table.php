@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->integer('subcategory_id')->nullable();
             $table->integer('district_id')->nullable();
             $table->integer('subdistrict_id')->nullable();
-            $table->integer('user_id')->nullable();
+            $table->integer('user_id')->default(1);
             $table->string('title_tr')->nullable();
             $table->string('title_en')->nullable();
             $table->string('subtitle_tr')->nullable();

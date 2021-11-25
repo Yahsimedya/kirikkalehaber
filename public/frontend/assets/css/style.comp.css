@@ -7721,8 +7721,7 @@ a, :hover {
 .slider-foto {
   height: 500px;
   width: 100%;
-  margin: -6% 0px -45px 0px;
-  object-fit: cover; }
+  margin: -6% 0px -45px 0px; }
   @media (max-width: 768px) {
     .slider-foto {
       height: 242px;
@@ -8351,6 +8350,11 @@ img.lazyload:not([src]) {
     background-color: #222; }
   100% {
     background-color: #222; } }
+
+.table-puan {
+  max-height: 5px !important;
+  font-size: 13px;
+  font-weight: 500 !important; }
 
 .navbar {
   font-family: "Poppins"; }

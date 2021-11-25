@@ -1,7 +1,7 @@
 @extends('main.home_master')
-@section('title',$sehir->district_tr)
-@section('meta_keywords',$sehir->district_keywords)
-@section('meta_description',$sehir->district_description)
+{{--@section('title',$sehir->district_tr)--}}
+{{--@section('meta_keywords',$sehir->district_keywords)--}}
+{{--@section('meta_description',$sehir->district_description)--}}
 @section('content')
 
     <div class="container position-relative">
@@ -24,7 +24,7 @@
                         <option value="">Diğer İller</option>
                         @foreach($alldistrict as $district)
                             <option
-                                @php if($sehir->id == $district->id ) { echo "selected";} @endphp value="{{$district->id}}">{{$district->district_tr}}</option>
+                                value="{{$district->id}}">{{$district->district_tr}}</option>
 
                         @endforeach
                     </select>

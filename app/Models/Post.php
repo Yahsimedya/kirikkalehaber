@@ -60,13 +60,16 @@ class Post extends Model
         return $this->belongsTo(Subcategory::class);
     }
     public function districts() {
-        return $this->belongsTo(District::class,'district_id');
+        return $this->belongsTo(District::class,'district_id','id');
     }
     public function subdistricts() {
         return $this->belongsTo(Subdistrict::class);
     }
     public function comment() {
         return $this->belongsTo(Comments::class);
+    }
+    public function user() {
+        return $this->belongsTo(User::class,'user_id');
     }
     public function tag()
     {

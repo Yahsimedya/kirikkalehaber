@@ -223,21 +223,17 @@ class ExtraController extends Controller
     {
 
 
-        $seoset = Cache::remember("seoset", Carbon::now()->addYear(), function () {
-            if (Cache::has('seoset')) return Cache::has('seoset');
-            return Seos::first();
-        });
-        $posts = Cache::remember("posts", Carbon::now()->addYear(), function () {
-            if (Cache::has('posts')) return Cache::has('posts');
-            return Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
+        $seoset = Seos::first();
+
+        $posts = Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
                 ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
                 ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
                 ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
                 ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-                ->latest('updated_at')->where('status', 1)->limit(10)
+                ->latest('updated_at')->where('status', 1)->limit(50)
                 ->get();
             return response()->view('main.body.feed', compact('posts', 'seoset'))->header('Content-Type', 'application/xml');
-        });
+
     }
 
     public function GetAllDistrict()
@@ -576,23 +572,23 @@ $vakit=Vakitler::where('date',$date)->get();
     public function SinglePost($slug, $id)
     {
 
-        /* $post = Cache::remember("post.{$id}", Carbon::now()->addYear(), function () use ($id) {
-             if (Cache::has('post')) return Cache::has('post')->find($id); //here am simply trying Laravel Collection method -find
-             return Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
-                 ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
-                 ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
-                 ->leftjoin('subdistricts', 'posts.subdistrict_id', '=','subdistricts.id')
-                 ->join('users', 'posts.user_id','=', 'users.id')
-                 ->select(['posts.*', 'categories.category_tr', 'categories.category_en','categories.id', 'subcategories.subcategory_tr', 'subcategories.subcategory_en'
-                     , 'users.name'])
-                 ->latest('updated_at')->where('status','=', 1)
-                 ->where('posts.id','=', $id)->first();
-         });*/
+//        $post = Cache::remember("post.{$id}", Carbon::now()->addYear(), function () use ($id) {
+//             if (Cache::has('post')) return Cache::has('post')->find($id); //here am simply trying Laravel Collection method -find
+//             return Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
+//                 ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
+//                 ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
+//                 ->leftjoin('subdistricts', 'posts.subdistrict_id', '=','subdistricts.id')
+////                 ->join('users', 'posts.user_id','=', 'users.id')
+//                 ->select(['posts.*', 'categories.category_tr', 'categories.category_en','categories.id', 'subcategories.subcategory_tr', 'subcategories.subcategory_en'
+//                     ])
+//                 ->latest('updated_at')->where('status','=', 1)
+//                 ->where('posts.id','=', $id)->first();
+//         });
 
 //        $post = Post::latest('updated_at')->where('status', '=', 1)
 //                ->where('id', '=', $id)->first();
         $post = Post::find($id);
-//        dd($post);
+//        dd($post-);
         $comments = Comments::where('posts_id', $id)->where('status', 1)->get();
 
 //dd($comments);
@@ -754,10 +750,8 @@ $vakit=Vakitler::where('date',$date)->get();
 
     public function TumKategoriler()
     {
-        $allcategories = Cache::remember("allcategories", Carbon::now()->addYear(), function () {
-            if (Cache::has('allcategories')) return Cache::has('allcategories');
-            return Category::get();
-        });
+        $allcategories =  Category::get();
+
         return view('main.body.allcategories', compact('allcategories'));
     }
 

@@ -19,7 +19,7 @@ $themeSetting=DB::table('themes')->get();
     {{--@endphp--}}
 
 
-    <div class="container mt-5 pt-3">
+    <div class="container  pt-3">
         <div class="row mt-3 mb-3 ">
             <div class="col-md-8  h-100 p-0">
 
@@ -69,7 +69,7 @@ $themeSetting=DB::table('themes')->get();
                                 class="fa fa-clock  text-danger pr-1"></i>{{ Carbon\Carbon::parse($post->created_at)->isoFormat('HH:mm') }}
                         </li>
                         <li class="float-left mr-2"><i class="fa fa-user  text-danger pr-1"></i>
-                            {{ url('/') }} </li>
+                            @if(empty($post->user->name)) Admin @else  {{ $post->user->name }} @endif </li>
                         <li class="float-left mr-2"> <span class="text-danger">İL:</span> {{ $post->districts->district_tr}}
                         </li>
                         <li class="float-left mr-2"><span class="text-danger">Kategori:</span>{{ $post->category->category_tr}}
@@ -328,7 +328,7 @@ $themeSetting=DB::table('themes')->get();
                     @endphp
                     @foreach ($nextnews as $row )
                         @php $i++; @endphp
-                        <a href="@if (session()->get('lang') == 'turkish'){{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}@else{{URL::to('/'.str_slug($row->title_en).'/'.$row->id.'/'.'haberi')}} @endif " class="list-group-item list-group-item-action detay__liste-item ">
+                        <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}" class="list-group-item list-group-item-action detay__liste-item ">
                             <i class="detay__liste-rakam d-table-cell align-middle">{{$i}}</i>
                             <span class="d-table-cell">
                             @if (session()->get('lang') == 'english')

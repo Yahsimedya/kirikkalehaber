@@ -40,7 +40,11 @@ use App\Http\Controllers\ThemeController;
 */
 
 
-
+//Route::get('/postimg/{image}', function($id) {
+//    if (!File::exists('public/storage/postimg/'.$id)) return Response::view('errors.missing', array(), 404);
+//    $img = Image::cache(function($image) use ($id) { $image->make('public/storage/postimg/'.$id); },10080);
+//    return Response::make($img, 200, array('Content-Type' => 'image/png'));
+//});
 
 
 Route::get('/', function () {

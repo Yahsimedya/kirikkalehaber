@@ -459,7 +459,8 @@ class AjaxController extends Controller
     {
 
         $gelenil = $request->district_id;
-        $districts =Cache::remember("districts", Carbon::now()->addYear(), function () {
+//        dd($gelenil);
+        $districts =Cache::remember("districts", Carbon::now()->addYear(), function () use ($gelenil) {
             if (Cache::has('districts')) return Cache::has('districts');
             return Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
             ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
@@ -469,21 +470,19 @@ class AjaxController extends Controller
             ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'districts.district_keywords', 'districts.district_description', 'subdistricts.subdistrict_tr'])
             ->latest('updated_at')
             ->get();});
-        $districtsCount =Cache::remember("districtsCount", Carbon::now()->addYear(), function () {
-            if (Cache::has('districtsCount')) return Cache::has('districtsCount');
-            return Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
+//                dd($districts);
+
+        $districtsCount = Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
             ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
             ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
             ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
             ->where('districts.id', $gelenil)
             ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'districts.district_keywords', 'districts.district_description', 'subdistricts.subdistrict_tr'])
             ->latest('updated_at')
-            ->count();});
-        $sehir = Cache::remember("sehir", Carbon::now()->addYear(), function () {
-            if (Cache::has('sehir')) return Cache::has('sehir');
-            return
-            District::where('id', $gelenil)->first();});
-        if ($districtsCount >= 1) {
+            ->count();
+        $sehir =
+            District::where('id', $gelenil)->first();
+        if ($districtsCount > 0) {
             foreach ($districts as $il) {
 
 //                     return $il;

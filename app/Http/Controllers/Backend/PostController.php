@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Models\Subcategory;
 use App\Models\Subdistrict;
 use App\Models\Tag;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -93,7 +94,8 @@ class PostController extends Controller
 
             $new_image_name = 'storage/postimg/' . $yil . '/' . $ay . '/' . $image_one;
 
-            Image::make($image)->resize(800, 600)->fit(800, 600)->save($new_image_name);
+            Image::make($image)->resize(800, 600)->fit(800, 600)->save($new_image_name,80,'jpg');
+
             $post->image = $new_image_name;
         }
 
@@ -130,6 +132,8 @@ class PostController extends Controller
             ->where('post_tags.post_id', $post->id)
 //            ->latest('created_at')
             ->get();
+        $users =Auth::user()->id;
+//        dd($post);
 //        $tags = Tag::find($post->id);
 
 //        $tags = Tag::orderBy('name','asc')->get();
@@ -172,7 +176,7 @@ class PostController extends Controller
             $image_one = uniqid() . '.' . $image->getClientOriginalName();
 
             $new_image_name = 'storage/postimg/' . $yil . '/' . $ay . '/' . $image_one;
-            Image::make($image)->resize(800, 600)->fit(800, 600)->save($new_image_name);
+            Image::make($image)->resize(800, 600)->fit(800, 600)->save($new_image_name,80,'jpg');
             $post->image = $new_image_name; // set new image to the object, replace tmp image with new right path
 
             if (file_exists($request->old_image)) {
@@ -253,7 +257,9 @@ class PostController extends Controller
     public function GetSubCategory($category_id)
     {
         $sub = Subcategory::find($category_id)->get();
-        return response()->json($sub);
+        if($sub) {
+            return response()->json($sub);
+        }
     }
 
     public function GetSubDistrict($district_id)
