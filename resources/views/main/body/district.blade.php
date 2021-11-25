@@ -56,7 +56,7 @@
                 @foreach ($districts as $row)
 
                     <div class="col-md-4">
-                        <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
+                        <a href="{{URL::to('/'.str_slug($row->title_tr).'-'.$row->id)}}">
                             <div class="card kart kart-width shadow mb-2" style="">
                                 <img class="img-fluid kart_img" src="{{asset($row->image)}}"/>
                                 <div class="card-body kart-body  bordercolor-6 border-3 text-dark">

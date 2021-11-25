@@ -182,7 +182,7 @@
                             @foreach ($sondakika as $row)
                                 @if(($row->headline==1) )
                                     <a href="
-                                    {{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}
+                                    {{URL::to('/'.str_slug($row->title_tr).'-'.$row->id)}}
 
                                         ">
                                         <li><strong>
@@ -248,7 +248,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-12 pb-2 d-none d-md-block padding-left kartlar">
                         <div class="card shadow  d-inline-block  ">
 {{--                            {{$row->category->category_tr}}--}}
-                            <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
+                            <a href="{{URL::to('/'.str_slug($row->title_tr).'-'.$row->id)}}">
                                 @if($row->headlinetag==1)
                                     <div class="sondakika top-left">
                                         <span>Son Dakika</span>
@@ -286,8 +286,11 @@
                                             <img class="img-fluid slider-foto swiper-lazy  min-height lazyload"
                                                  width="100%"
                                                  data-src="{{ asset($home[$i]->image) }}"/>
+                                            <div class="kartlar__effect position-absolute">
+                                                <p class="ana-manset-text">{{$home[$i]->title_tr}}</p>
+                                            </div>
                                             @if(isset($home[$i]->posts_video))
-                                                <div class="videohaber bottom-left">
+                                                <div class="videohaber top-right">
                                                     <span><i class="fa fa-play"></i> Video</span>
                                                 </div>
                                             @endif
@@ -391,7 +394,7 @@
                                     @foreach ($video_gallary as $row )
 
                                         <div class="swiper-slide position-relative">
-                                            <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
+                                            <a href="{{URL::to('/'.str_slug($row->title_tr).'-'.$row->id)}}">
                                                 <div class="swiper-slide__foto "><img class="img-fluid lazyload"
                                                                                       data-src="{{asset($row->image)}}"/>
                                                 </div>
@@ -437,9 +440,12 @@
                             @foreach ($sagmanset as $row )
 
                                 <div class="swiper-slide">
-                                    <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}"><img
+                                    <a href="{{URL::to('/'.str_slug($row->title_tr).'-'.$row->id)}}"><img
                                             class="img-fluid sag-manset-img swiper-lazy lazyloaded swiper-lazy-loaded lazyload"
                                             data-src="{{asset($row->image)}}"></a>
+                                    <div class="kartlar__effect position-absolute">
+                                        <p class="sag-manset-text">{{$home[$i]->title_tr}}</p>
+                                    </div>
                                 </div>
                             @endforeach
 
@@ -795,7 +801,7 @@
                             @if($row->featured ==1)
                             <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
-                                        <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}"><img
+                                        <a href="{{URL::to('/'.str_slug($row->title_tr).'-'.$row->id)}}"><img
                                                 class="img-fluid kart_img lazyload" data-src="{{asset($row->image)}}"/>
                                         </a>
                                         <div class="card-body kart-body  bordercolor-5 border-3 text-dark">
