@@ -248,7 +248,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-12 pb-2 d-none d-md-block padding-left kartlar">
                         <div class="card shadow  d-inline-block  ">
 {{--                            {{$row->category->category_tr}}--}}
-                            <a href="{{URL::to('/'.str_slug($row->title_tr).'-'.$row->id)}}">
+                            <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
                                 @if($row->headlinetag==1)
                                     <div class="sondakika top-left">
                                         <span>Son Dakika</span>
