@@ -20,6 +20,6 @@ class AuthorsPost extends Model
         'description',
     ];
     public function author() {
-        return $this->belongsTo(Authors::class,'authors_id');
+        return $this->belongsTo(Authors::class,'authors_id','id');
     }
 }
