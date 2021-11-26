@@ -89,11 +89,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         $endAuthors_posts=DB::table('authors_posts')->limit(10)->latest('id')->get();
         $newsCount=count($news);
         $comments=DB::table('comments')->get('id');
-        $commentsCount=count($comments);
+        $commentsCount=$comments->count();
         $authors_posts=DB::table('authors_posts')->get('id');
-        $authors_postsCount=count($authors_posts);
-
-
+        $authors_postsCount=$authors_posts->count();
         return view('admin.index',compact('newsCount','commentsCount','endNews','endComments','endAuthors_posts','authors_postsCount'));
     })->name('dashboard');
     //admin Logout
@@ -393,9 +391,11 @@ Route::post('/Notification/send', [NotificationController::class, 'send'])->name
 
 
 // SİNGLE POST PAGE
+Route::get('/{slug}/{Authorid}', [ExtraController::class, 'yazilars']);
 
 Route::get('/{slug}/{id}/haberi', [ExtraController::class, 'SinglePost'])->name('singlePost'); // haber detay sayfası
 Route::get('/{slug}/{id}', [ExtraController::class, 'CategoryPost']);
+
 Route::get('/{id}/', [ExtraController::class, 'GetDistrict']);
 
 //Route::get('/', [ExtraController::class, 'akbankkur']);

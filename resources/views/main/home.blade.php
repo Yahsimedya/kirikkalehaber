@@ -588,8 +588,7 @@
                             @foreach($authors as $author)
 
                                 <div class="swiper-slide border" style="min-height: 285px;max-height: 285px;">
-                                    <a href="{{route('authors.yazilar',$author->id)}}">
-
+                                    <a href=" {{URL::to('/'.str_slug($author->title).'/'.$author->id)}}">
                                         <img data-src="{{asset($author->image)}}" class="img-fluid lazyload" alt="">
                                         <div style="color:{{$themeSetting[0]->siteColorTheme}}!important;"
                                              class="text-center text-orange-400">{{Str::limit($author->name,17)}}</div>

@@ -756,25 +756,25 @@ $vakit=Vakitler::where('date',$date)->get();
     }
 
 
-    public function yazilar($id)
+//    public function yazilar($id)
+//    {
+//
+//        $yazi = AuthorsPost::where('authors_id', '=', $id)->limit(10)->get();
+//        $yazar = Authors::where('id', '=', $id)->get();
+//        $nextauthors_posts = DB::table('authors_posts')
+//            ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
+//            ->get();
+//        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
+//    }
+
+    public function yazilars($Authorid)
     {
 
-        $yazi = AuthorsPost::where('authors_id', '=', $id)->limit(10)->get();
-        $yazar = Authors::where('id', '=', $id)->get();
+        $yazi = AuthorsPost::where('id', '=', $Authorid)->limit(10)->get();
         $nextauthors_posts = DB::table('authors_posts')
-            ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
+            ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $Authorid)->limit(10)
             ->get();
-        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
-    }
-
-    public function yazilars($id)
-    {
-
-        $yazi = AuthorsPost::where('id', '=', $id)->limit(10)->get();
-        $nextauthors_posts = DB::table('authors_posts')
-            ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
-            ->get();
-        $yazar = Authors::where('id', '=', $id)->get();
+        $yazar = Authors::where('id', '=', $Authorid)->get();
 
         return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
     }
