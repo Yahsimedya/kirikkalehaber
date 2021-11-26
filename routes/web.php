@@ -395,7 +395,7 @@ Route::post('/Notification/send', [NotificationController::class, 'send'])->name
 
 
 // SİNGLE POST PAGE
-Route::get('/{slug}/{Authorid}', [ExtraController::class, 'yazilars']);
+Route::get('/{slug_name}/{Authorid}', [ExtraController::class, 'yazilars']);
 
 Route::get('/{slug}/{id}/haberi', [ExtraController::class, 'SinglePost'])->name('singlePost'); // haber detay sayfası
 Route::get('/{slug}/{id}', [ExtraController::class, 'CategoryPost']);
