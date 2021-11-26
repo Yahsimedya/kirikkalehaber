@@ -393,7 +393,7 @@ Route::get('/Notification', [NotificationController::class, 'index'])->name("not
 Route::post('/Notification/send', [NotificationController::class, 'send'])->name('notification.send');
 
 
-Route::redirect('/{slug}', '/{slug}/{id}/haberi', 301);
+Route::redirect('/{id}', '/{slug}/{id}/haberi', 301);
 
 // SİNGLE POST PAGE
 Route::get('/{slug_name}/{Authorid}', [ExtraController::class, 'yazilars']);
