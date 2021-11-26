@@ -10,12 +10,11 @@
 @section('content')
     <style>
         .il-isimleri div{
-            background: red;
+            background: {{$siteSetting[0]->siteColorTheme}};
         }
         #svg-turkiye-haritasi path:hover {
-            fill: red;
+            fill: {{$siteSetting[0]->siteColorTheme}};;
         }
-
     </style>
 <div class="il-isimleri"></div>
     <div class="svg-turkiye-haritasi">

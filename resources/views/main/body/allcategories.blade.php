@@ -14,7 +14,7 @@
                         <div class="col-lg-3">
                             <div class="container">
                                 <div class="container">
-                                    <a href="{{ URL::to('/' . str_slug($detail->category_tr) . '/' . $detail->id) }}">
+                                    <a href="{{ URL::to('/Category/' . str_slug($detail->category_tr) . '/' . $detail->id) }}">
                                         <div class="card">
 
 

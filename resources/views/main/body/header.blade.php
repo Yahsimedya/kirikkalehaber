@@ -175,7 +175,7 @@ $gelenil=Session::get('gelenil');
 
                                 <a style="box-shadow: none;" class="btn @if ($say> 0) dropdown-toggle @endif nav-item"
                                    id="dropdownMenuButton" class=""
-                                   href="{{ URL::to('/' . str_slug($row->category_tr) . '/' . $row->id) }}">
+                                   href="{{ URL::to('/Category/' . str_slug($row->category_tr) . '/' . $row->id) }}">
                                     @if (session()->get('lang') == 'english')
                                         {{ $row->category_en }}
                                     @else
@@ -193,7 +193,7 @@ $gelenil=Session::get('gelenil');
 
 
                                             <a class="dropdown-item" style="box-shadow: none;"
-                                               href="{{ URL::to('/' . str_slug($row->subcategory_tr) . '/' . $row->id) }}">
+                                               href="{{ URL::to('/Category/' . str_slug($row->subcategory_tr) . '/' . $row->id) }}">
                                                 @if (session()->get('lang') == 'english')
                                                     {{ $row->subcategory_en }}
                                                 @else

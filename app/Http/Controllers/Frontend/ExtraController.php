@@ -238,7 +238,9 @@ class ExtraController extends Controller
 
     public function GetAllDistrict()
     {
-        return view('main.body.turkey_map');
+     $siteSetting=Theme::latest('id')->get();
+
+        return view('main.body.turkey_map',compact('siteSetting'));
     }
 
     public function GetDistrict($id) // türkiye haritasında illere tıkladığında il detay sayfasına gider
@@ -669,7 +671,7 @@ class ExtraController extends Controller
     }
 
 
-    public function CategoryPost($slug, $id)
+    public function CategoryPost($slug,$id)
     {
         $category = Category::latest()->where('id', $id)->orderBy('id', 'desc')->first();
 

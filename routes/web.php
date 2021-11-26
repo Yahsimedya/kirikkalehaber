@@ -398,7 +398,7 @@ Route::post('/Notification/send', [NotificationController::class, 'send'])->name
 Route::get('/{slug_name}/{Authorid}', [ExtraController::class, 'yazilars']);
 
 Route::get('/{slug}/{id}/haberi', [ExtraController::class, 'SinglePost'])->name('singlePost'); // haber detay sayfası
-Route::get('/{slug}/{id}', [ExtraController::class, 'CategoryPost']);
+Route::get('/Category/{slug}/{id}', [ExtraController::class, 'CategoryPost']);
 
 Route::get('/{id}/', [ExtraController::class, 'GetDistrict']);
 
