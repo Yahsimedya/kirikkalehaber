@@ -767,7 +767,7 @@ $vakit=Vakitler::where('date',$date)->get();
 //        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
 //    }
 
-    public function yazilars($slug,$Authorid)
+    public function yazilars($slug_name,$Authorid)
     {
 
         $yazi = AuthorsPost::where('id', '=', $Authorid)->limit(10)->get();
