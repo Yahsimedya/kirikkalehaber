@@ -557,6 +557,8 @@ AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
 # php_value error_append_string " "
 
 # Increase cookie security
+  Redirect 301 /old-file-url.php
+  Redirect 301 /folder/anothersomething.php
 <IfModule mod_php5.c>
   php_value session.cookie_httponly true
 </IfModule>
