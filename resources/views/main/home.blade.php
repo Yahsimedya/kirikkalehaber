@@ -241,7 +241,7 @@
             </div>
 
         </div>
-        
+        son dakika
 
         <!--AÇILIP KAPANABİLİR REKLAM ALANI-->
         <div class="container mt-2">
