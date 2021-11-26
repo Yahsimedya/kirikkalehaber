@@ -70,6 +70,7 @@ Route::middleware('optimizeImages')->group(function () {
 
 
 
+
 Route::get('/install', function () {
     Artisan::call('db:seed');
     return "Kurulum Tamamlandı";
@@ -392,8 +393,6 @@ Route::post('/comments/post/{postid}', [CommentsController::class, 'AddComments'
 Route::get('/Notification', [NotificationController::class, 'index'])->name("notification.index");
 Route::post('/Notification/send', [NotificationController::class, 'send'])->name('notification.send');
 
-
-Route::redirect('{id}', '/{slug}/{id}/haberi', 301);
 
 // SİNGLE POST PAGE
 Route::get('/{slug_name}/{Authorid}', [ExtraController::class, 'yazilars']);
