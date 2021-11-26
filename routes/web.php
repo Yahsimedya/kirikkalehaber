@@ -270,7 +270,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 //FRONTEND ROUTES
 //authors
 Route::get('/yazar/{id}', [ExtraController::class, 'yazilar'])->name('authors.yazilar');
-Route::get('/yazars/{id}', [ExtraController::class, 'yazilars'])->name('authors.yazilars');
+Route::get('/{slug_name}/{id}', [ExtraController::class, 'yazilars'])->name('authors.yazilars');
 
 //multi LANG ROUTES
 Route::get('/lang/english', [ExtraController::class, 'English'])->name('lang.english');

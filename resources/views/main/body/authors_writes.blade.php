@@ -14,7 +14,7 @@
                 <div class="container  mt-2 mb-5">
 
                     <div class="row shadow-lg p-4">
-                        <h1 class="text-dark font-weight-bold pt-3"> {{$yazilar->title}}</h1>
+                        <h1 class="text-dark font-weight-bold pt-3"> {{$yazar->title}}</h1>
                         <br>
                         <div class="container col-lg-12">
                             <div class="row">
