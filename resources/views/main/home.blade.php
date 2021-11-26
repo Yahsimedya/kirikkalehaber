@@ -242,6 +242,7 @@
 
         </div>
         
+
         <!--AÇILIP KAPANABİLİR REKLAM ALANI-->
         <div class="container mt-2">
             <div class="row">
