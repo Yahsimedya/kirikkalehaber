@@ -27,6 +27,8 @@ use App\Http\Controllers\Backend\AuthorController;
 use App\Http\Controllers\Backend\CornerPostsController;
 use App\Http\Controllers\Frontend\SitemapController;
 use App\Http\Controllers\ThemeController;
+use \App\Models\Post;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -81,7 +83,18 @@ Route::get('/startbot', function () {
 // ADMİN Routes
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard', function () {
-        return view('admin.index');
+        $news=DB::table('posts')->get('id');
+        $endNews=DB::table('posts')->limit(10)->latest('id')->get();
+        $endComments=DB::table('comments')->limit(10)->latest('id')->get();
+        $endAuthors_posts=DB::table('authors_posts')->limit(10)->latest('id')->get();
+        $newsCount=count($news);
+        $comments=DB::table('comments')->get('id');
+        $commentsCount=count($comments);
+        $authors_posts=DB::table('authors_posts')->get('id');
+        $authors_postsCount=count($authors_posts);
+
+
+        return view('admin.index',compact('newsCount','commentsCount','endNews','endComments','endAuthors_posts','authors_postsCount'));
     })->name('dashboard');
     //admin Logout
 

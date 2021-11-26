@@ -182,7 +182,7 @@
                             @foreach ($sondakika as $row)
                                 @if(($row->headline==1) )
                                     <a href="
-                                    {{URL::to('/'.str_slug($row->title_tr).'-'.$row->id)}}
+                                    {{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}
 
                                         ">
                                         <li><strong>
@@ -394,7 +394,7 @@
                                     @foreach ($video_gallary as $row )
 
                                         <div class="swiper-slide position-relative">
-                                            <a href="{{URL::to('/'.str_slug($row->title_tr).'-'.$row->id)}}">
+                                            <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
                                                 <div class="swiper-slide__foto "><img class="img-fluid lazyload"
                                                                                       data-src="{{asset($row->image)}}"/>
                                                 </div>
@@ -440,7 +440,7 @@
                             @foreach ($sagmanset as $row )
 
                                 <div class="swiper-slide">
-                                    <a href="{{URL::to('/'.str_slug($row->title_tr).'-'.$row->id)}}"><img
+                                    <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}"><img
                                             class="img-fluid sag-manset-img swiper-lazy lazyloaded swiper-lazy-loaded lazyload"
                                             data-src="{{asset($row->image)}}"></a>
                                     <div class="kartlar__effect position-absolute">
@@ -801,7 +801,7 @@
                             @if($row->featured ==1)
                             <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
-                                        <a href="{{URL::to('/'.str_slug($row->title_tr).'-'.$row->id)}}"><img
+                                        <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}"><img
                                                 class="img-fluid kart_img lazyload" data-src="{{asset($row->image)}}"/>
                                         </a>
                                         <div class="card-body kart-body  bordercolor-5 border-3 text-dark">

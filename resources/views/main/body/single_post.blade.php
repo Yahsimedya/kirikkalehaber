@@ -3,17 +3,18 @@
 @section('meta_keywords',$post->keywords_tr)
 @section('meta_description',$post->description_tr)
 @section('content')
-<?php
-$themeSetting=DB::table('themes')->get();
+    <?php
+    $themeSetting = DB::table('themes')->get();
     ?>
-<style>
-    .detay-pagination>.swiper-pagination-bullet-active{
-        background-color:{{$themeSetting[0]->siteColorTheme}}!important;
-    }
-    .detay__liste-rakam{
-        color: {{$themeSetting[0]->siteColorTheme}}!important;
-    }
-</style>
+    <style>
+        .detay-pagination > .swiper-pagination-bullet-active {
+            background-color: {{$themeSetting[0]->siteColorTheme}} !important;
+        }
+
+        .detay__liste-rakam {
+            color: {{$themeSetting[0]->siteColorTheme}} !important;
+        }
+    </style>
     {{--     @php--}}
     {{--    dd($ads);--}}
     {{--@endphp--}}
@@ -64,15 +65,17 @@ $themeSetting=DB::table('themes')->get();
                     <ul class="detay__kategori list-unstyled pb-3 social-icons font-weight-bold">
                         <!-- <li class="float-left mr-2"><i class="fa fa-circle  text-danger pr-1"></i>Kategori : Gündem</li> -->
                         <li class="float-left mr-2"><i class="fa fa-calendar-alt  text-danger pr-1">
-                                </i> {{ \Carbon\Carbon::parse($post->created_at)->isoFormat('DD MMMM YYYY') }}</li>
+                            </i> {{ \Carbon\Carbon::parse($post->created_at)->isoFormat('DD MMMM YYYY') }}</li>
                         <li class="float-left mr-2"><i
                                 class="fa fa-clock  text-danger pr-1"></i>{{ Carbon\Carbon::parse($post->created_at)->isoFormat('HH:mm') }}
                         </li>
                         <li class="float-left mr-2"><i class="fa fa-user  text-danger pr-1"></i>
                             @if(empty($post->user->name)) Admin @else  {{ $post->user->name }} @endif </li>
-                        <li class="float-left mr-2"> <span class="text-danger">İL:</span> {{ $post->districts->district_tr}}
+                        <li class="float-left mr-2"><span
+                                class="text-danger">İL:</span> {{ $post->districts->district_tr}}
                         </li>
-                        <li class="float-left mr-2"><span class="text-danger">Kategori:</span>{{ $post->category->category_tr}}
+                        <li class="float-left mr-2"><span
+                                class="text-danger">Kategori:</span>{{ $post->category->category_tr}}
                         </li>
                         <a target="_blank"
                            href="https://www.facebook.com/sharer.php?u={{ URL::to('/' . str_slug($post->title_tr) . '/' . $post->id . '/' . 'haberi') }}"
@@ -108,7 +111,7 @@ $themeSetting=DB::table('themes')->get();
                     <!-- İÇERİK KARE REKLAM ALANI 250x250 -->
 
                     <div style="min-height:300px">{!! $post->details_tr !!}</div>
-                    <img src="" alt=""> haber foto
+
                     {{--                    {{$post->post()->name}}--}}
                     {{--                    <div class="row p-3">--}}
 
@@ -141,12 +144,12 @@ $themeSetting=DB::table('themes')->get();
                 <!-- order images-->
 
 
-                <!-- İÇERİK KARE REKLAM ALANI 728x90 -->
+                    <!-- İÇERİK KARE REKLAM ALANI 728x90 -->
 
                     <div class="row">
-                        <div class="col-md-6 ">
-                            <h4 class="text-dark">Abone Ol : </h4>
-                        </div>
+                        <!--     <div class="col-md-6 ">
+                                <h4 class="text-dark">Abone Ol : </h4>
+                            </div>-->
                         <!-- <div class="col-md-6 ">
                                 <h4 class="text-dark  d-inline float-left pr-3">Paylaş </h4>
                                 <ul class="list-inline float-left social-icons position-relative">
@@ -167,21 +170,7 @@ $themeSetting=DB::table('themes')->get();
                      <div class="position-relative col-md-12 p-2 mt-3">
                     <p class="detay__sidebar-baslik "><b>İLGİNİZİ</b> <span>ÇEKEBİLİR</span></p>
                     </div> -->
-                        <div class="row">
 
-
-                            <div class="col-md-6">
-                                <a target="_blank" href="">
-                                    <div class="card kart kart-width shadow mt-3">
-                                        <img src="" alt="">
-                                        <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
-                                            <p class="card-text card-kisalt"></p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                        </div>
 
                         <div class="col-md-12 shadow-lg p-3 mt-3 bg-light">
                             <h3 class="text-dark">Haber Yorumları</h3>
@@ -197,16 +186,16 @@ $themeSetting=DB::table('themes')->get();
                         <div class="col-md-12 shadow-lg  p-3 mt-3 bg-light">
 
                             <p class="text-dark"></p>
-                            <span class="position-relative" id="cevap"><h3><i
-                                        class="fa fa-pencil pr-1"></i>Cevap Yaz</h3></span>
+                            <span class="position-relative" id="cevap"><h5><i
+                                        class="fa fa-pencil pr-1"></i>Yorum Yaz</h5></span>
 
                             <form id="formum" action="{{route('add.comments',$post->id)}}" method="post">
                             @csrf
                             <!-- <label for="">İsminiz</label> -->
-                                <input type="text" name="name" id="isim" class="form-control mt-2"
+                                <input type="text" name="name" id="isim" class="form-control mt-1"
                                        placeholder="Adınızı Yazınız"/>
                                 <!-- <label for="">Yorumunuz</label> -->
-                                <input type="text" name="details" id="yorum" class="form-control mt-2"
+                                <input type="text" name="details" id="yorum" class="form-control mt-1"
                                        placeholder="Yorumunuzu Yazınız"/>
                                 <div class="row mt-2">
                                     <div class="col-md-2 col-6">
@@ -230,7 +219,9 @@ $themeSetting=DB::table('themes')->get();
 
                                 </div>
 
-<button class="btn btn-danger" style="background-color: {{$themeSetting[0]->siteColorTheme}}">Gönder</button>
+                                <button class="btn text-white"
+                                        style="background-color: {{$themeSetting[0]->siteColorTheme}}">Gönder
+                                </button>
 
                             </form>
 
@@ -290,7 +281,7 @@ $themeSetting=DB::table('themes')->get();
                     </div>
                 </div>
                 @php
-                @endphp
+                    @endphp
                 @foreach ( $random as $row)
 
                     <a target="_blank" href="{{'/'.str_slug($row->title_tr).'-'.$row->id}}">
@@ -299,8 +290,8 @@ $themeSetting=DB::table('themes')->get();
                             <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
                                 <p class="card-text card-kisalt">
 
-                                        {{ Str::ucFirst($row->title_tr) }}
-                                    </p>
+                                    {{ Str::ucFirst($row->title_tr) }}
+                                </p>
                             </div>
                         </div>
                     </a>
@@ -328,7 +319,8 @@ $themeSetting=DB::table('themes')->get();
                     @endphp
                     @foreach ($nextnews as $row )
                         @php $i++; @endphp
-                        <a href="{{URL::to('/'.str_slug($row->title_tr).'-'.$row->id)}}" class="list-group-item list-group-item-action detay__liste-item ">
+                        <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}"
+                           class="list-group-item list-group-item-action detay__liste-item ">
                             <i class="detay__liste-rakam d-table-cell align-middle">{{$i}}</i>
                             <span class="d-table-cell">
                             @if (session()->get('lang') == 'english')
