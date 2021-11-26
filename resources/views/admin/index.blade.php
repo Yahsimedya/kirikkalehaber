@@ -135,9 +135,9 @@
         </div>
 
         <!-- Dashboard content -->
-        <div class="row">
-            <div class="col-xl-12">
 
+        <div class="row">
+            <div class="col-xl-4">
 
 
                 <!-- Support tickets -->
@@ -148,7 +148,7 @@
                         <table class="table text-nowrap">
                             <thead>
                             <tr>
-                                <th style="width: 50px">Haber ID</th>
+
                                 <th style="width: 300px;">Haber Foto</th>
                                 <th>Haber Başlık</th>
                                 <th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>
@@ -157,97 +157,11 @@
                             <tbody>
                             <tr class="table-active table-border-double">
                                 <td colspan="3">Son Eklenen Haberler</td>
-                                <td class="text-right">
-                                    <span class="badge bg-blue badge-pill"><i class="icon-menu7"></i></span>
-                                </td>
+
                             </tr>
-@foreach($endNews as $row)
-                            <tr>
-                                <td class="text-center">
-                                    <h6 class="mb-0">{{$row->id}}</h6>
-                                    <div class="font-size-sm text-muted line-height-1"></div>
-                                </td>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="mr-3">
-
-                                        </div>
-                                        <div>
-                                            <img src="{{asset($row->image)}}" width="100" height="50" alt="">
-
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#" class="text-default">
-                                        <div class="font-weight-semibold">{{Str::limit($row->title_tr,80)}}
-
-                                        </div>
-                                    </a>
-                                </td>
-                                <td class="text-center"> <a href="{{route('edit.post',$row->id)}}" class="dropdown-item"><i
-                                            class="icon-pencil6 text-success"></i></a>
-
-                                </td>
-                            </tr>
-
-                            @endforeach
-
-                            <tr class="table-active table-border-double">
-                                <td colspan="3">Son Yorumlar</td>
-                                <td class="text-right">
-                                    <span class="badge bg-success badge-pill">10</span>
-                                </td>
-                            </tr>
-
-                            @foreach($endComments as $row)
-                                <tr>
-                                    <td class="text-center">
-                                        <h6 class="mb-0">{{$row->id}}</h6>
-                                        <div class="font-size-sm text-muted line-height-1"></div>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex align-items-center">
-                                            <div class="mr-3">
-
-                                            </div>
-                                            <div>
-                                                <div class="font-weight-semibold">{{Str::limit($row->name,80)}}
-
-
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="text-default">
-                                            <div class="font-weight-semibold">{{Str::limit($row->details,80)}}
-
-                                            </div>
-                                        </a>
-                                    </td>
-                                    <td class="text-center"> <a href="{{route('open.comments',$row->posts_id)}}" class="dropdown-item"><i
-                                                class="icon-pencil6 text-success"></i></a>
-
-                                    </td>
-                                </tr>
-
-                            @endforeach
-
-
-
-                            <tr class="table-active table-border-double">
-                                <td colspan="3">Son Köşe Yazıları</td>
-                                <td class="text-right">
-                                    <span class="badge bg-danger badge-pill">37</span>
-                                </td>
-                            </tr>
-
                             @foreach($endNews as $row)
                                 <tr>
-                                    <td class="text-center">
-                                        <h6 class="mb-0">{{$row->id}}</h6>
-                                        <div class="font-size-sm text-muted line-height-1"></div>
-                                    </td>
+
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="mr-3">
@@ -266,7 +180,8 @@
                                             </div>
                                         </a>
                                     </td>
-                                    <td class="text-center"> <a href="{{route('edit.post',$row->id)}}" class="dropdown-item"><i
+                                    <td class="text-center"><a href="{{route('edit.post',$row->id)}}"
+                                                               class="dropdown-item"><i
                                                 class="icon-pencil6 text-success"></i></a>
 
                                     </td>
@@ -277,16 +192,133 @@
                         </table>
                     </div>
                 </div>
-                <!-- /support tickets -->
-
-
-
-
             </div>
 
+            <div class="col-xl-4">
 
+
+                <div class="card">
+
+
+                    <div class="table-responsive">
+                        <table class="table text-nowrap">
+                            <thead>
+                            <tr>
+
+                                <th style="width: 300px;">Haber Foto</th>
+                                <th>Haber Başlık</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="table-active table-border-double">
+                                <td colspan="3">Son  Yorumlar</td>
+
+                            </tr>
+
+                            @foreach($endComments as $row)
+                                <tr>
+
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="mr-3">
+
+                                            </div>
+                                            <div>
+                                                <div class="font-weight-semibold">{{Str::limit($row->name,80)}}
+
+
+                                                </div>
+                                            </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" class="text-default">
+                                            <div class="font-weight-semibold">{{Str::limit($row->details,80)}}
+
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td class="text-center"><a href="{{route('open.comments',$row->posts_id)}}"
+                                                               class="dropdown-item"><i
+                                                class="icon-pencil6 text-success"></i></a>
+
+                                    </td>
+                                </tr>
+
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4">
+
+
+                <div class="card">
+
+
+                    <div class="table-responsive">
+                        <table class="table text-nowrap">
+                            <thead>
+                            <tr>
+
+                                <th style="width: 300px;">Yazar</th>
+                                <th>Yazı</th>
+                                <th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="table-active table-border-double">
+                                <td colspan="3">Son Eklenen Yazılar</td>
+
+                            </tr>
+
+                            @foreach($endAuthors_posts as $row)
+                                <tr>
+
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="mr-3">
+
+                                            </div>
+                                            <div>
+                                                <div class="font-weight-semibold">{{Str::limit($row->authors_id,80)}}
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="#" class="text-default">
+                                            <div class="font-weight-semibold">{{Str::limit($row->title,80)}}
+
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td class="text-center"><a href="{{route('edit.post',$row->id)}}"
+                                                               class="dropdown-item"><i
+                                                class="icon-pencil6 text-success"></i></a>
+
+                                    </td>
+                                </tr>
+
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- /dashboard content -->
+    </div>
+
+    </div>
+    <!-- /support tickets -->
+
+
+    </div>
+
+
+    </div>
+    <!-- /dashboard content -->
 
     </div>
     <!-- /content area -->
