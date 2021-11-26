@@ -6,7 +6,7 @@
         <!-- 2 columns form -->
         <div class="card">
             <div class="card-header header-elements-inline">
-                <h5 class="card-title">Yazar Ekle</h5>
+                <h5 class="card-title">Yazı düzenle</h5>
                 <div class="header-elements">
                     <div class="list-icons">
                         <a class="list-icons-item" data-action="collapse"></a>
@@ -61,7 +61,7 @@
 
                     </div>
                     <div class="form-group">
-                        <textarea name="text" id="editor-full" rows="4" cols="4"></textarea>
+                        <textarea name="text" id="editor-full" rows="4" cols="4">{{$cornerposts->text}}</textarea>
                         <script>
                             var options = {
                                 filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',

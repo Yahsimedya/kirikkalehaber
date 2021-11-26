@@ -18,6 +18,7 @@ use App\Http\Controllers\IhaController;
 use App\Http\Controllers\MobilAppController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\UserController;
+use App\Models\AuthorsPost;
 use Illuminate\Support\Facades\Route;
 use App\config\Lfm;
 use \App\Http\Controllers\Backend\AdController;
@@ -86,7 +87,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         $news=DB::table('posts')->get('id');
         $endNews=DB::table('posts')->limit(10)->latest('id')->get();
         $endComments=DB::table('comments')->limit(10)->latest('id')->get();
-        $endAuthors_posts=DB::table('authors_posts')->limit(10)->latest('id')->get();
+        $endAuthors_posts=AuthorsPost::leftjoin('authors', 'authors.id', '=', 'authors_posts.authors_id')
+            ->select(['authors_posts.*', 'authors.name'])
+            ->latest('created_at')
+            ->paginate(10);
         $newsCount=count($news);
         $comments=DB::table('comments')->get('id');
         $commentsCount=$comments->count();

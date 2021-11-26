@@ -226,13 +226,13 @@ class ExtraController extends Controller
         $seoset = Seos::first();
 
         $posts = Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
-                ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
-                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
-                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
-                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-                ->latest('updated_at')->where('status', 1)->limit(50)
-                ->get();
-            return response()->view('main.body.feed', compact('posts', 'seoset'))->header('Content-Type', 'application/xml');
+            ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
+            ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
+            ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
+            ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
+            ->latest('updated_at')->where('status', 1)->limit(50)
+            ->get();
+        return response()->view('main.body.feed', compact('posts', 'seoset'))->header('Content-Type', 'application/xml');
 
     }
 
@@ -368,9 +368,9 @@ class ExtraController extends Controller
             ]
         ];
 
-         $date = Carbon::now()->format('d.m.Y');
+        $date = Carbon::now()->format('d.m.Y');
 
-$vakit=Vakitler::where('date',$date)->get();
+        $vakit=Vakitler::where('date',$date)->get();
 
         $vakitler = array(
             "imsak" => $vakit[0]['imsak'],
@@ -654,8 +654,8 @@ $vakit=Vakitler::where('date',$date)->get();
 
 //        $related= $post->posttags()->post_id;
 //        $related=$this->belongsToMany(Post::class, 'post_tags', 'tags');
-
-        return view('main.body.single_post', compact('post', 'ads', 'random', 'slider', 'related', 'nextrelated', 'comments', 'id'));
+        $seoset = Seos::first();
+        return view('main.body.single_post', compact('post', 'ads', 'random', 'slider', 'related', 'nextrelated', 'comments', 'id','seoset'));
 
 
     }
@@ -770,13 +770,25 @@ $vakit=Vakitler::where('date',$date)->get();
     public function yazilars($slug_name,$Authorid)
     {
 
-        $yazi = AuthorsPost::where('id', '=', $Authorid)->limit(10)->get();
-        $nextauthors_posts = DB::table('authors_posts')
-            ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $Authorid)->limit(10)
-            ->get();
-        $yazar = Authors::where('id', '=', $Authorid)->get();
+        $yazi=AuthorsPost::find($Authorid);
+        $nextauthors_posts=AuthorsPost::where('status',1)->where('authors_id',$Authorid)->limit(10)->get();
+        $OtherAuthors=Authors::limit(10)->get();
+        $seoset = Seos::first();
 
-        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
+//        $nextauthorCount=$nextauthors_posts->count();
+
+//        $nextauthors_posts = DB::table('authors_posts')
+//            ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $Authorid)->limit(10)
+//            ->get();
+
+//        $yazi = AuthorsPost::where('id', '=', $Authorid)->limit(10)->get();
+//        $nextauthors_posts = DB::table('authors_posts')
+//            ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $Authorid)->limit(10)
+//            ->get();
+//        $yazar = Authors::where('id', '=', $Authorid)->get();
+//$yazi= AuthorsPost::where($slug_name)->where($Authorid);
+//dd($yazi);
+        return view('main.body.authors_writes', compact('yazi','nextauthors_posts','OtherAuthors','seoset'));
     }
 
 
@@ -841,4 +853,3 @@ $vakit=Vakitler::where('date',$date)->get();
 
 
 }
-

@@ -163,7 +163,7 @@
                                 <tr>
 
                                     <td>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center" style="width:100px; height:50px">
                                             <div class="mr-3">
 
                                             </div>
@@ -219,7 +219,7 @@
                                 <tr>
 
                                     <td>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center" style="width:100px; height:50px">
                                             <div class="mr-3">
 
                                             </div>
@@ -277,12 +277,12 @@
                                 <tr>
 
                                     <td>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center" style="width:100px; height:50px">
                                             <div class="mr-3">
 
                                             </div>
-                                            <div>
-                                                <div class="font-weight-semibold">{{Str::limit($row->authors_id,80)}}
+                                            <div >
+                                                <div class="font-weight-semibold text-center" >{{Str::limit($row->name,80)}}
 
                                             </div>
                                         </div>
@@ -294,7 +294,7 @@
                                             </div>
                                         </a>
                                     </td>
-                                    <td class="text-center"><a href="{{route('edit.post',$row->id)}}"
+                                    <td class="text-center"><a href="{{route('edit.koseyazilari',$row->id)}}"
                                                                class="dropdown-item"><i
                                                 class="icon-pencil6 text-success"></i></a>
 

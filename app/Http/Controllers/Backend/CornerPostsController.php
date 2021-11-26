@@ -45,6 +45,12 @@ class CornerPostsController extends Controller
     public function UpdateAuthorsPosts(Request $request,AuthorsPost $cornerposts) {
 
         $cornerposts->Update($request->all());
+            $notification = array(
+                'message' => 'Yazı Güncellendi',
+                'alert-type' => 'success'
+            );
+
+        return Redirect()->route('list.authorsposts')->with($notification);
     }
     public function ActiveAuthors(Request $request, $id)
     {
