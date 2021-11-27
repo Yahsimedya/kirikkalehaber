@@ -82,6 +82,25 @@
 
 
                                 </div>
+                                <div class="col-lg-12 mt-4"></div>
+
+                                <label class="col-form-label col-lg-3">Ana Slider Başlık</label>
+                                <div class="col-lg-9">
+
+
+                                    <select data-placeholder="Select your state" name="slider_title"
+                                            style="width: 150px; height: 30px" class="form-control form-control-select2"
+                                            data-fouc>
+                                        <option @php if($row->slider_title ==0 ) { echo "selected";} @endphp value="0">Kapalı
+
+                                        </option>
+                                        <option @php if($row->slider_title ==1 ) { echo "selected";} @endphp value="1">Açık
+
+                                        </option>
+                                    </select>
+
+
+                                </div>
 
                                 <div class="col-lg-12 mt-4"></div>
                                 <label class="col-form-label col-lg-3 ">Site Genel Renk</label>

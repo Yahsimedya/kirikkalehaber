@@ -11,6 +11,7 @@ class Theme extends Model
     protected $fillable = [
         'id',
         'header',
+        'slider_title',
         'siteColorTheme',
         'economy',
         'agenda',

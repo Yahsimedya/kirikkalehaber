@@ -16,6 +16,7 @@ class CreateThemesTable extends Migration
         Schema::create('themes', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('header');
+            $table->bigInteger('slider_title');
             $table->string('siteColorTheme');
             $table->string('economy');
             $table->string('agenda');

@@ -288,9 +288,11 @@
                                             <img class="img-fluid slider-foto swiper-lazy  min-height lazyload"
                                                  width="100%"
                                                  data-src="{{ asset($home[$i]->image) }}"/>
+                                            @if($themeSetting[0]->slider_title!=0)
                                             <div class="kartlar__effect position-absolute">
                                                 <p class="ana-manset-text">{{$home[$i]->title_tr}}</p>
                                             </div>
+                                            @endif
                                             @if(isset($home[$i]->posts_video))
                                                 <div class="videohaber top-right">
                                                     <span><i class="fa fa-play"></i> Video</span>

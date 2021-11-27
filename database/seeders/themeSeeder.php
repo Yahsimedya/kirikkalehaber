@@ -17,6 +17,7 @@ class themeSeeder extends Seeder
         Theme::create([
             'id' => 0,
             'header' => 0,
+            'slider_title' => 0,
             'siteColorTheme' => '#ff0000',
             'economy' => "#4d9cbc",
             'agenda' => "#fd7e14",
