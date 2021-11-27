@@ -609,7 +609,6 @@ public function redirect($slug){
 //        $post = Post::latest('updated_at')->where('status', '=', 1)
 //                ->where('id', '=', $id)->first();
         $post = Post::find($id);
-//        dd($post-);
         $comments = Comments::where('posts_id', $id)->where('status', 1)->get();
 
 //dd($comments);
@@ -792,6 +791,7 @@ public function redirect($slug){
     {
 
         $yazi=AuthorsPost::find($Authorid);
+        dd($yazi);
         $nextauthors_posts=AuthorsPost::where('status',1)->where('authors_id',$Authorid)->limit(10)->get();
         $OtherAuthors=Authors::limit(10)->get();
         $seoset = Seos::first();
