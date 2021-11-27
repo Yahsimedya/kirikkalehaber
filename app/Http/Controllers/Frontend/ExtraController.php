@@ -59,7 +59,7 @@ public function redirect($slug){
     $idCount = count($id)-1;
     $alinanID=$id[$idCount];
     $replaced = Str::of($r[0])->replace('-'.$alinanID, '/'.$alinanID)->replace('/haber-', '');
-    return Redirect::to($replaced.'/haberi'.'?'.$r[1]);
+    return Redirect::to($replaced.'/haberi');
 
 }
 
