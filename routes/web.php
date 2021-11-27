@@ -388,7 +388,7 @@ Route::post('/comments/post/{postid}', [CommentsController::class, 'AddComments'
 
 
 
-
+Route::get('/haber-{slug}', [ExtraController::class, 'redirect'])->name('redirect');
 //Notification
 Route::get('/Notification', [NotificationController::class, 'index'])->name("notification.index");
 Route::post('/Notification/send', [NotificationController::class, 'send'])->name('notification.send');
