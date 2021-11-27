@@ -790,8 +790,8 @@ public function redirect($slug){
     public function yazilars($slug_name,$Authorid)
     {
 
-        $yazi=AuthorsPost::find($Authorid);
-        dd($yazi);
+        $yaziPost=AuthorsPost::whereAuthorsId($Authorid)->first(); // done bope
+
         $nextauthors_posts=AuthorsPost::where('status',1)->where('authors_id',$Authorid)->limit(10)->get();
         $OtherAuthors=Authors::limit(10)->get();
         $seoset = Seos::first();
@@ -809,7 +809,7 @@ public function redirect($slug){
 //        $yazar = Authors::where('id', '=', $Authorid)->get();
 //$yazi= AuthorsPost::where($slug_name)->where($Authorid);
 //dd($yazi);
-        return view('main.body.authors_writes', compact('yazi','nextauthors_posts','OtherAuthors','seoset'));
+        return view('main.body.authors_writes', compact('yaziPost','nextauthors_posts','OtherAuthors','seoset'));
     }
 
 

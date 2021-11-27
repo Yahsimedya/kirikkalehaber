@@ -1,16 +1,16 @@
-{{--@foreach($yazi as $yazilar)--}}
-    @section('title',$yazi->title)
-@section('meta_keywords',$yazi->keywords)
-@section('meta_description',$yazi->description)
+{{--@foreach($yaziPost as $yaziPostlar)--}}
+    @section('title',$yaziPost->title)
+@section('meta_keywords',$yaziPost->keywords)
+@section('meta_description',$yaziPost->description)
 @section('og:site_name',$seoset->meta_title)
-@section('og:title',$yazi->title)
-@section('og:description',$yazi->title)
-@section('og:image',asset($yazi->image))
+@section('og:title',$yaziPost->title)
+@section('og:description',$yaziPost->title)
+@section('og:image',asset($yaziPost->image))
 @section('og:url',url()->current())
 @section('twitter:url',url()->current())
 @section('twitter:domain',Request::root())
 @section('twitter:site',$seoset->meta_title)
-@section('twitter:title',$yazi->title)
+@section('twitter:title',$yaziPost->title)
 @extends('main.home_master')
 {{--@endforeach--}}
 
@@ -23,28 +23,28 @@
                 <div class="container  mt-2 mb-5">
 
                     <div class="row shadow-lg p-4">
-                        <h1 class="text-dark font-weight-bold pt-3"> {{$yazi->title}}</h1>
+                        <h1 class="text-dark font-weight-bold pt-3"> {{$yaziPost->title}}</h1>
                         <br>
                         <div class="container col-lg-12">
                             <div class="row">
 
                                <li style="list-style-type: none;">
-<i class="fas fa-calendar fa-lg" style="color:red"></i>&nbsp{{date('d-m-Y', strtotime($yazi->created_at))}}
-                                <i class="fas fa-clock fa-lg" style="color:red"></i>&nbsp{{date('H:i:s', strtotime($yazi->created_at))}}
+<i class="fas fa-calendar fa-lg" style="color:red"></i>&nbsp{{date('d-m-Y', strtotime($yaziPost->created_at))}}
+                                <i class="fas fa-clock fa-lg" style="color:red"></i>&nbsp{{date('H:i:s', strtotime($yaziPost->created_at))}}
 </li>
                             </div>
                         </div>
 
 
                         @php
-                            echo  $yazi->text;
+                            echo  $yaziPost->text;
                         @endphp
                     </div>
 
                 </div>
             </div>
 {{--            @php--}}
-{{--                $yazardes=DB::table('authors')->where('id','=',$yazilar->authors_id)->get();--}}
+{{--                $yazardes=DB::table('authors')->where('id','=',$yaziPostlar->authors_id)->get();--}}
 {{--            @endphp--}}
             <div class="container col-lg-4 mt-5 mb-5">
 {{--                @foreach($yazardes as $yazars)--}}
