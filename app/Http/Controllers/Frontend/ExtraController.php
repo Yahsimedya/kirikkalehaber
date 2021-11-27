@@ -46,10 +46,12 @@ class ExtraController extends Controller
 //    }
 
 public function redirect($slug){
+
     $r = $_SERVER['REQUEST_URI'];
     $r = explode('?', $r);
     $r = array_filter($r);
     $r = array_merge($r, array());
+    dd($r[1]);
     $id = $r[0];
     $id = explode('-', $id);
     $id = array_filter($id);
@@ -57,7 +59,7 @@ public function redirect($slug){
     $idCount = count($id)-1;
     $alinanID=$id[$idCount];
     $replaced = Str::of($r[0])->replace('-'.$alinanID, '/'.$alinanID)->replace('/haber-', '');
-    return Redirect::to($replaced.'/haberi');
+    return Redirect::to($replaced.'/haberi'.'?'.$r[1]);
 
 }
 

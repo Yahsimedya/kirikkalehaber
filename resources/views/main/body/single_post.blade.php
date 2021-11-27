@@ -294,7 +294,7 @@
                     @endphp
                 @foreach ( $random as $row)
 
-                    <a target="_blank" href="{{'/'.str_slug($row->title_tr).'-'.$row->id}}">
+                    <a target="_blank" href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
                         <div class="card kart kart-width shadow mt-3">
                             <img src="{{asset($row->image)}}" class="img-fluid kart_img" alt="">
                             <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
