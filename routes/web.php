@@ -272,9 +272,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
 
 //FRONTEND ROUTES
-//authors
-Route::get('/yazar/{id}', [ExtraController::class, 'yazilar'])->name('authors.yazilar');
-Route::get('/{slug_name}/{id}', [ExtraController::class, 'yazilars'])->name('authors.yazilars');
+
 
 //multi LANG ROUTES
 Route::get('/lang/english', [ExtraController::class, 'English'])->name('lang.english');
@@ -393,7 +391,9 @@ Route::get('/haber-{slug}', [ExtraController::class, 'redirect'])->name('redirec
 Route::get('/Notification', [NotificationController::class, 'index'])->name("notification.index");
 Route::post('/Notification/send', [NotificationController::class, 'send'])->name('notification.send');
 
-
+//authors
+Route::get('/yazar/{id}', [ExtraController::class, 'yazilar'])->name('authors.yazilar');
+Route::get('/{slug_name}/{id}', [ExtraController::class, 'yazilars'])->name('authors.yazilars');
 // SİNGLE POST PAGE
 Route::get('/{slug_name}/{Authorid}', [ExtraController::class, 'yazilars']);
 
