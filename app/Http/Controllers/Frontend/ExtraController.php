@@ -791,7 +791,7 @@ public function redirect($slug){
     {
 
         $yaziPost=AuthorsPost::whereAuthorsId($Authorid)->first(); // done bope
-dd($yaziPost);
+//dd($yaziPost);
         $nextauthors_posts=AuthorsPost::where('status',1)->where('authors_id',$Authorid)->limit(10)->get();
         $OtherAuthors=Authors::limit(10)->get();
         $seoset = Seos::first();
