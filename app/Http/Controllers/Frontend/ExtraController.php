@@ -51,7 +51,6 @@ public function redirect($slug){
     $r = explode('?', $r);
     $r = array_filter($r);
     $r = array_merge($r, array());
-    dd($r[1]);
     $id = $r[0];
     $id = explode('-', $id);
     $id = array_filter($id);
@@ -75,30 +74,34 @@ public function redirect($slug){
         $unsavedcount = 0;
 
         for ($i = 1; $i <= count($habereski) - 1; $i++) {
-            if ($habereski[$i]->kategori_id == 10) {
-                $newCategoryId = 6;
-            } elseif ($habereski[$i]->kategori_id == 13) {
-                $newCategoryId = 5;
-            } elseif ($habereski[$i]->kategori_id == 36) {
-                $newCategoryId = 11;
-            } elseif ($habereski[$i]->kategori_id == 38) {
-                $newCategoryId = 3;
-            } elseif ($habereski[$i]->kategori_id == 39) {
-                $newCategoryId = 7;
-            } elseif ($habereski[$i]->kategori_id == 49) {
-                $newCategoryId = 9;
-            } elseif ($habereski[$i]->kategori_id == 51) {
-                $newCategoryId = 4;
-
-            } elseif ($habereski[$i]->kategori_id == 52) {
-                $newCategoryId = 8;
-            } elseif ($habereski[$i]->kategori_id == 66) {
-                $newCategoryId = 1;
-            } elseif ($habereski[$i]->kategori_id == 67) {
+            if ($habereski[$i]->kategori_id == 9) {
                 $newCategoryId = 2;
-            } elseif ($habereski[$i]->kategori_id == 64) {
+            } elseif (substr($habereski[$i]->kategori_id,0,2) == 10) {
+                $newCategoryId = 6;
+            } elseif (substr($habereski[$i]->kategori_id,0,2) == 11) {
+                $newCategoryId = 2;
+            } elseif (substr($habereski[$i]->kategori_id,0,2) == 13) {
+                $newCategoryId = 5;
+            } elseif (substr($habereski[$i]->kategori_id,0,2) == 36) {
+                $newCategoryId = 11;
+            } elseif (substr($habereski[$i]->kategori_id,0,2) == 38) {
+                $newCategoryId = 3;
+            } elseif (substr($habereski[$i]->kategori_id,0,2) == 39) {
+                $newCategoryId = 7;
+            } elseif (substr($habereski[$i]->kategori_id,0,2) == 49) {
+                $newCategoryId = 9;
+            } elseif (substr($habereski[$i]->kategori_id,0,2) == 51) {
+                $newCategoryId = 4;
+            } elseif (substr($habereski[$i]->kategori_id,0,2) == 52) {
+                $newCategoryId = 8;
+            } elseif (substr($habereski[$i]->kategori_id,0,2) == 64) {
                 $newCategoryId = 10;
+            }elseif (substr($habereski[$i]->kategori_id,0,2) == 66) {
+                $newCategoryId = 1;
+            }elseif (substr($habereski[$i]->kategori_id,0,2) == 67) {
+                $newCategoryId = 2;
             }
+
             $newImagesroute = "storage/postimg/" . $habereski[$i]->haberfoto_resimyol;
 
             $yeniposts = Post::insert([
@@ -139,7 +142,7 @@ public function redirect($slug){
         } else {
             DB::commit();
         }
-        return $this->OldDBkoseyazisi();
+       // return $this->OldDBkoseyazisi();
 
     }
 
