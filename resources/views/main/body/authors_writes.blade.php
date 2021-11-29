@@ -134,9 +134,8 @@
 {{--                    @endphp--}}
                     @foreach ($OtherAuthors as $row )
 
-
                         <div class="card bg-dark text-white">
-                            <a href="{{URL::to('/'.str_slug($row->title).'/'.$row->id)}}">
+                            <a href="{{URL::to('/'.str_slug($row->name).'/'.$row->id)}}">
 
                             <img class="card-img" src="{{asset($row->image)}}"  alt="Card image">
                                 <div class="card-img-overlay">
