@@ -562,8 +562,10 @@ public function redirect($slug){
                     $icon = '<i  style="font-size: 20px;" class="wi wi-cloudy"></i>';
                 } elseif ($data['d1'] == "SIS") {
                     $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
+                }elseif ($data['d1'] == "R") {
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
                 } else {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-na"></i>';
+                     $icon = '<i  style="font-size: 20px;" class="wi wi-strong-wind"></i>';
                 }
 
 
