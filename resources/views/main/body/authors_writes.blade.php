@@ -35,10 +35,10 @@
                             </div>
                         </div>
 
-{{$yaziPost->text}}
-{{--                        @php--}}
-{{--                            echo  $yaziPost->text;--}}
-{{--                        @endphp--}}
+{{--{{$yaziPost->text;}}--}}
+                        @php
+                            echo  $yaziPost->text;
+                        @endphp
                     </div>
 
                 </div>

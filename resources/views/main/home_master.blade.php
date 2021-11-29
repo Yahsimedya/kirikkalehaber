@@ -40,13 +40,13 @@
         gtag('config', '@yield('google_verification')');
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QHHKQ41PD4"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id='@yield('google_analytics')'"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-QHHKQ41PD4');
+        gtag('config', '@yield('google_verification')');
     </script>
     <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
     <link rel="stylesheet" href="{{mix('frontend/assets/css/combine.css')}}" as="style" onload="this.rel='stylesheet'" onerror="this.href='stylesheet'">
