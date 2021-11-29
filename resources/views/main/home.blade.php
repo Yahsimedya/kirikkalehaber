@@ -226,7 +226,7 @@
                         <!--  ÜST BLOK 970x250 REKLAM-->
                         @foreach($ads as $ad)
                             @if($ad->type==1 && $ad->category_id==9)
-                                <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
+                                <a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
                                                              height="250"
                                                              data-src="{{asset($ad->ads)}}"></a>
                             @elseif($ad->type==2 && $ad->category_id==9)
