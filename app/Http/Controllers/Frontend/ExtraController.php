@@ -792,7 +792,9 @@ public function redirect($slug){
     public function yazilars($slug_name,$Authorid)
     {
 
-        $yaziPost=AuthorsPost::whereAuthorsId($Authorid)->first(); // done bope
+//        $yaziPost=AuthorsPost::whereAuthorsId($Authorid)->first(); // done bope
+        $yaziPost=AuthorsPost::find($Authorid); // done bope
+
 //dd($yaziPost);
         $nextauthors_posts=AuthorsPost::where('status',1)->where('authors_id',$Authorid)->limit(10)->get();
         $OtherAuthors=Authors::limit(10)->get();
