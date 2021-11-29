@@ -162,7 +162,7 @@ public function redirect($slug){
                 "text" => $koseyazisieski[$i]->koseyazisi_detay,
                 "title" => $koseyazisieski[$i]->koseyazisi_baslik,
                 "created_at" => $koseyazisieski[$i]->koseyazisi_zaman,
-                "updated_at" => $koseyazisieski[$i]->koseyazisi_zaman,
+                "created_at" => $koseyazisieski[$i]->koseyazisi_zaman,
                 "status" => $koseyazisieski[$i]->koseyazisi_durum == null ? 1 : $koseyazisieski[$i]->koseyazisi_durum,
                 "image" => "",
                 "keywords" => $koseyazisieski[$i]->koseyazisi_keyword,
@@ -252,7 +252,7 @@ public function redirect($slug){
             ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
             ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
             ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-            ->latest('updated_at')->where('status', 1)->limit(50)
+            ->latest('created_at')->where('status', 1)->limit(50)
             ->get();
         return response()->view('main.body.feed', compact('posts', 'seoset'))->header('Content-Type', 'application/xml');
 
@@ -275,7 +275,7 @@ public function redirect($slug){
             ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
             ->where('districts.slug', $id)
             ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-            ->latest('updated_at')
+            ->latest('created_at')
             ->count();
 
         $sehir = District::where('slug', $id)
@@ -288,7 +288,7 @@ public function redirect($slug){
             ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
             ->where('districts.slug', $id)
             ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'districts.district_keywords', 'districts.district_description', 'subdistricts.subdistrict_tr'])
-            ->latest('updated_at')->limit(50)
+            ->latest('created_at')->limit(50)
             ->get();
 
         $subdistricts = Subdistrict::leftjoin('districts', 'districts.id', '=', 'subdistricts.district_id')
@@ -337,7 +337,7 @@ public function redirect($slug){
         $sondakika = Cache::remember("headline", Carbon::now()->addYear(), function () {
             if (Cache::has('headline')) return Cache::has('headline');
             return Post::where('posts.headline', 1)
-                ->where('updated_at', '>', Carbon::now()->subDay(1))
+                ->where('created_at', '>', Carbon::now()->subDay(1))
                 ->where('status', 1)
                 ->limit(5)
                 ->get();
@@ -422,7 +422,7 @@ public function redirect($slug){
 //                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
 //                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
 //                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-//                ->where('status', 1)->latest('updated_at')
+//                ->where('status', 1)->latest('created_at')
 //                ->get();
 ////            });
 
@@ -441,7 +441,7 @@ public function redirect($slug){
 //                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
 //                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
 //                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-//                ->where('status', 1)->latest('updated_at')->limit(4)
+//                ->where('status', 1)->latest('created_at')->limit(4)
 //                ->get();
 ////            });
 
@@ -451,14 +451,14 @@ public function redirect($slug){
                 ->where('surmanset', 1)
                 ->with('category')
                 ->limit(4)
-                ->latest('updated_at')
+                ->latest('created_at')
                 ->get();
         });
 
         $sagmanset = Cache::remember("sagmanset", Carbon::now()->addYear(), function () {
             if (Cache::has('sagmanset')) return Cache::has('sagmanset'); //here am simply trying Laravel Collection method -find
 
-            return Post::whereIn('category_id', [1, 2, 3])->where('status', 1)->latest('updated_at')->limit(15)->get();
+            return Post::whereIn('category_id', [1, 2, 3])->where('status', 1)->latest('created_at')->limit(15)->get();
         });
 
         $sehir = Cache::remember("sehir", Carbon::now()->addYear(), function () {
@@ -472,23 +472,23 @@ public function redirect($slug){
 //        }
         $ekonomi = Cache::remember("ekeonomi", Carbon::now()->addYear(), function () {
             if (Cache::has('ekeonomi')) return Cache::has('ekeonomi');
-            return Post::where('category_id', 5)->where('status', 1)->limit(9)->latest('updated_at')->get();
+            return Post::where('category_id', 5)->where('status', 1)->limit(9)->latest('created_at')->get();
 
         });
 
         $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () {
             if (Cache::has('gundem')) return Cache::has('gundem');
-            return Post::where('category_id', '=', 2)->where('status', 1)->limit(9)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 2)->where('status', 1)->limit(9)->latest('created_at')->get();
         });
 
         $siyaset = Cache::remember("siyaset", Carbon::now()->addYear(), function () {
             if (Cache::has('siyaset')) return Cache::has('siyaset');
-            return Post::where('category_id', '=', 3)->where('status', 1)->limit(9)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 3)->where('status', 1)->limit(9)->latest('created_at')->get();
         });
 
         $spor = Cache::remember("spor", Carbon::now()->addYear(), function () {
             if (Cache::has('spor')) return Cache::has('spor');
-            return Post::where('category_id', '=', 6)->where('status', 1)->limit(6)->latest('updated_at')->get();
+            return Post::where('category_id', '=', 6)->where('status', 1)->limit(6)->latest('created_at')->get();
         });
         $themeSetting = Cache::remember("themeSetting", Carbon::now()->addYear(), function () {
             if (Cache::has('themeSetting')) return Cache::has('themeSetting');
@@ -498,7 +498,7 @@ public function redirect($slug){
             if (Cache::has('authors')) return Cache::has('authors');
             return Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
                 ->select(['authors.*', 'authors_posts.title'])
-                ->latest('updated_at')->where('authors.status', 1)->where('authors_posts.status', 1)
+                ->latest('created_at')->where('authors.status', 1)->where('authors_posts.status', 1)
                 ->groupBy("authors.id")->latest("authors_posts.id")
                 ->get();
         });
@@ -607,11 +607,11 @@ public function redirect($slug){
 ////                 ->join('users', 'posts.user_id','=', 'users.id')
 //                 ->select(['posts.*', 'categories.category_tr', 'categories.category_en','categories.id', 'subcategories.subcategory_tr', 'subcategories.subcategory_en'
 //                     ])
-//                 ->latest('updated_at')->where('status','=', 1)
+//                 ->latest('created_at')->where('status','=', 1)
 //                 ->where('posts.id','=', $id)->first();
 //         });
 
-//        $post = Post::latest('updated_at')->where('status', '=', 1)
+//        $post = Post::latest('created_at')->where('status', '=', 1)
 //                ->where('id', '=', $id)->first();
         $post = Post::find($id);
         $comments = Comments::where('posts_id', $id)->where('status', 1)->get();
@@ -621,7 +621,7 @@ public function redirect($slug){
 //            ->where('status', 1)->where('category_id', $post->category_id)
 //            ->offset(1)->limit(10)
 //            ->get();
-        $slider = Post::latest('updated_at')
+        $slider = Post::latest('created_at')
             ->with('category')
             ->limit(10)
             ->get();
@@ -633,7 +633,7 @@ public function redirect($slug){
 //            ->where('status', 1)
 //            ->whereIN('ad_categories.id', [1, 2, 3, 12]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
 //            ->get();
-            Ad::latest('updated_at')
+            Ad::latest('created_at')
                 ->where('status', 1)
                 ->whereIn('id', [1, 2, 3, 12])
                 ->with('adcategory')
@@ -662,7 +662,7 @@ public function redirect($slug){
 //                    ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
 //                    ->where('post_tags.tag_id', $item->id)->latest()
 //                    ->get();
-            Post::latest('updated_at')
+            Post::latest('created_at')
                 ->where('id', $id)
                 ->with(['tag' => function ($query) {
                     // $query->sum('quantity');
@@ -787,7 +787,7 @@ public function redirect($slug){
 //        $yazi = AuthorsPost::where('authors_id', '=', $id)->limit(10)->get();
 //        $yazar = Authors::where('id', '=', $id)->get();
 //        $nextauthors_posts = DB::table('authors_posts')
-//            ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
+//            ->latest('created_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
 //            ->get();
 //        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
 //    }
@@ -806,12 +806,12 @@ public function redirect($slug){
 //        $nextauthorCount=$nextauthors_posts->count();
 
 //        $nextauthors_posts = DB::table('authors_posts')
-//            ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $Authorid)->limit(10)
+//            ->latest('created_at')->where('status', 1)->where('authors_id', '=', $Authorid)->limit(10)
 //            ->get();
 
 //        $yazi = AuthorsPost::where('id', '=', $Authorid)->limit(10)->get();
 //        $nextauthors_posts = DB::table('authors_posts')
-//            ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $Authorid)->limit(10)
+//            ->latest('created_at')->where('status', 1)->where('authors_id', '=', $Authorid)->limit(10)
 //            ->get();
 //        $yazar = Authors::where('id', '=', $Authorid)->get();
 //$yazi= AuthorsPost::where($slug_name)->where($Authorid);
