@@ -53,7 +53,7 @@
                         @if($ad->type==1 && $ad->category_id==3)
                             <img class="img-fluid pb-2 pt-1" width="100%" height="90" src="{{asset($ad->ads)}}">
                         @elseif($ad->type==2 && $ad->category_id==3)
-                            <div class="w-100">{{$ad->ad_code}}</div>
+                            <div class="w-100">{!!$ad->ad_code!!}</div>
                         @endif
                     @endforeach
 
@@ -114,7 +114,7 @@
                             @if($ad->type==1 && $ad->category_id==1)
                                 <img class="img-fluid pb-2 pt-1" width="100%" height="90" src="{{asset($ad->ads)}}">
                             @elseif($ad->type==2 && $ad->category_id==1)
-                                <div class="w-100">{{$ad->ad_code}}</div>
+                                <div class="w-100">{!!$ad->ad_code!!}</div>
                             @endif
                         @endforeach
                     </div>
@@ -147,7 +147,7 @@
                         @if($ad->type==1 && $ad->category_id==12)
                             <img class="img-fluid pb-2 pt-1" width="100%" height="90" src="{{asset($ad->ads)}}">
                         @elseif($ad->type==2 && $ad->category_id==12)
-                            <div class="w-100">{{$ad->ad_code}}</div>
+                            <div class="w-100">{!!$ad->ad_code!!}</div>
                     @endif
                 @endforeach
 
@@ -274,7 +274,7 @@
                         <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3" width="100%" height="90"
                                                      src="{{asset($ad->ads)}}"></a>
                     @elseif($ad->type==2 && $ad->category_id==2)
-                        <div class="w-100">{{$ad->ad_code}}</div>
+                        <div class="w-100">{!!$ad->ad_code!!}</div>
                     @endif
                 @endforeach
             <!-- HABER DETAY REKLAM 336x270 -->

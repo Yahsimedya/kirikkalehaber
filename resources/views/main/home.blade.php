@@ -4,6 +4,8 @@
 @section('meta_description',htmlspecialchars_decode(stripslashes($seoset->meta_description),ENT_QUOTES))
 @section('google_analytics',$seoset->google_analytics)
 @section('google_verification',$seoset->google_verification)
+@section('google_verification',$seoset->adsense_code)
+
 @section('content')
     <?php
     $socials = DB::table('socials')->get();
@@ -228,7 +230,7 @@
                                                              height="250"
                                                              data-src="{{asset($ad->ads)}}"></a>
                             @elseif($ad->type==2 && $ad->category_id==9)
-                                <div class="w-100">{{$ad->ad_code}}</div>
+                                <div class="w-100">{!!$ad->ad_code!!}</div>
                         @endif
                     @endforeach
                     <!--  ÜST BLOK 970x250 REKLAM-->
@@ -483,7 +485,7 @@
                                                              height="280"
                                                              data-src="{{asset($ad->ads)}}"></a>
                             @elseif($ad->type==2 && $ad->category_id==17)
-                                <div class="w-100">{{$ad->ad_code}}</div>
+                                <div class="w-100">{!!$ad->ad_code!!}</div>
                         @endif
                     @endforeach
                     <!--  ÜST BLOK 336x280 REKLAM-->
@@ -574,7 +576,7 @@
                     <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="1140" height="90"
                                                  data-src="{{asset($ad->ads)}}"></a>
                 @elseif($ad->type==2 && $ad->category_id==16)
-                    <div class="w-100">{{$ad->ad_code}}</div>
+                    <div class="w-100">{!!$ad->ad_code!!}</div>
             @endif
         @endforeach
         <!--  ÜST BLOK 1140x90 REKLAM-->
@@ -781,7 +783,7 @@
                                                          data-src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==18)
-                        <div class="w-100">{{$ad->ad_code}}</div>
+                        <div class="w-100">{!!$ad->ad_code!!}</div>
                     @endif
                 @endforeach
             </div>
@@ -879,7 +881,7 @@
                                                          data-src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==19)
-                        <div class="w-100">{{$ad->ad_code}}</div>
+                        <div class="w-100">{!!$ad->ad_code!!}</div>
                     @endif
                 @endforeach
             </div>
@@ -968,7 +970,7 @@
                                                          data-src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==20)
-                        <div class="w-100">{{$ad->ad_code}}</div>
+                        <div class="w-100">{!!$ad->ad_code!!}</div>
                     @endif
                 @endforeach
             </div>
@@ -1048,7 +1050,7 @@
                                                          data-src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==21)
-                        <div class="w-100">{{$ad->ad_code}}</div>
+                        <div class="w-100">{!!$ad->ad_code!!}</div>
                     @endif
                 @endforeach
             </div>
@@ -1065,7 +1067,7 @@
                                                          data-src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==22)
-                        <div class="w-100">{{$ad->ad_code}}</div>
+                        <div class="w-100">{!!$ad->ad_code!!}</div>
                     @endif
                 @endforeach
             </div>
@@ -1118,7 +1120,7 @@
                                                      data-src="{{asset($ad->ads)}}"></a>
                     </div>
                 @elseif($ad->type==2 && $ad->category_id==23)
-                    <div class="w-100">{{$ad->ad_code}}</div>
+                    <div class="w-100">{!!$ad->ad_code!!}</div>
                 @endif
             @endforeach
 
