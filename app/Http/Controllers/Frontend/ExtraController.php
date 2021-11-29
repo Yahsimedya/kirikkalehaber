@@ -410,7 +410,7 @@ public function redirect($slug){
 //dd($kurlar);
         Session::put('kurlar', $kurlar);
 
-        $video_gallary = Post::where('posts_video', '!=', NULL)->latest()->limit(5)->get();
+        $video_gallary = Post::where('posts_video', '!=', NULL)->latest('created_at')->limit(5)->get();
 
 //        $home =
 ////            Cache::remember("home", Carbon::now()->addYear(), function () {
