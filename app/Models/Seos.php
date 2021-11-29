@@ -16,5 +16,7 @@ class Seos extends Model
         'google_analytics',
         'google_verification',
         'alexa_analytics',
+        'adsense_code',
+
     ];
 }

@@ -70,11 +70,21 @@
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-form-label col-lg-2">Google Doğrulama Kodu</label>
+            <label class="col-form-label col-lg-2">Alexa Doğrulama Kodu</label>
             <div class="col-lg-10">
                 {{-- <input type="text" name="google_verification" value="{{$seos->google_verification}}" class="form-control"> --}}
                 <textarea name="alexa_analytics" class="form-control"  cols="30" rows="10">{{$seos->alexa_analytics}}</textarea>
                 @error('alexa_analytics')
+                <span class="text-danger">{{$message}}</span>
+                @enderror
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-form-label col-lg-2">Adsense Script Kodu</label>
+            <div class="col-lg-10">
+                <input type="text" name="adsense_code" value="{{$seos->adsense_code}}" class="form-control">
+                {{-- <textarea name="google_verification" id="" cols="30" rows="10">{{$seos->google_verification}}</textarea> --}}
+                @error('adsense_code')
                 <span class="text-danger">{{$message}}</span>
                 @enderror
             </div>

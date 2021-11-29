@@ -227,7 +227,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/social/settings', [SettingController::class, 'SocialSetting'])->name('social.setting');
     Route::post('/social/update/{id}', [SettingController::class, 'UpdateSocial'])->name('social.update');
     Route::get('/seo/setting/', [SettingController::class, 'SeoSetting'])->name('seo.setting');
-    Route::post('/seo/update/{id}', [SettingController::class, 'UpdateSeo'])->name('seos.update');
+    Route::post('/seo/update/{seos}', [SettingController::class, 'UpdateSeo'])->name('seos.update');
 
 //Website Setting Settings
     Route::get('/webiste/settings', [WebsiteSettingController::class, 'index'])->name('website.setting');

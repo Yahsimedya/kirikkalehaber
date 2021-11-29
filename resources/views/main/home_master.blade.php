@@ -48,6 +48,7 @@
 
         gtag('config', '@yield('google_verification')');
     </script>
+ @yield('adsense_code')
     <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
     <link rel="stylesheet" href="{{mix('frontend/assets/css/combine.css')}}" as="style" onload="this.rel='stylesheet'" onerror="this.href='stylesheet'">
 

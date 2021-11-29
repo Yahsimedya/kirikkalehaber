@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Seos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -41,19 +42,23 @@ class SettingController extends Controller
 
 
     }
-    public function UpdateSeo(Request $request, $id)
+    public function UpdateSeo(Request $request, Seos $seos)
     {
-        $data= array();
-        $data['meta_author'] = $request->meta_author;
-        $data['meta_title'] = $request->meta_title;
-        $data['meta_keyword'] = $request->meta_keyword;
-        $data['meta_description'] = $request->meta_description;
-        $data['google_analytics'] = $request->google_analytics;
-        $data['google_verification'] = $request->google_verification;
-        $data['alexa_analytics'] = $request->alexa_analytics;
+//        $data= array();
+//        $data['meta_author'] = $request->meta_author;
+//        $data['meta_title'] = $request->meta_title;
+//        $data['meta_keyword'] = $request->meta_keyword;
+//        $data['meta_description'] = $request->meta_description;
+//        $data['google_analytics'] = $request->google_analytics;
+//        $data['google_verification'] = $request->google_verification;
+//        $data['alexa_analytics'] = $request->alexa_analytics;
+//
+//
+//        DB::table('seos')->where('id',$id)->update($data);
+//        dd($request->all());
+        $seos->fill($request->all()); // use fill function after validation!
+        $seos->save();
 
-
-        DB::table('seos')->where('id',$id)->update($data);
         $notification = array(
             'message' => 'SEO Ayarları Başarıyla Kaydedildi',
             'alert-type' => 'success'
