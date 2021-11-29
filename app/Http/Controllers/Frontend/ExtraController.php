@@ -410,10 +410,8 @@ public function redirect($slug){
 //dd($kurlar);
         Session::put('kurlar', $kurlar);
 
-        $video_gallary = Cache::remember("video_gallary", Carbon::now()->addYear(), function () {
-            if (Cache::has('video_gallary')) return Cache::has('video_gallary');
-            return Post::where('posts_video', '!=', NULL)->limit(5)->get();
-        });
+        $video_gallary = Post::where('posts_video', '!=', NULL)->limit(5)->get();
+
 //        $home =
 ////            Cache::remember("home", Carbon::now()->addYear(), function () {
 ////            if (Cache::has('home')) return Cache::has('home');
