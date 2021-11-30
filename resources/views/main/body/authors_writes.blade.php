@@ -1,5 +1,5 @@
 {{--@foreach($yaziPost as $yaziPostlar)--}}
-    @section('title',$yaziPost->title)
+@section('title',$yaziPost->title)
 @section('meta_keywords',$yaziPost->keywords)
 @section('meta_description',$yaziPost->description)
 @section('og:site_name',$seoset->meta_title)
@@ -28,68 +28,67 @@
                         <div class="container col-lg-12">
                             <div class="row">
 
-                               <li style="list-style-type: none;">
-<i class="fas fa-calendar fa-lg" style="color:red"></i>&nbsp{{date('d-m-Y', strtotime($yaziPost->created_at))}}
-                                <i class="fas fa-clock fa-lg" style="color:red"></i>&nbsp{{date('H:i:s', strtotime($yaziPost->created_at))}}
-</li>
+                                <li style="list-style-type: none;">
+                                    <i class="fas fa-calendar fa-lg"
+                                       style="color:red"></i>&nbsp{{date('d-m-Y', strtotime($yaziPost->created_at))}}
+                                    <i class="fas fa-clock fa-lg"
+                                       style="color:red"></i>&nbsp{{date('H:i:s', strtotime($yaziPost->created_at))}}
+                                </li>
                             </div>
                         </div>
 
-{{--{{$yaziPost->text;}}--}}
-                        @php
-                            echo  $yaziPost->text;
-                        @endphp
+                        {!! $yaziPost->text !!}
                     </div>
 
                 </div>
             </div>
-{{--            @php--}}
-{{--                $yazardes=DB::table('authors')->where('id','=',$yaziPostlar->authors_id)->get();--}}
-{{--            @endphp--}}
+            @php
+                $yazardes=DB::table('authors')->where('id','=',$yaziPost->authors_id)->get();
+            @endphp
             <div class="container col-lg-4 mt-5 mb-5">
-{{--                @foreach($yazardes as $yazars)--}}
-{{--                    <div class="position-relative d-table-cell align-middle">--}}
+                @foreach($yazardes as $yazars)
+                    <div class="position-relative d-table-cell align-middle">
 
-{{--                        <div class="kapsayici position-relative">--}}
-{{--                            <div class="kartlar__effect position-absolute">--}}
-{{--                            </div>--}}
-{{--                            <img src="/{{$yazars->image}}" class="detay-image"--}}
-{{--                                 style="width: 100%;max-height: 250px;object-fit: contain;" alt="">--}}
-{{--                        </div>--}}
+                        <div class="kapsayici position-relative">
+                            <div class="kartlar__effect position-absolute">
+                            </div>
+                            <img src="/{{$yazars->image}}" class="detay-image"
+                                 style="width: 100%;max-height: 250px;object-fit: fill;" alt="">
+                        </div>
 
-{{--                        <div class="position-relative  text-light" style="background-color: darkred">--}}
-{{--                            <p class=" detay-text text-center text-light align-middle" style="height: auto;">--}}
-{{--                                <b>{{$yazars->name}}</b></p>--}}
-{{--                            <div class="row text-center p-2">--}}
-{{--                                <div class="col-md-3 p-1">--}}
-{{--                                    <a target="_blank" href="{{$yazars->facebook}}"><i--}}
-{{--                                            class="fa fa-facebook-square text-light p-2  border border-light rounded-circle"--}}
-{{--                                            style="font-size:25px;"></i>--}}
-{{--                                        <p class="text-light">Facebook</p></a>--}}
-{{--                                </div>--}}
-{{--                                <div class="col-md-3 p-1">--}}
-{{--                                    <a target="_blank" href="{{$yazars->twitter}}"><i--}}
-{{--                                            class="fa fa-twitter-square text-light p-2  border border-light rounded-circle"--}}
-{{--                                            style="font-size:25px;"></i>--}}
-{{--                                        <p class="text-light">Twitter</p></a>--}}
+                        <div class="position-relative  text-light" style="background-color: {{$websetting->siteColorTheme}}">
+                            <p class=" detay-text text-center text-light align-middle" style="height: auto;">
+                                <b>{{$yazars->name}}</b></p>
+                            <div class="row text-center p-2">
+                                <div class="col-md-3 p-1">
+                                    <a target="_blank" href="{{$yazars->facebook}}"><i
+                                            class="fa fa-facebook-square text-light p-2  border border-light rounded-circle"
+                                            style="font-size:25px;"></i>
+                                        <p class="text-light">Facebook</p></a>
+                                </div>
+                                <div class="col-md-3 p-1">
+                                    <a target="_blank" href="{{$yazars->twitter}}"><i
+                                            class="fa fa-twitter-square text-light p-2  border border-light rounded-circle"
+                                            style="font-size:25px;"></i>
+                                        <p class="text-light">Twitter</p></a>
 
-{{--                                </div>--}}
-{{--                                <div class="col-md-3 p-1"><a target="_blank" href="#"><i--}}
-{{--                                            class="fa fa-instagram text-light p-2  border border-light rounded-circle"--}}
-{{--                                            style="font-size:25px;"></i>--}}
-{{--                                        <p class="text-light">İnstagram</p></a>--}}
+                                </div>
+                                <div class="col-md-3 p-1"><a target="_blank" href="#"><i
+                                            class="fa fa-instagram text-light p-2  border border-light rounded-circle"
+                                            style="font-size:25px;"></i>
+                                        <p class="text-light">İnstagram</p></a>
 
-{{--                                </div>--}}
-{{--                                <div class="col-md-3 p-1"><a target="_blank" href="{{$yazars->youtube}}"><i--}}
-{{--                                            class="fa fa-youtube-square text-light p-2  border border-light rounded-circle"--}}
-{{--                                            style="font-size:25px;"></i>--}}
-{{--                                        <p class="text-light">Youtube</p></a>--}}
+                                </div>
+                                <div class="col-md-3 p-1"><a target="_blank" href="{{$yazars->youtube}}"><i
+                                            class="fa fa-youtube-square text-light p-2  border border-light rounded-circle"
+                                            style="font-size:25px;"></i>
+                                        <p class="text-light">Youtube</p></a>
 
-{{--                                </div>--}}
+                                </div>
 
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                            </div>
+                        </div>
+                    </div>
                     <div class="position-relative mt-3">
 
                         <b>SIRADAKİ</b> <span>YAZILAR</span>
@@ -118,7 +117,7 @@
                         @endforeach
 
                     </div>
-{{--                @endforeach--}}
+                @endforeach
                 <div class="position-relative mt-3">
 
                     <b>DİĞER </b> <span>YAZARLAR</span>
@@ -126,18 +125,18 @@
                     <p class="detay__sidebar-baslik "></p>
                 </div>
                 <div class="list-group detay__liste mt-3">
-{{--                    @php--}}
+                    {{--                    @php--}}
 
-{{--                        $nextauthors = DB::table('authors')->where('status', 1)->orderByDesc('id')->limit(10)--}}
-{{--          ->get();--}}
+                    {{--                        $nextauthors = DB::table('authors')->where('status', 1)->orderByDesc('id')->limit(10)--}}
+                    {{--          ->get();--}}
 
-{{--                    @endphp--}}
+                    {{--                    @endphp--}}
                     @foreach ($OtherAuthors as $row )
 
                         <div class="card bg-dark text-white">
                             <a href="{{URL::to('/'.str_slug($row->name).'/'.$row->id)}}">
 
-                            <img class="card-img" src="{{asset($row->image)}}"  alt="Card image">
+                                <img class="card-img" src="{{asset($row->image)}}" alt="Card image">
                                 <div class="card-img-overlay">
                                     <h5 class="card-title"> {{ Str::ucFirst($row->name) }}</h5>
                                 </div>
@@ -145,7 +144,7 @@
 
                         </div>
 
-<br>
+                        <br>
 
                     @endforeach
 
