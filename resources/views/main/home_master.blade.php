@@ -15,7 +15,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:description" content="@yield('og:description')"/>
     <meta property="og:image" content="@yield('og:image')"/>
-    <meta property="og:type" content="article"/>
+{{--    <meta property="og:type" content="article"/>--}}
     <meta property="og:url" content="@yield('og:url')"/>
     <meta property="og:image:type" content="image/jpeg"/>
     <meta name="twitter:url" content="@yield(('twitter:url'))"/>
