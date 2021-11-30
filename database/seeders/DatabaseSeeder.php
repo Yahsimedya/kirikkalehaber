@@ -43,7 +43,9 @@ class DatabaseSeeder extends Seeder
             SocialSeeder::class,
         ]); $this->call([
         Sehirlers::class,
-        ]);
+    ]);$this->call([
+        themeSeeder::class,
+    ]);
 
 
     }
