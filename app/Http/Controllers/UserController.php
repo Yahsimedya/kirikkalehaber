@@ -57,10 +57,12 @@ class UserController extends Controller
         $users['name'] = $request->name;
         $users['id'] = $request->id;
         $users['email'] = $request->email;
-        $users['password'] = \Hash::make($request->password);
+        $userpass = User::find($id);
+
+        $users['password'] = $userpass->password == $request->password ? $request->password : \Hash::make($request->password);
 
 
-        DB::table('users')->where('id', '=', $id)->update($users);
+        User::where('id', '=', $id)->update($users);
 
         return Redirect()->route('user.index')->with([
             'message' => 'Kullanıcı Başarıyla Güncellendi',
