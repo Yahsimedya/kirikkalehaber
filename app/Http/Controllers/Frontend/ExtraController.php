@@ -494,12 +494,14 @@ public function redirect($slug){
             if (Cache::has('themeSetting')) return Cache::has('themeSetting');
             return Theme::get();
         });
-        $authors =  Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
+        $authors = Cache::remember("authors", Carbon::now()->addYear(), function () {
+            if (Cache::has('authors')) return Cache::has('authors');
+            return Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
                 ->select(['authors.*', 'authors_posts.title'])
                 ->latest('updated_at')->where('authors.status', 1)->where('authors_posts.status', 1)
                 ->groupBy("authors.id")->latest("authors_posts.id")
                 ->get();
-  
+        });
         $ads = Cache::remember("ads", Carbon::now()->addYear(), function () {
             if (Cache::has('ads')) return Cache::has('ads');
             return Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
@@ -568,8 +570,7 @@ public function redirect($slug){
                 } else {
                      $icon = '<i  style="font-size: 20px;" class="wi wi-strong-wind"></i>';
                 }
-
-
+                
                 $day1 = $data['makk1'];
 
 
