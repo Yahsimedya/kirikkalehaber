@@ -496,12 +496,6 @@ class ExtraController extends Controller
             return Theme::get();
         });
 
-
-        $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-                ->select(['authors.*', 'authors_posts.title','authors_posts.id','authors_posts.updated_at'])
-                ->where('authors.status', 1)->where('authors_posts.status', 1)->latest("authors_posts.created_at")
-            ->groupBy("authors.id")
-                ->get();
      $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
                    ->select(['authors.*', 'authors_posts.title','authors_posts.id','authors_posts.updated_at'])
                    ->where('authors.status', 1)->where('authors_posts.status', 1)
@@ -510,7 +504,7 @@ class ExtraController extends Controller
 //        $authors = AuthorsPost::leftjoin('authors', 'authors_posts.id', '=', 'authors.id')
 //            ->select(['authors_posts.*', 'authors.id',])
 //            ->where('authors.status', 1)->where('authors_posts.status', 1)
-//            ->groupBy("authors_posts.authors_id")->latest("authors_posts.updated_at")
+//            ->groupBy("authors_posts.authors_id")->orderBy("authors_posts.id",'desc')
 //            ->get();
 
 //        $authors= AuthorsPost::latest('id')->groupBy('authors_id')->get();
@@ -819,6 +813,8 @@ class ExtraController extends Controller
         $nextauthors_posts = AuthorsPost::where('status', 1)->where('authors_id', $yazarID)->latest()->limit(10)->get();
         $OtherAuthors = Authors::limit(10)->get();
         $seoset = Seos::first();
+        $websetting =Theme::first();
+
 
 //        $nextauthorCount=$nextauthors_posts->count();
 
@@ -833,7 +829,7 @@ class ExtraController extends Controller
 //        $yazar = Authors::where('id', '=', $Authorid)->get();
 //$yazi= AuthorsPost::where($slug_name)->where($Authorid);
 //dd($yazi);
-        return view('main.body.authors_writes', compact('yaziPost', 'nextauthors_posts', 'OtherAuthors', 'seoset'));
+        return view('main.body.authors_writes', compact('yaziPost', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'websetting'));
     }
 
 
