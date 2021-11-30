@@ -22,7 +22,8 @@
     <meta name="twitter:domain" content="@yield(('twitter:domain'))"/>
     <meta name="twitter:site" content="@yield(('twitter:site'))"/>
     <meta name="twitter:title" content="@yield(('twitter:title'))"/>
-
+    <meta property="og:image:width" content="500" />
+    <meta property="og:image:height" content="500" />
     {{--    <meta property="og:url" content="{{ $data->page_url}}" />--}}
 {{--    <meta property="og:image" content="{{ $data->imag_url}}"   />--}}
     <link rel="canonical" href="{{url()->current()}}"/>

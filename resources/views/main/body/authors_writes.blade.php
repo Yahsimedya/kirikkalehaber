@@ -11,6 +11,7 @@
 @section('twitter:domain',Request::root())
 @section('twitter:site',$seoset->meta_title)
 @section('twitter:title',$yaziPost->title)
+
 @extends('main.home_master')
 {{--@endforeach--}}
 
