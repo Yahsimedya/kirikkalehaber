@@ -494,14 +494,21 @@ public function redirect($slug){
             if (Cache::has('themeSetting')) return Cache::has('themeSetting');
             return Theme::get();
         });
-        $authors = Cache::remember("authors", Carbon::now()->addYear(), function () {
-            if (Cache::has('authors')) return Cache::has('authors');
-            return Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-                ->select(['authors.*', 'authors_posts.title'])
-                ->latest('updated_at')->where('authors.status', 1)->where('authors_posts.status', 1)
-                ->groupBy("authors.id")->latest("authors_posts.id")
+        $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
+                ->select(['authors.*', 'authors_posts.title','authors_posts.id','authors_posts.updated_at'])
+                ->where('authors.status', 1)->where('authors_posts.status', 1)
+                ->groupBy("authors.id")->latest("authors_posts.updated_at")
                 ->get();
-        });
+//        $authors = AuthorsPost::leftjoin('authors', 'authors_posts.id', '=', 'authors.id')
+//            ->select(['authors_posts.*', 'authors.id',])
+//            ->where('authors.status', 1)->where('authors_posts.status', 1)
+//            ->groupBy("authors_posts.authors_id")->orderBy("authors_posts.id",'desc')
+//            ->get();
+
+//        $authors= AuthorsPost::latest('id')->groupBy('authors_id')->get();
+//        $authors=AuthorsPost::whereAuthorsId($Authorid)->first(); // done bope
+
+
         $ads = Cache::remember("ads", Carbon::now()->addYear(), function () {
             if (Cache::has('ads')) return Cache::has('ads');
             return Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
@@ -795,11 +802,13 @@ public function redirect($slug){
     public function yazilars($slug_name,$Authorid)
     {
 
-        $yaziPost=AuthorsPost::whereAuthorsId($Authorid)->first(); // done bope
+        $yaziPost=AuthorsPost::whereId($Authorid)->first(); // done bope
 //        $yaziPost=AuthorsPost::find($Authorid); // done bope
 
 //dd($yaziPost);
-        $nextauthors_posts=AuthorsPost::where('status',1)->where('authors_id',$Authorid)->latest()->limit(10)->get();
+        $yazarID= $yaziPost->authors_id;
+//        dd($yazarID);
+        $nextauthors_posts=AuthorsPost::where('status',1)->where('authors_id',$yazarID)->latest()->limit(10)->get();
         $OtherAuthors=Authors::limit(10)->get();
         $seoset = Seos::first();
 
