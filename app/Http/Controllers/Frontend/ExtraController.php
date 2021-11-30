@@ -45,22 +45,23 @@ class ExtraController extends Controller
 //        return response()->json($districts);
 //    }
 
-public function redirect($slug){
+    public function redirect($slug)
+    {
 
-    $r = $_SERVER['REQUEST_URI'];
-    $r = explode('?', $r);
-    $r = array_filter($r);
-    $r = array_merge($r, array());
-    $id = $r[0];
-    $id = explode('-', $id);
-    $id = array_filter($id);
-    $id = array_merge($id, array());
-    $idCount = count($id)-1;
-    $alinanID=$id[$idCount];
-    $replaced = Str::of($r[0])->replace('-'.$alinanID, '/'.$alinanID)->replace('/haber-', '');
-    return Redirect::to($replaced.'/haberi');
+        $r = $_SERVER['REQUEST_URI'];
+        $r = explode('?', $r);
+        $r = array_filter($r);
+        $r = array_merge($r, array());
+        $id = $r[0];
+        $id = explode('-', $id);
+        $id = array_filter($id);
+        $id = array_merge($id, array());
+        $idCount = count($id) - 1;
+        $alinanID = $id[$idCount];
+        $replaced = Str::of($r[0])->replace('-' . $alinanID, '/' . $alinanID)->replace('/haber-', '');
+        return Redirect::to($replaced . '/haberi');
 
-}
+    }
 
     public function DBTrans()
     {
@@ -76,29 +77,29 @@ public function redirect($slug){
         for ($i = 1; $i <= count($habereski) - 1; $i++) {
             if ($habereski[$i]->kategori_id == 9) {
                 $newCategoryId = 2;
-            } elseif (substr($habereski[$i]->kategori_id,0,2) == 10) {
+            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 10) {
                 $newCategoryId = 6;
-            } elseif (substr($habereski[$i]->kategori_id,0,2) == 11) {
+            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 11) {
                 $newCategoryId = 2;
-            } elseif (substr($habereski[$i]->kategori_id,0,2) == 13) {
+            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 13) {
                 $newCategoryId = 5;
-            } elseif (substr($habereski[$i]->kategori_id,0,2) == 36) {
+            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 36) {
                 $newCategoryId = 11;
-            } elseif (substr($habereski[$i]->kategori_id,0,2) == 38) {
+            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 38) {
                 $newCategoryId = 3;
-            } elseif (substr($habereski[$i]->kategori_id,0,2) == 39) {
+            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 39) {
                 $newCategoryId = 7;
-            } elseif (substr($habereski[$i]->kategori_id,0,2) == 49) {
+            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 49) {
                 $newCategoryId = 9;
-            } elseif (substr($habereski[$i]->kategori_id,0,2) == 51) {
+            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 51) {
                 $newCategoryId = 4;
-            } elseif (substr($habereski[$i]->kategori_id,0,2) == 52) {
+            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 52) {
                 $newCategoryId = 8;
-            } elseif (substr($habereski[$i]->kategori_id,0,2) == 64) {
+            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 64) {
                 $newCategoryId = 10;
-            }elseif (substr($habereski[$i]->kategori_id,0,2) == 66) {
+            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 66) {
                 $newCategoryId = 1;
-            }elseif (substr($habereski[$i]->kategori_id,0,2) == 67) {
+            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 67) {
                 $newCategoryId = 2;
             }
 
@@ -142,7 +143,7 @@ public function redirect($slug){
         } else {
             DB::commit();
         }
-       // return $this->OldDBkoseyazisi();
+        // return $this->OldDBkoseyazisi();
 
     }
 
@@ -260,9 +261,9 @@ public function redirect($slug){
 
     public function GetAllDistrict()
     {
-     $siteSetting=Theme::latest('id')->get();
+        $siteSetting = Theme::latest('id')->get();
 
-        return view('main.body.turkey_map',compact('siteSetting'));
+        return view('main.body.turkey_map', compact('siteSetting'));
     }
 
     public function GetDistrict($id) // türkiye haritasında illere tıkladığında il detay sayfasına gider
@@ -394,7 +395,7 @@ public function redirect($slug){
 
         $date = Carbon::now()->format('d.m.Y');
 
-        $vakit=Vakitler::where('date',$date)->get();
+        $vakit = Vakitler::where('date', $date)->get();
 
         $vakitler = array(
             "imsak" => $vakit[0]['imsak'],
@@ -495,11 +496,17 @@ public function redirect($slug){
             return Theme::get();
         });
 
+
         $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
                 ->select(['authors.*', 'authors_posts.title','authors_posts.id','authors_posts.updated_at'])
                 ->where('authors.status', 1)->where('authors_posts.status', 1)->latest("authors_posts.created_at")
             ->groupBy("authors.id")
                 ->get();
+     $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
+                   ->select(['authors.*', 'authors_posts.title','authors_posts.id','authors_posts.updated_at'])
+                   ->where('authors.status', 1)->where('authors_posts.status', 1)
+                  ->latest("authors_posts.updated_at")->limit(8)
+                   ->get();
 //        $authors = AuthorsPost::leftjoin('authors', 'authors_posts.id', '=', 'authors.id')
 //            ->select(['authors_posts.*', 'authors.id',])
 //            ->where('authors.status', 1)->where('authors_posts.status', 1)
@@ -573,10 +580,10 @@ public function redirect($slug){
                     $icon = '<i  style="font-size: 20px;" class="wi wi-cloudy"></i>';
                 } elseif ($data['d1'] == "SIS") {
                     $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
-                }elseif ($data['d1'] == "R") {
+                } elseif ($data['d1'] == "R") {
                     $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
                 } else {
-                     $icon = '<i  style="font-size: 20px;" class="wi wi-strong-wind"></i>';
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-strong-wind"></i>';
                 }
 
 
@@ -688,7 +695,7 @@ public function redirect($slug){
 //        $related= $post->posttags()->post_id;
 //        $related=$this->belongsToMany(Post::class, 'post_tags', 'tags');
         $seoset = Seos::first();
-        return view('main.body.single_post', compact('post', 'ads', 'random', 'slider', 'related', 'nextrelated', 'comments', 'id','seoset'));
+        return view('main.body.single_post', compact('post', 'ads', 'random', 'slider', 'related', 'nextrelated', 'comments', 'id', 'seoset'));
 
 
     }
@@ -702,7 +709,7 @@ public function redirect($slug){
     }
 
 
-    public function CategoryPost($slug,$id)
+    public function CategoryPost($slug, $id)
     {
         $category = Category::latest()->where('id', $id)->orderBy('id', 'desc')->first();
 
@@ -783,7 +790,7 @@ public function redirect($slug){
 
     public function TumKategoriler()
     {
-        $allcategories =  Category::get();
+        $allcategories = Category::get();
 
         return view('main.body.allcategories', compact('allcategories'));
     }
@@ -800,17 +807,17 @@ public function redirect($slug){
 //        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
 //    }
 
-    public function yazilars($slug_name,$Authorid)
+    public function yazilars($slug_name, $Authorid)
     {
 
-        $yaziPost=AuthorsPost::whereId($Authorid)->first(); // done bope
+        $yaziPost = AuthorsPost::whereId($Authorid)->first(); // done bope
 //        $yaziPost=AuthorsPost::find($Authorid); // done bope
 
 //dd($yaziPost);
-        $yazarID= $yaziPost->authors_id;
+        $yazarID = $yaziPost->authors_id;
 //        dd($yazarID);
-        $nextauthors_posts=AuthorsPost::where('status',1)->where('authors_id',$yazarID)->latest()->limit(10)->get();
-        $OtherAuthors=Authors::limit(10)->get();
+        $nextauthors_posts = AuthorsPost::where('status', 1)->where('authors_id', $yazarID)->latest()->limit(10)->get();
+        $OtherAuthors = Authors::limit(10)->get();
         $seoset = Seos::first();
 
 //        $nextauthorCount=$nextauthors_posts->count();
@@ -826,7 +833,7 @@ public function redirect($slug){
 //        $yazar = Authors::where('id', '=', $Authorid)->get();
 //$yazi= AuthorsPost::where($slug_name)->where($Authorid);
 //dd($yazi);
-        return view('main.body.authors_writes', compact('yaziPost','nextauthors_posts','OtherAuthors','seoset'));
+        return view('main.body.authors_writes', compact('yaziPost', 'nextauthors_posts', 'OtherAuthors', 'seoset'));
     }
 
 
