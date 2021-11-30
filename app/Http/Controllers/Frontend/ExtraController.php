@@ -813,6 +813,8 @@ class ExtraController extends Controller
         $nextauthors_posts = AuthorsPost::where('status', 1)->where('authors_id', $yazarID)->latest()->limit(10)->get();
         $OtherAuthors = Authors::limit(10)->get();
         $seoset = Seos::first();
+        $websetting =Theme::first();
+
 
 //        $nextauthorCount=$nextauthors_posts->count();
 
@@ -827,7 +829,7 @@ class ExtraController extends Controller
 //        $yazar = Authors::where('id', '=', $Authorid)->get();
 //$yazi= AuthorsPost::where($slug_name)->where($Authorid);
 //dd($yazi);
-        return view('main.body.authors_writes', compact('yaziPost', 'nextauthors_posts', 'OtherAuthors', 'seoset'));
+        return view('main.body.authors_writes', compact('yaziPost', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'websetting'));
     }
 
 
