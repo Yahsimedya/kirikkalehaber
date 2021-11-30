@@ -570,7 +570,8 @@ public function redirect($slug){
                 } else {
                      $icon = '<i  style="font-size: 20px;" class="wi wi-strong-wind"></i>';
                 }
-                
+
+
                 $day1 = $data['makk1'];
 
 
@@ -798,7 +799,7 @@ public function redirect($slug){
 //        $yaziPost=AuthorsPost::find($Authorid); // done bope
 
 //dd($yaziPost);
-        $nextauthors_posts=AuthorsPost::where('status',1)->where('authors_id',$Authorid)->limit(10)->get();
+        $nextauthors_posts=AuthorsPost::where('status',1)->where('authors_id',$Authorid)->latest()->limit(10)->get();
         $OtherAuthors=Authors::limit(10)->get();
         $seoset = Seos::first();
 
