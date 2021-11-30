@@ -5,7 +5,7 @@
 @section('og:site_name',$seoset->meta_title)
 @section('og:title',$yaziPost->title)
 @section('og:description',$yaziPost->title)
-@section('og:image',asset($yaziPost->image))
+@section('og:image',asset($yaziPost->author->image))
 @section('og:url',url()->current())
 @section('twitter:url',url()->current())
 @section('twitter:domain',Request::root())
