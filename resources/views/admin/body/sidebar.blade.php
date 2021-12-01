@@ -50,7 +50,9 @@ $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
         <!-- Main navigation -->
         <div class="card card-sidebar-mobile">
             <ul class="nav nav-sidebar" data-nav-type="accordion">
-
+                <li class="nav-item-header d-lg-none">
+                <a href="{{route('cacheClean')}}" class="badge bg-success ml-md-3 mr-md-auto ">Önbellek Temizle</a>
+                </li>
                 <!-- Main -->
                 <li class="nav-item-header">
                     <div class="text-uppercase font-size-xs line-height-xs">Main</div>

@@ -228,7 +228,7 @@
                             @if($ad->type==1 && $ad->category_id==9)
                                 <a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
                                                              height="250" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                                             data-src="{!!asset($ad->ads)!!}"></a>
+                                                             data-src="{{asset($ad->ads)}}"></a>
                             @elseif($ad->type==2 && $ad->category_id==9)
                                 <div class="w-100">{!!$ad->ad_code!!}</div>
                         @endif
@@ -483,7 +483,7 @@
                             @if($ad->type==1 && $ad->category_id==17)
                                 <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
                                                              height="280" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                                             data-src="{!!asset($ad->ads)!!}"></a>
+                                                             data-src="{{asset($ad->ads)}}"></a>
                             @elseif($ad->type==2 && $ad->category_id==17)
                                 <div class="w-100">{!!$ad->ad_code!!}</div>
                         @endif
@@ -574,7 +574,7 @@
             @foreach($ads as $ad)
                 @if($ad->type==1 && $ad->category_id==16)
                     <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="1140" height="90" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                                 data-src="{!!asset($ad->ads)!!}"></a>
+                                                 data-src="{{asset($ad->ads)}}"></a>
                 @elseif($ad->type==2 && $ad->category_id==16)
                     <div class="w-100">{!!$ad->ad_code!!}</div>
             @endif
@@ -780,7 +780,7 @@
                     @if($ad->type==1 && $ad->category_id==18)
                         <div class="col-md-12">
                             <a href="{{$ad->link}}"><img class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                         data-src="{!!asset($ad->ads)!!}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"></a>
+                                                         data-src="{{asset($ad->ads)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==18)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -880,7 +880,7 @@
                     @if($ad->type==1 && $ad->category_id==19)
                         <div class="col-md-12">
                             <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                         data-src="{!!asset($ad->ads)!!}"></a>
+                                                         data-src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==19)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -969,7 +969,7 @@
                     @if($ad->type==1 && $ad->category_id==20)
                         <div class="col-md-12">
                             <a href="{{$ad->link}}"><img class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                         data-src="{!!asset($ad->ads)!!} onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';""></a>
+                                                         data-src="{{asset($ad->ads)}} onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';""></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==20)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -1049,7 +1049,7 @@
                     @if($ad->type==1 && $ad->category_id==21)
                         <div class="col-md-12">
                             <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                         data-src="{!!asset($ad->ads)!!}"></a>
+                                                         data-src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==21)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -1066,7 +1066,7 @@
                     @if($ad->type==1 && $ad->category_id==22)
                         <div class="col-md-12">
                             <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                         data-src="{!!asset($ad->ads)!!}"></a>
+                                                         data-src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==22)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -1119,7 +1119,7 @@
                 @if($ad->type==1 && $ad->category_id==23)
                     <div class="col-md-12">
                         <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                     data-src="{!!asset($ad->ads)!!}"></a>
+                                                     data-src="{{asset($ad->ads)}}"></a>
                     </div>
                 @elseif($ad->type==2 && $ad->category_id==23)
                     <div class="w-100">{!!$ad->ad_code!!}</div>
