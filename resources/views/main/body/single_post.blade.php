@@ -51,7 +51,7 @@
                     </h2>
                     @foreach($ads as $ad)
                         @if($ad->type==1 && $ad->category_id==3)
-                            <img class="img-fluid pb-2 pt-1" width="100%" height="90" src="{{asset($ad->ads)}}">
+                            <img class="img-fluid pb-2 pt-1" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" width="100%" height="90" src="{{asset($ad->ads)}}">
                         @elseif($ad->type==2 && $ad->category_id==3)
                             <div class="w-100">{!!$ad->ad_code!!}</div>
                         @endif
@@ -67,7 +67,7 @@
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
                             @else
-                                <img src="{{ asset($post->image) }}" class="img-fluid mb-3" alt="">
+                                <img src="{{ asset($post->image) }}" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid mb-3" alt="">
                             @endif
                         </div>
                         <img src="" alt="">
@@ -112,7 +112,7 @@
                     <div class="float-left pr-3 pl-0">
                         @foreach($ads as $ad)
                             @if($ad->type==1 && $ad->category_id==1)
-                                <img class="img-fluid pb-2 pt-1" width="100%" height="90" src="{{asset($ad->ads)}}">
+                                <img class="img-fluid pb-2 pt-1" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" width="100%" height="90" src="{{asset($ad->ads)}}">
                             @elseif($ad->type==2 && $ad->category_id==1)
                                 <div class="w-100">{!!$ad->ad_code!!}</div>
                             @endif
@@ -145,7 +145,7 @@
 
                     @foreach($ads as $ad)
                         @if($ad->type==1 && $ad->category_id==12)
-                            <img class="img-fluid pb-2 pt-1" width="100%" height="90" src="{{asset($ad->ads)}}">
+                            <img class="img-fluid pb-2 pt-1" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" width="100%" height="90" src="{{asset($ad->ads)}}">
                         @elseif($ad->type==2 && $ad->category_id==12)
                             <div class="w-100">{!!$ad->ad_code!!}</div>
                     @endif
@@ -257,7 +257,7 @@
 
                             <div class="swiper-slide">
                                 <a href="{{'/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi'}}">
-                                    <img src="{{asset($row->image)}}" class="img-fluid kart_img" alt="">
+                                    <img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" src="{{asset($row->image)}}" class="img-fluid kart_img" alt="">
                                     {{-- <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div> --}}
                                 </a>
                             </div>
@@ -271,7 +271,7 @@
                 <!-- HABER DETAY REKLAM 336x270 -->
                 @foreach($ads as $ad)
                     @if($ad->type==1 && $ad->category_id==2)
-                        <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3" width="100%" height="90"
+                        <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid pb-1 pt-3" width="100%" height="90"
                                                      src="{{asset($ad->ads)}}"></a>
                     @elseif($ad->type==2 && $ad->category_id==2)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -296,7 +296,7 @@
 
                     <a target="_blank" href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
                         <div class="card kart kart-width shadow mt-3">
-                            <img src="{{asset($row->image)}}" class="img-fluid kart_img" alt="">
+                            <img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" src="{{asset($row->image)}}" class="img-fluid kart_img" alt="">
                             <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
                                 <p class="card-text card-kisalt">
 

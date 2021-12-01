@@ -14,6 +14,7 @@ class WebsiteSetting extends Model
         'phone',
         'email',
         'about',
+        'defaultImage',
 
     ];
 }

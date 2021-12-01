@@ -20,6 +20,7 @@ class CreateWebsiteSettingsTable extends Migration
             $table->string('phone');
             $table->string('email');
             $table->text('about');
+            $table->text('defaultImage');
             $table->timestamps();
         });
     }

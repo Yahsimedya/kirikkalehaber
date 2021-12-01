@@ -31,6 +31,7 @@
     <link rel="canonical" href="{{url()->current()}}"/>
     <meta name="google-site-verification" content="@yield('google_verification')"/>
     <script async src="https://www.googletagmanager.com/gtag/js?id=@yield('google_verification')"></script>
+
     <script>
         window.dataLayer = window.dataLayer || [];
 
