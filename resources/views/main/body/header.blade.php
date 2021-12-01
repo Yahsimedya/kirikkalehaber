@@ -157,7 +157,7 @@ $gelenil=Session::get('gelenil');
 
                         @foreach ($category as $row)
                             @php
-                                $subcategory= Subcategory::where('category_id',$row->id)->get();
+                                $subcategory=  \App\Models\Subcategory::where('category_id',$row->id)->get();
 
                                     $say = count($subcategory);
                             @endphp

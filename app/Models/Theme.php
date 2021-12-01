@@ -17,6 +17,8 @@ class Theme extends Model
         'agenda',
         'politics',
         'sport',
+        'apps',
+        'subscription',
 
     ];
 }

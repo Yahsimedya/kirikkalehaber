@@ -23,6 +23,8 @@ class themeSeeder extends Seeder
             'agenda' => "#fd7e14",
             'politics' => "#fcd90f",
             'sport' => "#66a030",
+            'apps' => 1,
+            'subscription' => 1,
         ]);
     }
 }

@@ -93,9 +93,11 @@
         <!-- Grid column -->
 
         <!-- Grid column -->
+        @if($themeSetting[0]->apps==1 || $themeSetting[0]->subscription==1)
         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
-            <!-- Links -->
+            @if($themeSetting[0]->apps==1)
+        <!-- Links -->
             <h6 class="text-uppercase font-weight-bold">Uygulamamız</h6>
             <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
             <p>
@@ -111,11 +113,12 @@
                 <a class="dark-grey-text" href="https://appgallery.huawei.com/app/C104177315"><img class="img-fluid lazyload"
                                                                                                    data-src="{{asset('image/huawei.png')}}"></a>
             </p>
+                @endif
+
+            @if($themeSetting[0]->subscription==1)
+
             <h6 class="text-uppercase font-weight-bold">Üyeliklerimiz</h6>
             <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-
-
-
             <p>
             <a href="https://www.sanalbasin.com/?ref=32626" id="hash-963df865d91ae3bf30841066f06b8ab52f323508"
                title="Bu site sanalbasin.com üyesidir" target="_blank"><img class="img-fluid lazyload"
@@ -136,7 +139,9 @@ image/sanalbasin_üyesidir.png')}}" style="width: 120px"
                     data-src="{{asset('image/iha.png')}}" style="width: 120px"
                     alt="İha üyesidir"/></a>
             </p>
+            @endif
         </div>
+    @endif
         <!-- Grid column -->
 
         <!-- Grid column -->

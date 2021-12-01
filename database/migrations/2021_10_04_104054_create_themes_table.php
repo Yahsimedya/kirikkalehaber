@@ -22,6 +22,9 @@ class CreateThemesTable extends Migration
             $table->string('agenda');
             $table->string('politics');
             $table->string('sport');
+            $table->bigInteger('apps');
+            $table->bigInteger('subscription');
+
 
 
             $table->timestamps();
