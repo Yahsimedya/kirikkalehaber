@@ -20,6 +20,7 @@ class websiteSettingSeeder extends Seeder
             'phone' => 'Admin',
             'email' => 'Admin',
             'about' => 'Admin',
+            'defaultImage' => 'defaultImage',
         ]);
     }
 }

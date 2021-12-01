@@ -197,13 +197,13 @@ class ExtraController extends Controller
             ->where('photos.photocategory_id', $photogalery)
             ->get();
         $relatedgalery = Photo::where('status', 1)->skip(1)->take(10)->groupBy('photocategory_id')->latest()->get();
-
+        $webSiteSetting=WebsiteSetting::first();
 //    $relatedgalery =Photo::leftjoin('photocategories','photos.photocategory_id','=','photocategories.id')
 //        ->select(['photos.*','photocategories.id','photocategories.category_title'])
 //        ->where('photos.photocategory_id',$photogalery)->where('photos.photocategory_id','!=',$photos->photocategory_id)->groupBy('photocategory_id')
 //        ->get();
 
-        return view('main.body.foto_galery', compact('photos', 'category', 'relatedgalery'));
+        return view('main.body.foto_galery', compact('photos', 'category','webSiteSetting', 'relatedgalery'));
     }
 
     public function Etiket($name, $id)
@@ -239,7 +239,8 @@ class ExtraController extends Controller
             ->where('status', 1)
             ->whereIN('ad_categories.id', [1, 2, 3, 12]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
             ->get();
-        return view('main.body.tags', compact('tagPosts', 'count', 'nextnews', 'ads'));
+
+        return view('main.body.tags', compact('tagPosts', 'count','webSiteSetting', 'nextnews', 'ads'));
     }
 
     public function feed()
@@ -296,8 +297,9 @@ class ExtraController extends Controller
             ->where('districts.slug', $id)
             ->get();
         $alldistrict = District::get();
+        $webSiteSetting=WebsiteSetting::first();
 
-        return view('main.body.district', compact('districts', 'sehir', 'sehirsay', 'subdistricts', 'alldistrict'));
+        return view('main.body.district', compact('districts', 'sehir', 'webSiteSetting', 'sehirsay', 'subdistricts', 'alldistrict'));
     }
 
     //
@@ -597,8 +599,8 @@ class ExtraController extends Controller
         Session::put('gelenil', $gelenil);
 
         Session::put('havadurumu', $veri['sicaklik']);
-
-        return view('main.home', compact('home', 'ekonomi', 'surmanset', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
+        $webSiteSetting=WebsiteSetting::first();
+        return view('main.home', compact('home', 'ekonomi','webSiteSetting', 'surmanset', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 
@@ -689,7 +691,8 @@ class ExtraController extends Controller
 //        $related= $post->posttags()->post_id;
 //        $related=$this->belongsToMany(Post::class, 'post_tags', 'tags');
         $seoset = Seos::first();
-        return view('main.body.single_post', compact('post', 'ads', 'random', 'slider', 'related', 'nextrelated', 'comments', 'id', 'seoset'));
+        $webSiteSetting=WebsiteSetting::first();
+        return view('main.body.single_post', compact('post', 'ads','webSiteSetting', 'random', 'slider', 'related', 'nextrelated', 'comments', 'id', 'seoset'));
 
 
     }
@@ -731,13 +734,15 @@ class ExtraController extends Controller
 //        if ($catpost->count() == 0) {
 //            return redirect('/');
 //        }
+        $webSiteSetting=WebsiteSetting::first();
+
         $nextnews = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
             ->where('posts.category_id', $id)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
             ->inRandomOrder()->limit(10)
             ->get();
 
-        return view('main.body.category_post', compact('manset', 'category', 'catpost', 'nextnews', 'count'));
+        return view('main.body.category_post', compact('manset', 'webSiteSetting','category', 'catpost', 'nextnews', 'count'));
 
 
     }
@@ -749,8 +754,8 @@ class ExtraController extends Controller
         $searchText = $request['searchtext'];
         $json = Post::orWhere('title_tr', 'LIKE', '%' . $searchText . '%')->orWhere('title_en', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_tr', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_en', 'LIKE', '%' . $searchText . '%')->get();
         $searchNews = $this->change($json);
-
-        return \view('main.body.search', compact('searchNews'));
+        $webSiteSetting=WebsiteSetting::first();
+        return \view('main.body.search', compact('searchNews','webSiteSetting',));
     }
 
 
@@ -803,7 +808,7 @@ class ExtraController extends Controller
 
     public function yazilars($slug_name, $Authorid)
     {
-
+        $webSiteSetting=WebsiteSetting::first();
         $yaziPost = AuthorsPost::whereId($Authorid)->first(); // done bope
 //        $yaziPost=AuthorsPost::find($Authorid); // done bope
 
@@ -829,7 +834,7 @@ class ExtraController extends Controller
 //        $yazar = Authors::where('id', '=', $Authorid)->get();
 //$yazi= AuthorsPost::where($slug_name)->where($Authorid);
 //dd($yazi);
-        return view('main.body.authors_writes', compact('yaziPost', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'websetting'));
+        return view('main.body.authors_writes', compact('yaziPost','webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'websetting'));
     }
 
 

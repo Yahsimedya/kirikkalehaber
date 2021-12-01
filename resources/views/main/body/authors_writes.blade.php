@@ -53,7 +53,7 @@
                         <div class="kapsayici position-relative">
                             <div class="kartlar__effect position-absolute">
                             </div>
-                            <img src="/{{$yazars->image}}" class="detay-image"
+                            <img src="/{{$yazars->image}}" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="detay-image"
                                  style="width: 100%;max-height: 250px;object-fit: fill;" alt="">
                         </div>
 
@@ -137,7 +137,7 @@
                         <div class="card bg-dark text-white">
                             <a href="{{URL::to('/'.str_slug($row->name).'/'.$row->id)}}">
 
-                                <img class="card-img" src="{{asset($row->image)}}" alt="Card image">
+                                <img class="card-img" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" src="{{asset($row->image)}}" alt="Card image">
                                 <div class="card-img-overlay">
                                     <h5 class="card-title"> {{ Str::ucFirst($row->name) }}</h5>
                                 </div>

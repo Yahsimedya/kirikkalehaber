@@ -8,6 +8,8 @@
                 <form action="{{route('websetting.update',$websetting)}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" value="{{$websetting->logo}}" name="old_image" class="form-control tokenfield">
+                    <input type="hidden" value="{{$websetting->defaultImage}}" name="old_defaultImage" class="form-control tokenfield">
+
                     <fieldset class="mb-3">
                         <legend class="text-uppercase font-size-sm font-weight-bold">SEO Ayarları</legend>
                         <div class="form-group row">
@@ -68,6 +70,32 @@
                                 <span class="text-danger">{{$about}}</span>
                                 @enderror
                             </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-2">Varsayılan Resim</label>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="file" class="form-input-styled" name="defaultImage" id="image" data-fouc>
+                                    @error('image')
+                                    <span class="text-danger">{{$message}}</span>
+
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <img width="100%" src="{{asset($websetting->defaultImage)}}" onerror="this.onerror=null;this.src='{{url('image/no_news_image.png')}}';" id="showImage" alt="">
+                                </div>
+
+                            </div>
+
+
+
                         </div>
 
 

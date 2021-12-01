@@ -227,7 +227,7 @@
                         @foreach($ads as $ad)
                             @if($ad->type==1 && $ad->category_id==9)
                                 <a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
-                                                             height="250"
+                                                             height="250" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                                              data-src="{{asset($ad->ads)}}"></a>
                             @elseif($ad->type==2 && $ad->category_id==9)
                                 <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -266,7 +266,7 @@
                                         <span>Bu Habere Dikkat</span>
                                     </div>
                                 @endif
-                                <img class="card-img-top lazy" height="180" src="{{asset($row->image)}}"  alt="Kavga ettiği amcasını sokak ortasında tabancayla vurdu" style="">
+                                <img class="card-img-top lazy" height="180" src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" alt="Kavga ettiği amcasını sokak ortasında tabancayla vurdu" style="">
                                 <div class="card-body align-middle d-table-cell">
                                     <p class="card-baslik text-left d-table-cell"><b class="card-kisalt">{{$row->title_tr}}</b></p>
                                     {{--                                <span class="card__kategori position-absolute">3. Sayfa</span>--}}
@@ -288,7 +288,7 @@
                                     <a href="{{URL::to('/'.str_slug($home[$i]->title_tr).'/'.$home[$i]->id.'/'.'haberi')}}">
                                         <div class="position-relative">
                                             <img class="img-fluid slider-foto swiper-lazy  min-height lazyload"
-                                                 width="100%"
+                                                 width="100%" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                                  data-src="{{ asset($home[$i]->image) }}"/>
                                             @if($themeSetting[0]->slider_title!=0)
                                             <div class="kartlar__effect position-absolute">
@@ -354,7 +354,7 @@
 
                                         <div class="swiper-slide position-relative">
                                             <a href="{{route('photo.gallerydetail',$row->photocategory_id)}}">
-                                                <div class="swiper-slide__foto "><img class="img-fluid lazyload"
+                                                <div class="swiper-slide__foto "><img class="img-fluid lazyload" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                                                                       data-src="{{asset($row->photo)}}"/>
                                                 </div>
                                             </a>
@@ -401,7 +401,7 @@
 
                                         <div class="swiper-slide position-relative">
                                             <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
-                                                <div class="swiper-slide__foto "><img class="img-fluid lazyload"
+                                                <div class="swiper-slide__foto "><img class="img-fluid lazyload" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                                                                       data-src="{{asset($row->image)}}"/>
                                                 </div>
                                                 <span class="yazi-span">{{$row->title_tr}}</span>
@@ -448,7 +448,7 @@
                                 <div class="swiper-slide">
                                     <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}"><img
                                             class="img-fluid sag-manset-img swiper-lazy lazyloaded swiper-lazy-loaded lazyload"
-                                            data-src="{{asset($row->image)}}"></a>
+                                            data-src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"></a>
                                     <div class="kartlar__effect position-absolute">
                                         <p class="sag-manset-text">{{$home[$i]->title_tr}}</p>
                                     </div>
@@ -482,7 +482,7 @@
                         @foreach($ads as $ad)
                             @if($ad->type==1 && $ad->category_id==17)
                                 <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
-                                                             height="280"
+                                                             height="280" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                                              data-src="{{asset($ad->ads)}}"></a>
                             @elseif($ad->type==2 && $ad->category_id==17)
                                 <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -573,7 +573,7 @@
             <!--  ÜST BLOK 1140x90 REKLAM-->
             @foreach($ads as $ad)
                 @if($ad->type==1 && $ad->category_id==16)
-                    <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="1140" height="90"
+                    <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="1140" height="90" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                                  data-src="{{asset($ad->ads)}}"></a>
                 @elseif($ad->type==2 && $ad->category_id==16)
                     <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -593,7 +593,7 @@
 
                                 <div class="swiper-slide border" style="min-height: 285px;max-height: 285px;">
                                     <a href=" {{URL::to('/'.str_slug($author->title).'/'.$author->id)}}">
-                                        <img data-src="{{asset($author->image)}}" class="img-fluid lazyload" alt="">
+                                        <img data-src="{{asset($author->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid lazyload" alt="">
                                         <div style="color:{{$themeSetting[0]->siteColorTheme}}!important;"
                                              class="text-center text-orange-400">{{Str::limit($author->name,17)}}</div>
                                         <div
@@ -780,7 +780,7 @@
                     @if($ad->type==1 && $ad->category_id==18)
                         <div class="col-md-12">
                             <a href="{{$ad->link}}"><img class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                         data-src="{{asset($ad->ads)}}"></a>
+                                                         data-src="{{asset($ad->ads)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==18)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -806,8 +806,10 @@
                             @if($row->featured ==1)
                             <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
-                                        <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}"><img
-                                                class="img-fluid kart_img lazyload" data-src="{{asset($row->image)}}"/>
+                                        <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
+                                            <img class="img-fluid kart_img lazyload"  src="{{asset($row->image)}}" alt="Image not found" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" />
+                                           <!--<img
+                                                class="img-fluid kart_img lazyload" data-src="{{asset($row->image)}}" onerror="testImage()"/>-->
                                         </a>
                                         <div class="card-body kart-body  bordercolor-5 border-3 text-dark">
                                             <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">
@@ -849,7 +851,7 @@
                             <div class="card kart kart-width kart-margin shadow" style="">
                                 <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                     <img
-                                        class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
+                                        class="img_fluid kart_img lazyload" data-src=" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" {{asset($homes->image)}}"
                                         alt="Card image cap"></a>
                                 <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
                                     <p class="card-text"
@@ -877,7 +879,7 @@
                 @foreach($ads as $ad)
                     @if($ad->type==1 && $ad->category_id==19)
                         <div class="col-md-12">
-                            <a href="{{$ad->link}}"><img class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
+                            <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
                                                          data-src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==19)
@@ -899,7 +901,7 @@
                                     <div class="card kart kart-width shadow" style="">
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                             <img class="img-fluid kart_img lazyload"
-                                                 data-src="{{asset($homes->image)}}"/></a>
+                                                 data-src="{{asset($homes->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"/></a>
                                         <div class="card-body kart-body  bordercolor-5 border-3 text-dark">
                                             <p class="card-text"
                                                style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">
@@ -941,7 +943,7 @@
                     <div class="col-md-4 float-left mb-3  ">
                         <div class="card kart kart-width kart-margin shadow" style="">
                             <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
-                                <img
+                                <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                     class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
                                     alt="Card image cap"></a>
                             <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
@@ -967,7 +969,7 @@
                     @if($ad->type==1 && $ad->category_id==20)
                         <div class="col-md-12">
                             <a href="{{$ad->link}}"><img class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                         data-src="{{asset($ad->ads)}}"></a>
+                                                         data-src="{{asset($ad->ads)}} onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';""></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==20)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -991,7 +993,7 @@
                                 <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
-                                            <img class="img-fluid kart_img lazyload"
+                                            <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid kart_img lazyload"
                                                  data-src="{{asset($homes->image)}}"/><a/>
                                             <div class="card-body kart-body  bordercolor-5 border-3 text-dark">
                                                 <p class="card-text"
@@ -1027,7 +1029,7 @@
                     <div class="col-md-4 float-left mb-3  ">
                         <div class="card kart kart-width kart-margin shadow" style="">
                             <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
-                                <img
+                                <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                     class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
                                     alt="Card image cap"></a>
                             <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
@@ -1046,7 +1048,7 @@
                 @foreach($ads as $ad)
                     @if($ad->type==1 && $ad->category_id==21)
                         <div class="col-md-12">
-                            <a href="{{$ad->link}}"><img class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
+                            <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
                                                          data-src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==21)
@@ -1063,7 +1065,7 @@
                 @foreach($ads as $ad)
                     @if($ad->type==1 && $ad->category_id==22)
                         <div class="col-md-12">
-                            <a href="{{$ad->link}}"><img class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
+                            <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
                                                          data-src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==22)
@@ -1086,7 +1088,7 @@
                                 <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
-                                            <img class="img-fluid kart_img lazyload"
+                                            <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid kart_img lazyload"
                                                  data-src="{{asset($homes->image)}}"/></a>
                                         <div class="card-body kart-body  bordercolor-2 border-3 text-dark">
                                             <p class="card-text"
@@ -1116,7 +1118,7 @@
             @foreach($ads as $ad)
                 @if($ad->type==1 && $ad->category_id==23)
                     <div class="col-md-12">
-                        <a href="{{$ad->link}}"><img class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
+                        <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
                                                      data-src="{{asset($ad->ads)}}"></a>
                     </div>
                 @elseif($ad->type==2 && $ad->category_id==23)
@@ -1138,7 +1140,7 @@
                             <div class="col-md-6 float-left mb-3  ">
                                 <div class="card kart kart-width kart-margin shadow" style="">
                                     <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
-                                        <img
+                                        <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                             class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
                                             alt="Card image cap"></a>
                                     <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
@@ -1186,7 +1188,7 @@
                     <div id="footer-kapat" class="kapat-buton"><span>Reklamı Kapat</span></div>
                     <div class="desktop-sticy" style="width:100%; height:auto;">
                         <div class="reklam-alani mt-1 mb-1 text-center">
-                            <a target="_blank" href=""><img data-src="./img/reklamlar/" class="img-fluid lazyload "
+                            <a target="_blank" href=""><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" data-src="./img/reklamlar/" class="img-fluid lazyload "
                                                             alt=""></a>
 
                         </div>

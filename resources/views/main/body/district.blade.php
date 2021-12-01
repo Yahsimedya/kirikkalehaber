@@ -58,7 +58,7 @@
                     <div class="col-md-4">
                         <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
                             <div class="card kart kart-width shadow mb-2" style="">
-                                <img class="img-fluid kart_img" src="{{asset($row->image)}}"/>
+                                <img class="img-fluid kart_img" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" src="{{asset($row->image)}}"/>
                                 <div class="card-body kart-body  bordercolor-6 border-3 text-dark">
                                     <p class="card-text">{{$row->title_tr}}</p>
                                 </div>
