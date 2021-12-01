@@ -202,8 +202,8 @@ class ExtraController extends Controller
 //        ->select(['photos.*','photocategories.id','photocategories.category_title'])
 //        ->where('photos.photocategory_id',$photogalery)->where('photos.photocategory_id','!=',$photos->photocategory_id)->groupBy('photocategory_id')
 //        ->get();
-
-        return view('main.body.foto_galery', compact('photos', 'category','webSiteSetting', 'relatedgalery'));
+        $themeSetting=Theme::get();
+        return view('main.body.foto_galery', compact('photos', 'category','webSiteSetting', 'relatedgalery','themeSetting'));
     }
 
     public function Etiket($name, $id)
@@ -239,8 +239,9 @@ class ExtraController extends Controller
             ->where('status', 1)
             ->whereIN('ad_categories.id', [1, 2, 3, 12]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
             ->get();
-
-        return view('main.body.tags', compact('tagPosts', 'count','webSiteSetting', 'nextnews', 'ads'));
+        $webSiteSetting=WebsiteSetting::get();
+        $themeSetting=Theme::get();
+        return view('main.body.tags', compact('tagPosts', 'count','themeSetting','webSiteSetting', 'nextnews', 'ads'));
     }
 
     public function feed()
@@ -263,8 +264,9 @@ class ExtraController extends Controller
     public function GetAllDistrict()
     {
         $siteSetting = Theme::latest('id')->get();
+        $themeSetting =Theme::get();
 
-        return view('main.body.turkey_map', compact('siteSetting'));
+        return view('main.body.turkey_map', compact('siteSetting','themeSetting'));
     }
 
     public function GetDistrict($id) // türkiye haritasında illere tıkladığında il detay sayfasına gider
@@ -298,8 +300,9 @@ class ExtraController extends Controller
             ->get();
         $alldistrict = District::get();
         $webSiteSetting=WebsiteSetting::first();
+        $themeSetting=Theme::get();
 
-        return view('main.body.district', compact('districts', 'sehir', 'webSiteSetting', 'sehirsay', 'subdistricts', 'alldistrict'));
+        return view('main.body.district', compact('districts', 'sehir','themeSetting', 'webSiteSetting', 'sehirsay', 'subdistricts', 'alldistrict'));
     }
 
     //
@@ -790,8 +793,8 @@ class ExtraController extends Controller
     public function TumKategoriler()
     {
         $allcategories = Category::get();
-
-        return view('main.body.allcategories', compact('allcategories'));
+        $themeSetting =Theme::get();
+        return view('main.body.allcategories', compact('allcategories','themeSetting'));
     }
 
 
@@ -818,7 +821,7 @@ class ExtraController extends Controller
         $nextauthors_posts = AuthorsPost::where('status', 1)->where('authors_id', $yazarID)->latest()->limit(10)->get();
         $OtherAuthors = Authors::limit(10)->get();
         $seoset = Seos::first();
-        $websetting =Theme::first();
+        $themeSetting =Theme::get();
 
 
 //        $nextauthorCount=$nextauthors_posts->count();
@@ -834,7 +837,7 @@ class ExtraController extends Controller
 //        $yazar = Authors::where('id', '=', $Authorid)->get();
 //$yazi= AuthorsPost::where($slug_name)->where($Authorid);
 //dd($yazi);
-        return view('main.body.authors_writes', compact('yaziPost','webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'websetting'));
+        return view('main.body.authors_writes', compact('yaziPost','webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'themeSetting'));
     }
 
 

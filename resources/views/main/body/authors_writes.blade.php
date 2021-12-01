@@ -57,7 +57,7 @@
                                  style="width: 100%;max-height: 250px;object-fit: fill;" alt="">
                         </div>
 
-                        <div class="position-relative  text-light" style="background-color: {{$websetting->siteColorTheme}}">
+                        <div class="position-relative  text-light" style="background-color: {{$webSiteSetting->siteColorTheme}}">
                             <p class=" detay-text text-center text-light align-middle" style="height: auto;">
                                 <b>{{$yazars->name}}</b></p>
                             <div class="row text-center p-2">

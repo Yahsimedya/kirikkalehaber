@@ -114,7 +114,6 @@
                                                                                                    data-src="{{asset('image/huawei.png')}}"></a>
             </p>
                 @endif
-
             @if($themeSetting[0]->subscription==1)
 
             <h6 class="text-uppercase font-weight-bold">Üyeliklerimiz</h6>
