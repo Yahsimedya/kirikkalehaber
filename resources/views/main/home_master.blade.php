@@ -52,7 +52,7 @@
 
         gtag('config', '@yield('google_verification')');
     </script>
- @yield('adsense_code')
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=@yield('adsense_code')"      crossorigin="anonymous"></script>
     <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
     <link rel="stylesheet" href="{{mix('frontend/assets/css/combine.css')}}" as="style" onload="this.rel='stylesheet'" onerror="this.href='stylesheet'">
 
