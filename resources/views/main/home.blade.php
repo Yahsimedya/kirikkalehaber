@@ -851,7 +851,7 @@
                             <div class="card kart kart-width kart-margin shadow" style="">
                                 <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                     <img
-                                        class="img_fluid kart_img lazyload" data-src=" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" {{asset($homes->image)}}"
+                                        class="img_fluid kart_img lazyload" data-src="{{asset($homes->image)}}" src="{{asset($homes->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                         alt="Card image cap"></a>
                                 <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
                                     <p class="card-text"
