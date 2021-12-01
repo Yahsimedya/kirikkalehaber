@@ -704,8 +704,8 @@ class ExtraController extends Controller
     public function Sayfa($id)
     {
         $fixedPage = DB::table('fixedpage')->where('id', '=', $id)->get();
-
-        return view('main.body.fixedpapers', compact('fixedPage'));
+        $themeSetting=Theme::get();
+        return view('main.body.fixedpapers', compact('fixedPage','themeSetting'));
     }
 
 
