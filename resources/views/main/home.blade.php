@@ -227,7 +227,7 @@
                         @foreach($ads as $ad)
                             @if($ad->type==1 && $ad->category_id==9)
                                 <a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
-                                                             height="250" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                             height="250"
                                                              data-src="{{asset($ad->ads)}}"></a>
                             @elseif($ad->type==2 && $ad->category_id==9)
                                 <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -1188,7 +1188,7 @@
                     <div id="footer-kapat" class="kapat-buton"><span>Reklamı Kapat</span></div>
                     <div class="desktop-sticy" style="width:100%; height:auto;">
                         <div class="reklam-alani mt-1 mb-1 text-center">
-                            <a target="_blank" href=""><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" data-src="./img/reklamlar/" class="img-fluid lazyload "
+                            <a target="_blank" href=""><img  data-src="./img/reklamlar/" class="img-fluid lazyload "
                                                             alt=""></a>
 
                         </div>
