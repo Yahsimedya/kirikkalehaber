@@ -1,7 +1,7 @@
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
- * Copyright 2011-2021a The Bootstrap Authors
- * Copyright 2011-2021a Twitter, Inc.
+ * Copyright 2011-2021 The Bootstrap Authors
+ * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
@@ -7981,17 +7981,13 @@ select {
 select.minimal {
   background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #ccc, #ccc);
   background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
-  background-size: 5px 5px,
- 5px 5px,
- 1px 1.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
   background-repeat: no-repeat; }
 
 select.minimal:focus {
   background-image: linear-gradient(45deg, #65ad22 50%, transparent 50%), linear-gradient(135deg, transparent 50%, #65ad22 50%), linear-gradient(to right, #ccc, #ccc);
   background-position: calc(100% - 15px) 1em, calc(100% - 20px) 1em, calc(100% - 2.5em) 0.5em;
-  background-size: 5px 5px,
- 5px 5px,
- 1px 1.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
   background-repeat: no-repeat;
   border-color: #65ad22;
   outline: 0; }
@@ -8360,6 +8356,57 @@ img.lazyload:not([src]) {
   font-size: 13px;
   font-weight: 500 !important; }
 
+.tag {
+  display: inline-block;
+  font-style: normal;
+  color: #fff;
+  font-size: 12px;
+  background: #c90914;
+  padding: 7px 12px;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  border-radius: 0;
+  line-height: normal; }
+
+.short-tag {
+  top: unset !important;
+  left: 10px;
+  text-transform: uppercase;
+  bottom: 10px;
+  width: 110px;
+  display: inline-block;
+  background-color: #eb212e;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  text-align: center;
+  padding: 6px 0px;
+  border: 1px solid #fff;
+  position: absolute;
+  /* left: 14px!important; */
+  bottom: 86px !important;
+  /* top: unset!important; */
+  animation: lastMin 1s infinite;
+  border-radius: 2px;
+  text-transform: uppercase; }
+
+@-webkit-keyframes lastMinGaleri {
+  0% {
+    background-color: #222; }
+  30% {
+    background-color: #4f5979;
+    color: white; }
+  60% {
+    background-color: #4f5979;
+    color: white; }
+  90% {
+    background-color: #222; }
+  100% {
+    background-color: #222; } }
+
+.category {
+  animation: unset !important; }
+
 .navbar {
   font-family: "Poppins"; }
 
@@ -8417,11 +8464,16 @@ img.lazyload:not([src]) {
     background-image: linear-gradient(-50deg, #000, #4b4747);
     border-top: 1px solid red; }
   .kart-body {
-    padding: 12px 10px 12px 10px !important;
     font-family: Poppins;
-    min-height: 51px;
     word-break: break-word;
     font-weight: 700; }
+    .kart-body p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      min-height: 61px; }
   .kart_img {
     width: 100%;
     height: 200px;

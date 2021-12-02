@@ -805,18 +805,27 @@
                         @foreach ($ekonomi as $row )
                             @if($row->featured ==1)
                             <div class="swiper-slide" style="">
-                                    <div class="card kart kart-width shadow" style="">
-                                        <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
-                                            <img class="img-fluid kart_img lazyload"  src="{{asset($row->image)}}" alt="Image not found" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" />
-                                           <!--<img
-                                                class="img-fluid kart_img lazyload" data-src="{{asset($row->image)}}" onerror="testImage()"/>-->
-                                        </a>
-                                        <div class="card-body kart-body  bordercolor-5 border-3 text-dark">
-                                            <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">
-                                                {{ $row->title_tr}}
-                                            </p>
-                                        </div>
+                                <div class="card kart kart-width kart-margin shadow" style="">
+                                    <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
+                                        <img
+                                            class="img_fluid kart_img lazyload" data-src="{{asset($row->image)}}" src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                            alt="Card image cap"></a>
+
+                                    <div class="card-body kart-body   border-3 text-dark" style="border-top:1px solid {{$themeSetting[0]->economy}}">
+                                        @if($row->headlinetag==1)
+                                            <div class="short-tag" style="background-color:{{$themeSetting[0]->economy}}">
+                                                <span>Son Dakika</span>
+                                            </div>
+                                        @else
+                                            <div class="short-tag category" style="background-color:{{$themeSetting[0]->economy}}">
+                                                <span>{{$row->category->category_tr}}</span>
+                                            </div>
+                                        @endif
+                                        <p class="card-text"
+                                           style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$row->title_tr}}</p>
                                     </div>
+
+                                </div>
                                 </div>
                             @endif
 
@@ -853,7 +862,16 @@
                                     <img
                                         class="img_fluid kart_img lazyload" data-src="{{asset($homes->image)}}" src="{{asset($homes->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                         alt="Card image cap"></a>
-                                <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
+                                @if($homes->headlinetag==1)
+                                    <div class="short-tag" style="background-color:{{$themeSetting[0]->economy}}">
+                                        <span>Son Dakika</span>
+                                    </div>
+                                    @else
+                                    <div class="short-tag category" style="background-color:{{$themeSetting[0]->economy}}">
+                                        <span>{{$homes->category->category_tr}}</span>
+                                    </div>
+                                @endif
+                                <div class="card-body kart-body   border-3 text-dark" style="border-top:1px solid {{$themeSetting[0]->economy}}">
                                     <p class="card-text"
                                        style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$homes->title_tr}}</p>
                                 </div>
@@ -902,11 +920,18 @@
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                             <img class="img-fluid kart_img lazyload"
                                                  data-src="{{asset($homes->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"/></a>
-                                        <div class="card-body kart-body  bordercolor-5 border-3 text-dark">
-                                            <p class="card-text"
-                                               style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">
-                                                {{ $homes->title_tr}}
-                                            </p>
+
+                                        <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->agenda}}; ">
+                                            @if($homes->headlinetag==1)
+                                                <div class="short-tag" style="background-color:{{$themeSetting[0]->agenda}}">
+                                                    <span>Son Dakika</span>
+                                                </div>
+                                            @else
+                                                <div class="short-tag category" style="background-color:{{$themeSetting[0]->agenda}}">
+                                                    <span>{{$homes->category->category_tr}}</span>
+                                                </div>
+                                            @endif
+                                            <p class="card-text">{{ $homes->title_tr}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -946,9 +971,18 @@
                                 <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                     class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
                                     alt="Card image cap"></a>
-                            <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
-                                <p class="card-text "
-                                   style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$homes->title_tr}}</p>
+
+                            <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->agenda}}; ">
+                                @if($homes->headlinetag==1)
+                                    <div class="short-tag" style="background-color:{{$themeSetting[0]->agenda}}">
+                                        <span>Son Dakika</span>
+                                    </div>
+                                @else
+                                    <div class="short-tag category" style="background-color:{{$themeSetting[0]->agenda}}">
+                                        <span>{{$homes->category->category_tr}}</span>
+                                    </div>
+                                @endif
+                                <p class="card-text">{{ $homes->title_tr}}</p>
                             </div>
                         </div>
                     </div>
@@ -995,13 +1029,17 @@
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                             <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid kart_img lazyload"
                                                  data-src="{{asset($homes->image)}}"/><a/>
-                                            <div class="card-body kart-body  bordercolor-5 border-3 text-dark">
-                                                <p class="card-text"
-                                                   style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">
-
-                                                    {{$homes->title_tr}}
-                                                </p>
-
+                                            <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->politics}}; ">
+                                                @if($homes->headlinetag==1)
+                                                    <div class="short-tag" style="background-color:{{$themeSetting[0]->politics}}">
+                                                        <span>Son Dakika</span>
+                                                    </div>
+                                                @else
+                                                    <div class="short-tag category" style="background-color:{{$themeSetting[0]->politics}}">
+                                                        <span>{{$homes->category->category_tr}}</span>
+                                                    </div>
+                                                @endif
+                                                <p class="card-text">{{ $homes->title_tr}}</p>
                                             </div>
                                     </div>
                                 </div>
@@ -1032,9 +1070,17 @@
                                 <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                     class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
                                     alt="Card image cap"></a>
-                            <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
-                                <p class="card-text"
-                                   style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$homes->title_tr}}</p>
+                            <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->politics}}; ">
+                                @if($homes->headlinetag==1)
+                                    <div class="short-tag" style="background-color:{{$themeSetting[0]->politics}}">
+                                        <span>Son Dakika</span>
+                                    </div>
+                                @else
+                                    <div class="short-tag category" style="background-color:{{$themeSetting[0]->politics}}">
+                                        <span>{{$homes->category->category_tr}}</span>
+                                    </div>
+                                @endif
+                                <p class="card-text">{{ $homes->title_tr}}</p>
                             </div>
                         </div>
                     </div>
@@ -1090,9 +1136,17 @@
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                             <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid kart_img lazyload"
                                                  data-src="{{asset($homes->image)}}"/></a>
-                                        <div class="card-body kart-body  bordercolor-2 border-3 text-dark">
-                                            <p class="card-text"
-                                               style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$homes->title_tr}}</p>
+                                        <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->sport}}; ">
+                                            @if($homes->headlinetag==1)
+                                                <div class="short-tag" style="background-color:{{$themeSetting[0]->sport}}">
+                                                    <span>Son Dakika</span>
+                                                </div>
+                                            @else
+                                                <div class="short-tag category" style="background-color:{{$themeSetting[0]->sport}}">
+                                                    <span>{{$homes->category->category_tr}}</span>
+                                                </div>
+                                            @endif
+                                            <p class="card-text">{{ $homes->title_tr}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -1143,9 +1197,17 @@
                                         <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                             class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
                                             alt="Card image cap"></a>
-                                    <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
-                                        <p class="card-text"
-                                           style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$homes->title_tr}}</p>
+                                    <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->sport}}; ">
+                                        @if($homes->headlinetag==1)
+                                            <div class="short-tag" style="background-color:{{$themeSetting[0]->sport}}">
+                                                <span>Son Dakika</span>
+                                            </div>
+                                        @else
+                                            <div class="short-tag category" style="background-color:{{$themeSetting[0]->sport}}">
+                                                <span>{{$homes->category->category_tr}}</span>
+                                            </div>
+                                        @endif
+                                        <p class="card-text">{{ $homes->title_tr}}</p>
                                     </div>
                                 </div>
                             </div>
