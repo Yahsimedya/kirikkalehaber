@@ -352,14 +352,16 @@
                                     @endphp
                                     @foreach ($fotogaleri as $row )
 
-                                        <div class="swiper-slide position-relative">
-                                            <a href="{{route('photo.gallerydetail',$row->photocategory_id)}}">
-                                                <div class="swiper-slide__foto "><img class="img-fluid lazyload" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                                                                      data-src="{{asset($row->photo)}}"/>
-                                                </div>
-                                            </a>
-                                            <span class="yazi-span">{{$row->title}}</span>
-                                        </div>
+                                        @if(empty(!$row->photocategory_id))
+                                            <div class="swiper-slide position-relative">
+                                                <a href="{{route('photo.gallerydetail',$row->photocategory_id)}}">
+                                                    <div class="swiper-slide__foto "><img class="img-fluid lazyload" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                                                          data-src="{{asset($row->photo)}}"/>
+                                                    </div>
+                                                </a>
+                                                <span class="yazi-span">{{$row->title}}</span>
+                                            </div>
+                                        @endif
 
                                 @endforeach
 

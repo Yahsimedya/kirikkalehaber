@@ -189,8 +189,7 @@ class ExtraController extends Controller
     public function PhotoGalleryDetail($photogalery)
     {
         $category = Photo::leftjoin('photocategories', 'photos.photocategory_id', '=', 'photocategories.id')
-            ->select(['photos.*', 'photocategories.id', 'photocategories.category_title'])
-            ->where('photos.photocategory_id', $photogalery)
+            ->where('photos.photocategory_id', $photogalery)->select(['photos.*', 'photocategories.id', 'photocategories.category_title'])
             ->first();
         $photos = Photo::leftjoin('photocategories', 'photos.photocategory_id', '=', 'photocategories.id')
             ->where('photos.photocategory_id', $photogalery)

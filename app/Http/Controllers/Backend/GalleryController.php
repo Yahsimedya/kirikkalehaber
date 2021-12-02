@@ -122,10 +122,11 @@ public function GaleryUpdate(Request $request){
 }
  public function GaleryDetail($id)
  {
+
      $photos= DB::table('photos')->where('photocategory_id',$id)->get();
     return view('backend.galery.galery_photo',compact('photos'));
  }
- public function AddText(Request $request)
+ public function AddText(Request $request , $id)
  {
 
     //  dd($request);

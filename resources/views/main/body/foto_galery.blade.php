@@ -27,14 +27,14 @@ $i++;
                             <img src="{{asset($row->photo)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" height="450" width="100%" alt="">
                     </div>
 
-                    <p class="col-md-12 mb-3 pl-2 text-dark">{{$row->photo_text}}</p>
+                    <p class="col-md-12 mb-3 pl-2 text-dark">{!! $row->photo_text !!}</p>
                 </div>
                 @endforeach
 
             </div>
             <div class="col-md-4">
                 @foreach($relatedgalery as $row)
-
+                    @if(empty(!$row->photocategory_id))
                 <div class="card kart kart-width shadow mb-3" style=""><a href="{{route('photo.gallerydetail',$row->photocategory_id)}}">
                         <img class="img-fluid" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"  src="{{asset($row->photo)}}" alt="">
 
@@ -43,6 +43,7 @@ $i++;
                         </div>
                     </a>
                 </div>
+                    @endif
                 @endforeach
 
             </div>

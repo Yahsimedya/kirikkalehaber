@@ -82,8 +82,10 @@
 </form>
 
                     @endif</td>
-                    <td><a href="{{route('galery.detail', $kategori->photocategory_id)}}"><span class="badge badge-warning">Galeri Detay</span></a></td>
-                    <td>{{Carbon\Carbon::parse($kategori->created_at)->diffForHumans()}}</td>
+                    <td>@if(empty(!$kategori->photocategory_id))
+                        <a href="{{route('galery.detail', $kategori->photocategory_id)}}"><span class="badge badge-warning">Galeri Detay</span></a></td>
+                    @endif
+                   <td>{{Carbon\Carbon::parse($kategori->created_at)->diffForHumans()}}</td>
 
                     <td class="text-center">
                         <div class="list-icons">
