@@ -171,7 +171,7 @@
     </script>
     @if (!empty($sondakika[0]->headline))
 
-        <section class="section-sdk position-relative d-flex w-100 mb-5" style="margin-top:0px;">
+        <section class="section-sdk position-relative d-flex w-100" style="margin-top:0px;">
             <div class="container ">
                 <div class="simple-marquee-container" style="z-index: 999;">
                     <a href="sondakika.php">
