@@ -19,7 +19,11 @@ $i++;
 
                 <div class="pb-4">
                     <div class="col-md-12 mb-3 pl-2">
-                        <div class="bg-danger text-center mb-2 rakam" style="width: 30px;"><span class="align-middle text-white">{{$i}}</span></div>
+                        <div class="row">
+                            <div class="bg-danger text-center mb-2 mr-2 rakam" style="width: 30px;"><span class="align-middle text-white">{{$i}}</span></div>
+                            <div class="text-center mb-2 "><span class="align-middle">{{$row->title}}</span></div>
+
+                        </div>
                             <img src="{{asset($row->photo)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" height="450" width="100%" alt="">
                     </div>
 
@@ -31,7 +35,7 @@ $i++;
             <div class="col-md-4">
                 @foreach($relatedgalery as $row)
 
-                <div class="card kart kart-width shadow mb-3" style=""><a href="">
+                <div class="card kart kart-width shadow mb-3" style=""><a href="{{route('photo.gallerydetail',$row->photocategory_id)}}">
                         <img class="img-fluid" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"  src="{{asset($row->photo)}}" alt="">
 
                         <div class="card-body kart-body  bordercolor-2 border-3 text-dark">

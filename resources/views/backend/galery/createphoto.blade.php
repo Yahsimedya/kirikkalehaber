@@ -97,7 +97,7 @@
                     </div>
 
                     <div class="form-group">
-                        <textarea name="details_tr" id="editor-full" rows="4" cols="4"></textarea>
+                        <textarea name="photo_text" id="editor-full" rows="4" cols="4"></textarea>
 
                     </div>
 

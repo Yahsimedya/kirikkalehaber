@@ -256,6 +256,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/galery/photo/active/{id}', [GalleryController::class, 'ActivePhotoGalery'])->name('active.photogalery');
     Route::get('/galery/delete/{id}', [GalleryController::class, 'DeleteGalery'])->name('delete.galery');
     Route::get('/photo/galery/edit/{photocategory_id}', [GalleryController::class, 'EditPhotoGalery'])->name('edit.galery');
+    Route::post('/photo/galery/update', [GalleryController::class, 'GaleryUpdate'])->name('update.galery');
     Route::get('/galery/photo/delete/{id}', [GalleryController::class, 'DeletePhoto'])->name('delete.photo');
 
 // Route::get('/subdistrict', [DistrictController::class, 'index'])->name('subdistrict');

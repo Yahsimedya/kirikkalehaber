@@ -71,12 +71,12 @@
                         @endif
                     </td>
                     <td>@if ($kategori->status==1)
-                        <form action="{{route('active.photogalery',$kategori->photocategory_id)}}" method="post">
+                        <form action="{{route('active.photogalery',$kategori->id)}}" method="post">
                             @csrf
                         <button type="submit" class="btn btn-success" name="aktif" value="0">Aktif</button>
                         </form>
 @else
-<form action="{{route('active.photogalery',$kategori->photocategory_id)}}" method="post">
+<form action="{{route('active.photogalery',$kategori->id)}}" method="post">
     @csrf
 <button type="submit" class="btn btn-danger"  name="aktif" value="1">Pasif</button>
 </form>
@@ -93,8 +93,8 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="{{route('edit.galerycategory',$kategori->photocategory_id)}}" class="dropdown-item"><i class="icon-pencil6"></i> Düzenle</a>
-                                    <a href="{{route('delete.galerycategory',$kategori->photocategory_id)}}" onclick="return confirm('Silmek istediğinizden emin misiniz ?')" class="dropdown-item"><i class="icon-trash"></i>Sil</a>
+                                    <a href="{{route('edit.galery',$kategori->id)}}" class="dropdown-item"><i class="icon-pencil6"></i> Düzenle</a>
+                                    <a href="{{route('delete.photo',$kategori->id)}}" onclick="return confirm('Silmek istediğinizden emin misiniz ?')" class="dropdown-item"><i class="icon-trash"></i>Sil</a>
                                     {{-- <a href="#" class="dropdown-item"><i class="icon-file-word"></i> Export to .doc</a> --}}
                                 </div>
                             </div>
