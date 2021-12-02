@@ -1,11 +1,12 @@
 @php
 
     use App\Models\WebsiteSetting;
+    use App\Models\Theme;
 
         $websetting=WebsiteSetting::first();
 
         $fixedPages = DB::table('fixedpage')->where('status','=',1)->limit(5)->latest('id')->get();
-
+     $themeSetting=Theme::get();
 @endphp
 
 <div class="text-light footer">

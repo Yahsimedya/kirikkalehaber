@@ -225,7 +225,7 @@ $gelenil=Session::get('gelenil');
                         <input class="form-control mr-sm-2 rounded-pill" name="searchtext" type="text"
                                placeholder="Arama Yap"
                                style="width: 150px; ">
-                        <button class="btn btn-primary my-2 my-sm-0 rounded-pill position-absolute search"
+                        <button class="btn btn-danger my-2 my-sm-0 rounded-pill position-relative float-right ml-5"
                                 style=" background-color:  {{$themeSetting[0]->siteColorTheme}} !important;"
                                 type="submit"><i
                                 class="fa fa-search"></i>

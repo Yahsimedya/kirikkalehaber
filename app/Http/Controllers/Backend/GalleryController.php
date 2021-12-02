@@ -44,7 +44,7 @@ class GalleryController extends Controller
     $data['keywords_tr'] = $request->keywords_tr;
     $data['keywords_en'] = $request->keywords_en;
     $data['description_tr'] = $request->description_tr;
-    $data['description_en'] = $request->description_en;
+     $data['photo_text'] = $request->photo_text;
     $data['description_en'] = $request->description_en;
     $data['created_at'] = Carbon::now();
 
@@ -73,10 +73,53 @@ class GalleryController extends Controller
     }
         return Redirect()->route('photo.galery')->with($notification);
     } else {
-        return Redirect() - back();
+        DB::table('photos')->insert($data);
+        return Redirect()->route('photo.galery');
     }
  }
+public function GaleryUpdate(Request $request){
 
+    $data = array();
+    $id=$request->id;
+    $data['title'] = $request->title;
+    $data['type'] = $request->type;
+    $data['photocategory_id'] = $request->photocategory_id;
+    $data['keywords_tr'] = $request->keywords_tr;
+    $data['keywords_en'] = $request->keywords_en;
+    $data['photo_text'] = $request->photo_text;
+    $data['description_tr'] = $request->description_tr;
+    $data['description_en'] = $request->description_en;
+    $data['created_at'] = Carbon::now();
+
+    $yil = Carbon::now()->year;
+    $ay = Carbon::now()->month;
+    if (file_exists('storage/photogallery/' . $yil) == false) {
+        mkdir('storage/photogallery/' . $yil, 0777, true);
+    }
+    if (file_exists('storage/photogallery/' . $yil . '/' . $ay) == false) {
+        mkdir('storage/photogallery/' . $yil . '/' . $ay, 0777, true);
+    }
+    $image = $request->photo;
+    if ($image) {
+        foreach ($image as $img) {
+            # code...
+
+            $image_one = uniqid() . '.' . $img->getClientOriginalName();
+
+            Image::make($img)->resize(800, 600)->fit(800, 600)->save('storage/photogallery/' . $yil . '/' . $ay . '/' . $image_one);
+            $data['photo'] = 'storage/photogallery/' . $yil . '/' . $ay . '/' . $image_one;
+            DB::table('photos')->where('id',$id)->update($data);
+            $notification = array(
+                'message' => 'Fotoğraf Başarıyla Eklendi',
+                'alert-type' => 'success'
+            );
+        }
+        return Redirect()->route('photo.galery')->with($notification);
+    } else {
+        DB::table('photos')->where('id',$id)->update($data);
+        return Redirect()->route('photo.galery');
+    }
+}
  public function GaleryDetail($id)
  {
      $photos= DB::table('photos')->where('photocategory_id',$id)->get();
@@ -110,7 +153,7 @@ public function ActivePhotoGalery(Request $request,$id)
     // $update= Array();
     $update['status'] = $request->aktif;
 
-     DB::table('photos')->where('photocategory_id',$id)->update($update);
+     DB::table('photos')->where('id',$id)->update($update);
 
 
     if ($request->aktif==1) {
@@ -151,7 +194,7 @@ public function DeleteGalery($id)
 }
 public function EditPhotoGalery($photocategory_id)
 {
-    $galery = DB::table('photos')->where('photocategory_id', $photocategory_id)->first();
+    $galery = DB::table('photos')->where('id', $photocategory_id)->first();
     $photocategory = DB::table('photocategories')->get();
 
     return view('backend.galery.edit', compact('galery','photocategory'));

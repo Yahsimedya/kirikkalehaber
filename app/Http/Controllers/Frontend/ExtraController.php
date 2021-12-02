@@ -193,10 +193,9 @@ class ExtraController extends Controller
             ->where('photos.photocategory_id', $photogalery)
             ->first();
         $photos = Photo::leftjoin('photocategories', 'photos.photocategory_id', '=', 'photocategories.id')
-            ->select(['photos.*', 'photocategories.id', 'photocategories.category_title'])
             ->where('photos.photocategory_id', $photogalery)
             ->get();
-        $relatedgalery = Photo::where('status', 1)->skip(1)->take(10)->groupBy('photocategory_id')->latest()->get();
+        $relatedgalery = Photo::where('status', 1)->take(10)->groupBy('photocategory_id')->latest()->get();
         $webSiteSetting=WebsiteSetting::first();
 //    $relatedgalery =Photo::leftjoin('photocategories','photos.photocategory_id','=','photocategories.id')
 //        ->select(['photos.*','photocategories.id','photocategories.category_title'])
@@ -343,7 +342,7 @@ class ExtraController extends Controller
         $sondakika = Cache::remember("headline", Carbon::now()->addYear(), function () {
             if (Cache::has('headline')) return Cache::has('headline');
             return Post::where('posts.headline', 1)
-                ->where('updated_at', '>', Carbon::now()->subDay(1))
+                ->where('created_at', '>', Carbon::now()->subDay(1))
                 ->where('status', 1)
                 ->limit(5)
                 ->get();
@@ -758,6 +757,7 @@ class ExtraController extends Controller
         $json = Post::orWhere('title_tr', 'LIKE', '%' . $searchText . '%')->orWhere('title_en', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_tr', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_en', 'LIKE', '%' . $searchText . '%')->get();
         $searchNews = $this->change($json);
         $webSiteSetting=WebsiteSetting::first();
+
         return \view('main.body.search', compact('searchNews','webSiteSetting',));
     }
 

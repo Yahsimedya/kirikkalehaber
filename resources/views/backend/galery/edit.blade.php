@@ -17,7 +17,7 @@
         </div>
 
         <div class="card-body">
-            <form action="{{route('create.photo')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('update.galery')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
@@ -25,8 +25,10 @@
                             <legend class="font-weight-semibold"><i class="icon-reading mr-2"></i>Fotoğraf Ekle</legend>
 
                             <div class="form-group">
+
                                 <label>Haber Başlığı:</label>
                                 <input type="text" name="title" value="{{$galery->title}}" class="form-control" placeholder="Başlık">
+                                <input type="hidden" name="id" value="{{$galery->id}}" class="form-control" placeholder="Başlık">
                             </div>
                             <div class="form-group">
                                 <label>Kategori Seçiniz:</label>
@@ -96,7 +98,7 @@
                     </div>
 
                     <div class="form-group">
-                        <textarea name="details_tr" id="editor-full" rows="4" cols="4"></textarea>
+                        <textarea name="photo_text" id="editor-full" rows="4" cols="4">{{$galery->photo_text}}</textarea>
 
                     </div>
 
