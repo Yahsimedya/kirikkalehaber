@@ -418,7 +418,7 @@ class ExtraController extends Controller
 
         $video_gallary = Cache::remember("video_gallary", Carbon::now()->addYear(), function () {
             if (Cache::has('video_gallary')) return Cache::has('video_gallary');
-            return Post::where('posts_video', '!=', NULL)->limit(5)->get();
+            return Post::where('posts_video', '!=', NULL)->orderByDesc('id')->limit(5)->get();
         });
 //        $home =
 ////            Cache::remember("home", Carbon::now()->addYear(), function () {
