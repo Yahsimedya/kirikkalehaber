@@ -781,8 +781,8 @@
                 @foreach($ads as $ad)
                     @if($ad->type==1 && $ad->category_id==18)
                         <div class="col-md-12">
-                            <a href="{{$ad->link}}"><img class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                         data-src="{{asset($ad->ads)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"></a>
+                            <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
+                                                         data-src="{{asset($ad->ads)}}" ></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==18)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -809,8 +809,8 @@
                             <div class="swiper-slide" style="">
                                 <div class="card kart kart-width kart-margin shadow" style="">
                                     <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
-                                        <img
-                                            class="img_fluid kart_img lazyload" data-src="{{asset($row->image)}}" src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                        <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                            class="img_fluid kart_img lazyload" src="{{asset($row->image)}}"
                                             alt="Card image cap"></a>
 
                                     <div class="card-body kart-body   border-3 text-dark" style="border-top:1px solid {{$themeSetting[0]->economy}}">
@@ -861,8 +861,8 @@
                         <div class="col-md-4 float-left mb-3  ">
                             <div class="card kart kart-width kart-margin shadow" style="">
                                 <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
-                                    <img
-                                        class="img_fluid kart_img lazyload" data-src="{{asset($homes->image)}}" src="{{asset($homes->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                    <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                        class="img_fluid kart_img lazyload" src="{{asset($homes->image)}}"
                                         alt="Card image cap"></a>
                                 @if($homes->headlinetag==1)
                                     <div class="short-tag" style="background-color:{{$themeSetting[0]->economy}}">
@@ -920,8 +920,8 @@
                             <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
-                                            <img class="img-fluid kart_img lazyload"
-                                                 data-src="{{asset($homes->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"/></a>
+                                            <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid kart_img lazyload" src="{{asset($homes->image)}}"
+                                                /></a>
 
                                         <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->agenda}}; ">
                                             @if($homes->headlinetag==1)
