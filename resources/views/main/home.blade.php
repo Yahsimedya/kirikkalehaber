@@ -174,7 +174,7 @@
         <section class="section-sdk position-relative d-flex w-100" style="margin-top:0px;">
             <div class="container ">
                 <div class="simple-marquee-container" style="z-index: 999;">
-                    <a href="sondakika.php">
+                    <a href="{{route('breakingnews')}}">
                         <div class="marquee-sibling">
                             Son Dakika
                         </div>
