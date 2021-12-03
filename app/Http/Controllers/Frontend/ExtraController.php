@@ -844,7 +844,7 @@ public function breakingnews() {
     $webSiteSetting=WebsiteSetting::first();
     $themeSetting=Theme::get();
 
-        $sondakika = Post::where('headline',1)->where('updated_at', '>', Carbon::now()->subDay(1))
+        $sondakika = Post::where('headline',1)->where('updated_at', '>', Carbon::now()->subDay(1))->latest()
             ->get();
 
         return view('main.body.breakingnews', compact('sondakika','webSiteSetting','themeSetting'));

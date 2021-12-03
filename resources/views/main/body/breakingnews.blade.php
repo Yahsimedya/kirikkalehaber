@@ -4,7 +4,7 @@
 <div class="container mt-5 mb-5">
     <div class="row">
         @foreach($sondakika as $row)
-        <div class="col-md-3">
+        <div class="col-md-3 mb-5">
             <div class="card shadow kart d-inline-block  ">
                 {{--                            {{$row->category->category_tr}}--}}
                 <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
