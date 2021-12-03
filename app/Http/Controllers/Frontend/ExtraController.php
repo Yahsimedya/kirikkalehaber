@@ -189,7 +189,8 @@ class ExtraController extends Controller
     public function PhotoGalleryDetail($photogalery)
     {
         $category = Photo::leftjoin('photocategories', 'photos.photocategory_id', '=', 'photocategories.id')
-            ->where('photos.photocategory_id', $photogalery)->select(['photos.*', 'photocategories.id', 'photocategories.category_title'])
+            ->select(['photos.*', 'photocategories.id', 'photocategories.category_title'])
+            ->where('photos.photocategory_id', $photogalery)
             ->first();
         $photos = Photo::leftjoin('photocategories', 'photos.photocategory_id', '=', 'photocategories.id')
             ->where('photos.photocategory_id', $photogalery)
@@ -607,9 +608,6 @@ class ExtraController extends Controller
 
     }
 
-
-
-
     public function SinglePost($slug, $id)
     {
 
@@ -719,19 +717,19 @@ class ExtraController extends Controller
             Post::join('categories', 'posts.category_id', 'categories.id')
                 ->select('posts.*', 'categories.category_tr', 'categories.category_en')
                 ->where('posts.category_id', $id)->where('posts.manset', 1)
-                ->orderBy('created_at', 'desc')->latest('id')
+                ->orderBy('created_at', 'desc')
                 ->limit(25)->get();
 
 
         $count = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-            ->where('posts.category_id', $id)->latest('id')
+            ->where('posts.category_id', $id)
             ->count();
 
 
         $catpost = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-            ->where('posts.category_id', $id)->orWhere('posts.manset', NULL)->offset(1)->latest('id')->take(10)->skip(10)
+            ->where('posts.category_id', $id)->orWhere('posts.manset', NULL)->offset(1)
             ->paginate(20);
 
 
@@ -743,7 +741,7 @@ class ExtraController extends Controller
         $nextnews = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
             ->where('posts.category_id', $id)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
-            ->inRandomOrder()->limit(10)->latest('id')
+            ->inRandomOrder()->limit(10)
             ->get();
 
         return view('main.body.category_post', compact('manset', 'webSiteSetting','category', 'catpost', 'nextnews', 'count'));
@@ -842,7 +840,15 @@ class ExtraController extends Controller
         return view('main.body.authors_writes', compact('yaziPost','webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'themeSetting'));
     }
 
+public function breakingnews() {
+    $webSiteSetting=WebsiteSetting::first();
+    $themeSetting=Theme::get();
 
+        $sondakika = Post::where('headline',1)->where('updated_at', '>', Carbon::now()->subDay(1))
+            ->get();
+
+        return view('main.body.breakingnews', compact('sondakika','webSiteSetting','themeSetting'));
+}
 
 
 
