@@ -174,7 +174,7 @@
         <section class="section-sdk position-relative d-flex w-100" style="margin-top:0px;">
             <div class="container ">
                 <div class="simple-marquee-container" style="z-index: 999;">
-                    <a href="sondakika.php">
+                    <a href="{{route('breakingnews')}}">
                         <div class="marquee-sibling">
                             Son Dakika
                         </div>
@@ -352,16 +352,14 @@
                                     @endphp
                                     @foreach ($fotogaleri as $row )
 
-                                        @if(empty(!$row->photocategory_id))
-                                            <div class="swiper-slide position-relative">
-                                                <a href="{{route('photo.gallerydetail',$row->photocategory_id)}}">
-                                                    <div class="swiper-slide__foto "><img class="img-fluid lazyload" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                                                                          data-src="{{asset($row->photo)}}"/>
-                                                    </div>
-                                                </a>
-                                                <span class="yazi-span">{{$row->title}}</span>
-                                            </div>
-                                        @endif
+                                        <div class="swiper-slide position-relative">
+                                            <a href="{{route('photo.gallerydetail',$row->photocategory_id)}}">
+                                                <div class="swiper-slide__foto "><img class="img-fluid lazyload" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                                                      data-src="{{asset($row->photo)}}"/>
+                                                </div>
+                                            </a>
+                                            <span class="yazi-span">{{$row->title}}</span>
+                                        </div>
 
                                 @endforeach
 
@@ -781,8 +779,8 @@
                 @foreach($ads as $ad)
                     @if($ad->type==1 && $ad->category_id==18)
                         <div class="col-md-12">
-                            <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                         data-src="{{asset($ad->ads)}}" ></a>
+                            <a href="{{$ad->link}}"><img class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
+                                                         data-src="{{asset($ad->ads)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==18)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -809,8 +807,8 @@
                             <div class="swiper-slide" style="">
                                 <div class="card kart kart-width kart-margin shadow" style="">
                                     <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
-                                        <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                            class="img_fluid kart_img lazyload" src="{{asset($row->image)}}"
+                                        <img
+                                            class="img_fluid kart_img lazyload" data-src="{{asset($row->image)}}" src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                             alt="Card image cap"></a>
 
                                     <div class="card-body kart-body   border-3 text-dark" style="border-top:1px solid {{$themeSetting[0]->economy}}">
@@ -861,8 +859,8 @@
                         <div class="col-md-4 float-left mb-3  ">
                             <div class="card kart kart-width kart-margin shadow" style="">
                                 <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
-                                    <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                        class="img_fluid kart_img lazyload" src="{{asset($homes->image)}}"
+                                    <img
+                                        class="img_fluid kart_img lazyload" data-src="{{asset($homes->image)}}" src="{{asset($homes->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                         alt="Card image cap"></a>
                                 @if($homes->headlinetag==1)
                                     <div class="short-tag" style="background-color:{{$themeSetting[0]->economy}}">
@@ -920,8 +918,8 @@
                             <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
-                                            <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid kart_img lazyload" src="{{asset($homes->image)}}"
-                                                /></a>
+                                            <img class="img-fluid kart_img lazyload"
+                                                 data-src="{{asset($homes->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"/></a>
 
                                         <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->agenda}}; ">
                                             @if($homes->headlinetag==1)

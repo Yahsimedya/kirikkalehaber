@@ -189,7 +189,8 @@ class ExtraController extends Controller
     public function PhotoGalleryDetail($photogalery)
     {
         $category = Photo::leftjoin('photocategories', 'photos.photocategory_id', '=', 'photocategories.id')
-            ->where('photos.photocategory_id', $photogalery)->select(['photos.*', 'photocategories.id', 'photocategories.category_title'])
+            ->select(['photos.*', 'photocategories.id', 'photocategories.category_title'])
+            ->where('photos.photocategory_id', $photogalery)
             ->first();
         $photos = Photo::leftjoin('photocategories', 'photos.photocategory_id', '=', 'photocategories.id')
             ->where('photos.photocategory_id', $photogalery)
@@ -839,7 +840,15 @@ class ExtraController extends Controller
         return view('main.body.authors_writes', compact('yaziPost','webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'themeSetting'));
     }
 
+public function breakingnews() {
+    $webSiteSetting=WebsiteSetting::first();
+    $themeSetting=Theme::get();
 
+        $sondakika = Post::where('headline',1)->where('updated_at', '>', Carbon::now()->subDay(1))
+            ->get();
+
+        return view('main.body.breakingnews', compact('sondakika','webSiteSetting','themeSetting'));
+}
 
 
 
