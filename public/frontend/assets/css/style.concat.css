@@ -8451,6 +8451,27 @@ img.lazyload:not([src]) {
       padding: 0; } }
   .kart-dark {
     background-color: white; }
+  .kart span {
+    color: #db2027;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    margin-top: 30px; }
+    .kart span u {
+      position: absolute;
+      left: 50%;
+      top: -14px;
+      transform: translateX(-50%);
+      background: #db2027;
+      width: 10px;
+      height: 10px;
+      content: '';
+      border-radius: 100%; }
   .kart-margin:not(:last-child) {
     margin-right: -2px !important; }
   .kart-width {

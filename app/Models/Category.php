@@ -18,6 +18,7 @@ class Category extends Model
         'category_status',
         'category_status',
         'category_order',
+        'categorycolor',
 
     ];
 

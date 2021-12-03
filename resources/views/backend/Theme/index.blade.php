@@ -1,57 +1,6 @@
 @extends('admin.admin_master')
 @section('admin')
-    <link rel="stylesheet" type="text/css" href="{{asset('backend/global_assets/picker/coloris.min.css')}}">
-    <style type="text/css">
-        @import url(https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap);
 
-        input {
-            width: 150px;
-            height: 32px;
-            padding: 0 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-family: inherit;
-            font-size: inherit;
-            font-weight: inherit;
-            box-sizing: border-box;
-        }
-
-        .examples {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .example {
-            flex-shrink: 0;
-            width: 300px;
-            margin-bottom: 30px;
-        }
-
-        .square .clr-field button,
-        .circle .clr-field button {
-            width: 22px;
-            height: 22px;
-            left: 5px;
-            right: auto;
-            border-radius: 5px;
-        }
-
-        .square .clr-field input,
-        .circle .clr-field input {
-            padding-left: 36px;
-        }
-
-        .circle .clr-field button {
-            border-radius: 50%;
-        }
-
-        .full .clr-field button {
-            width: 100%;
-            height: 100%;
-            border-radius: 5px;
-        }
-
-    </style>
 
 
     @foreach ($themeSettings as $row)
@@ -209,24 +158,4 @@
     @endforeach
 @endsection
 
-<script type="text/javascript" src="{{asset('backend/global_assets/picker/coloris.min.js')}}"></script>
-<script type="text/javascript">
 
-    Coloris({
-        el: '.coloris',
-        swatches: [
-            '#264653',
-            '#2a9d8f',
-            '#e9c46a',
-            '#f4a261',
-            '#e76f51',
-            '#d62828',
-            '#023e8a',
-            '#0077b6',
-            '#0096c7',
-            '#00b4d8',
-            '#48cae4',
-        ]
-    });
-
-</script>
