@@ -77,7 +77,7 @@
                                 <label class="col-form-label col-lg-3">Öne Çıkan 1.Alan</label>
 
 
-                                <div class="col-lg-9">
+                                <div class="col-lg-2">
                                     <div class="example full" style="width: 100%; height: 30px">
 
                                         <input type="text" class="coloris"
@@ -87,27 +87,26 @@
 
 
                                 </div>
+                                <div class="col-lg-7">
+                                    <select data-placeholder="Select your state" name="category1"
 
-                                <label class="col-form-label col-lg-3">Öne Çıkan 1.Kategori</label>
-                                <div class="col-lg-9">
-                                        <select data-placeholder="Select your state" name="category1"
+                                            class="form-control form-control-select2"
+                                            data-fouc>
+                                        @foreach($Categories as $rows)
+                                            <option value="{{$rows->id}}" @php if($rows->id==$category1) {echo "selected";}  @endphp>
+                                                {{$rows->category_tr}}
+                                            </option>
+                                        @endforeach
 
-                                                class="form-control form-control-select2"
-                                                data-fouc>
-                                            @foreach($Categories as $rows)
-                                                <option value="{{$rows->id}}" @php if($rows->id==$category1) {echo "selected";}  @endphp>
-                                                    {{$rows->category_tr}}
-                                                </option>
-                                            @endforeach
-
-                                        </select>
+                                    </select>
                                     <div class="col-lg-12 mt-4"></div>
 
 
                                 </div>
 
+
                                 <label class="col-form-label col-lg-3">Öne Çıkan 2.Alan</label>
-                                <div class="col-lg-9">
+                                <div class="col-lg-2">
                                     <div class="example full" style="width: 100%; height: 30px">
 
                                         <input type="text" class="coloris"
@@ -116,8 +115,7 @@
                                     </div>
 
                                 </div>
-                                <label class="col-form-label col-lg-3">Öne Çıkan 2.Kategori</label>
-                                <div class="col-lg-9">
+                                <div class="col-lg-7">
                                         <select data-placeholder="Select your state" name="category2"
                                                 style="width: 150px; height: 30px"
                                                 class="form-control form-control-select2"
@@ -134,7 +132,7 @@
 
                                 </div>
                                 <label class="col-form-label col-lg-3">Öne Çıkan 3.Alan</label>
-                                <div class="col-lg-9">
+                                <div class="col-lg-2">
                                     <div class="example full" style="width: 100%; height: 30px">
 
                                         <input type="text" class="coloris"
@@ -144,8 +142,8 @@
 
 
                                 </div>
-                                <label class="col-form-label col-lg-3">Öne Çıkan 3.Kategori</label>
-                                <div class="col-lg-9">
+
+                                <div class="col-lg-7">
                                         <select data-placeholder="Select your state" name="category3"
                                                 style="width: 150px; height: 30px"
                                                 class="form-control form-control-select2"
@@ -162,7 +160,7 @@
 
                                 </div>
                                 <label class="col-form-label col-lg-3">Öne Çıkan 4.Alan</label>
-                                <div class="col-lg-9">
+                                <div class="col-lg-2">
 
                                     <div class="example full" style="width: 100%; height: 30px">
 
@@ -172,8 +170,7 @@
 
 
                                 </div>
-                                <label class="col-form-label col-lg-3">Öne Çıkan 4.Kategori</label>
-                                <div class="col-lg-9">
+                                <div class="col-lg-7">
                                         <select data-placeholder="Select your state" name="category4"
                                                 style="width: 150px; height: 30px"
                                                 class="form-control form-control-select2"
