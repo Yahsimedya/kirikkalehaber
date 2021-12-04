@@ -48,7 +48,9 @@ class DemoCron extends Command
         $user = $cek->iha_usercode;
         $password = $cek->iha_password;
         $rss = $cek->iha_rss;
-        $auto_Bot = $cek->auto_Bot;
+//        $auto_Bot = $cek->auto_Bot;
+        $auto_Bot = 1;
+
         if ($auto_Bot == 1) {
             $sehir = 0;
             $kategori = 0;
@@ -168,7 +170,7 @@ class DemoCron extends Command
                         $data['district_id'] = $sehirs[0]->id;
                         $data['image'] = "storage/postimg" . "/" . $year . "/" . $month . "/" . $benzersiz . "-" . $isim . '.jpg';
                         $data['user_id'] = 1;
-                        $data['status'] = 0;
+                        $data['status'] = 1;
                         $data['haber_iha_kod'] = $haberkodu;
                         $data['created_at'] = Carbon::now();
                         Artisan::call('cache:clear');

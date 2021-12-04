@@ -283,7 +283,7 @@
                     <div class="swiper-container kategori-slider mb-2">
                         <div class="swiper-wrapper" style="height:100%;">
 
-                            @for($i=0;$i<=24;$i++)
+                            @for($i=0;$i<=3;$i++)
                                 <div class="swiper-slide" style="position:relative">
                                     <a href="{{URL::to('/'.str_slug($home[$i]->title_tr).'/'.$home[$i]->id.'/'.'haberi')}}">
                                         <div class="position-relative">
@@ -451,9 +451,9 @@
                                     <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}"><img
                                             class="img-fluid sag-manset-img swiper-lazy lazyloaded swiper-lazy-loaded lazyload"
                                             data-src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"></a>
-                                    <div class="kartlar__effect position-absolute">
-                                        <p class="sag-manset-text">{{$home[$i]->title_tr}}</p>
-                                    </div>
+                                            <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">  <div class="kartlar__effect position-absolute">
+                                        <p class="sag-manset-text">{{$row->title_tr}}</p>
+                                    </div></a>
                                 </div>
                             @endforeach
 
