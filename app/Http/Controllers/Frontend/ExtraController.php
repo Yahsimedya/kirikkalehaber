@@ -450,6 +450,12 @@ class ExtraController extends Controller
 //                ->get();
 ////            });
 
+        $themeSettings = Theme::latest()->get();
+       $category1= $themeSettings[0]->category1;
+       $category2= $themeSettings[0]->category2;
+       $category3 =$themeSettings[0]->category3;
+       $category4= $themeSettings[0]->category4;
+
         $surmanset = Cache::remember("surmanset", Carbon::now()->addYear(), function () {
             if (Cache::has('surmanset')) return Cache::has('surmanset');
             return Post::where('status', 1)
@@ -466,45 +472,42 @@ class ExtraController extends Controller
             return Post::whereIn('category_id', [1, 2, 3])->where('status', 1)->latest('updated_at')->limit(15)->get();
         });
 
+
         $sehir = Cache::remember("sehir", Carbon::now()->addYear(), function () {
             if (Cache::has('sehir')) return Cache::has('sehir');
             return Sehirler::orderByRaw('sehir_ad')->get();
         });
-//        $category = Category::latest()->get();
-//        dd($category->id);
-//        foreach ($category as $cat) {
-//            $economy = Post::get();
-//        }
-        $ekonomi = Cache::remember("ekeonomi", Carbon::now()->addYear(), function () {
+
+        $ekonomi = Cache::remember("ekeonomi", Carbon::now()->addYear(), function () use ($category1) {
             if (Cache::has('ekeonomi')) return Cache::has('ekeonomi');
-            return Post::where('category_id', 5)->where('status', 1)->limit(9)->latest('updated_at')->get();
+            return Post::where('category_id', $category1)->where('status', 1)->limit(9)->latest('updated_at')->get();
 
         });
 
-        $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () {
+        $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () use ($category2) {
             if (Cache::has('gundem')) return Cache::has('gundem');
-            return Post::where('category_id', '=', 2)->where('status', 1)->limit(9)->latest('updated_at')->get();
+            return Post::where('category_id', '=', $category2)->where('status', 1)->limit(9)->latest('updated_at')->get();
         });
 
-        $siyaset = Cache::remember("siyaset", Carbon::now()->addYear(), function () {
+        $siyaset = Cache::remember("siyaset", Carbon::now()->addYear(), function () use ($category3) {
             if (Cache::has('siyaset')) return Cache::has('siyaset');
-            return Post::where('category_id', '=', 3)->where('status', 1)->limit(9)->latest('updated_at')->get();
+            return Post::where('category_id', '=', $category3)->where('status', 1)->limit(9)->latest('updated_at')->get();
         });
 
-        $spor = Cache::remember("spor", Carbon::now()->addYear(), function () {
+        $spor = Cache::remember("spor", Carbon::now()->addYear(), function () use ($category4) {
             if (Cache::has('spor')) return Cache::has('spor');
-            return Post::where('category_id', '=', 6)->where('status', 1)->limit(6)->latest('updated_at')->get();
+            return Post::where('category_id', '=', $category4)->where('status', 1)->limit(6)->latest('updated_at')->get();
         });
         $themeSetting = Cache::remember("themeSetting", Carbon::now()->addYear(), function () {
             if (Cache::has('themeSetting')) return Cache::has('themeSetting');
             return Theme::get();
         });
 
-     $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-                   ->select(['authors.*', 'authors_posts.title','authors_posts.id','authors_posts.updated_at'])
-                   ->where('authors.status', 1)->where('authors_posts.status', 1)
-                  ->latest("authors_posts.updated_at")->limit(8)
-                   ->get();
+        $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
+            ->select(['authors.*', 'authors_posts.title','authors_posts.id','authors_posts.updated_at'])
+            ->where('authors.status', 1)->where('authors_posts.status', 1)
+            ->latest("authors_posts.updated_at")->limit(8)
+            ->get();
 //        $authors = AuthorsPost::leftjoin('authors', 'authors_posts.id', '=', 'authors.id')
 //            ->select(['authors_posts.*', 'authors.id',])
 //            ->where('authors.status', 1)->where('authors_posts.status', 1)
@@ -840,15 +843,15 @@ class ExtraController extends Controller
         return view('main.body.authors_writes', compact('yaziPost','webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'themeSetting'));
     }
 
-public function breakingnews() {
-    $webSiteSetting=WebsiteSetting::first();
-    $themeSetting=Theme::get();
+    public function breakingnews() {
+        $webSiteSetting=WebsiteSetting::first();
+        $themeSetting=Theme::get();
 
         $sondakika = Post::where('updated_at', '>', Carbon::now()->subDay(1))->latest()
             ->get();
 
         return view('main.body.breakingnews', compact('sondakika','webSiteSetting','themeSetting'));
-}
+    }
 
 
 

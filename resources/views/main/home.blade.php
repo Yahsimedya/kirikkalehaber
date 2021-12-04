@@ -797,7 +797,9 @@
 
                 <!--  ÜST BLOK 1140x90 REKLAM-->
                 <h4 class="pt-2 pb-2 ana-baslik">
-                    Öne Çıkan Ekonomi Haberleri
+                    Öne Çıkan {{$ekonomi[0]->category->category_tr}} Haberleri
+
+
                 </h4>
                 <!-- <div class="row"> -->
                 <div class="swiper-container siyaset"
@@ -911,7 +913,7 @@
 
         <section class=" pb-4" style="background-color: {{$themeSetting[0]->agenda}}">
             <div class="container pt-2 pb-2">
-                <h4 class="pt-2 pb-2 ana-baslik">Öne Çıkan Gündem Haberleri</h4>
+                <h4 class="pt-2 pb-2 ana-baslik">Öne Çıkan {{$gundem[0]->category->category_tr}} Haberleri</h4>
                 <!-- <div class="row"> -->
                 <div class="swiper-container ekonomi">
                     <div class="swiper-wrapper" style="background-color: {{$themeSetting[0]->agenda}}">
@@ -1017,7 +1019,7 @@
         <!---EKONOMİ HABERLERİ-->
         <section class="ekonomi pb-4">
             <div class="container pt-2 pb-2">
-                <h4 class="pt-2 pb-2 ana-baslik">Öne Çıkan Siyaset Haberleri</h4>
+                <h4 class="pt-2 pb-2 ana-baslik">Öne Çıkan {{$siyaset[0]->category->category_tr}} Haberleri </h4>
                 <!-- <div class="row"> -->
                 <div class="swiper-container ekonomi">
                     <div class="swiper-wrapper">
@@ -1125,7 +1127,7 @@
         <!--SPOR SLİDER-->
         <section class="spor pb-4">
             <div class="container pt-2 pb-2">
-                <h4 class="pt-2 pb-2 ana-baslik">Öne Çıkan Spor Haberleri</h4>
+                <h4 class="pt-2 pb-2 ana-baslik">Öne Çıkan {{$spor[0]->category->category_tr}} Haberleri</h4>
                 <!-- <div class="row"> -->
                 <div class="swiper-container spor">
                     <div class="swiper-wrapper">

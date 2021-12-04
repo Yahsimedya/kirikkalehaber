@@ -24,6 +24,10 @@ class CreateThemesTable extends Migration
             $table->string('sport');
             $table->bigInteger('apps');
             $table->bigInteger('subscription');
+            $table->bigInteger('category1');
+            $table->bigInteger('category2');
+            $table->bigInteger('category3');
+            $table->bigInteger('category4');
 
 
 
