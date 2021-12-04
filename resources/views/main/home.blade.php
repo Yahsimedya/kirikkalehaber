@@ -283,7 +283,7 @@
                     <div class="swiper-container kategori-slider mb-2">
                         <div class="swiper-wrapper" style="height:100%;">
 
-                            @for($i=0;$i<=3;$i++)
+                            @for($i=0;$i<=24;$i++)
                                 <div class="swiper-slide" style="position:relative">
                                     <a href="{{URL::to('/'.str_slug($home[$i]->title_tr).'/'.$home[$i]->id.'/'.'haberi')}}">
                                         <div class="position-relative">
