@@ -29,7 +29,7 @@ class themeSeeder extends Seeder
             'category2' => 2,
             'category3' => 3,
             'category4' => 4,
-            'multiple_category' => '1,2,3,4',
+            'multiple_category' => ["3","2","1"],
         ]);
     }
 }
