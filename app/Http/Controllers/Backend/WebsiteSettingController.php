@@ -25,7 +25,6 @@ class WebsiteSettingController extends Controller
 
     public function update(Request $request, WebsiteSetting $websetting)
     {
-        dd($request);
 
         $data=$request->all();
 

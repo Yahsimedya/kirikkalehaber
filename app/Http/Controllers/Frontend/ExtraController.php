@@ -468,8 +468,12 @@ class ExtraController extends Controller
 
         $sagmanset = Cache::remember("sagmanset", Carbon::now()->addYear(), function () {
             if (Cache::has('sagmanset')) return Cache::has('sagmanset'); //here am simply trying Laravel Collection method -find
-
-            return Post::whereIn('category_id', [1, 2, 3])->where('status', 1)->latest('updated_at')->limit(15)->get();
+            $themeSettings = Theme::latest()->get();
+            foreach ($themeSettings as $row){
+                $multiple_category=$row->multiple_category;
+                $explode_id = json_decode($multiple_category, true);
+            }
+            return Post::whereIn('category_id', $explode_id)->where('status', 1)->latest('updated_at')->limit(15)->get();
         });
 
 

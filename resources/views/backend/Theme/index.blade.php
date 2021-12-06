@@ -9,9 +9,17 @@
             $category2=$row->category2;
             $category3=$row->category3;
             $category4=$row->category4;
+            $multiple_category=$row->multiple_category;
+
+           $explode_id = json_decode($multiple_category, true);
 
 
         @endphp
+        <script>
+            $(".chosen-select").chosen({
+                no_results_text: "Oops, nothing found!"
+            })
+        </script>
         <div class="content">
 
             <div class="card">
@@ -227,6 +235,26 @@
                                         </option>
                                     </select>
 
+
+                                </div>
+
+
+                                <div class="col-lg-12 mt-4"></div>
+
+                                <label class="col-form-label col-lg-3">Çoklu Kategori</label>
+                                    <div class="col-md-9">
+                                        <select class="select" multiple name="multiple_category[]">
+                                            <option>Kategori Seçiniz</option>
+                                            @foreach($Categories as $rows)
+                                                <option value="{{$rows->id}}" @php
+                                                    for ($i=0;$i<count($explode_id);$i++){
+                                                    if($rows->id==$explode_id[$i]) {echo "selected";}
+                                                }
+                                                @endphp>
+                                                    {{$rows->category_tr}}
+                                                </option>
+                                            @endforeach
+                                        </select>
 
                                 </div>
                             </div>

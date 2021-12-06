@@ -23,6 +23,6 @@ class Theme extends Model
         'category2',
         'category3',
         'category4',
-
+        'multiple_category',
     ];
 }

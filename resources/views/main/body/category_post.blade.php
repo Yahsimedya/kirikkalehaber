@@ -4,6 +4,8 @@
 {{--@section('meta_keywords',$category->category_keywords)--}}
 {{--@section('meta_description',$category->category_description)--}}
 @section('content')
+
+
     <?php
     $themeSetting = DB::table('themes')->get();
     ?>
@@ -17,6 +19,7 @@
             color: {{$themeSetting[0]->siteColorTheme}} !important;
         }
     </style>
+
     <div class="container mt-3">
 
         @if($count!=0)
@@ -28,6 +31,7 @@
                 <div class="col-md-8  pb-2">
                     <div class="swiper-container kategori-slider mb-2">
                         <div class="swiper-wrapper" style="height:100%;">
+
                             @foreach ($manset as $row)
 
                                 <div class="swiper-slide">

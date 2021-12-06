@@ -28,6 +28,8 @@ class CreateThemesTable extends Migration
             $table->bigInteger('category2');
             $table->bigInteger('category3');
             $table->bigInteger('category4');
+            $table->string('multiple_category');
+
 
 
 
