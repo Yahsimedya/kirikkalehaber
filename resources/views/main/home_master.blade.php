@@ -78,9 +78,9 @@
     <!-- Add the slick-theme.css if you want default styling -->
 {{--    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>--}}
     <!-- Add the slick-theme.css if you want default styling -->
+    <script rel="preload" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script rel="preload" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script rel="preload" src="{{mix('frontend/assets/js/combine.js')}}"></script>
 {{--    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js" async></script>--}}
