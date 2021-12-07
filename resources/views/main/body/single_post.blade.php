@@ -43,11 +43,9 @@
                         @endif
                     </h1>
                     <h2 style="font-size: 20px;">
-                        @if (session()->get('lang') == 'english')
-                            {{ Str::ucFirst($post->subtitle_en) }}
-                        @else
+
                             {{ Str::ucFirst($post->subtitle_tr) }}
-                        @endif
+
                     </h2>
                     @foreach($ads as $ad)
                         @if($ad->type==1 && $ad->category_id==3)
@@ -112,7 +110,7 @@
                     <div class="float-left pr-3 pl-0">
                         @foreach($ads as $ad)
                             @if($ad->type==1 && $ad->category_id==1)
-                                <img class="img-fluid pb-2 pt-1" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" width="100%" height="90" src="{{asset($ad->ads)}}">
+                                <img class="img-fluid pb-2 pt-1"  width="100%" height="90" src="{{asset($ad->ads)}}">
                             @elseif($ad->type==2 && $ad->category_id==1)
                                 <div class="w-100">{!!$ad->ad_code!!}</div>
                             @endif
@@ -247,6 +245,14 @@
             </div>
 
             <div class="col-md-4">
+                @foreach($ads as $ad)
+                    @if($ad->type==1 && $ad->category_id==7)
+                        <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid pb-1 pt-3" width="100%" height="90"
+                                                     src="{{asset($ad->ads)}}"></a>
+                    @elseif($ad->type==2 && $ad->category_id==7)
+                        <div class="w-100">{!!$ad->ad_code!!}</div>
+                    @endif
+                @endforeach
                 <!-- HABER DETAY SLİDER -->
                 <div class="swiper-container detay-slider mb-2">
                     <div class="swiper-wrapper">
@@ -283,11 +289,19 @@
 
                     <div class="reklam-alani mt-1 mb-1 text-center">
                         <a target="_blank" href="">
-                            {{-- <?php haberfotocek("./img",$row["reklam_fotoresimyol"],$settings["haber_foto"],"reklamlar","reklam görseli","img-fluid reklam");?> --}}
+                            @foreach($ads as $ad)
+                                @if($ad->type==1 && $ad->category_id==4)
+                                    <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid pb-1 pt-3" width="100%" height="90"
+                                                                 src="{{asset($ad->ads)}}"></a>
+                                @elseif($ad->type==2 && $ad->category_id==4)
+                                    <div class="w-100">{!!$ad->ad_code!!}</div>
+                                @endif
+                            @endforeach
                         </a>
 
                     </div>
                     <div class="reklam-alani mt-3 text-center">
+
                     </div>
                 </div>
                 @php
@@ -309,7 +323,19 @@
 
             <!--SIRADAKİ HABERLER-->
 
+                    <div class="reklam-alani mt-1 mb-1 text-center">
+                        <a target="_blank" href="">
+                            @foreach($ads as $ad)
+                                @if($ad->type==1 && $ad->category_id==5)
+                                    <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid pb-1 pt-3" width="100%" height="90"
+                                                                 src="{{asset($ad->ads)}}"></a>
+                                @elseif($ad->type==2 && $ad->category_id==5)
+                                    <div class="w-100">{!!$ad->ad_code!!}</div>
+                                @endif
+                            @endforeach
+                        </a>
 
+                    </div>
                 <div class="position-relative mt-3">
                     @if (session()->get('lang') == 'english')
                         <b>NEXT</b> <span>NEWS</span>
@@ -320,10 +346,8 @@
                 </div>
                 <div class="list-group detay__liste mt-3">
                     @php
-
                         $dateS = \Carbon\Carbon::now()->startOfMonth()->subMonth(3);
                         $dateE = \Carbon\Carbon::now()->startOfMonth();
-
                         $i=0;
                         $nextnews =DB::table('posts')->where('category_id',$post->category_id)->where('manset',1)->where('status',1)->orderBy('updated_at','desc')->limit(10)->get();
                     @endphp
@@ -344,10 +368,18 @@
                 </div>
 
                 <!--SIRADAKİ HABERLER-->
+                    @foreach($ads as $ad)
+                        @if($ad->type==1 && $ad->category_id==6)
+                            <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid pb-1 pt-3" width="100%" height="90"
+                                                         src="{{asset($ad->ads)}}"></a>
+                        @elseif($ad->type==2 && $ad->category_id==6)
+                            <div class="w-100">{!!$ad->ad_code!!}</div>
+                        @endif
+                    @endforeach
             </div>
 
 
-            <!-- ALT KARTLAR -->
+
             <!-- <div class="col-md-8 p-0 d-none d-sm-block">
 
                 </div> -->

@@ -65,6 +65,15 @@
                     <div class="row pt-2">
                         <div class="col-md-12 pt-2 pb-2">
 
+                                @foreach($ads as $ad)
+                                    @if($ad->type==1 && $ad->category_id==14)
+                                        <img class="img-fluid pb-2 pt-1"  width="100%" height="90" src="{{asset($ad->ads)}}">
+                                    @elseif($ad->type==2 && $ad->category_id==14)
+                                        <div class="w-100">{!!$ad->ad_code!!}</div>
+                                    @endif
+                                @endforeach
+
+
                         </div>
                         @foreach ($catpost as $row)
                             <div class="col-md-6">
@@ -85,7 +94,13 @@
                 </div>
                 <div class="col-md-4">
                     <div class="text-center mb-2">
-
+                        @foreach($ads as $ad)
+                            @if($ad->type==1 && $ad->category_id==10)
+                                <img class="img-fluid pb-2 pt-1"  width="100%" height="90" src="{{asset($ad->ads)}}">
+                            @elseif($ad->type==2 && $ad->category_id==10)
+                                <div class="w-100">{!!$ad->ad_code!!}</div>
+                            @endif
+                        @endforeach
 
                     </div>
                     @foreach ($nextnews as $row )
@@ -99,6 +114,18 @@
                             </div>
                         </a>
                 @endforeach
+                    <div class="text-center mt-3 mb-2">
+                        <div class="text-center mb-2">
+                            @foreach($ads as $ad)
+                                @if($ad->type==1 && $ad->category_id==13)
+                                    <img class="img-fluid pb-2 pt-1"  width="100%" height="90" src="{{asset($ad->ads)}}">
+                                @elseif($ad->type==2 && $ad->category_id==13)
+                                    <div class="w-100">{!!$ad->ad_code!!}</div>
+                                @endif
+                            @endforeach
+
+                        </div>
+                    </div>
 
 
                 <!--SIRADAKİ HABERLER-->
@@ -126,7 +153,16 @@
                     <!--SIRADAKİ HABERLER-->
 
                     <div class="text-center mt-3 mb-2">
-                        <img class="img-fluid w-100" src="img/336x280.jpg">
+                        <div class="text-center mb-2">
+                            @foreach($ads as $ad)
+                                @if($ad->type==1 && $ad->category_id==11)
+                                    <img class="img-fluid pb-2 pt-1"  width="100%" height="90" src="{{asset($ad->ads)}}">
+                                @elseif($ad->type==2 && $ad->category_id==11)
+                                    <div class="w-100">{!!$ad->ad_code!!}</div>
+                                @endif
+                            @endforeach
+
+                        </div>
                     </div>
                 </div>
 

@@ -528,7 +528,7 @@ class ExtraController extends Controller
 //            ->join('ads','ad_categories.id','ads.category_id')
                 ->select(['ads.*', 'ad_categories.id'])
                 ->where('status', 1)
-                ->whereIN('ad_categories.id', [9, 15, 16, 17, 18, 19, 20, 21, 22, 23]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
+             // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
                 ->get();
 
         });
@@ -655,7 +655,7 @@ class ExtraController extends Controller
 //            ->get();
             Ad::latest('updated_at')
                 ->where('status', 1)
-                ->whereIn('id', [1, 2, 3, 12])
+
                 ->with('adcategory')
                 ->get();
         $related =
@@ -750,8 +750,13 @@ class ExtraController extends Controller
             ->where('posts.category_id', $id)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
             ->inRandomOrder()->limit(10)
             ->get();
+        $ads = Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
+//            ->join('ads','ad_categories.id','ads.category_id')
+            ->select(['ads.*', 'ad_categories.id'])
+            ->where('status', 1)
+            ->get();
 
-        return view('main.body.category_post', compact('manset', 'webSiteSetting','category', 'catpost', 'nextnews', 'count'));
+        return view('main.body.category_post', compact('manset', 'webSiteSetting','category', 'catpost', 'ads', 'nextnews', 'count'));
 
 
     }

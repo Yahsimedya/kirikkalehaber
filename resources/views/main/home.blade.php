@@ -436,6 +436,7 @@
                                 <a class="facebook" href="{{$social->facebook}}"><i class="fa fa-facebook"></i></a>
                                 <a class="twitter" href="{{$social->twitter}}"><i class="fa fa-twitter"></i></a>
                                 <a class="youtube" href="{{$social->youtube}}"><i class="fa fa-youtube"></i></a>
+                                <a class="facebook" style="background-color: deeppink" href="{{$social->instagram}}"><i class="fa fa-instagram"></i></a>
                         @endforeach
                         <!-- <a class="whatsapp" href="#"><i class="fa fa-youtube"></i></a> -->
                         </div>
@@ -901,8 +902,8 @@
                 @foreach($ads as $ad)
                     @if($ad->type==1 && $ad->category_id==19)
                         <div class="col-md-12">
-                            <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                         data-src="{{asset($ad->ads)}}"></a>
+                            <a href="{{$ad->link}}"><img  class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
+                                                         src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==19)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -1007,7 +1008,7 @@
                     @if($ad->type==1 && $ad->category_id==20)
                         <div class="col-md-12">
                             <a href="{{$ad->link}}"><img class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                         data-src="{{asset($ad->ads)}} onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';""></a>
+                                                         data-src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==20)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -1111,17 +1112,7 @@
 
         <div class="container">
             <div class="row">
-                <!--  ÜST BLOK 1140x90 REKLAM-->
-                @foreach($ads as $ad)
-                    @if($ad->type==1 && $ad->category_id==22)
-                        <div class="col-md-12">
-                            <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                         data-src="{{asset($ad->ads)}}"></a>
-                        </div>
-                    @elseif($ad->type==2 && $ad->category_id==22)
-                        <div class="w-100">{!!$ad->ad_code!!}</div>
-                    @endif
-                @endforeach
+
             </div>
         </div>
         <!--SPOR SLİDER-->
@@ -1171,23 +1162,23 @@
             </div>
         </section>
         <!--SPOR SLİDER-->
-        <div class="col-md-8">
-            <!--  ÜST BLOK 1140x90 REKLAM-->
-            @foreach($ads as $ad)
-                @if($ad->type==1 && $ad->category_id==23)
-                    <div class="col-md-12">
-                        <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                     data-src="{{asset($ad->ads)}}"></a>
-                    </div>
-                @elseif($ad->type==2 && $ad->category_id==23)
-                    <div class="w-100">{!!$ad->ad_code!!}</div>
-                @endif
-            @endforeach
 
-
-        </div>
         <div class="container">
+            <div class="col-md-12">
+                <!--  ÜST BLOK 1140x90 REKLAM-->
+                @foreach($ads as $ad)
+                    @if($ad->type==1 && $ad->category_id==23)
+                        <div class="col-md-12">
+                            <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
+                                                         data-src="{{asset($ad->ads)}}"></a>
+                        </div>
+                    @elseif($ad->type==2 && $ad->category_id==23)
+                        <div class="w-100">{!!$ad->ad_code!!}</div>
+                    @endif
+                @endforeach
 
+
+            </div>
             <div class="row">
 
                 <div class="col-lg-8">
@@ -1217,6 +1208,17 @@
                             </div>
                             @endif
                         @endforeach
+                        <!--  ÜST BLOK 1140x90 REKLAM-->
+                            @foreach($ads as $ad)
+                                @if($ad->type==1 && $ad->category_id==22)
+                                    <div class="col-md-12">
+                                        <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
+                                                                     data-src="{{asset($ad->ads)}}"></a>
+                                    </div>
+                                @elseif($ad->type==2 && $ad->category_id==22)
+                                    <div class="w-100">{!!$ad->ad_code!!}</div>
+                                @endif
+                            @endforeach
                     </div>
                 </div>
                 <div class="col-lg-4" style="">
@@ -1236,6 +1238,7 @@
 
                     </div>
                 </div>
+
             </div>
         </div>
 
