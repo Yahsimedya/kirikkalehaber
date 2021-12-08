@@ -32,7 +32,7 @@ class AdController extends Controller
 
     public function CreateAds(Request $request)
     {
-//        dd($request->all());
+
         $data = array();
         $data['link'] = $request->link;
         $data['category_id'] = $request->category_id;
@@ -57,20 +57,23 @@ class AdController extends Controller
                 Ad::create($data);
 
                 $notification = array(
-                    'message' => 'Haber Başarıyla Eklendi',
+                    'message' => 'Reklam Başarıyla Eklendi',
                     'alert-type' => 'success'
                 );
-                return Redirect()->route('list.add')->with($notification);
+                return Redirect()->route('list.add');
             }
+            Ad::create($data);
+            return Redirect()->route('list.add');
         } else {
             $notification = array(
-                'message' => 'Haber Başarıyla Eklendi',
+                'message' => 'Reklam Başarıyla Eklendi',
                 'alert-type' => 'success'
             );
             Ad::create($request->all());
             return Redirect()->route('list.add')->with($notification);
 
         }
+
     }
 
     public function EditAds(Ad $ads)
