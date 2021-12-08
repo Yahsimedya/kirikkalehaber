@@ -294,7 +294,7 @@
                                     <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid pb-1 pt-3" width="100%" height="90"
                                                                  src="{{asset($ad->ads)}}"></a>
                                 @elseif($ad->type==2 && $ad->category_id==4)
-                                    <div class="w-100">{!!$ad->ad_code!!}</div>
+                                    <div class="w-100">{!! $ad->ad_code !!}</div>
                                 @endif
                             @endforeach
                         </a>
