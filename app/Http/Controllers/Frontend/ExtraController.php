@@ -433,7 +433,7 @@ class ExtraController extends Controller
 
         $home = Cache::remember("home", Carbon::now()->addYear(), function () {
             if (Cache::has('home')) return Cache::has('home');
-            return Post::where('status', 1)
+            return Post::where('status', 1)->where('manset',1)
                 ->latest('created_at')
                 ->get();
         });
