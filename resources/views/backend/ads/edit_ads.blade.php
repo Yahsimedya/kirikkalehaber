@@ -19,7 +19,7 @@
             <div class="card-body">
                 <form action="{{route('update.ads',$ads)}}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <input type="text" value="{{$ads->ads}}" name="old_image" class="form-control tokenfield">
+                    <input type="hidden" value="{{$ads->ads}}" name="old_image" class="form-control tokenfield">
 
                     <div class="row">
                         <div class="col-md-6">
