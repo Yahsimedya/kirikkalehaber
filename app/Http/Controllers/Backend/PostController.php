@@ -59,20 +59,7 @@ class PostController extends Controller
           <td>'.$row->districts->district_tr.'</td>
           <td ><img width="100" src="'.asset($row->image).'"></td>
           <td>'.Carbon::parse($row->created_at)->diffForHumans().'</td>
-               <td> '.if ($row->status == 1).'
-                        <form action="'.route('active.post', $row->id).'" method="post">
-                            @csrf
-                            <button type="submit" class="btn btn-success" name="aktif"
-                                value="0">Aktif</button>
-                        </form>
-                   @else
-                    <form action="'.route('active.post', $row->id).'" method="post">
-                        @csrf
-
-                        <button type="submit" class="btn btn-danger" name="aktif" value="1">Pasif</button>
-                        </form>
-
-                    @endif</td>
+               <td> </td>
                    <td class="text-center">
                         <div class="list-icons">
                             <div class="dropdown">
