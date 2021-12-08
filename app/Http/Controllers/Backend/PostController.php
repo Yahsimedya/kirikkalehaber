@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\District;
 use App\Models\Post;
 use App\Models\Subcategory;
@@ -17,9 +18,123 @@ use Illuminate\Support\Facades\Redirect;
 use Image;
 use Illuminate\Support\Str;
 
-
 class PostController extends Controller
 {
+    public function HaberAra(Request $request) {
+//        dd($request->all());
+
+        $text= $request->get('haber');
+
+        // $foto=$dbPDO->prepare("SELECT haberfoto_isim from haber_foto where haberfoto_isim  LIKE concat( '%', :haberfoto_isim, '%')");
+//        $stmt=$db->genelsorgu("SELECT * from haber where haber_ad  LIKE '%$text%' order by haber_Zaman DESC   limit 50");
+        $search=Post::where('title_tr','LIKE','%'.$text.'%')->limit(30)->latest()->get();
+//        $searchPost = DB::posts()->where('title_tr','LIKE','%'.$text.'%')->get();
+//        $searchPost = User::where('name','LIKE',"%".$text."%")->get();
+        $output = '<table id="example1" class="table datatable-responsive">
+            <thead>
+              <tr>
+                <th>No</th>
+                    <th>Haber Başlığı</th>
+                    <th>Kategori</th>
+                    <th>Bölge</th>
+                    <th>Fotoğraf</th>
+                    <th>Tarih</th>
+                    <th class="text-center">Actions</th>
+
+              </tr>
+            </thead>
+            <tbody id="sortable">';
+        $i=0;
+//        dd($search);
+        foreach($search as $row)
+        {
+            $i++;
+            $baslik=$row->title_tr;
+            $foto=$row->image;
+
+            $output .= ' <tr id="">
+          <td>'.$i.'</td>
+           <td class="sortable text-success">'.$baslik.'</td>
+          <td>'.$row->category->category_tr.'</td>
+          <td>'.$row->districts->district_tr.'</td>
+          <td ><img width="100" src="'.asset($row->image).'"></td>
+          <td>'.Carbon::parse($row->created_at)->diffForHumans().'</td>
+               <td> '.if ($row->status == 1).'
+                        <form action="'.route('active.post', $row->id).'" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-success" name="aktif"
+                                value="0">Aktif</button>
+                        </form>
+                   @else
+                    <form action="'.route('active.post', $row->id).'" method="post">
+                        @csrf
+
+                        <button type="submit" class="btn btn-danger" name="aktif" value="1">Pasif</button>
+                        </form>
+
+                    @endif</td>
+                   <td class="text-center">
+                        <div class="list-icons">
+                            <div class="dropdown">
+                                <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                    <i class="icon-menu9"></i>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="'.route('edit.post',$row).'" class="dropdown-item"><i class="icon-pencil6"></i> Düzenle</a>
+                                    <a href="'.route('delete.post',$row).'"  class="dropdown-item"><i class="icon-trash"></i>Sil</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>';
+
+
+        }
+
+
+        return $output;
+
+
+
+//        return view('backend.post.index', compact('search'));
+
+//        return response()->json($baslik);
+//        return response($baslik);
+
+//        return  $baslik;
+
+
+//        $output .= '</ul>';
+
+//        return $searchPost->title_tr;
+//        return $data = '<div class="col-md-12">'.$searchPost->title_tr.'</div>';
+//        return \Response::json($searchPost);
+
+//        return view('backend.post.index')->with('data', $searchPost);
+//        return $searchPost= '  <table id="example1" class="table table-bordered table-striped">
+//            <thead>
+//              <tr>
+//                <th align="center" width="5">#</th>
+//                <th>Haber Görseli</th>
+//                <th>Haber Başlığı</th>
+//                <th width="150">Tarih</th>
+//                <th width="150">Kategori</th>
+//
+//                <th></th>
+//                <th></th>
+//                <th></th>
+//                <th></th>
+//                <th>Durum</th>
+//                <th>Resim İşlemleri</th>
+//                <th></th>
+//                <th></th>
+//
+//              </tr>
+//            </thead>
+//            <tbody id="sortable">
+//            ';
+
+    }
     //
     public function index()
     {

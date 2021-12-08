@@ -199,6 +199,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/post/update/{post}', [PostController::class, 'UpdatePost'])->name('update.post');
     Route::post('/post/active/{id}', [PostController::class, 'ActivePost'])->name('active.post');
     Route::get('/post/delete/{post}', [PostController::class, 'DeletePost'])->name('delete.post');
+    Route::get('/haberbul/', [PostController::class, 'HaberAra'])->name('haberbul');
 
     //İHA Settings
     Route::get('/iha/addpage/', [IhaController::class, 'ihanewsAdd'])->name('addpage.iha');
