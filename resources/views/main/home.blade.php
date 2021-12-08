@@ -437,6 +437,7 @@
                                 <a class="twitter" href="{{$social->twitter}}"><i class="fa fa-twitter"></i></a>
                                 <a class="youtube" href="{{$social->youtube}}"><i class="fa fa-youtube"></i></a>
                                 <a class="facebook" style="background-color: deeppink" href="{{$social->instagram}}"><i class="fa fa-instagram"></i></a>
+                                <a class="linkedin" href="{{$social->linkedin}}"><i class="fa fa-linkedin"></i></a>
                         @endforeach
                         <!-- <a class="whatsapp" href="#"><i class="fa fa-youtube"></i></a> -->
                         </div>
