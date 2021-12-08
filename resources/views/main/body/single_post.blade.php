@@ -283,6 +283,14 @@
                         <div class="w-100">{!!$ad->ad_code!!}</div>
                     @endif
                 @endforeach
+                    @foreach($ads as $ad)
+                        @if($ad->type==1 && $ad->category_id==4)
+                            <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3" width="100%" height="90"
+                                                         src="{{asset($ad->ads)}}"></a>
+                        @elseif($ad->type==2 && $ad->category_id==4)
+                            <div class="w-100">{!!$ad->ad_code!!}</div>
+                        @endif
+                    @endforeach
             <!-- HABER DETAY REKLAM 336x270 -->
                 <!-- HABER DETAY SLİDER -->
                 <div class="">
@@ -294,14 +302,7 @@
 
                     </div>
                     <div class="reklam-alani mt-3 text-center">
-                        @foreach($ads as $ad)
-                            @if($ad->type==1 && $ad->category_id==4)
-                                <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3" width="100%" height="90"
-                                                             src="{{asset($ad->ads)}}"></a>
-                            @elseif($ad->type==2 && $ad->category_id==4)
-                                <div class="w-100">{!! $ad->ad_code !!}</div>
-                            @endif
-                        @endforeach
+
                     </div>
                 </div>
                 @php
