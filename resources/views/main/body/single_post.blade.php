@@ -289,19 +289,19 @@
 
                     <div class="reklam-alani mt-1 mb-1 text-center">
                         <a target="_blank" href="">
-                            @foreach($ads as $ad)
-                                @if($ad->type==1 && $ad->category_id==4)
-                                    <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid pb-1 pt-3" width="100%" height="90"
-                                                                 src="{{asset($ad->ads)}}"></a>
-                                @elseif($ad->type==2 && $ad->category_id==4)
-                                    <div class="w-100">{!! $ad->ad_code !!}</div>
-                                @endif
-                            @endforeach
+
                         </a>
 
                     </div>
                     <div class="reklam-alani mt-3 text-center">
-
+                        @foreach($ads as $ad)
+                            @if($ad->type==1 && $ad->category_id==4)
+                                <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3" width="100%" height="90"
+                                                             src="{{asset($ad->ads)}}"></a>
+                            @elseif($ad->type==2 && $ad->category_id==4)
+                                <div class="w-100">{!! $ad->ad_code !!}</div>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 @php
