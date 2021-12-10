@@ -660,7 +660,7 @@ class ExtraController extends Controller
                 ->get();
         $tag_ids = $post->tag()->get();
          $tagCount = $tag_ids->count();
-
+        $maybeRelated=[];
         foreach ($tag_ids as $tags) {
 
              $tag= $tags->id;
