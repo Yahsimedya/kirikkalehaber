@@ -145,10 +145,10 @@
                         @foreach($maybeRelated as $row)
                             <a href="{{ URL::to('/' . str_slug($row->title_tr). '/' . $row->post_id . '/' . 'haberi') }}">
                         <div class="row p-3 border-top">
-                                <div class="col-md-4"><img height="200" class="img-fluid" src="{{asset($row->image)}}"></div>
-                                <div class="col-md-8 my-auto">
-                                    <h5>{{$row->title_tr}}</h5>
-                                    <span class="card-kisalt">{{$row->title_tr}}</span>
+                                <div class="col-md-5"><img height="200" class="img-fluid" src="{{asset($row->image)}}"></div>
+                                <div class="col-md-7 my-auto">
+                                    <small class="font-weight-bold text-secondary">İlginizi Çekebilir</small>
+                                    <p class="card-kisalt font-weight-bold">{{$row->title_tr}}</p>
                                 </div>
                             </div>
                             </a>
