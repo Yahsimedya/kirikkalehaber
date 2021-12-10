@@ -129,17 +129,33 @@
                     {{--                        @endforeach--}}
                     {{--                    </div>--}}
                     <div class="row p-3">
-
-                        @foreach($related as $relate)
+                        @foreach($tagName as $relate)
                             {{--    {{dd($relate)}}--}}
+                        @if ($tagCount>1)
+
                             <a href="{{ URL::to('/etiket/'.str_slug($relate->name).'/'.$relate->id) }}">
                                 <div class="btn btn-sm btn-info  d-inline-block float-left ml-1 mb-2">{{$relate->name}}
                                 </div>
                             </a>
+                            @endif
                         @endforeach
                     </div>
+                    @if ($tagCount>=1)
 
-                    <!-- İÇERİK KARE REKLAM ALANI 728x90 -->
+                        @foreach($maybeRelated as $row)
+                            <a href="{{ URL::to('/' . str_slug($row->title_tr). '/' . $row->post_id . '/' . 'haberi') }}">
+                        <div class="row p-3 border-top">
+                                <div class="col-md-4"><img height="200" class="img-fluid" src="{{asset($row->image)}}"></div>
+                                <div class="col-md-8 my-auto">
+                                    <h5>{{$row->title_tr}}</h5>
+                                    <span class="card-kisalt">{{$row->title_tr}}</span>
+                                </div>
+                            </div>
+                            </a>
+                        @endforeach
+                    @endif
+
+                <!-- İÇERİK KARE REKLAM ALANI 728x90 -->
 
                     @foreach($ads as $ad)
                         @if($ad->type==1 && $ad->category_id==12)

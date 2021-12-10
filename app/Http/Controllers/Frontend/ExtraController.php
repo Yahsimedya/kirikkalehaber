@@ -658,13 +658,39 @@ class ExtraController extends Controller
 
                 ->with('adcategory')
                 ->get();
-        $related =
+        $tag_ids = $post->tag()->get();
+         $tagCount = $tag_ids->count();
+
+        foreach ($tag_ids as $tags) {
+
+             $tag= $tags->id;
+            $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+                ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
+                ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
+                ->where('post_tags.tag_id', $tag)->skip(1)->take(3)->latest('created_at')
+                ->get();
+
+        }
+//dd($tag_ids);
+
+        $tagName =
             Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                 ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
                 ->where('posts.id', $id)->latest()
                 ->limit(10)
                 ->get();
+//        $tag_ids = $post->tag()->allRelatedIds()->toArray();
+//        dd($tag_ids);
+//        $related = Post::whereHas('post_tags.post_id', function($q) use ($tag_ids) {
+//            $q->whereIn('id', $tag_ids);
+//        })
+//            ->orderBy('created_at')
+//            ->take(6)
+//            ->get();
+
+
+//        $related = Post::whereHas('post_tags')
 //            Post::
 //                with('tags')
 //                ->find($id)
@@ -701,7 +727,7 @@ class ExtraController extends Controller
 //        $related=$this->belongsToMany(Post::class, 'post_tags', 'tags');
         $seoset = Seos::first();
         $webSiteSetting=WebsiteSetting::first();
-        return view('main.body.single_post', compact('post', 'ads','webSiteSetting', 'random', 'slider', 'related', 'nextrelated', 'comments', 'id', 'seoset'));
+        return view('main.body.single_post', compact('post', 'ads','webSiteSetting', 'random', 'slider', 'tagName', 'nextrelated', 'comments', 'id', 'seoset','maybeRelated','tagCount'));
 
 
     }
