@@ -93,160 +93,25 @@
 
         </div>
     </div>
-    <div class="tab-pane fade" id="birinci-lig" role="tabpanel" aria-labelledby="birinci-lig-tab">
+
+    <div class="tab-pane fade" id="birinci-lig" role="tabpanel" aria-labelledby="ikinci-lig-beyaz-tab">
         <table class="table table-striped table-spor puan_durumu shadow-sm">
             <thead class="table-spor__baslik">
             <tr align="center">
-                <th scope="col">S</th>
 
-                <th scope="col-2">Takım</th>
-                <!-- <th  scope="col">forma</th> -->
-                <th scope="col">G</th>
-                <th scope="col">B</th>
-                <th scope="col">M</th>
-                <th scope="col">Av</th>
-                <th scope="col">P</th>
 
+                <th scope="col-2">Tarih</th>
+                <th scope="col-2">Stadyum</th>
+                <th scope="col">Evsahibi</th>
+                <th scope="col">Misafir</th>
             </tr>
             </thead>
             <tbody>
-            <!-- BİRİNCİ LİG  BEYAZ GROUP-->
-            {{--            @include('main.body.lig1')--}}
+
+            @include('main.body.fikstur')
 
             </tbody>
         </table>
-    </div>
-    <div class="tab-pane fade" id="ikinci-lig-beyaz" role="tabpanel" aria-labelledby="ikinci-lig-beyaz-tab">
-        <table class="table table-striped table-spor puan_durumu shadow-sm">
-            <thead class="table-spor__baslik">
-            <tr align="center">
-                <th scope="col">S</th>
-
-                <th scope="col-2">Takım</th>
-                <!-- <th  scope="col">forma</th> -->
-                <th scope="col">G</th>
-                <th scope="col">B</th>
-                <th scope="col">M</th>
-                <th scope="col">Av</th>
-                <th scope="col">P</th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <!-- İKİNCİ LİG  BEYAZ GROUP-->
-            {{--            @include('main.body.ligbeyaz')--}}
-
-            </tbody>
-        </table>
-    </div>
-    <div class="tab-pane fade" id="ikinci-kirmizi-lig" role="tabpanel"
-         aria-labelledby="ikinci-kirmizi-lig-tab">
-        <table class="table table-striped table-spor puan_durumu shadow-sm">
-            <thead class="table-spor__baslik">
-            <tr align="center">
-                <th scope="col">S</th>
-
-                <th scope="col-2">Takım</th>
-                <!-- <th  scope="col">forma</th> -->
-                <th scope="col">G</th>
-                <th scope="col">B</th>
-                <th scope="col">M</th>
-                <th scope="col">Av</th>
-                <th scope="col">P</th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <!-- İKİNCİ LİG  KIRMIZI GROUP-->
-            {{--            @include('main.body.ligkirmizi')--}}
-
-            </tbody>
-        </table>
-    </div>
-    <div class="tab-pane fade" id="ucuncu-lig-1" role="tabpanel" aria-labelledby="ucuncu-lig-1-tab">
-        <table class="table table-striped table-spor puan_durumu shadow-sm">
-            <thead class="table-spor__baslik">
-            <tr align="center">
-                <th scope="col">S</th>
-
-                <th scope="col-2">Takım</th>
-                <!-- <th  scope="col">forma</th> -->
-                <th scope="col">G</th>
-                <th scope="col">B</th>
-                <th scope="col">M</th>
-                <th scope="col">Av</th>
-                <th scope="col">P</th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <!-- ÜÇÜNCÜ LİG  1. GROUP-->
-            </tbody>
-        </table>
-    </div>
-    <div class="tab-pane fade" id="ucuncu-lig-2" role="tabpanel" aria-labelledby="ucuncu-lig-2-tab">
-        <table class="table table-striped table-spor puan_durumu shadow-sm">
-            <thead class="table-spor__baslik">
-            <tr align="center">
-                <th scope="col">S</th>
-
-                <th scope="col-2">Takım</th>
-                <!-- <th  scope="col">forma</th> -->
-                <th scope="col">G</th>
-                <th scope="col">B</th>
-                <th scope="col">M</th>
-                <th scope="col">Av</th>
-                <th scope="col">P</th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <!-- ÜÇÜNCÜ LİG  2. GROUP-->
-            </tbody>
-        </table>
-    </div>
-    <div class="tab-pane fade" id="ucuncu-lig-3" role="tabpanel" aria-labelledby="ucuncu-lig-3-tab">
-        <table class="table table-striped table-spor puan_durumu shadow-sm">
-            <thead class="table-spor__baslik">
-            <tr align="center">
-                <th scope="col">S</th>
-
-                <th scope="col-2">Takım</th>
-                <!-- <th  scope="col">forma</th> -->
-                <th scope="col">G</th>
-                <th scope="col">B</th>
-                <th scope="col">M</th>
-                <th scope="col">Av</th>
-                <th scope="col">P</th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <!-- ÜÇÜNCÜ LİG  3. GROUP-->
-            </tbody>
-        </table>
-    </div>
-    <div class="tab-pane fade" id="ucuncu-lig-4" role="tabpanel" aria-labelledby="ucuncu-lig-4-tab">
-        <table class="table table-striped table-spor puan_durumu shadow-sm">
-            <thead class="table-spor__baslik">
-            <tr align="center">
-                <th scope="col">S</th>
-
-                <th scope="col-2">Takım</th>
-                <!-- <th  scope="col">forma</th> -->
-                <th scope="col">G</th>
-                <th scope="col">B</th>
-                <th scope="col">M</th>
-                <th scope="col">Av</th>
-                <th scope="col">P</th>
-
-            </tr>
-            </thead>
-
-            <tbody>
-
-            <!-- ÜÇÜNCÜ LİG  4. GROUP-->
-            </tbody>
         </table>
     </div>
 </div>
