@@ -433,11 +433,11 @@
                             Edin</p>
                         <div class="social-icons float-right position-relative">
                             @foreach($socials as $social)
-                                <a class="facebook" href="{{$social->facebook}}"><i class="fa fa-facebook"></i></a>
-                                <a class="twitter" href="{{$social->twitter}}"><i class="fa fa-twitter"></i></a>
-                                <a class="youtube" href="{{$social->youtube}}"><i class="fa fa-youtube"></i></a>
-                                <a class="facebook" style="background-color: deeppink" href="{{$social->instagram}}"><i class="fa fa-instagram"></i></a>
-                                <a class="linkedin" href="{{$social->linkedin}}"><i class="fa fa-linkedin"></i></a>
+                                <a class="facebook" href="{{$social->facebook}}"><i class="fa fa-facebook text-light"></i></a>
+                                <a class="twitter" href="{{$social->twitter}}"><i class="fa fa-twitter text-light"></i></a>
+                                <a class="youtube" href="{{$social->youtube}}"><i class="fa fa-youtube text-light"></i></a>
+                                <a class="facebook" style="background-color: deeppink" href="{{$social->instagram}}"><i class="fa fa-instagram text-light"></i></a>
+                                <a class="linkedin" href="{{$social->linkedin}}"><i class="fa fa-linkedin text-light"></i></a>
                         @endforeach
                         <!-- <a class="whatsapp" href="#"><i class="fa fa-youtube"></i></a> -->
                         </div>

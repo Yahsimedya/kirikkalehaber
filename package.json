@@ -21,6 +21,7 @@
         "vue": "^2.1.10"
     },
     "dependencies": {
+        "@ckeditor/ckeditor5-build-decoupled-document": "^31.1.0",
         "slick-carousel": "^1.8.1",
         "swiper": "^7.2.0"
     }
