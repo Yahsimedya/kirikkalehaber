@@ -665,14 +665,18 @@ class ExtraController extends Controller
             $ids[]=$tags->id;
              $tag= $tags->id;
         }
+//        dd($ids);
         $maybeRelated=[];
-        foreach ($ids as $tagId) {
+//        foreach ($ids as $tagId) {
+        if(isset($ids)) {
             $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                 ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                ->where('post_tags.tag_id', $tagId)->skip(1)->take(3)->latest('created_at')
+                ->orWhereIn('post_tags.tag_id', $ids)->skip(1)->limit(3)->inRandomOrder()->groupBy('posts.id')->latest()
                 ->get();
-        }
+        }//        }
+//        dd($maybeRelated);
+
         $tagName =
             Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
