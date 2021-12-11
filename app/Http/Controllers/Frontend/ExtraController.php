@@ -660,19 +660,18 @@ class ExtraController extends Controller
                 ->get();
         $tag_ids = $post->tag()->get();
          $tagCount = $tag_ids->count();
-        $maybeRelated=[];
-        foreach ($tag_ids as $tags) {
 
+        foreach ($tag_ids as $tags) {
+            $ids[]=$tags->id;
              $tag= $tags->id;
+        }
+        foreach ($ids as $tagId) {
             $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                 ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                ->where('post_tags.tag_id', $tag)->skip(1)->take(3)->latest('created_at')
+                ->where('post_tags.tag_id', $tagId)->skip(1)->take(3)->latest('created_at')
                 ->get();
-
         }
-//dd($tag_ids);
-
         $tagName =
             Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
