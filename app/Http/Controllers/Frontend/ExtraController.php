@@ -660,15 +660,19 @@ class ExtraController extends Controller
                 ->get();
         $tag_ids = $post->tag()->get();
          $tagCount = $tag_ids->count();
-
+        $ids=array();
         foreach ($tag_ids as $tags) {
             $ids[]=$tags->id;
              $tag= $tags->id;
         }
 //        dd($ids);
         $maybeRelated=[];
+
 //        foreach ($ids as $tagId) {
         if(isset($ids)) {
+
+    if ($ids!=[]){
+        foreach ($ids as $tagId) {
             $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                 ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
@@ -676,6 +680,9 @@ class ExtraController extends Controller
                 ->get();
         }//        }
 //        dd($maybeRelated);
+        }
+    }
+
 
         $tagName =
             Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
