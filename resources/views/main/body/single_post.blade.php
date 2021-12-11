@@ -131,13 +131,11 @@
                     <div class="row p-3">
                         @foreach($tagName as $relate)
                             {{--    {{dd($relate)}}--}}
-                        @if ($tagCount>1)
 
                             <a href="{{ URL::to('/etiket/'.str_slug($relate->name).'/'.$relate->id) }}">
                                 <div class="btn btn-sm btn-secondary  d-inline-block float-left ml-1 mb-2">{{$relate->name}}
                                 </div>
                             </a>
-                            @endif
                         @endforeach
                     </div>
                     @if ($tagCount>=1)
