@@ -665,6 +665,7 @@ class ExtraController extends Controller
             $ids[]=$tags->id;
              $tag= $tags->id;
         }
+        $maybeRelated=[];
         foreach ($ids as $tagId) {
             $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
