@@ -2,6 +2,7 @@
 @section('title',$post->title_tr)
 @section('meta_keywords',$post->keywords_tr)
 @section('meta_description',$post->description_tr)
+@section('google_analytics',$seoset->google_analytics)
 @section('og:site_name',$seoset->meta_title)
 @section('og:title',$post->title_tr)
 @section('og:description',$post->title_tr)
