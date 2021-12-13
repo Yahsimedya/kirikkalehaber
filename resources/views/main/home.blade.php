@@ -12,13 +12,8 @@
     $kurlar = Session::get('kurlar');
     $veri = Session::get('havadurumu');
     $icon = Session::get('icon');
-
     ?>
     <style>
-
-
-
-
         .anamanset-pagination > .swiper-pagination-bullet-active {
             background-color: {{$themeSetting[0]->siteColorTheme}}   !important;
         }
@@ -45,8 +40,6 @@
         .spor {
             background-image: linear-gradient(-10deg, {{$themeSetting[0]->sport}}, {{$themeSetting[0]->sport}}) !important;
         }
-
-
         .custom-select {
             border: none;
             margin-right: 10px;

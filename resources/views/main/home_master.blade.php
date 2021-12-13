@@ -50,7 +50,7 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', '@yield('google_verification')');
+        gtag('config', '@yield('google_analytics')');
     </script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=@yield('adsense_code')"      crossorigin="anonymous"></script>
     <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
