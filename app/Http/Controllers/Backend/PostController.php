@@ -196,7 +196,7 @@ class PostController extends Controller
 
             $new_image_name = 'storage/postimg/' . $yil . '/' . $ay . '/' . $image_one;
 
-            Image::make($image)->resize(800, 600)->fit(800, 600)->save($new_image_name,80,'jpg');
+            Image::make($image)->resize(800, 450)->fit(800, 450)->save($new_image_name,80,'jpg');
 
             $post->image = $new_image_name;
         }
@@ -278,7 +278,7 @@ class PostController extends Controller
             $image_one = uniqid() . '.' . $image->getClientOriginalName();
 
             $new_image_name = 'storage/postimg/' . $yil . '/' . $ay . '/' . $image_one;
-            Image::make($image)->resize(800, 600)->fit(800, 600)->save($new_image_name,80,'jpg');
+            Image::make($image)->resize(800, 450)->fit(800, 450)->save($new_image_name,80,'jpg');
             $post->image = $new_image_name; // set new image to the object, replace tmp image with new right path
 
             if (file_exists($request->old_image)) {
@@ -370,6 +370,15 @@ class PostController extends Controller
 
         return response()->json($districts);
     }
+
+    public function fetchLike(Request $request)
+    {
+        $post = Post::find($request->blog);
+        return response()->json([
+            'post' => $post,
+        ]);
+    }
+
 
 
     //  public function OrderphotoUpload(Request $request, $id)

@@ -22,6 +22,7 @@
         "laravel/jetstream": "^2.3",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
+        "laravel/ui": "^3.4",
         "livewire/livewire": "^2.0",
         "mafftor/laravel-file-manager": "^2.0",
         "roumen/sitemap": "^8.0",

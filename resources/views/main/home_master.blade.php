@@ -83,7 +83,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script rel="preload" src="{{mix('frontend/assets/js/combine.js')}}"></script>
-{{--    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js" async></script>--}}
+    <script src="{{asset('js/app.js')}}"></script>
+
+    {{--    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js" async></script>--}}
 {{--    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>--}}
 {{--    <script src="{{mix('js/swiper-bundle.js')}}"></script>--}}
 

@@ -900,7 +900,43 @@ class ExtraController extends Controller
     }
 
 
+    public function fetchLike(Request $request)
+    {
+        $blog = Post::find($request->blog);
+        return response()->json([
+            'blog' => $blog,
+        ]);
+    }
 
+    public function handleLike(Request $request)
+    {
+        $blog = Post::find($request->blog);
+        $value = $blog->like;
+        $blog->like = $value+1;
+        $blog->save();
+        return response()->json([
+            'message' => 'Liked',
+        ]);
+    }
+
+    public function fetchDislike(Request $request)
+    {
+        $blog = Post::find($request->blog);
+        return response()->json([
+            'blog' => $blog,
+        ]);
+    }
+
+    public function handleDislike(Request $request)
+    {
+        $blog = Post::find($request->blog);
+        $value = $blog->dislike;
+        $blog->dislike = $value+1;
+        $blog->save();
+        return response()->json([
+            'message' => 'Disliked',
+        ]);
+    }
 
 
 //    public function akbankkur()

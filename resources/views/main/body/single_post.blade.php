@@ -13,7 +13,40 @@
 @section('twitter:site',$seoset->meta_title)
 @section('twitter:title',$post->title_tr)
 
+
 @section('content')
+{{--    <script>--}}
+{{--        $(document).on('click','#saveLikeDislike', function () {--}}
+{{--            var _post=$(this).data('post');--}}
+{{--            var _type=$(this).data('type');--}}
+{{--            var vm=$(this);--}}
+
+{{--            //RUN AJAC--}}
+{{--            $.ajax({--}}
+{{--                url:"{{route('like')}}",--}}
+{{--                type:"post",--}}
+{{--                dataType:'json',--}}
+{{--                data: {--}}
+{{--                    post: _post,--}}
+{{--                    type:_type,--}}
+{{--                    _token:"{{csrf_token()}}"--}}
+{{--                },--}}
+{{--                beforeSend:function (){--}}
+{{--                    vm.addClass('disabled');--}}
+{{--                },--}}
+{{--                success:function (res) {--}}
+{{--                    // alert(res);--}}
+{{--                    if(res.bool==true) {--}}
+{{--                        vm.removeClass('disabled').addClass('active');--}}
+{{--                        vm.removeAttr('id');--}}
+{{--                        var _prevCount=$("."+_type+"-count").text();--}}
+{{--                        _prevCount++;--}}
+{{--                        $("."+_type+"-count").text(_prevCount);--}}
+{{--                    }--}}
+{{--                }--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
     <?php
     $themeSetting = DB::table('themes')->get();
     ?>
@@ -50,7 +83,7 @@
                     </h2>
                     @foreach($ads as $ad)
                         @if($ad->type==1 && $ad->category_id==3)
-                            <img class="img-fluid pb-2 pt-1" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" width="100%" height="90" src="{{asset($ad->ads)}}">
+                            <img class="img-fluid pb-2 pt-1 lazyload" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" width="100%" height="90" src="{{asset($ad->ads)}}">
                         @elseif($ad->type==2 && $ad->category_id==3)
                             <div class="w-100">{!!$ad->ad_code!!}</div>
                         @endif
@@ -60,13 +93,13 @@
 
                         <div class="video-container">
                             @if (!empty($post->posts_video))
-                                <iframe width="100%" height="400"
+                                <iframe class="lazy" width="100%" height="400"
                                         src="https://www.youtube.com/embed/{{$post->posts_video }}"
                                         title="YouTube video player" frameborder="0"
                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                         allowfullscreen></iframe>
                             @else
-                                <img src="{{ asset($post->image) }}" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid mb-3" alt="">
+                                <img src="{{ asset($post->image) }}" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid mb-3 lazyload" alt="">
                             @endif
                         </div>
                         <img src="" alt="">
@@ -111,7 +144,7 @@
                     <div class="float-left pr-3 pl-0">
                         @foreach($ads as $ad)
                             @if($ad->type==1 && $ad->category_id==1)
-                                <img class="img-fluid pb-2 pt-1"  width="100%" height="90" src="{{asset($ad->ads)}}">
+                                <img class="img-fluid pb-2 pt-1 lazyload"  width="100%" height="90" src="{{asset($ad->ads)}}">
                             @elseif($ad->type==2 && $ad->category_id==1)
                                 <div class="w-100">{!!$ad->ad_code!!}</div>
                             @endif
@@ -120,6 +153,16 @@
                     <!-- İÇERİK KARE REKLAM ALANI 250x250 -->
 
                     <div style="min-height:300px">{!! $post->details_tr !!}</div>
+{{--                    <small class="float-lg-right">--}}
+{{--                        <span title="Likes" id="saveLikeDislike" data-type="like" data-post="{{$post->id}}" class="mr-2 btn btn-sm btn-outline-primary d-inline font-weight-bold">--}}
+{{--                            <i class="fa fa-thumbs-up"></i>--}}
+{{--                            <span class="like-count">{{$post->likes()}}</span>--}}
+{{--                        </span>--}}
+{{--                        <span title="Likes" id="saveLikeDislike" data-type="dislike" data-post="{{$post->id}}" class="mr-2 btn btn-sm btn-outline-danger d-inline font-weight-bold">--}}
+{{--                            <i class="fa fa-thumbs-down"></i>--}}
+{{--                            <span class="like-count">{{$post->dislikes()}}</span>--}}
+{{--                        </span>--}}
+{{--                    </small>--}}
 
                     {{--                    {{$post->post()->name}}--}}
                     {{--                    <div class="row p-3">--}}
@@ -144,7 +187,7 @@
                         @foreach($maybeRelated as $row)
                             <a href="{{ URL::to('/' . str_slug($row->title_tr). '/' . $row->post_id . '/' . 'haberi') }}">
                         <div class="row p-3 border-top">
-                                <div class="col-md-5"><img height="200" class="img-fluid" src="{{asset($row->image)}}"></div>
+                                <div class="col-md-5"><img height="200" class="img-fluid lazyload" src="{{asset($row->image)}}"></div>
                                 <div class="col-md-7 my-auto">
                                     <small class="font-weight-bold text-secondary">İlginizi Çekebilir</small>
                                     <p class="card-kisalt font-weight-bold">{{$row->title_tr}}</p>
@@ -158,7 +201,7 @@
 
                     @foreach($ads as $ad)
                         @if($ad->type==1 && $ad->category_id==12)
-                            <img class="img-fluid pb-2 pt-1" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" width="100%" height="90" src="{{asset($ad->ads)}}">
+                            <img class="img-fluid pb-2 pt-1 lazyload" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" width="100%" height="90" src="{{asset($ad->ads)}}">
                         @elseif($ad->type==2 && $ad->category_id==12)
                             <div class="w-100">{!!$ad->ad_code!!}</div>
                     @endif
@@ -262,7 +305,7 @@
             <div class="col-md-4">
                 @foreach($ads as $ad)
                     @if($ad->type==1 && $ad->category_id==7)
-                        <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid pb-1 pt-3" width="100%" height="90"
+                        <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid pb-1 pt-3 lazyload" width="100%" height="90"
                                                      src="{{asset($ad->ads)}}"></a>
                     @elseif($ad->type==2 && $ad->category_id==7)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -278,7 +321,7 @@
 
                             <div class="swiper-slide">
                                 <a href="{{'/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi'}}">
-                                    <img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" src="{{asset($row->image)}}" class="img-fluid kart_img" alt="">
+                                    <img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" src="{{asset($row->image)}}" class="img-fluid kart_img lazyload" alt="">
                                     {{-- <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div> --}}
                                 </a>
                             </div>
@@ -292,7 +335,7 @@
                 <!-- HABER DETAY REKLAM 336x270 -->
                 @foreach($ads as $ad)
                     @if($ad->type==1 && $ad->category_id==2)
-                        <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid pb-1 pt-3" width="100%" height="90"
+                        <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid pb-1 pt-3 lazyload" width="100%" height="90"
                                                      src="{{asset($ad->ads)}}"></a>
                     @elseif($ad->type==2 && $ad->category_id==2)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -300,7 +343,7 @@
                 @endforeach
                     @foreach($ads as $ad)
                         @if($ad->type==1 && $ad->category_id==4)
-                            <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3" width="100%" height="90"
+                            <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="100%" height="90"
                                                          src="{{asset($ad->ads)}}"></a>
                         @elseif($ad->type==2 && $ad->category_id==4)
                             <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -326,7 +369,7 @@
 
                     <a target="_blank" href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
                         <div class="card kart kart-width shadow mt-3">
-                            <img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" src="{{asset($row->image)}}" class="img-fluid kart_img" alt="">
+                            <img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" src="{{asset($row->image)}}" class="img-fluid kart_img lazyload" alt="">
                             <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
                                 <p class="card-text card-kisalt">
 
@@ -343,7 +386,7 @@
                         <a target="_blank" href="">
                             @foreach($ads as $ad)
                                 @if($ad->type==1 && $ad->category_id==5)
-                                    <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid pb-1 pt-3" width="100%" height="90"
+                                    <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid pb-1 pt-3 lazyload" width="100%" height="90"
                                                                  src="{{asset($ad->ads)}}"></a>
                                 @elseif($ad->type==2 && $ad->category_id==5)
                                     <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -386,7 +429,7 @@
                 <!--SIRADAKİ HABERLER-->
                     @foreach($ads as $ad)
                         @if($ad->type==1 && $ad->category_id==6)
-                            <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid pb-1 pt-3" width="100%" height="90"
+                            <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid pb-1 pt-3 lazyload" width="100%" height="90"
                                                          src="{{asset($ad->ads)}}"></a>
                         @elseif($ad->type==2 && $ad->category_id==6)
                             <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -403,4 +446,6 @@
         </div>
     </div>
     </div>
+
 @endsection
+

@@ -53,7 +53,12 @@ class Post extends Model
 
 
     ];
-
+public function likes() {
+    return $this->hasMany(LikeDislike::class,'post_id')->sum('like');
+}
+    public function dislikes() {
+        return $this->belongsTo(LikeDislike::class,'post_id')->sum('dislike');
+    }
     public function category() {
         return $this->belongsTo(Category::class);
     }

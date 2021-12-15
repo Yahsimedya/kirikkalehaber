@@ -17,23 +17,23 @@ require('laravel-mix-purgecss');
 
 mix.js('resources/js/app.js', 'public/js')
 
-.combine([
-    'public/frontend/assets/js/lazysizes.min.js',
-    'public/frontend/assets/js/marquee.js',
-    'public/frontend/assets/js/svg-turkiye-haritasi.js',
-    'node_modules/swiper/swiper-bundle.js',
-    'node_modules/slick-carousel/slick/slick.js',
-], 'public/frontend/assets/js/combine.js')
+    .combine([
+        'public/frontend/assets/js/lazysizes.min.js',
+        'public/frontend/assets/js/marquee.js',
+        'public/frontend/assets/js/svg-turkiye-haritasi.js',
+        'node_modules/swiper/swiper-bundle.js',
+        'node_modules/slick-carousel/slick/slick.js',
+    ], 'public/frontend/assets/js/combine.js')
     .styles([
-      'public/frontend/assets/css/style.css',
-      'public/frontend/assets/css/weather-icons.css',
-      'public/frontend/assets/css/magnific-popup.css',
-      'public/frontend/assets/css/svg-turkiye-haritasi.css',
-      'node_modules/swiper/swiper-bundle.css',
-      'node_modules/slick-carousel/slick/slick.scss',
+        'public/frontend/assets/css/style.css',
+        'public/frontend/assets/css/weather-icons.css',
+        'public/frontend/assets/css/magnific-popup.css',
+        'public/frontend/assets/css/svg-turkiye-haritasi.css',
+        'node_modules/swiper/swiper-bundle.css',
+        'node_modules/slick-carousel/slick/slick.scss',
 
     ],'public/frontend/assets/css/combine.css')
 
-.sourceMaps();
+    .sourceMaps();
 
 mix.version();

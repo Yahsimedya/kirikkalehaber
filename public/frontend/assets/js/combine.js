@@ -392,7 +392,7 @@ function svgturkiyeharitasi() {
 }
 
 /**
- * Swiper 7.2.0
+ * Swiper 7.3.2
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -400,7 +400,7 @@ function svgturkiyeharitasi() {
  *
  * Released under the MIT License
  *
- * Released on: October 27, 2021
+ * Released on: December 13, 2021
  */
 
 (function (global, factory) {
@@ -410,7 +410,7 @@ function svgturkiyeharitasi() {
 }(this, (function () { 'use strict';
 
     /**
-     * SSR Window 4.0.1
+     * SSR Window 4.0.2
      * Better handling for window object in SSR environment
      * https://github.com/nolimits4web/ssr-window
      *
@@ -418,7 +418,7 @@ function svgturkiyeharitasi() {
      *
      * Licensed under MIT
      *
-     * Released on: October 27, 2021
+     * Released on: December 13, 2021
      */
 
     /* eslint-disable no-param-reassign */
@@ -589,7 +589,7 @@ function svgturkiyeharitasi() {
     }
 
     /**
-     * Dom7 4.0.1
+     * Dom7 4.0.2
      * Minimalistic JavaScript library for DOM manipulation, with a jQuery-compatible API
      * https://framework7.io/docs/dom7.html
      *
@@ -597,7 +597,7 @@ function svgturkiyeharitasi() {
      *
      * Licensed under MIT
      *
-     * Released on: October 27, 2021
+     * Released on: December 13, 2021
      */
     /* eslint-disable no-proto */
 
@@ -2607,7 +2607,7 @@ function svgturkiyeharitasi() {
     function updateClickedSlide(e) {
       const swiper = this;
       const params = swiper.params;
-      const slide = $(e.target).closest(`.${params.slideClass}`)[0];
+      const slide = $(e).closest(`.${params.slideClass}`)[0];
       let slideFound = false;
       let slideIndex;
 
@@ -3291,7 +3291,7 @@ function svgturkiyeharitasi() {
         $wrapperEl
       } = swiper; // Remove duplicated slides
 
-      const $selector = $($wrapperEl.children()[0].parentNode);
+      const $selector = $wrapperEl.children().length > 0 ? $($wrapperEl.children()[0].parentNode) : $wrapperEl;
       $selector.children(`.${params.slideClass}.${params.slideDuplicateClass}`).remove();
       let slides = $selector.children(`.${params.slideClass}`);
 
@@ -3796,7 +3796,8 @@ function svgturkiyeharitasi() {
       const timeDiff = touchEndTime - data.touchStartTime; // Tap, doubleTap, Click
 
       if (swiper.allowClick) {
-        swiper.updateClickedSlide(e);
+        const pathTree = e.path || e.composedPath && e.composedPath();
+        swiper.updateClickedSlide(pathTree && pathTree[0] || e.target);
         swiper.emit('tap click', e);
 
         if (timeDiff < 300 && touchEndTime - data.lastClickTime < 300) {
@@ -7150,7 +7151,7 @@ function svgturkiyeharitasi() {
         if (!gesture.$slideEl || !gesture.$slideEl.length) {
           gesture.$slideEl = $(e.target).closest(`.${swiper.params.slideClass}`);
           if (gesture.$slideEl.length === 0) gesture.$slideEl = swiper.slides.eq(swiper.activeIndex);
-          gesture.$imageEl = gesture.$slideEl.find(`.${params.containerClass}`).eq(0).find('img, svg, canvas, picture, .swiper-zoom-target');
+          gesture.$imageEl = gesture.$slideEl.find(`.${params.containerClass}`).eq(0).find('picture, img, svg, canvas, .swiper-zoom-target').eq(0);
           gesture.$imageWrapEl = gesture.$imageEl.parent(`.${params.containerClass}`);
           gesture.maxRatio = gesture.$imageWrapEl.attr('data-swiper-zoom') || params.maxRatio;
 
@@ -7391,7 +7392,7 @@ function svgturkiyeharitasi() {
             }
           }
 
-          gesture.$imageEl = gesture.$slideEl.find(`.${params.containerClass}`).eq(0).find('img, svg, canvas, picture, .swiper-zoom-target');
+          gesture.$imageEl = gesture.$slideEl.find(`.${params.containerClass}`).eq(0).find('picture, img, svg, canvas, .swiper-zoom-target').eq(0);
           gesture.$imageWrapEl = gesture.$imageEl.parent(`.${params.containerClass}`);
         }
 
@@ -7486,7 +7487,7 @@ function svgturkiyeharitasi() {
             gesture.$slideEl = swiper.slides.eq(swiper.activeIndex);
           }
 
-          gesture.$imageEl = gesture.$slideEl.find(`.${params.containerClass}`).eq(0).find('img, svg, canvas, picture, .swiper-zoom-target');
+          gesture.$imageEl = gesture.$slideEl.find(`.${params.containerClass}`).eq(0).find('picture, img, svg, canvas, .swiper-zoom-target').eq(0);
           gesture.$imageWrapEl = gesture.$imageEl.parent(`.${params.containerClass}`);
         }
 
@@ -8269,23 +8270,34 @@ function svgturkiyeharitasi() {
       }
 
       function hasPagination() {
-        return swiper.pagination && swiper.params.pagination.clickable && swiper.pagination.bullets && swiper.pagination.bullets.length;
+        return swiper.pagination && swiper.pagination.bullets && swiper.pagination.bullets.length;
+      }
+
+      function hasClickablePagination() {
+        return hasPagination() && swiper.params.pagination.clickable;
       }
 
       function updatePagination() {
         const params = swiper.params.a11y;
+        if (!hasPagination()) return;
+        swiper.pagination.bullets.each(bulletEl => {
+          const $bulletEl = $(bulletEl);
 
-        if (hasPagination()) {
-          swiper.pagination.bullets.each(bulletEl => {
-            const $bulletEl = $(bulletEl);
+          if (swiper.params.pagination.clickable) {
             makeElFocusable($bulletEl);
 
             if (!swiper.params.pagination.renderBullet) {
               addElRole($bulletEl, 'button');
               addElLabel($bulletEl, params.paginationBulletMessage.replace(/\{\{index\}\}/, $bulletEl.index() + 1));
             }
-          });
-        }
+          }
+
+          if ($bulletEl.is(`.${swiper.params.pagination.bulletActiveClass}`)) {
+            $bulletEl.attr('aria-current', 'true');
+          } else {
+            $bulletEl.removeAttr('aria-current');
+          }
+        });
       }
 
       const initNavEl = ($el, wrapperId, message) => {
@@ -8354,7 +8366,7 @@ function svgturkiyeharitasi() {
         } // Pagination
 
 
-        if (hasPagination()) {
+        if (hasClickablePagination()) {
           swiper.pagination.$el.on('keydown', classesToSelector(swiper.params.pagination.bulletClass), onEnterOrSpaceKey);
         }
       }
@@ -8381,7 +8393,7 @@ function svgturkiyeharitasi() {
         } // Pagination
 
 
-        if (hasPagination()) {
+        if (hasClickablePagination()) {
           swiper.pagination.$el.off('keydown', classesToSelector(swiper.params.pagination.bulletClass), onEnterOrSpaceKey);
         }
       }

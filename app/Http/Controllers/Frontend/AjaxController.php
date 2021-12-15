@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\District;
+use App\Models\LikeDislike;
 use App\Models\Post;
 use App\Models\Sehirler;
 use App\Models\Tag;
@@ -18,7 +19,31 @@ use Illuminate\Support\Str;
 class AjaxController extends Controller
 {
 
-
+//public function save_likedislike(Request $request, LikeDislike $likeDislike) {
+////    dd($request->post);
+//
+////    $data=new LikeDislike;
+//
+//    $flight = LikeDislike::where('post_id',$request->post)->get();
+//    $likeDislike->post_id=$request->post;
+////    $likeDislike->fill($request->all());
+//    if($request->type=='like') {
+//        $flight->like+=1;
+//    } else {
+//        $flight->dislike+=1;
+//    }
+//
+////    $data = LikeDislike::firstorcreate($data->post_id);
+////    $ekle=likeDislike::where('post_id',$likeDislike->post_id)->firstorcreate();
+//
+//    $flight->save();
+////    $likeDislike->save();
+//
+////    $likeDislike->create();
+//    return response()->json([
+//        'bool'=>true
+//    ]);
+//}
     //
     public function HavaDurumu(Request $request)
     {

@@ -371,6 +371,9 @@ Route::get('/json/AllPost/', [MobilAppController::class, 'AllPost']);
 Route::get('/json/country/{id}', [MobilAppController::class, 'countrynews']);
 
 
+//LİKE AND DİSLİKE
+
+Route::post('/save_likedislike', [AjaxController::class, 'save_likedislike'])->name('like');
 
 
 
