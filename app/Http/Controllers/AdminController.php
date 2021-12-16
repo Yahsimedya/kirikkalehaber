@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+//namespace App\Http\Controllers\Backend;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\AuthorsPost;
+//use CyrildeWit\EloquentViewable\View;
 class AdminController extends Controller
 {
     public function Logout(Request $request)
@@ -40,6 +43,17 @@ class AdminController extends Controller
         $comments=DB::table('comments')->get('id');
         $commentsCount=$comments->count();
         $authors_posts=DB::table('authors_posts')->get('id');
+        $post = Post::all();
+//        dd($post);
+//        $count = views($post)->count();
+
+
+
+
+//        dd($count);
+
+//        $posts = Post::latest()->orderByUniqueViews()->paginate(20);
+
         $authors_postsCount=$authors_posts->count();
         return view('admin.index',compact('newsCount','commentsCount','endNews','endComments','endAuthors_posts','authors_postsCount'));
 

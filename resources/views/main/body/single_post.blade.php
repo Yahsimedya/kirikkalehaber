@@ -240,7 +240,9 @@
 
                         <div class="col-md-12 shadow-lg p-3 mt-3 bg-light">
                             <h3 class="text-dark">Haber Yorumları</h3>
-                            @foreach($comments as $comment)
+                            {{$count}}
+
+                        @foreach($comments as $comment)
                                 <hr>
                                 <span class="text-dark"><i class="fa fa-user pr-1"></i>{{$comment->name}}</span>
                                 <br>
@@ -374,6 +376,7 @@
                                 <p class="card-text card-kisalt">
 
                                     {{ Str::ucFirst($row->title_tr) }}
+
                                 </p>
                             </div>
                         </div>
@@ -423,7 +426,6 @@
                                 @endif</span>
                         </a>
                     @endforeach
-
                 </div>
 
                 <!--SIRADAKİ HABERLER-->

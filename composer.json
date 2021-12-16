@@ -11,6 +11,7 @@
         "ext-simplexml": "*",
         "algolia/algoliasearch-client-php": "^3.0",
         "bilginpro/agency-aa": "^1.0",
+        "cyrildewit/eloquent-viewable": "^6.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3",

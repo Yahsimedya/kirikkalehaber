@@ -163,6 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         Intervention\Image\ImageServiceProvider::class,
+        CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
 
 
 

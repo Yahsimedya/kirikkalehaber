@@ -83,11 +83,7 @@ Route::get('/startbot', function () {
 
 // ADMİN Routes
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    Route::get('/dashboard', function () {
-        Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-            Route::get('/dashboard',[AdminController::class,'index'])->name('dashboard'); })->name('dashboard');
-    //admin Logout
-
+    Route::get('/dashboard',[AdminController::class,'index'])->name('dashboard');
 
     Route::get('/DBTrans',[ExtraController::class,'DBTrans']);
 

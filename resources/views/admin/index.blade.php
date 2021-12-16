@@ -118,7 +118,10 @@
                         <div class="card-body">
                             <div class="d-flex">
                                 <h3 class="font-weight-semibold mb-0 text-white">{{$authors_postsCount}}</h3>
-
+{{--                                {{$count}}--}}
+{{--                                @foreach($posts as $post)--}}
+{{--                                {{$post->count}}--}}
+{{--                                @endforeach--}}
                             </div>
 
                             <div>

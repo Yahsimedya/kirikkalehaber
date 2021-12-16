@@ -26,6 +26,7 @@ use App\Models\WebsiteSetting;
 use Carbon\Carbon;
 use GuzzleHttp\ClientInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
@@ -614,10 +615,18 @@ class ExtraController extends Controller
 //        return view('main.body.header', compact('vakitler'));
 
     }
-
-    public function SinglePost($slug, $id)
+//    public function setCookie(Request $request) {
+//
+//        Cookie::queue('name', $request->test, 10);
+//        $cookie = Cookie::make('testcookie','5', 120);
+//        return response()
+////            ->view('tests.'.$page,['page' => $page])
+//            ->withCookie($cookie);
+//
+////        return view('home');
+//    }
+    public function SinglePost($slug, $post)
     {
-
 //        $post = Cache::remember("post.{$id}", Carbon::now()->addYear(), function () use ($id) {
 //             if (Cache::has('post')) return Cache::has('post')->find($id); //here am simply trying Laravel Collection method -find
 //             return Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
@@ -633,8 +642,17 @@ class ExtraController extends Controller
 
 //        $post = Post::latest('updated_at')->where('status', '=', 1)
 //                ->where('id', '=', $id)->first();
-        $post = Post::find($id);
-        $comments = Comments::where('posts_id', $id)->where('status', 1)->get();
+
+        $post = Post::find($post);
+//        views($post)->record();
+        $expiresAt = now()->addHours(3);
+//        views($post)->count();
+        $count = views($post)->count();
+
+        views($post)
+            ->cooldown($expiresAt)
+            ->record();
+        $comments = Comments::where('posts_id', $post)->where('status', 1)->get();
 
 //dd($comments);
 //        $slider =  Post::latest('created_at')
@@ -688,7 +706,7 @@ class ExtraController extends Controller
             Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                 ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                ->where('posts.id', $id)->latest()
+                ->where('posts.id', $post)->latest()
                 ->limit(10)
                 ->get();
 //        $tag_ids = $post->tag()->allRelatedIds()->toArray();
@@ -709,7 +727,7 @@ class ExtraController extends Controller
 //                ->limit(10)
 //                ->get();
 //        dd($related);
-        $random = Post::inRandomOrder()->limit(3)->get();
+        $random = Post::orderByUniqueViews()->limit(3)->get();
 
 //        $tag = Tag::get();
 //        foreach ($tag as $item) {
@@ -720,7 +738,7 @@ class ExtraController extends Controller
 //                    ->where('post_tags.tag_id', $item->id)->latest()
 //                    ->get();
             Post::latest('updated_at')
-                ->where('id', $id)
+                ->where('id', $post)
                 ->with(['tag' => function ($query) {
                     // $query->sum('quantity');
                     $query->select('name'); // without `order_id`
@@ -738,7 +756,7 @@ class ExtraController extends Controller
 //        $related=$this->belongsToMany(Post::class, 'post_tags', 'tags');
         $seoset = Seos::first();
         $webSiteSetting=WebsiteSetting::first();
-        return view('main.body.single_post', compact('post', 'ads','webSiteSetting', 'random', 'slider', 'tagName', 'nextrelated', 'comments', 'id', 'seoset','maybeRelated','tagCount'));
+        return view('main.body.single_post', compact('post', 'ads','webSiteSetting', 'random', 'slider', 'tagName', 'nextrelated', 'comments', 'seoset','maybeRelated','tagCount','count'));
 
 
     }
