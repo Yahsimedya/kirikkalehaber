@@ -1,7 +1,9 @@
 @extends('admin.admin_master')
 @section('admin')
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="{{asset('backend/assets/js/filerobot-image-editor.min.js')}}"></script>
     @php
         $sub = DB::table('subcategories')->where('category_id',$post->category_id)->get();
         $subdis = DB::table('subdistricts')->where('district_id',$post->district_id)->get();
@@ -12,13 +14,19 @@
         <div class="card">
             <div class="card-header header-elements-inline">
                 <h5 class="card-title">Haber Düzenle</h5>
-                <div class="header-elements">
-                    <div class="list-icons">
-                        <a class="list-icons-item" data-action="collapse"></a>
-                        <a class="list-icons-item" data-action="reload"></a>
-                        <a class="list-icons-item" data-action="remove"></a>
-                    </div>
-                </div>
+                <button id="image-editor-btn" class="btn btn-success col-lg-2 float-right">Fotoğrafı Düzenle <i
+                        class="icon-image-compare ml-2"></i></button>
+                <script>
+                    const ImageEditor = new window.FilerobotImageEditor();
+                    const Button = document.getElementById("image-editor-btn");
+
+                    Button.addEventListener("click", function () {
+                        ImageEditor.open(
+                            "{{asset($post->image)}}"
+                        );
+                    });
+                </script>
+
             </div>
 
             <div class="card-body">
