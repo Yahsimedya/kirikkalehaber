@@ -49,7 +49,7 @@
 
                             <p>Aradığınız sayfa mevcut değil!</p>
 
-                            <a href="" class="link_404">Ana sayfaya dön</a>
+                            <a href="{{URL::to('/') }}" class="link_404">Ana sayfaya dön</a>
                         </div>
                     </div>
                 </div>
