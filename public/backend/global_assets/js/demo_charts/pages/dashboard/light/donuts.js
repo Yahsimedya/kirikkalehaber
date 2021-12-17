@@ -80,13 +80,13 @@ var DashboardDonuts = function() {
 
             // Add svg element
             var container = d3Container.append('svg').call(tip);
-            
+
             // Add SVG group
             var svg = container
                 .attr('width', size)
                 .attr('height', size)
                 .append('g')
-                    .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');  
+                    .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');
 
 
 
@@ -98,9 +98,9 @@ var DashboardDonuts = function() {
                 .sort(null)
                 .startAngle(Math.PI)
                 .endAngle(3 * Math.PI)
-                .value(function (d) { 
+                .value(function (d) {
                     return d.value;
-                }); 
+                });
 
             // Arc
             var arc = d3.svg.arc()
@@ -120,10 +120,10 @@ var DashboardDonuts = function() {
             var arcGroup = svg.selectAll('.d3-arc')
                 .data(pie(data))
                 .enter()
-                .append('g') 
+                .append('g')
                     .attr('class', 'd3-arc d3-slice-border')
                     .style('cursor', 'pointer');
-            
+
             // Append path
             var arcPath = arcGroup
                 .append('path')
@@ -147,7 +147,7 @@ var DashboardDonuts = function() {
                 })
 
                 .on('mousemove', function (d) {
-                    
+
                     // Show tooltip on mousemove
                     tip.show(d)
                         .style('top', (d3.event.pageY - 40) + 'px')
@@ -176,8 +176,8 @@ var DashboardDonuts = function() {
                         var interpolate = d3.interpolate(d.startAngle,d.endAngle);
                         return function(t) {
                             d.endAngle = interpolate(t);
-                            return arc(d);  
-                        }; 
+                            return arc(d);
+                        };
                     });
         }
     };
@@ -213,7 +213,7 @@ var DashboardDonuts = function() {
                 }, {
                     "status": "Campaigns on hold",
                     "icon": "<i class='icon-infinite text-grey mr-2'></i>",
-                    "value": 148
+                    "value": 3909
                 }
             ];
 
@@ -250,13 +250,13 @@ var DashboardDonuts = function() {
 
             // Add svg element
             var container = d3Container.append('svg').call(tip);
-            
+
             // Add SVG group
             var svg = container
                 .attr('width', size)
                 .attr('height', size)
                 .append('g')
-                    .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');  
+                    .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');
 
 
 
@@ -268,9 +268,9 @@ var DashboardDonuts = function() {
                 .sort(null)
                 .startAngle(Math.PI)
                 .endAngle(3 * Math.PI)
-                .value(function (d) { 
+                .value(function (d) {
                     return d.value;
-                }); 
+                });
 
             // Arc
             var arc = d3.svg.arc()
@@ -290,10 +290,10 @@ var DashboardDonuts = function() {
             var arcGroup = svg.selectAll('.d3-arc')
                 .data(pie(data))
                 .enter()
-                .append('g') 
+                .append('g')
                     .attr('class', 'd3-arc d3-slice-border')
                     .style('cursor', 'pointer');
-            
+
             // Append path
             var arcPath = arcGroup
                 .append('path')
@@ -317,7 +317,7 @@ var DashboardDonuts = function() {
                 })
 
                 .on('mousemove', function (d) {
-                    
+
                     // Show tooltip on mousemove
                     tip.show(d)
                         .style('top', (d3.event.pageY - 40) + 'px')
@@ -346,8 +346,8 @@ var DashboardDonuts = function() {
                         var interpolate = d3.interpolate(d.startAngle,d.endAngle);
                         return function(t) {
                             d.endAngle = interpolate(t);
-                            return arc(d);  
-                        }; 
+                            return arc(d);
+                        };
                     });
         }
     };
@@ -416,13 +416,13 @@ var DashboardDonuts = function() {
 
             // Add svg element
             var container = d3Container.append('svg').call(tip);
-            
+
             // Add SVG group
             var svg = container
                 .attr('width', size)
                 .attr('height', size)
                 .append('g')
-                    .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');  
+                    .attr('transform', 'translate(' + (size / 2) + ',' + (size / 2) + ')');
 
 
 
@@ -434,9 +434,9 @@ var DashboardDonuts = function() {
                 .sort(null)
                 .startAngle(Math.PI)
                 .endAngle(3 * Math.PI)
-                .value(function (d) { 
+                .value(function (d) {
                     return d.value;
-                }); 
+                });
 
             // Arc
             var arc = d3.svg.arc()
@@ -455,10 +455,10 @@ var DashboardDonuts = function() {
             var arcGroup = svg.selectAll('.d3-arc')
                 .data(pie(data))
                 .enter()
-                .append('g') 
+                .append('g')
                     .attr('class', 'd3-arc d3-slice-border')
                     .style('cursor', 'pointer');
-            
+
             // Append path
             var arcPath = arcGroup
                 .append('path')
@@ -482,7 +482,7 @@ var DashboardDonuts = function() {
                 })
 
                 .on('mousemove', function (d) {
-                    
+
                     // Show tooltip on mousemove
                     tip.show(d)
                         .style('top', (d3.event.pageY - 40) + 'px')
@@ -511,8 +511,8 @@ var DashboardDonuts = function() {
                         var interpolate = d3.interpolate(d.startAngle,d.endAngle);
                         return function(t) {
                             d.endAngle = interpolate(t);
-                            return arc(d);  
-                        }; 
+                            return arc(d);
+                        };
                     });
         }
     };

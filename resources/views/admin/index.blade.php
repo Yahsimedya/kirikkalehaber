@@ -59,8 +59,42 @@
 
     <!-- Content area -->
     <div class="content">
-        <div class="row">
 
+        <div class="row">
+            <div class="col-md-4">
+            <div class="card bg-info text-white">
+                <div class="card-header">
+                    <h6 class="card-title">Tekil Görüntüleme</h6>
+                </div>
+
+                <div class="card-body">
+                    Son 24 saatte içeriğinizi görüntüleyen kişi sayısı <code>{{$countTekil}}</code>
+                </div>
+            </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-info text-white">
+                    <div class="card-header">
+                        <h6 class="card-title">Çoğul Haber Görüntüleme</h6>
+                    </div>
+
+                    <div class="card-body">
+                        Son 24 saatte haber içeriği çoğul görüntüleme <code>{{$count}}
+                        </code>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-info text-white">
+                    <div class="card-header">
+                        <h6 class="card-title">Blue (info) background</h6>
+                    </div>
+
+                    <div class="card-body">
+                        Card with blue (info) background color using <code>.bg-info</code> class
+                    </div>
+                </div>
+            </div>
             <div class="col-lg-4">
 
                 <!-- Members online -->
@@ -119,7 +153,9 @@
                             <div class="d-flex">
                                 <h3 class="font-weight-semibold mb-0 text-white">{{$authors_postsCount}}</h3>
 {{--                                {{$count}}--}}
-{{--                                @foreach($posts as $post)--}}
+{{--                                {{$peryot}}--}}
+
+                                {{--                                @foreach($posts as $post)--}}
 {{--                                {{$post->count}}--}}
 {{--                                @endforeach--}}
                             </div>
@@ -140,7 +176,39 @@
         <!-- Dashboard content -->
 
         <div class="row">
-            <div class="col-xl-4">
+            <div class="card">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+            <div class="col-md-6">
 
 
                 <!-- Support tickets -->
@@ -197,7 +265,7 @@
                 </div>
             </div>
 
-            <div class="col-xl-4">
+            <div class="col-md-6">
 
 
                 <div class="card">

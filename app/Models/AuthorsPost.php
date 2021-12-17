@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 
 
-class AuthorsPost extends Model
+class AuthorsPost extends Model implements Viewable
 {
     use HasFactory;
+    use InteractsWithViews;
+
     protected $fillable = [
         'id',
         'authors_id',

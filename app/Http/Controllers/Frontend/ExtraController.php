@@ -645,7 +645,7 @@ class ExtraController extends Controller
 
         $post = Post::find($post);
 //        views($post)->record();
-        $expiresAt = now()->addHours(3);
+        $expiresAt = now()->addHours(24);
 //        views($post)->count();
         $count = views($post)->count();
 
@@ -878,8 +878,16 @@ class ExtraController extends Controller
 
     public function yazilars($slug_name, $Authorid)
     {
+//        $expiresAt = now()->addHours(24);
+//        views($Authorid)
+//            ->cooldown($expiresAt)
+//            ->record();
         $webSiteSetting=WebsiteSetting::first();
         $yaziPost = AuthorsPost::whereId($Authorid)->first(); // done bope
+                $expiresAt = now()->addHours(24);
+        views($yaziPost)
+            ->cooldown($expiresAt)
+            ->record();
 //        $yaziPost=AuthorsPost::find($Authorid); // done bope
 
 //dd($yaziPost);

@@ -100,6 +100,8 @@
 
     <!-- Theme JS files -->
     <script src="{{asset('global_assets/js/plugins/uploaders/dropzone.min.js')}}"></script>
+    <script src="{{asset('global_assets/js/demo_charts/c3/c3_lines_areas.js')}}"></script>
+{{--    <script src="./global_assets/js/demo_charts/c3/c3_lines_areas.js"></script>--}}
 
     <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('global_assets/js/demo_pages/uploader_dropzone.js')}}"></script>
@@ -107,6 +109,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
     <script type="text/javascript" src="{{asset('backend/global_assets/picker/coloris.min.js')}}"></script>
+
     <script type="text/javascript">
 
         Coloris({

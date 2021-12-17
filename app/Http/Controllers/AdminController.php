@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\AuthorsPost;
 //use CyrildeWit\EloquentViewable\View;
+use CyrildeWit\EloquentViewable\Visitor;
+
+use CyrildeWit\EloquentViewable\Support\Period;
 class AdminController extends Controller
 {
     public function Logout(Request $request)
@@ -43,9 +47,29 @@ class AdminController extends Controller
         $comments=DB::table('comments')->get('id');
         $commentsCount=$comments->count();
         $authors_posts=DB::table('authors_posts')->get('id');
-        $post = Post::all();
+        $posts = Post::all();
 //        dd($post);
-//        $count = views($post)->count();
+//        $posts = Post::all();
+
+//        foreach($posts as $post) {
+//            echo $post->unique_views_count = views($post)->unique()->count();
+//        }
+        $count = views(Post::class)->period(Period::subHours(24))->remember()->count();
+//        $count = views(Post::class)->count();
+
+        $countTekil =views(Post::class)->period(Period::subHours(24))->remember()->unique()->count();
+
+//$newVisitor= views(Post::class)
+//    ->useVisitor(new Visitor()) // or app(Visitor::class)
+//    ->record();
+        $days=Carbon::today();
+
+//        $peryot=Views::forViewable(Post::class)->countAndRemember();
+
+//        dd($newVisitor);
+
+
+
 
 
 
@@ -55,7 +79,7 @@ class AdminController extends Controller
 //        $posts = Post::latest()->orderByUniqueViews()->paginate(20);
 
         $authors_postsCount=$authors_posts->count();
-        return view('admin.index',compact('newsCount','commentsCount','endNews','endComments','endAuthors_posts','authors_postsCount'));
+        return view('admin.index',compact('newsCount','commentsCount','endNews','endComments','endAuthors_posts','authors_postsCount','countTekil','count'));
 
     }
 }
