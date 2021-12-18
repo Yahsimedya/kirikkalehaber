@@ -206,7 +206,7 @@
 {{--                        {{$sayi}}--}}
                         <tr>
                         <td class="footable-first-visible" style="display: table-cell;">{{$loop->iteration}}</td>
-                            <td style="display: table-cell;"><a href="#"> <img src="{{asset($row->image)}}" width="100" height="50" alt=""></a></td>
+                            <td style="display: table-cell;"><a href="#"> <img src="{{asset($row->image)}}" width="80" height="50" alt=""></a></td>
                             <td style="display: table-cell;">{{Str::limit($row->title_tr,45)}}</td>
 {{--                            @php($i=0)--}}
 {{--                                {{ $loop->index }}--}}
