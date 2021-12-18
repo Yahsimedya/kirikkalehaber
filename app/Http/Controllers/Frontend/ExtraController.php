@@ -645,7 +645,7 @@ class ExtraController extends Controller
 
         $post = Post::find($post);
 //        views($post)->record();
-        $expiresAt = now()->addHours(24);
+        $expiresAt = now()->addMinute(20);
 //        views($post)->count();
         $count = views($post)->count();
 

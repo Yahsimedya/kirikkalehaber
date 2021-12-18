@@ -1,5 +1,8 @@
 @extends('admin.admin_master')
+@php
+    use CyrildeWit\EloquentViewable\Support\Period;
 
+@endphp
 @section('admin')
     <!-- Main content -->
 
@@ -176,39 +179,63 @@
         <!-- Dashboard content -->
 
         <div class="row">
-            <div class="card">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-                </tbody>
-            </table>
+
+{{--            <div class="col-md-4">--}}
+                <div class="card">
+
+                <table class="table table-togglable footable footable-7 breakpoint-xlg" data-breakpoints="{ &quot;xs&quot;: 580, &quot;sm&quot;: 868, &quot;md&quot;: 1092, &quot;lg&quot;: 1300, &quot;xlg&quot;: 1500 }" style="">
+                    <thead>
+                    <tr class="footable-header">
+                        <th class="footable-first-visible" style="display: table-cell;">#</th>
+                        <th style="display: table-cell;">Foto</th>
+                        <th data-breakpoints="xs sm md" style="display: table-cell;">Başlık</th>
+                        <th data-breakpoints="xs sm md" style="display: table-cell;">Tekil</th>
+                        <th data-breakpoints="xs sm md" style="display: table-cell;">Çoğul</th>
+
+                        <th data-breakpoints="xs sm md" style="display: table-cell;">Kategori</th>
+                        <th data-breakpoints="xs sm" style="display: table-cell;">Drum</th>
+                        <th class="text-center footable-last-visible" style="width: 30px; display: table-cell;"><i class="icon-menu-open2"></i></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+{{--                    @foreach($sayi as $haber)--}}
+
+{{--                    @endforeach--}}
+                    @foreach($endNews as  $row)
+{{--                        {{$sayi}}--}}
+                        <tr>
+                        <td class="footable-first-visible" style="display: table-cell;">{{$loop->iteration}}</td>
+                            <td style="display: table-cell;"><a href="#"> <img src="{{asset($row->image)}}" width="100" height="50" alt=""></a></td>
+                            <td style="display: table-cell;">{{Str::limit($row->title_tr,45)}}</td>
+{{--                            @php($i=0)--}}
+{{--                                {{ $loop->index }}--}}
+                                <td style="display: table-cell;"><span class="badge badge-success">{{views($row)->period(Period::subHours(24))->unique()->count()}}</span></td>
+                            <td style="display: table-cell;"><span class="badge badge-success">{{views($row)->period(Period::subHours(24))->count()}}</span></td>
+
+                            <td style="display: table-cell;">{{$row->category->category_tr}}</td>
+                            <td class="text-center footable-last-visible" style="display: table-cell;">
+                            <div class="list-icons">
+                                <div class="dropdown position-static">
+                                    <a href="#" class="list-icons-item" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="icon-menu9"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" style="">
+                                        <a href="#" class="dropdown-item"><i class="icon-file-pdf"></i> Export to .pdf</a>
+                                        <a href="#" class="dropdown-item"><i class="icon-file-excel"></i> Export to .csv</a>
+                                        <a href="#" class="dropdown-item"><i class="icon-file-word"></i> Export to .doc</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </td></tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
-            <div class="col-md-6">
+
+{{--        </div>--}}
+
+            <div class="col-md-4">
 
 
                 <!-- Support tickets -->
