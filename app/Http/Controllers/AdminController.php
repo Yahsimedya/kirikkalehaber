@@ -42,7 +42,7 @@ class AdminController extends Controller
         $endComments=DB::table('comments')->limit(10)->latest('id')->get();
         $endAuthors_posts=AuthorsPost::leftjoin('authors', 'authors.id', '=', 'authors_posts.authors_id')
             ->select(['authors_posts.*', 'authors.name'])
-            ->latest('created_at')
+            ->orderByViews('desc')
             ->paginate(10);
         $newsCount=count($news);
         $comments=DB::table('comments')->get('id');
@@ -64,6 +64,7 @@ $i=0;
 //        dd($count2);
 
         $count = views(Post::class)->period(Period::subHours(24))->count();
+        $countwrites = views(AuthorsPost::class)->period(Period::subHours(24))->count();
 //        $count = views(Post::class)->count();
 
         $countTekil =views(Post::class)->period(Period::subHours(24))->unique()->count();
@@ -88,7 +89,7 @@ $i=0;
 //        $posts = Post::latest()->orderByUniqueViews()->paginate(20);
 
         $authors_postsCount=$authors_posts->count();
-        return view('admin.index',compact('newsCount','commentsCount','endNews','endComments','endAuthors_posts','authors_postsCount','countTekil','count'));
+        return view('admin.index',compact('newsCount','commentsCount','endNews','endComments','endAuthors_posts','authors_postsCount','countTekil','countwrites','count'));
 
     }
 }
