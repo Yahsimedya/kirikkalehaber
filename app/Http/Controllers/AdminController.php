@@ -37,7 +37,7 @@ class AdminController extends Controller
 
     public function index(){
         $news=DB::table('posts')->get('id');
-        $endNews=Post::limit(4)->orderByViews('desc')->get();
+        $endNews=Post::limit(10)->orderByViews('desc')->get();
 //        $endNewsCount=Post::orderByUniqueViews()->latest()->get();
         $endComments=DB::table('comments')->limit(10)->latest('id')->get();
         $endAuthors_posts=AuthorsPost::leftjoin('authors', 'authors.id', '=', 'authors_posts.authors_id')
@@ -48,16 +48,16 @@ class AdminController extends Controller
         $comments=DB::table('comments')->get('id');
         $commentsCount=$comments->count();
         $authors_posts=DB::table('authors_posts')->get('id');
-        $posts = Post::all();
+//        $posts = Post::all();
 //        $hatirla= views($endNews[0]['id'])->period(Period::subHours(6))->remember()->count();
 
 //        dd($endNews[0]['id']);
 //        $posts = Post::all();
 $i=0;
-        foreach($endNews as $post) { $i++;
-            $sayi[$i] = views($post)->period(Period::subHours(24))->count();
-//            return $sayi;
-        }
+//        foreach($endNews as $post) { $i++;
+//            $sayi[$i] = views($post)->period(Period::subHours(24))->count();
+////            return $sayi;
+//        }
 //                $count2 = views($sayi)->count();
 
 //        $habersayi= $post;
