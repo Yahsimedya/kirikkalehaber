@@ -23,8 +23,8 @@
     <meta name="twitter:site" content="@yield(('twitter:site'))"/>
     <meta name="twitter:title" content="@yield(('twitter:title'))"/>
     <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-{{--    <meta property="og:image:type" content="image/jpeg" />--}}
+    <meta property="og:image:height" content="600" />
+    <meta property="og:image:type" content="image/jpeg" />
 
     {{--    <meta property="og:url" content="{{ $data->page_url}}" />--}}
 {{--    <meta property="og:image" content="{{ $data->imag_url}}"   />--}}

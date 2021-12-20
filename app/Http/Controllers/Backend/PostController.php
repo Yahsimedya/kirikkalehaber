@@ -196,7 +196,7 @@ class PostController extends Controller
 
             $new_image_name = 'storage/postimg/' . $yil . '/' . $ay . '/' . $image_one;
 
-            Image::make($image)->encode('webp', 90)->resize(800, 600)->fit(800, 600)->save($new_image_name,80,'webp');
+            Image::make($image)->resize(800, 600)->fit(800, 600)->save($new_image_name,58,'jpeg');
 
             $post->image = $new_image_name;
         }
@@ -278,7 +278,7 @@ class PostController extends Controller
             $image_one = uniqid() . '.' . $image->getClientOriginalName();
 
             $new_image_name = 'storage/postimg/' . $yil . '/' . $ay . '/' . $image_one;
-            Image::make($image)->encode('webp', 90)->resize(800, 600)->fit(800, 600)->save($new_image_name,80,'webp');
+            Image::make($image)->resize(800, 600)->fit(800, 600)->save($new_image_name,58,'jpeg');
             $post->image = $new_image_name; // set new image to the object, replace tmp image with new right path
 
             if (file_exists($request->old_image)) {
