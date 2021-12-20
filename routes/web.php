@@ -236,6 +236,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/add/photogalery', [GalleryController::class, 'AddPhotoGalery'])->name('add.photogalery');
     Route::post('/create/photo', [GalleryController::class, 'CreatePhoto'])->name('create.photo');
     Route::get('/galery/detail/{id}', [GalleryController::class, 'GaleryDetail'])->name('galery.detail');
+    Route::get('/galery/Add/{id}', [GalleryController::class, 'GaleryDetailAdd'])->name('galery.detailAdd');
 //    Route::get('/galery/update/', [GalleryController::class, 'UpdatePhoto'])->name('update.photo');
     Route::post('/add/photo/text/{photocategory_id}', [GalleryController::class, 'AddText'])->name('add.text');
     Route::post('/galery/photo/active/{id}', [GalleryController::class, 'ActivePhotoGalery'])->name('active.photogalery');

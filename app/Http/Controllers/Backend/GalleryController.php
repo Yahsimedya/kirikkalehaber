@@ -32,7 +32,13 @@ class GalleryController extends Controller
     $photocategory = DB::table('photocategories')->get();
 
      return view('backend.galery.createphoto', compact('photocategory'));
+ } public function GaleryDetailAdd()
+ {
+    $photocategory = DB::table('photocategories')->get();
+
+     return view('backend.galery.createphoto', compact('photocategory'));
  }
+
  public function CreatePhoto(Request $request)
  {
 
