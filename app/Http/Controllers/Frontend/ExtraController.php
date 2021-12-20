@@ -625,7 +625,7 @@ class ExtraController extends Controller
 //
 ////        return view('home');
 //    }
-    public function SinglePost($slug, $post)
+    public function SinglePost($slug, $id)
     {
 //        $post = Cache::remember("post.{$id}", Carbon::now()->addYear(), function () use ($id) {
 //             if (Cache::has('post')) return Cache::has('post')->find($id); //here am simply trying Laravel Collection method -find
@@ -643,7 +643,7 @@ class ExtraController extends Controller
 //        $post = Post::latest('updated_at')->where('status', '=', 1)
 //                ->where('id', '=', $id)->first();
 
-        $post = Post::find($post);
+        $post = Post::find($id);
 //        views($post)->record();
         $expiresAt = now()->addMinute(20);
 //        views($post)->count();
@@ -652,7 +652,7 @@ class ExtraController extends Controller
         views($post)
             ->cooldown($expiresAt)
             ->record();
-        $comments = Comments::where('posts_id', $post)->where('status', 1)->get();
+        $comments = Comments::where('posts_id', $id)->where('status', 1)->get();
 
 //dd($comments);
 //        $slider =  Post::latest('created_at')
@@ -690,7 +690,7 @@ class ExtraController extends Controller
         if(isset($ids)) {
 
     if ($ids!=[]){
-        foreach ($ids as $tagId) {
+//        foreach ($ids as $tagId) {
             $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                 ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
@@ -699,18 +699,18 @@ class ExtraController extends Controller
         }//        }
 //        dd($maybeRelated);
         }
-    }
+//    }
 
 
         $tagName =
             Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                 ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                ->where('posts.id', $post)->latest()
+                ->where('posts.id', $id)
                 ->limit(10)
                 ->get();
-//        PostTag::find($post)->get();
-        dd($tagName);
+//        Post::find($post)->get();
+//        dd($tagName);
 //        $tag_ids = $post->tag()->allRelatedIds()->toArray();
 //        dd($tag_ids);
 //        $related = Post::whereHas('post_tags.post_id', function($q) use ($tag_ids) {
