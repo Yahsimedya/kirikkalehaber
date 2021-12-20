@@ -197,9 +197,7 @@
 
                         <th data-breakpoints="xs sm md" style="display: table-cell;">Kategori</th>
                         <th data-breakpoints="xs sm" style="display: table-cell;">Drum</th>
-                        <th class="text-center footable-last-visible" style="width: 30px; display: table-cell;"><i
-                                class="icon-menu-open2"></i></th>
-                        <th></th>
+
                     </tr>
                     </thead>
                     <tbody>
