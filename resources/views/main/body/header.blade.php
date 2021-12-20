@@ -300,7 +300,7 @@ $gelenil=Session::get('gelenil');
                                 <div class="d-inline-block" style="font-size: 13px; line-height: 14px;"><span
                                         style="font-weight: bold">Altın</span><br/>
                                     <span
-                                        style="font-size: 13px;">{{ number_format($kurlar['ALTIN']['satis'],3) }}</span>
+                                        style="font-size: 13px;">{{ number_format((float)$kurlar['ALTIN']['satis'],3) }}</span>
                                 </div>
                             </li>
                         </ul>

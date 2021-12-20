@@ -535,7 +535,7 @@
                                 @else
                                     <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
                                 @endif
-                                {{ number_format($kurlar['ALTIN']['satis'],3) }}</div>
+                                {{$kurlar['ALTIN']['satis'] }}</div>
 
                         </div>
                     </div>

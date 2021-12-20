@@ -387,7 +387,7 @@ class ExtraController extends Controller
                 'oran' => $result['gram-altin']['Değişim'],
                 'oranyonu' => $result['gram-altin']['Değişim'],
 //                    'alis' => $usd['Buy'],
-                'satis' => str_replace(',', '.', degistir($result['gram-altin']['Satış']))
+                'satis' => str_replace(',', '.', degistir((float)$result['gram-altin']['Satış']))
 
             ],
             'ceyrekaltin' => [
@@ -709,6 +709,8 @@ class ExtraController extends Controller
                 ->where('posts.id', $post)->latest()
                 ->limit(10)
                 ->get();
+//        PostTag::find($post)->get();
+        dd($tagName);
 //        $tag_ids = $post->tag()->allRelatedIds()->toArray();
 //        dd($tag_ids);
 //        $related = Post::whereHas('post_tags.post_id', function($q) use ($tag_ids) {
