@@ -39,7 +39,7 @@ class CommentsController extends Controller
     public function DeleteComments(Request $request, $id)
     {
 //        dd($id);
-        Comments::delete($id);
+        Comments::find($id)->delete();
         $notification = array(
             'message' => 'Yorum Silindi',
             'alert-type' => 'warning'
