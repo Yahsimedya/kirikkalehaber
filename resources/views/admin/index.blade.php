@@ -194,7 +194,6 @@
                         <th data-breakpoints="xs sm md" style="display: table-cell;">Başlık</th>
                         <th data-breakpoints="xs sm md" style="display: table-cell;">Tekil</th>
                         <th data-breakpoints="xs sm md" style="display: table-cell;">Çoğul</th>
-
                         <th data-breakpoints="xs sm md" style="display: table-cell;">Kategori</th>
                         <th data-breakpoints="xs sm" style="display: table-cell;">Drum</th>
 
