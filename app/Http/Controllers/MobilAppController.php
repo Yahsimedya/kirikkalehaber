@@ -26,7 +26,6 @@ class MobilAppController extends Controller
         $json = $stmt;
         return $this->change($json);
     }
-
     public function commentsCount($id)
     {
         $stmt = Comments::where('posts_id', '=', $id)->where('status', '=', 1)->get();
@@ -34,37 +33,29 @@ class MobilAppController extends Controller
 
         return count($json);
     }
-
-    public function AllPost()
-    {
+    public function AllPost(){
         $stmt = Post::where('status', '=', 1)->orderByDesc('created_at')->get();
         $json = $stmt;
         return $this->change($json);
     }
-
-    public function categoryPost($id)
-    {
-        if ($id == 999) {
-            $stmt = Post::where('status', '=', 1)->where('district_id', '=', 71)->where('subdistrict_id', '=', ['583', '584', '585', '586', '587', '588', '590', '591',])->orderByDesc('created_at')->limit(10)->get();
-            $json = $stmt;
-            return $this->change($json);
-        } else {
-            $stmt = Post::where('status', '=', 1)->where('category_id', '=', $id)->orderByDesc('created_at')->limit(10)->get();
-            $json = $stmt;
-            return $this->change($json);
-        }
-
+    public function categoryPost($id){
+        $stmt = Post::where('status', '=', 1)->where('category_id', '=', $id)->orderByDesc('created_at')->get();
+        $json = $stmt;
+        return $this->change($json);
     }
-
-    public function benzerHaberler($id)
-    {
+    public function benzerHaberler($id){
         $category_ids = Post::where('status', '=', 1)->where('id', '=', $id)->orderByDesc('created_at')->limit(10)->get();
-        $ids = $category_ids[0]->category_id;
+        $ids=$category_ids[0]->category_id;
         $stmt = Post::where('status', '=', 1)->where('category_id', '=', $ids)->orderByDesc('created_at')->limit(10)->get();
         $json = $stmt;
         return $this->change($json);
     }
-
+    public function kirmiziMikrafon()
+    {
+        $stmt = Post::where('status', '=', 1)->where('category_id', '=', 12)->orderByDesc('created_at')->get();
+        $json = $stmt;
+        return $this->change($json);
+    }
     public function mansetalti()
     {
         $stmt = Post::where('status', '=', 1)->where('manset', '=', 1)->orderByDesc('created_at')->limit(50)->get();
@@ -85,12 +76,6 @@ class MobilAppController extends Controller
         $json = $stmt;
         return $this->change($json);
     }
-    public function kirmiziMikrafon()
-    {
-        $stmt = Post::where('status', '=', 1)->where('category_id', '=', 12)->orderByDesc('created_at')->get();
-        $json = $stmt;
-        return $this->change($json);
-    }
 
     public function ozelhaber()
     {
@@ -101,7 +86,7 @@ class MobilAppController extends Controller
 
     public function tech()
     {
-        $stmt = Post::where('status', '=', 1)->where('category_id', '=', 9)->orderByDesc('created_at')->get();
+        $stmt =Post::where('status', '=', 1)->where('category_id', '=', 9)->orderByDesc('created_at')->get();
         $json = $stmt;
         return $this->change($json);
     }
@@ -115,21 +100,21 @@ class MobilAppController extends Controller
 
     public function health()
     {
-        $stmt = Post::where('status', '=', 1)->where('category_id', '=', 7)->orderByDesc('created_at')->get();
+        $stmt =Post::where('status', '=', 1)->where('category_id', '=', 7)->orderByDesc('created_at')->get();
         $json = $stmt;
         return $this->change($json);
     }
 
     public function sport()
     {
-        $stmt = Post::where('status', '=', 1)->where('category_id', '=', 6)->orderByDesc('created_at')->get();
+        $stmt =Post::where('status', '=', 1)->where('category_id', '=', 6)->orderByDesc('created_at')->get();
         $json = $stmt;
         return $this->change($json);
     }
 
     public function economy()
     {
-        $stmt = Post::where('status', '=', 1)->where('category_id', '=', 5)->orderByDesc('created_at')->get();
+        $stmt =Post::where('status', '=', 1)->where('category_id', '=', 5)->orderByDesc('created_at')->get();
         $json = $stmt;
         return $this->change($json);
     }
@@ -229,6 +214,8 @@ class MobilAppController extends Controller
     }
 
 
+
+
     public function commentposts($id, $ad, $detay)
     {
 
@@ -246,7 +233,6 @@ class MobilAppController extends Controller
 
 
     }
-
     public function categories($id)
     {
         $stmt = Post::where('status', '=', 1)->where('manset', '=', 1)->where('category_id', '=', $id)->orderByDesc('created_at')->limit(30)->get();
@@ -277,7 +263,7 @@ class MobilAppController extends Controller
     public function searchPost($ad)
     {
         $searchText = $ad;
-        $stmt = Post::Where('title_tr', 'LIKE', '%' . $searchText . '%')->Where("status", "=", 1)->get();
+        $stmt =Post::Where('title_tr', 'LIKE', '%' . $searchText . '%')->Where("status","=",1)->get();
         $json = $stmt;
         return $this->change($json);
     }
@@ -288,6 +274,7 @@ class MobilAppController extends Controller
         $json = $stmt;
         return $this->change($json);
     }
+
 
 
     function change($json)
