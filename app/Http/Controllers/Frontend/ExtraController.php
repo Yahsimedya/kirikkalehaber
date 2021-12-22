@@ -539,12 +539,7 @@ class ExtraController extends Controller
             return Seos::first();
         });
         $mgm = file_get_contents("http://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml");
-        if($mgm===false) {
-            echo "geldi";
-        } else {
-            echo "gelmedi";
 
-        }
         $veri = simplexml_load_string($mgm);
 
         $json = json_encode($veri);
