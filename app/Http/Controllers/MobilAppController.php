@@ -85,6 +85,12 @@ class MobilAppController extends Controller
         $json = $stmt;
         return $this->change($json);
     }
+    public function kirmiziMikrafon()
+    {
+        $stmt = Post::where('status', '=', 1)->where('category_id', '=', 11)->orderByDesc('created_at')->get();
+        $json = $stmt;
+        return $this->change($json);
+    }
 
     public function ozelhaber()
     {
