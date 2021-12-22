@@ -538,84 +538,84 @@ class ExtraController extends Controller
             if (Cache::has('seoset')) return Cache::has('seoset');
             return Seos::first();
         });
-//        $mgm = file_get_contents("http://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml");
-//        if($mgm===false) {
-//            echo "geldi";
-//        } else {
-//            echo "gelmedi";
-//
-//        }
-//        $veri = simplexml_load_string($mgm);
-//
-//        $json = json_encode($veri);
-//        $array = json_decode($json, TRUE);
-//        $gelenil = "KIRIKKALE";
-//        $bul = $gelenil;
-//        $bulunacak = array('ç', 'Ç', 'ı', 'ğ', 'Ğ', 'ü', 'İ', 'ö', 'Ş', 'ş', 'Ö', 'Ü', ',', ' ', '(', ')', '[', ']');
-//        $degistir = array('c', 'C', 'i', 'g', 'G', 'u', 'I', 'o', 'S', 's', 'O', 'U', '', '_', '', '', '', '');
-//        $sonuc = str_replace($bulunacak, $degistir, $bul);
-//        $sonuc;
-//        function cevir($string)
-//        {
-//
-//            $string = str_replace("SCK", "Sıcak", $string);
-//            $string = str_replace("AB", "Az Bulutlu", $string);
-//            $string = str_replace("HSY", "Hafif Sağnak Yağış", $string);
-//            $string = str_replace("PB", "Parçalı Bulutlu", $string);
-//            $string = str_replace("GSY", "Gökgürltülü Sağnak Yağışlı", $string);
-//            $string = str_replace("KGY", "Kuvvetli Gökgürltülü Sağnak Yağışlı", $string);
-//            $string = str_replace("MSY", "Mevzi Sağnak Yağışlı", $string);
-//
-//            return $string;
-//        }
-//
-////        dd($array);
-//
-//        foreach ($array['Merkez'] as $data) {
-//            if ($data['ilEn'] == $sonuc) {
-//                if ($data['d1'] == "GSY") {
-//                    $icon = '<i  style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>';
-//                } elseif ($data['d1'] == "SCK") {
-//                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-sunny"></i>';
-//                } elseif ($data['d1'] == "KGY") {
-//                    $icon = '<i  style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>';
-//                } elseif ($data['d1'] == "AB") {
-//                    $icon = '<i  style="font-size: 20px;" class="wi wi-night-partly-cloudy"></i>';
-//                } elseif ($data['d1'] == "PB") {
-//                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-cloudy-windy"></i>';
-//                } elseif ($data['d1'] == "HSY") {
-//                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-rain"></i>';
-//                } elseif ($data['d1'] == "MSY") {
-//                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-showers"></i>';
-//                } elseif ($data['d1'] == "A") {
-//                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-sunny"></i>';
-//                } elseif ($data['d1'] == "CB") {
-//                    $icon = '<i  style="font-size: 20px;" class="wi wi-cloudy"></i>';
-//                } elseif ($data['d1'] == "SIS") {
-//                    $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
-//                } elseif ($data['d1'] == "R") {
-//                    $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
-//                } else {
-//                    $icon = '<i  style="font-size: 20px;" class="wi wi-strong-wind"></i>';
-//                }
-//
-//
-//                $day1 = $data['makk1'];
-//
-//
-//            }
-//        }
-//
-//        $veri = array(
-//            'gelenil' => $gelenil,
-//            'sicaklik' => $day1,
-////            'icon' =>$icon,
-//        );
-//
-//        Session::put('icon', $icon);
-//        Session::put('gelenil', $gelenil);
-//
-//        Session::put('havadurumu', $veri['sicaklik']);
+        $mgm = file_get_contents("http://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml");
+        if($mgm===false) {
+            echo "geldi";
+        } else {
+            echo "gelmedi";
+
+        }
+        $veri = simplexml_load_string($mgm);
+
+        $json = json_encode($veri);
+        $array = json_decode($json, TRUE);
+        $gelenil = "KIRIKKALE";
+        $bul = $gelenil;
+        $bulunacak = array('ç', 'Ç', 'ı', 'ğ', 'Ğ', 'ü', 'İ', 'ö', 'Ş', 'ş', 'Ö', 'Ü', ',', ' ', '(', ')', '[', ']');
+        $degistir = array('c', 'C', 'i', 'g', 'G', 'u', 'I', 'o', 'S', 's', 'O', 'U', '', '_', '', '', '', '');
+        $sonuc = str_replace($bulunacak, $degistir, $bul);
+        $sonuc;
+        function cevir($string)
+        {
+
+            $string = str_replace("SCK", "Sıcak", $string);
+            $string = str_replace("AB", "Az Bulutlu", $string);
+            $string = str_replace("HSY", "Hafif Sağnak Yağış", $string);
+            $string = str_replace("PB", "Parçalı Bulutlu", $string);
+            $string = str_replace("GSY", "Gökgürltülü Sağnak Yağışlı", $string);
+            $string = str_replace("KGY", "Kuvvetli Gökgürltülü Sağnak Yağışlı", $string);
+            $string = str_replace("MSY", "Mevzi Sağnak Yağışlı", $string);
+
+            return $string;
+        }
+
+//        dd($array);
+
+        foreach ($array['Merkez'] as $data) {
+            if ($data['ilEn'] == $sonuc) {
+                if ($data['d1'] == "GSY") {
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>';
+                } elseif ($data['d1'] == "SCK") {
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-sunny"></i>';
+                } elseif ($data['d1'] == "KGY") {
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>';
+                } elseif ($data['d1'] == "AB") {
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-night-partly-cloudy"></i>';
+                } elseif ($data['d1'] == "PB") {
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-cloudy-windy"></i>';
+                } elseif ($data['d1'] == "HSY") {
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-rain"></i>';
+                } elseif ($data['d1'] == "MSY") {
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-showers"></i>';
+                } elseif ($data['d1'] == "A") {
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-sunny"></i>';
+                } elseif ($data['d1'] == "CB") {
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-cloudy"></i>';
+                } elseif ($data['d1'] == "SIS") {
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
+                } elseif ($data['d1'] == "R") {
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
+                } else {
+                    $icon = '<i  style="font-size: 20px;" class="wi wi-strong-wind"></i>';
+                }
+
+
+                $day1 = $data['makk1'];
+
+
+            }
+        }
+
+        $veri = array(
+            'gelenil' => $gelenil,
+            'sicaklik' => $day1,
+//            'icon' =>$icon,
+        );
+
+        Session::put('icon', $icon);
+        Session::put('gelenil', $gelenil);
+
+        Session::put('havadurumu', $veri['sicaklik']);
         $webSiteSetting=WebsiteSetting::first();
         return view('main.home', compact('home', 'ekonomi','webSiteSetting', 'surmanset', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
 //        return view('main.home_master', compact('seoset'))
