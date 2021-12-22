@@ -354,6 +354,7 @@ Route::get('/json/fotogaleri/', [MobilAppController::class, 'fotogaleri']);
 Route::get('/json/fotogaleriDetail/', [MobilAppController::class, 'fotogaleriDetail']);
 Route::get('/json/AllPost/', [MobilAppController::class, 'AllPost']);
 Route::get('/json/country/{id}', [MobilAppController::class, 'countrynews']);
+Route::get('/json/categoryPost/{id}', [MobilAppController::class, 'categoryPost']);
 
 
 //LİKE AND DİSLİKE

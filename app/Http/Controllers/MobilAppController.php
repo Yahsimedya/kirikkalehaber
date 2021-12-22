@@ -38,6 +38,11 @@ class MobilAppController extends Controller
         $json = $stmt;
         return $this->change($json);
     }
+    public function categoryPost($id){
+        $stmt = Post::where('status', '=', 1)->where('category_id', '=', $id)->orderByDesc('created_at')->limit(10)->get();
+        $json = $stmt;
+        return $this->change($json);
+    }
 
 
     public function mansetalti()
