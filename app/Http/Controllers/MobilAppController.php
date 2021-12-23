@@ -228,6 +228,12 @@ class MobilAppController extends Controller
         $json = $stmt;
         return $this->change($json);
     }
+    public function authorsposts($id)
+    {
+        $stmt = AuthorsPost::where('authors_id', '=', $id)->get();
+        $json = $stmt;
+        return $this->change($json);
+    }
 
 
     public function commentposts($id, $ad, $detay)
