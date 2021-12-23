@@ -230,7 +230,7 @@ class MobilAppController extends Controller
     }
     public function authorsposts($id)
     {
-        $stmt = AuthorsPost::where('authors_id', '=', $id)->get();
+        $stmt = AuthorsPost::where('authors_id', '=', $id)->orderByDesc('created_at')->get();
         $json = $stmt;
         return $this->change($json);
     }
@@ -298,8 +298,10 @@ class MobilAppController extends Controller
 
     public function allyazar()
     {
-        $stmt = AuthorsPost::leftJoin('authors', 'authors_posts.authors_id', '=', 'authors.id')->where("authors_posts.status", 1)
-            ->groupBy('authors_posts.authors_id')->orderByDesc('authors_posts.id')
+        $stmt = AuthorsPost::join('authors', 'authors_posts.authors_id', '=', 'authors.id')
+            ->where("authors_posts.status", 1)->where("authors.status",1)
+            ->select('authors_posts.id','authors_posts.authors_id','authors_posts.title','authors.name','authors.image')
+            ->groupBy('authors.id')->orderByDesc('authors_posts.created_at')
             ->get();
         $json = $stmt;
         return $this->change($json);
