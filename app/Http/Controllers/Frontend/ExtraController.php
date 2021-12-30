@@ -214,7 +214,14 @@ class ExtraController extends Controller
             ->leftjoin('categories', 'posts.category_id', '=', 'categories.id')
             ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name', 'categories.id'])
             ->groupBy('post_tags.post_id')
-            ->where('post_tags.tag_id', $id)->where('status', 1)->limit(19)->latest()
+            ->where('post_tags.tag_id', $id)->where('posts.featured', 1)->where('status', 1)->limit(23)->latest()
+            ->get();
+        $tagPostsSlideralti = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+            ->leftjoin('tags', 'tags.id', 'post_tags.tag_id')
+            ->leftjoin('categories', 'posts.category_id', '=', 'categories.id')
+            ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name', 'categories.id'])
+            ->groupBy('post_tags.post_id')
+            ->where('post_tags.tag_id', $id)->where('posts.featured', 0)->where('status', 1)->limit(50)->latest()
             ->get();
 //       echo $category = $tagPosts->category_id;
 //        foreach ($category as $object){
@@ -241,7 +248,7 @@ class ExtraController extends Controller
             ->get();
         $webSiteSetting=WebsiteSetting::get();
         $themeSetting=Theme::get();
-        return view('main.body.tags', compact('tagPosts', 'count','themeSetting','webSiteSetting', 'nextnews', 'ads'));
+        return view('main.body.tags', compact('tagPosts', 'count','themeSetting','webSiteSetting', 'nextnews', 'ads', 'tagPostsSlideralti'));
     }
 
     public function feed()

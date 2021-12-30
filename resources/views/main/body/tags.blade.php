@@ -50,7 +50,7 @@
                         <div class="col-md-12 pt-2 pb-2">
                             <img class="float-left w-100" src="img/728x90.png" alt="">
                         </div>
-                        @foreach ($tagPosts as $row)
+                        @foreach ($tagPostsSlideralti as $row)
                             <div class="col-md-6">
                                 <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->post_id.'/'.'haberi')}}">
                                     <div class="card kart kart-width shadow mb-2" style="">
