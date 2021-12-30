@@ -214,7 +214,7 @@ class ExtraController extends Controller
             ->leftjoin('categories', 'posts.category_id', '=', 'categories.id')
             ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name', 'categories.id'])
             ->groupBy('post_tags.post_id')
-            ->where('post_tags.tag_id', $id)->where('status', 1)->latest()
+            ->where('post_tags.tag_id', $id)->where('status', 1)->limit(19)->latest()
             ->get();
 //       echo $category = $tagPosts->category_id;
 //        foreach ($category as $object){
@@ -226,7 +226,7 @@ class ExtraController extends Controller
             ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name', 'categories.id'])
             ->groupBy('posts.id')
             ->where('post_tags.tag_id', $id)->where('status', 1)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
-            ->inRandomOrder()
+            ->inRandomOrder()->limit(10)
             ->get();
         $count = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
             ->leftjoin('tags', 'tags.id', 'post_tags.tag_id')
