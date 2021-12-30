@@ -80,8 +80,6 @@
                                 </div>
                             </div></a>
                 @endforeach
-
-
                 <!--SIRADAKİ HABERLER-->
 
                     <div class="position-relative mt-3">
