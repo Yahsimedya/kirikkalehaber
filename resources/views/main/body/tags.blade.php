@@ -71,7 +71,7 @@
                     <div class="text-center mb-2">
                         <img class="img-fluid w-100" src="img/336x280.jpg">
                     </div>
-                    @foreach ($nextnews as $row )
+                    @foreach ($nextnewsyan as $row )
 
                         <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->post_id.'/'.'haberi')}}"><div class="card kart kart-width shadow mb-2" style="">
                                 <img class="img-fluid kart_img" src="{{asset($row->image)}}" />

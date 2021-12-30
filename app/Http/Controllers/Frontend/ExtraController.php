@@ -235,6 +235,14 @@ class ExtraController extends Controller
             ->where('post_tags.tag_id', $id)->where('status', 1)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
             ->inRandomOrder()->limit(10)
             ->get();
+        $nextnewsyan = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+            ->leftjoin('tags', 'tags.id', 'post_tags.tag_id')
+            ->leftjoin('categories', 'posts.category_id', '=', 'categories.id')
+            ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name', 'categories.id'])
+            ->groupBy('posts.id')
+            ->where('post_tags.tag_id', $id)->where('status', 1)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
+            ->inRandomOrder()->limit(5)
+            ->get();
         $count = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
             ->leftjoin('tags', 'tags.id', 'post_tags.tag_id')
             ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
@@ -248,7 +256,7 @@ class ExtraController extends Controller
             ->get();
         $webSiteSetting=WebsiteSetting::get();
         $themeSetting=Theme::get();
-        return view('main.body.tags', compact('tagPosts', 'count','themeSetting','webSiteSetting', 'nextnews', 'ads', 'tagPostsSlideralti'));
+        return view('main.body.tags', compact('tagPosts', 'count','nextnewsyan','themeSetting','webSiteSetting', 'nextnews', 'ads', 'tagPostsSlideralti'));
     }
 
     public function feed()
