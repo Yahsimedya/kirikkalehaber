@@ -85,6 +85,7 @@ class MobilAppController extends Controller
         $json = $stmt;
         return $this->change($json);
     }
+
     public function kirmiziMikrafon()
     {
         $stmt = Post::where('status', '=', 1)->where('category_id', '=', 12)->orderByDesc('created_at')->get();
@@ -227,6 +228,12 @@ class MobilAppController extends Controller
         $json = $stmt;
         return $this->change($json);
     }
+    public function authorsposts($id)
+    {
+        $stmt = AuthorsPost::where('authors_id', '=', $id)->orderByDesc('created_at')->get();
+        $json = $stmt;
+        return $this->change($json);
+    }
 
 
     public function commentposts($id, $ad, $detay)
@@ -289,6 +296,17 @@ class MobilAppController extends Controller
         return $this->change($json);
     }
 
+    public function allyazar()
+    {
+        $stmt = AuthorsPost::join('authors', 'authors_posts.authors_id', '=', 'authors.id')
+            ->where("authors_posts.status", 1)->where("authors.status",1)
+            ->select('authors_posts.id','authors_posts.authors_id','authors_posts.title','authors.name','authors.image')
+            ->groupBy('authors.id')->orderByDesc('authors_posts.created_at')
+            ->get();
+        $json = $stmt;
+        return $this->change($json);
+
+    }
 
     function change($json)
     {

@@ -240,7 +240,7 @@
 
                         <div class="col-md-12 shadow-lg p-3 mt-3 bg-light">
                             <h3 class="text-dark">Haber Yorumları</h3>
-                            {{$count}}
+
 
                         @foreach($comments as $comment)
                                 <hr>

@@ -50,7 +50,7 @@
                         <div class="col-md-12 pt-2 pb-2">
                             <img class="float-left w-100" src="img/728x90.png" alt="">
                         </div>
-                        @foreach ($tagPosts as $row)
+                        @foreach ($tagPostsSlideralti as $row)
                             <div class="col-md-6">
                                 <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->post_id.'/'.'haberi')}}">
                                     <div class="card kart kart-width shadow mb-2" style="">
@@ -71,7 +71,7 @@
                     <div class="text-center mb-2">
                         <img class="img-fluid w-100" src="img/336x280.jpg">
                     </div>
-                    @foreach ($nextnews as $row )
+                    @foreach ($nextnewsyan as $row )
 
                         <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->post_id.'/'.'haberi')}}"><div class="card kart kart-width shadow mb-2" style="">
                                 <img class="img-fluid kart_img" src="{{asset($row->image)}}" />
@@ -80,8 +80,6 @@
                                 </div>
                             </div></a>
                 @endforeach
-
-
                 <!--SIRADAKİ HABERLER-->
 
                     <div class="position-relative mt-3">
