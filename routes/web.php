@@ -359,6 +359,7 @@ Route::get('/json/benzerHaberler/{id}', [MobilAppController::class, 'benzerHaber
 Route::get('/json/kirmiziMikrafon/', [MobilAppController::class, 'kirmiziMikrafon']);
 Route::get('/json/allyazar/', [MobilAppController::class, 'allyazar']);
 Route::get('/json/authorsposts/{id}', [MobilAppController::class, 'authorsposts']);
+Route::get('/json/sondakika/', [MobilAppController::class, 'sondakika']);
 
 
 //LİKE AND DİSLİKE
