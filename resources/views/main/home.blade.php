@@ -395,7 +395,7 @@
                                     @foreach ($video_gallary as $row )
 
                                         <div class="swiper-slide position-relative">
-                                            <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
+                                            <a href="{{URL::to('/'.php _slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
                                                 <div class="swiper-slide__foto "><img class="img-fluid lazyload" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                                                                       data-src="{{asset($row->image)}}"/>
                                                 </div>

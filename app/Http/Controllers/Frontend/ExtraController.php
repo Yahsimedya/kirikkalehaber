@@ -197,13 +197,13 @@ class ExtraController extends Controller
             ->where('photos.photocategory_id', $photogalery)
             ->get();
         $relatedgalery = Photo::where('status', 1)->take(10)->groupBy('photocategory_id')->latest()->get();
-        $webSiteSetting=WebsiteSetting::first();
+        $webSiteSetting = WebsiteSetting::first();
 //    $relatedgalery =Photo::leftjoin('photocategories','photos.photocategory_id','=','photocategories.id')
 //        ->select(['photos.*','photocategories.id','photocategories.category_title'])
 //        ->where('photos.photocategory_id',$photogalery)->where('photos.photocategory_id','!=',$photos->photocategory_id)->groupBy('photocategory_id')
 //        ->get();
-        $themeSetting=Theme::get();
-        return view('main.body.foto_galery', compact('photos', 'category','webSiteSetting', 'relatedgalery','themeSetting'));
+        $themeSetting = Theme::get();
+        return view('main.body.foto_galery', compact('photos', 'category', 'webSiteSetting', 'relatedgalery', 'themeSetting'));
     }
 
     public function Etiket($name, $id)
@@ -239,9 +239,9 @@ class ExtraController extends Controller
             ->where('status', 1)
             ->whereIN('ad_categories.id', [1, 2, 3, 12]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
             ->get();
-        $webSiteSetting=WebsiteSetting::get();
-        $themeSetting=Theme::get();
-        return view('main.body.tags', compact('tagPosts', 'count','themeSetting','webSiteSetting', 'nextnews', 'ads'));
+        $webSiteSetting = WebsiteSetting::get();
+        $themeSetting = Theme::get();
+        return view('main.body.tags', compact('tagPosts', 'count', 'themeSetting', 'webSiteSetting', 'nextnews', 'ads'));
     }
 
     public function feed()
@@ -264,9 +264,9 @@ class ExtraController extends Controller
     public function GetAllDistrict()
     {
         $siteSetting = Theme::latest('id')->get();
-        $themeSetting =Theme::get();
+        $themeSetting = Theme::get();
 
-        return view('main.body.turkey_map', compact('siteSetting','themeSetting'));
+        return view('main.body.turkey_map', compact('siteSetting', 'themeSetting'));
     }
 
     public function GetDistrict($id) // türkiye haritasında illere tıkladığında il detay sayfasına gider
@@ -299,10 +299,10 @@ class ExtraController extends Controller
             ->where('districts.slug', $id)
             ->get();
         $alldistrict = District::get();
-        $webSiteSetting=WebsiteSetting::first();
-        $themeSetting=Theme::get();
+        $webSiteSetting = WebsiteSetting::first();
+        $themeSetting = Theme::get();
 
-        return view('main.body.district', compact('districts', 'sehir','themeSetting', 'webSiteSetting', 'sehirsay', 'subdistricts', 'alldistrict'));
+        return view('main.body.district', compact('districts', 'sehir', 'themeSetting', 'webSiteSetting', 'sehirsay', 'subdistricts', 'alldistrict'));
     }
 
     //
@@ -434,7 +434,7 @@ class ExtraController extends Controller
 
         $home = Cache::remember("home", Carbon::now()->addYear(), function () {
             if (Cache::has('home')) return Cache::has('home');
-            return Post::where('status', 1)->where('manset',1)
+            return Post::where('status', 1)->where('manset', 1)
                 ->latest('created_at')
                 ->get();
         });
@@ -452,10 +452,10 @@ class ExtraController extends Controller
 ////            });
 
         $themeSettings = Theme::latest()->get();
-       $category1= $themeSettings[0]->category1;
-       $category2= $themeSettings[0]->category2;
-       $category3 =$themeSettings[0]->category3;
-       $category4= $themeSettings[0]->category4;
+        $category1 = $themeSettings[0]->category1;
+        $category2 = $themeSettings[0]->category2;
+        $category3 = $themeSettings[0]->category3;
+        $category4 = $themeSettings[0]->category4;
 
         $surmanset = Cache::remember("surmanset", Carbon::now()->addYear(), function () {
             if (Cache::has('surmanset')) return Cache::has('surmanset');
@@ -470,8 +470,8 @@ class ExtraController extends Controller
         $sagmanset = Cache::remember("sagmanset", Carbon::now()->addYear(), function () {
             if (Cache::has('sagmanset')) return Cache::has('sagmanset'); //here am simply trying Laravel Collection method -find
             $themeSettings = Theme::latest()->get();
-            foreach ($themeSettings as $row){
-                $multiple_category=$row->multiple_category;
+            foreach ($themeSettings as $row) {
+                $multiple_category = $row->multiple_category;
                 $explode_id = json_decode($multiple_category, true);
             }
             return Post::whereIn('category_id', $explode_id)->where('status', 1)->latest('updated_at')->limit(15)->get();
@@ -509,7 +509,7 @@ class ExtraController extends Controller
         });
 
         $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-            ->select(['authors.*', 'authors_posts.title','authors_posts.id','authors_posts.updated_at'])
+            ->select(['authors.*', 'authors_posts.title', 'authors_posts.id', 'authors_posts.updated_at'])
             ->where('authors.status', 1)->where('authors_posts.status', 1)
             ->latest("authors_posts.updated_at")->limit(8)
             ->get();
@@ -529,7 +529,7 @@ class ExtraController extends Controller
 //            ->join('ads','ad_categories.id','ads.category_id')
                 ->select(['ads.*', 'ad_categories.id'])
                 ->where('status', 1)
-             // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
+                // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
                 ->get();
 
         });
@@ -611,8 +611,8 @@ class ExtraController extends Controller
         Session::put('gelenil', $gelenil);
 
         Session::put('havadurumu', $veri['sicaklik']);
-        $webSiteSetting=WebsiteSetting::first();
-        return view('main.home', compact('home', 'ekonomi','webSiteSetting', 'surmanset', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
+        $webSiteSetting = WebsiteSetting::first();
+        return view('main.home', compact('home', 'ekonomi', 'webSiteSetting', 'surmanset', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 
@@ -675,30 +675,29 @@ class ExtraController extends Controller
 //            ->get();
             Ad::latest('updated_at')
                 ->where('status', 1)
-
                 ->with('adcategory')
                 ->get();
         $tag_ids = $post->tag()->get();
-         $tagCount = $tag_ids->count();
-        $ids=array();
+        $tagCount = $tag_ids->count();
+        $ids = array();
         foreach ($tag_ids as $tags) {
-            $ids[]=$tags->id;
-             $tag= $tags->id;
+            $ids[] = $tags->id;
+            $tag = $tags->id;
         }
 //        dd($ids);
-        $maybeRelated=[];
+        $maybeRelated = [];
 
 //        foreach ($ids as $tagId) {
-        if(isset($ids)) {
+        if (isset($ids)) {
 
-    if ($ids!=[]){
+            if ($ids != []) {
 //        foreach ($ids as $tagId) {
-            $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
-                ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
-                ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                ->orWhereIn('post_tags.tag_id', $ids)->skip(1)->limit(3)->inRandomOrder()->groupBy('posts.id')->latest()
-                ->get();
-        }//        }
+                $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+                    ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
+                    ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
+                    ->orWhereIn('post_tags.tag_id', $ids)->skip(1)->limit(3)->inRandomOrder()->groupBy('posts.id')->latest()
+                    ->get();
+            }//        }
 //        dd($maybeRelated);
         }
 //    }
@@ -759,8 +758,8 @@ class ExtraController extends Controller
 //        $related= $post->posttags()->post_id;
 //        $related=$this->belongsToMany(Post::class, 'post_tags', 'tags');
         $seoset = Seos::first();
-        $webSiteSetting=WebsiteSetting::first();
-        return view('main.body.single_post', compact('post', 'ads','webSiteSetting', 'random', 'slider', 'tagName', 'nextrelated', 'comments', 'seoset','maybeRelated','tagCount','count'));
+        $webSiteSetting = WebsiteSetting::first();
+        return view('main.body.single_post', compact('post', 'ads', 'webSiteSetting', 'random', 'slider', 'tagName', 'nextrelated', 'comments', 'seoset', 'maybeRelated', 'tagCount', 'count'));
 
 
     }
@@ -769,8 +768,8 @@ class ExtraController extends Controller
     public function Sayfa($id)
     {
         $fixedPage = DB::table('fixedpage')->where('id', '=', $id)->get();
-        $themeSetting=Theme::get();
-        return view('main.body.fixedpapers', compact('fixedPage','themeSetting'));
+        $themeSetting = Theme::get();
+        return view('main.body.fixedpapers', compact('fixedPage', 'themeSetting'));
     }
 
 
@@ -802,7 +801,7 @@ class ExtraController extends Controller
 //        if ($catpost->count() == 0) {
 //            return redirect('/');
 //        }
-        $webSiteSetting=WebsiteSetting::first();
+        $webSiteSetting = WebsiteSetting::first();
 
         $nextnews = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
@@ -815,7 +814,7 @@ class ExtraController extends Controller
             ->where('status', 1)
             ->get();
 
-        return view('main.body.category_post', compact('manset', 'webSiteSetting','category', 'catpost', 'ads', 'nextnews', 'count'));
+        return view('main.body.category_post', compact('manset', 'webSiteSetting', 'category', 'catpost', 'ads', 'nextnews', 'count'));
 
 
     }
@@ -827,9 +826,9 @@ class ExtraController extends Controller
         $searchText = $request['searchtext'];
         $json = Post::orWhere('title_tr', 'LIKE', '%' . $searchText . '%')->orWhere('title_en', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_tr', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_en', 'LIKE', '%' . $searchText . '%')->get();
         $searchNews = $this->change($json);
-        $webSiteSetting=WebsiteSetting::first();
+        $webSiteSetting = WebsiteSetting::first();
 
-        return \view('main.body.search', compact('searchNews','webSiteSetting',));
+        return \view('main.body.search', compact('searchNews', 'webSiteSetting',));
     }
 
 
@@ -864,8 +863,8 @@ class ExtraController extends Controller
     public function TumKategoriler()
     {
         $allcategories = Category::get();
-        $themeSetting =Theme::get();
-        return view('main.body.allcategories', compact('allcategories','themeSetting'));
+        $themeSetting = Theme::get();
+        return view('main.body.allcategories', compact('allcategories', 'themeSetting'));
     }
 
 
@@ -886,9 +885,9 @@ class ExtraController extends Controller
 //        views($Authorid)
 //            ->cooldown($expiresAt)
 //            ->record();
-        $webSiteSetting=WebsiteSetting::first();
+        $webSiteSetting = WebsiteSetting::first();
         $yaziPost = AuthorsPost::whereId($Authorid)->first(); // done bope
-                $expiresAt = now()->addHours(24);
+        $expiresAt = now()->addHours(24);
         views($yaziPost)
             ->cooldown($expiresAt)
             ->record();
@@ -900,7 +899,7 @@ class ExtraController extends Controller
         $nextauthors_posts = AuthorsPost::where('status', 1)->where('authors_id', $yazarID)->latest()->limit(10)->get();
         $OtherAuthors = Authors::limit(10)->get();
         $seoset = Seos::first();
-        $themeSetting =Theme::get();
+        $themeSetting = Theme::get();
 
 
 //        $nextauthorCount=$nextauthors_posts->count();
@@ -916,17 +915,18 @@ class ExtraController extends Controller
 //        $yazar = Authors::where('id', '=', $Authorid)->get();
 //$yazi= AuthorsPost::where($slug_name)->where($Authorid);
 //dd($yazi);
-        return view('main.body.authors_writes', compact('yaziPost','webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'themeSetting'));
+        return view('main.body.authors_writes', compact('yaziPost', 'webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'themeSetting'));
     }
 
-    public function breakingnews() {
-        $webSiteSetting=WebsiteSetting::first();
-        $themeSetting=Theme::get();
+    public function breakingnews()
+    {
+        $webSiteSetting = WebsiteSetting::first();
+        $themeSetting = Theme::get();
 
         $sondakika = Post::where('updated_at', '>', Carbon::now()->subDay(1))->latest()
             ->get();
 
-        return view('main.body.breakingnews', compact('sondakika','webSiteSetting','themeSetting'));
+        return view('main.body.breakingnews', compact('sondakika', 'webSiteSetting', 'themeSetting'));
     }
 
 
@@ -942,7 +942,7 @@ class ExtraController extends Controller
     {
         $blog = Post::find($request->blog);
         $value = $blog->like;
-        $blog->like = $value+1;
+        $blog->like = $value + 1;
         $blog->save();
         return response()->json([
             'message' => 'Liked',
@@ -961,7 +961,7 @@ class ExtraController extends Controller
     {
         $blog = Post::find($request->blog);
         $value = $blog->dislike;
-        $blog->dislike = $value+1;
+        $blog->dislike = $value + 1;
         $blog->save();
         return response()->json([
             'message' => 'Disliked',

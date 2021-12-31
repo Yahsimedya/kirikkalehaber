@@ -83,8 +83,8 @@ District::create($request->all());
     {
         $validatedData = $request->validate(
             [
-                'district_tr' => 'required|unique:districts|max:255',
-                'district_en' => 'required|unique:districts|max:255',
+                'district_tr' => 'required|max:255',
+                'district_en' => 'required|max:255',
                 'district_keywords' => 'required|max:255',
                 'district_description' => 'required|max:255',
             ],

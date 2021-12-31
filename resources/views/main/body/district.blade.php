@@ -1,7 +1,7 @@
 @extends('main.home_master')
-{{--@section('title',$sehir->district_tr)--}}
-{{--@section('meta_keywords',$sehir->district_keywords)--}}
-{{--@section('meta_description',$sehir->district_description)--}}
+@section('title',$sehir->district_tr)
+@section('meta_keywords',$sehir->district_keywords)
+@section('meta_description',$sehir->district_description)
 @section('content')
 
     <div class="container position-relative">
