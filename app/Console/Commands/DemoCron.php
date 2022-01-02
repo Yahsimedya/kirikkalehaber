@@ -171,6 +171,7 @@ class DemoCron extends Command
                         $data['image'] = "storage/postimg" . "/" . $year . "/" . $month . "/" . $benzersiz . "-" . $isim . '.jpg';
                         $data['user_id'] = 1;
                         $data['status'] = 1;
+                        $data['manset'] = 1;
                         $data['haber_iha_kod'] = $haberkodu;
                         $data['created_at'] = Carbon::now();
                         Artisan::call('cache:clear');
