@@ -329,6 +329,7 @@ Route::get('/json/mansetalti', [MobilAppController::class, 'mansetalti']);
 Route::get('/json/world', [MobilAppController::class, 'world']);
 Route::get('/json/ozelhaber', [MobilAppController::class, 'ozelhaber']);
 Route::get('/json/tech', [MobilAppController::class, 'tech']);
+Route::get('/json/ads', [MobilAppController::class, 'reklam']);
 Route::get('/json/artsandculture', [MobilAppController::class, 'artsandculture']);
 Route::get('/json/sport', [MobilAppController::class, 'sport']);
 Route::get('/json/health', [MobilAppController::class, 'health']);

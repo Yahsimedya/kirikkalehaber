@@ -87,6 +87,16 @@ class ad_category_Seeder extends Seeder
             22 =>  ['id' => 23,
                 'title' => '[Ana Sayfa] Spor Haberleri Slider Altı 830x90'],
 
+            23 =>  ['id' => 24,
+                'title' => '[Mobil Uygulama] Ana Sayfa En Üst 1140x90'],
+            24 =>  ['id' => 25,
+                'title' => '[Mobil Uygulama] Ana Sayfa Slider Alt 1140x90'],
+
+            25 =>  ['id' => 26,
+                'title' => '[Mobil Uygulama] Haber Detay Üst 1024x1024'],
+
+            26 =>  ['id' => 27,
+                'title' => '[Mobil Uygulama] Haber Detay Alt 1024x1024'],
         ]);
     }
 }
