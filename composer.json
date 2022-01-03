@@ -9,7 +9,6 @@
         "ext-dom": "*",
         "ext-json": "*",
         "ext-simplexml": "*",
-        "algolia/algoliasearch-client-php": "^3.0",
         "bilginpro/agency-aa": "^1.0",
         "cyrildewit/eloquent-viewable": "^6.0",
         "fideloper/proxy": "^4.4",
