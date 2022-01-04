@@ -298,7 +298,7 @@ class MobilAppController extends Controller
     }
     public function reklam()
     {
-        $stmt = Ad::where('status',1)->limit(50)->orderByDesc('created_at')->get();
+        $stmt = Ad::where('status',1)->where('category_id',25)->limit(50)->orderByDesc('created_at')->get();
         $json = $stmt;
         return $this->change($json);
     }
