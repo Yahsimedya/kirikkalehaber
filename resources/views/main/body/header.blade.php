@@ -53,7 +53,9 @@ $gelenil=Session::get('gelenil');
 
 <style>
 
-
+    .border-danger{
+        border-color:{{$themeSetting[0]->siteColorTheme}}!important;
+    }
     .dropdown:hover .dropdown-menu {
         display: block;
         margin-top: 0;

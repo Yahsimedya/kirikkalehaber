@@ -296,12 +296,29 @@ class MobilAppController extends Controller
         $json = $stmt;
         return $this->change($json);
     }
-    public function reklam()
+    public function reklamslideralt()
     {
-        $stmt = Ad::where('status',1)->where('category_id',25)->limit(50)->orderByDesc('created_at')->get();
+        $stmt = Ad::where('status',1)->where('category_id',25)->orderByDesc('created_at')->get();
         $json = $stmt;
         return $this->change($json);
     }
+    public function reklamsliderüst()
+    {
+        $stmt = Ad::where('status',1)->where('category_id',24)->orderByDesc('created_at')->get();
+        $json = $stmt;
+        return $this->change($json);
+    }public function reklamhaberdetayüst()
+    {
+        $stmt = Ad::where('status',1)->where('category_id',26)->orderByDesc('created_at')->get();
+        $json = $stmt;
+        return $this->change($json);
+    }public function reklamhaberdetayalt()
+    {
+        $stmt = Ad::where('status',1)->where('category_id',27)->orderByDesc('created_at')->get();
+        $json = $stmt;
+        return $this->change($json);
+    }
+
 
     public function allyazar()
     {
