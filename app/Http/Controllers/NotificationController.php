@@ -17,7 +17,7 @@ class NotificationController extends Controller
 
         $url = "https://fcm.googleapis.com/fcm/send";
         $token = "/topics/duyuru";
-        $serverKey = 'AAAAiba5hH4:APA91bFBmOMktRrCJljqzWPyIFhrddy8dmQ8RQktr7NfZ5oQMaRH3C_yU0i3eNBgN4ONkhESP2TmuQPc0uLKt596Em41S-v4zocehTW6QPwvIhTamlWCzOcBIuTbe6NbnKaO7w1f1ffk';
+        $serverKey = 'AAAAx2Qpiug:APA91bErBnXFP0kYyPjYddnMxv00ypb0WDcEVnY5XVDa9_06GZGhADeQSZoFPz4JXwUFfYpz0qQLN7soRhbzSNogtftjZHlrr0YtGy1Gn6BmmVGmw3-yEZKCEQ9HEQhtgJl3bqsGNblW';
 //Bayrak gazetesi =  AAAAiba5hH4:APA91bFBmOMktRrCJljqzWPyIFhrddy8dmQ8RQktr7NfZ5oQMaRH3C_yU0i3eNBgN4ONkhESP2TmuQPc0uLKt596Em41S-v4zocehTW6QPwvIhTamlWCzOcBIuTbe6NbnKaO7w1f1ffk
 //Kırıkkale haber =  AAAAx2Qpiug:APA91bErBnXFP0kYyPjYddnMxv00ypb0WDcEVnY5XVDa9_06GZGhADeQSZoFPz4JXwUFfYpz0qQLN7soRhbzSNogtftjZHlrr0YtGy1Gn6BmmVGmw3-yEZKCEQ9HEQhtgJl3bqsGNblW';
 
