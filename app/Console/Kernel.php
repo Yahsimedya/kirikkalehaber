@@ -44,7 +44,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('demo:cron')->everyMinute();
        // $schedule->command('namaz:cron')->monthlyOn(15, '00:00');
-        //   $schedule->command('namaz:cron')->everyMinute();
+//           $schedule->command('namaz:cron')->everyMinute();
         ///php artisan schedule:run ile tek sefer çalışıyor
         ///php artisan schedule:work ile devamlı çalışıyor
     }
