@@ -26,6 +26,7 @@ class seosSeeder extends Seeder
             'google_analytics' => 'admin@gmail.com',
             'google_verification' => 'Admin',
             'google_verification' => 'admin@gmail.com',
+            'fcmserver' => 'apikey',
 
         ]);
     }

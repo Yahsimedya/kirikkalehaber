@@ -23,6 +23,7 @@ class CreateSeosTable extends Migration
             $table->string('google_verification');
             $table->string('alexa_analytics');
             $table->string('adsense_code');
+            $table->text('fcmserver');
             $table->timestamps();
         });
     }

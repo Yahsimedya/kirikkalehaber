@@ -89,6 +89,14 @@
                 @enderror
             </div>
         </div>
+        <div class="form-group row">
+            <label class="col-form-label col-lg-2">Bildirim Api Key</label>
+            <div class="col-lg-10">
+                <input type="text" name="adsense_code" value="{{$seos->fcmserver}}" class="form-control">
+                {{-- <textarea name="google_verification" id="" cols="30" rows="10">{{$seos->google_verification}}</textarea> --}}
+
+            </div>
+        </div>
         {{-- <div class="form-group row">
             <label class="col-form-label col-lg-2">Input with placeholder</label>
             <div class="col-lg-10">

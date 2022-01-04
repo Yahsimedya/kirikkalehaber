@@ -17,6 +17,7 @@ class Seos extends Model
         'google_verification',
         'alexa_analytics',
         'adsense_code',
+        'fcmserver',
 
     ];
 }
