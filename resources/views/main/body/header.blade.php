@@ -46,9 +46,17 @@ $kurlar=Session::get('kurlar');
 
 ];
 }
+if(!empty($veri)) {
 $veri=Session::get('havadurumu');
 $icon=Session::get('icon');
 $gelenil=Session::get('gelenil');
+} else {
+    $veri = array(
+         'gelenil' => 0,
+           'sicaklik' => '',
+           'icon' =>'',
+        );
+}
 @endphp
 
 <style>
