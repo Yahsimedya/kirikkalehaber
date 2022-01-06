@@ -14,7 +14,6 @@ require('laravel-mix-purgecss');
 
 // mix.copy('node_modules/swiper/swiper-bundle.js','public/js');
 
-
 mix.js('resources/js/app.js', 'public/js')
 
     .combine([
@@ -24,7 +23,9 @@ mix.js('resources/js/app.js', 'public/js')
         'node_modules/swiper/swiper-bundle.js',
         'node_modules/slick-carousel/slick/slick.js',
     ], 'public/frontend/assets/js/combine.js')
-    .styles([
+
+
+.styles([
         'public/frontend/assets/css/style.css',
         'public/frontend/assets/css/weather-icons.css',
         'public/frontend/assets/css/magnific-popup.css',
@@ -36,4 +37,7 @@ mix.js('resources/js/app.js', 'public/js')
 
     .sourceMaps();
 
-mix.version();
+mix.version()
+.purgeCss({
+    enabled: true,
+});
