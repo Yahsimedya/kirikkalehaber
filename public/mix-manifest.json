@@ -1,5 +1,7 @@
 {
-    "/js/app.js": "/js/app.js?id=6a50e3d11f7a4256221a",
+    "/js/app.js": "/js/app.js?id=4c71b275ad9d530d9a76",
+    "/js/manifest.js": "/js/manifest.js?id=af46a981b3404c886bbc",
+    "/js/vendor.js": "/js/vendor.js?id=d2c03e502317e8086b18",
     "/frontend/assets/js/combine.js": "/frontend/assets/js/combine.js?id=3fe3071507e12e919731",
     "/frontend/assets/css/combine.css": "/frontend/assets/css/combine.css?id=4391ae87447dd976c68d"
 }
