@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Redirect;
 use App\Models\AuthorsPost;
 //use CyrildeWit\EloquentViewable\View;
 use CyrildeWit\EloquentViewable\Visitor;
-
-use CyrildeWit\EloquentViewable\Support\Period;
+use Analytics;
+//use Spatie\Analytics\AnalyticsClient;
+use Spatie\Analytics\Period;
 class AdminController extends Controller
 {
     public function Logout(Request $request)
@@ -37,12 +38,12 @@ class AdminController extends Controller
 
     public function index(){
         $news=DB::table('posts')->get('id');
-        $endNews=Post::limit(10)->orderByViews('desc')->get();
+//        $endNews=Post::limit(10)->latest()->get();
 //        $endNewsCount=Post::orderByUniqueViews()->latest()->get();
         $endComments=DB::table('comments')->limit(10)->latest('id')->get();
         $endAuthors_posts=AuthorsPost::leftjoin('authors', 'authors.id', '=', 'authors_posts.authors_id')
             ->select(['authors_posts.*', 'authors.name'])
-            ->orderByViews('desc')
+            ->latest()
             ->paginate(10);
         $newsCount=count($news);
         $comments=DB::table('comments')->get('id');
@@ -63,17 +64,50 @@ $i=0;
 //        $habersayi= $post;
 //        dd($count2);
 
-        $count = views(Post::class)->period(Period::subHours(24))->count();
-        $countwrites = views(AuthorsPost::class)->period(Period::subHours(24))->count();
-//        $count = views(Post::class)->count();
-
-        $countTekil =views(Post::class)->period(Period::subHours(24))->unique()->count();
+//        $count = views(Post::class)->period(Period::subHours(24))->count();
+//        $countwrites = views(AuthorsPost::class)->period(Period::subHours(24))->count();
+////        $count = views(Post::class)->count();
+//
+//        $countTekil =views(Post::class)->period(Period::subHours(24))->unique()->count();
 
 //$newVisitor= views(Post::class)
 //    ->useVisitor(new Visitor()) // or app(Visitor::class)
 //    ->record();
         $days=Carbon::today();
+//        $analyticsData=Analytics::fetchMostVisitedPages(Period::days(7));
+        $endNews=Analytics::fetchMostVisitedPages(Period::days(1)); //son 24 saatte ençok ziyaret edilen sayfalar
+        $topReferrers=Analytics::fetchTopReferrers(Period::days(1)); //Yönlendirme yapan yerler ve sayfa gösterimleri
+        $userTypes =Analytics::fetchUserTypes(Period::days(1)); //Geri dönen ve Yeni gelen ziyaretçiler
+        $analyticsData = Analytics::performQuery(
+            Period::days(1),
+            'ga:sessions',
+            [
+                'metrics' => 'ga:sessions, ga:pageviews',
+                'dimensions' => 'ga:yearMonth'
+            ]
+        ); // günlük toplam oturum ve sayfa görüntüleme oranı
+        $analyticsDataMonth = Analytics::performQuery(
+            Period::months(1),
+            'ga:sessions',
+            [
+                'metrics' => 'ga:users, ga:pageviews',
+                'dimensions' => 'ga:yearMonth'
+            ]
+        ); // günlük toplam oturum ve sayfa görüntüleme oranı
+        $mostVisitedPages =Analytics::fetchMostVisitedPages(Period::days(1)); //çok görüntülenen haberler
+//        $analyticsDataDays = Analytics::performQuery(
+//            Period::days(1),
+//            'ga:sessions',
+//            [
+//                'metrics' => 'ga:sessions, ga:pageviews',
+//                'dimensions' => 'ga:yearMonth'
+//            ]
+//        );
+//        echo $endNews[0]['pageTitle'];
+//        dd($endNews);
 
+//        echo $analyticsData['totalsForAllResults']['ga:sessions'];
+//        dd($analyticsData);
 //        $peryot=Views::forViewable(Post::class)->countAndRemember();
 
 //        dd($newVisitor);
@@ -89,7 +123,7 @@ $i=0;
 //        $posts = Post::latest()->orderByUniqueViews()->paginate(20);
 
         $authors_postsCount=$authors_posts->count();
-        return view('admin.index',compact('newsCount','commentsCount','endNews','endComments','endAuthors_posts','authors_postsCount','countTekil','countwrites','count'));
+        return view('admin.index',compact('newsCount','commentsCount','endNews','endComments','endAuthors_posts','authors_postsCount','analyticsData','analyticsDataMonth'));
 
     }
 }

@@ -71,7 +71,7 @@
                     </div>
 
                     <div class="card-body">
-                        Son 24 saatte içeriğinizi görüntüleyen kişi sayısı <code>{{$countTekil}}</code>
+                        Son 24 saatte içeriğinizi görüntüleyen kişi sayısı <code>{{$analyticsData['totalsForAllResults']['ga:sessions']}}</code>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
                     </div>
 
                     <div class="card-body">
-                        Son 24 saatte haber içeriği çoğul görüntüleme <code>{{$count}}
+                        Son 24 saatte haber içeriği çoğul görüntüleme <code>{{$analyticsData['totalsForAllResults']['ga:pageviews']}}
                         </code>
                     </div>
                 </div>
@@ -90,12 +90,11 @@
             <div class="col-md-4">
                 <div class="card bg-info text-white">
                     <div class="card-header">
-                        <h6 class="card-title">Toplam Köşe Yazılarına Erişim</h6>
+                        <h6 class="card-title">Son 30 Günlük Erişim</h6>
                     </div>
 
                     <div class="card-body">
-                        Son 24 saatte Köşe Yazısı içeriği çoğul görüntüleme <code>{{$countwrites}}
-                        </code>
+                        Tekil Oturum <code>{{number_format($analyticsDataMonth['totalsForAllResults']['ga:users'])}}</code> Sayfa Görüntüleme <code>{{number_format($analyticsDataMonth['totalsForAllResults']['ga:pageviews'])}}</code>
                     </div>
                 </div>
             </div>
@@ -106,7 +105,7 @@
                     <div class="card bg-teal-400">
                         <div class="card-body">
                             <div class="d-flex">
-                                <h3 class="font-weight-semibold mb-0">{{$newsCount}}</h3>
+                                <h3 class="font-weight-semibold mb-0">ddd</h3>
                                 <span class="badge bg-teal-800 badge-pill align-self-center ml-auto"></span>
                             </div>
 
@@ -131,7 +130,7 @@
                     <div class="card bg-pink-400">
                         <div class="card-body">
                             <div class="d-flex">
-                                <h3 class="font-weight-semibold mb-0">{{$commentsCount}}</h3>
+                                <h3 class="font-weight-semibold mb-0">eee</h3>
                                 <div class="list-icons ml-auto">
 
                                 </div>
@@ -190,12 +189,9 @@
                     <thead>
                     <tr class="footable-header">
                         <th class="footable-first-visible" style="display: table-cell;">#</th>
-                        <th style="display: table-cell;">Foto</th>
                         <th data-breakpoints="xs sm md" style="display: table-cell;">Başlık</th>
                         <th data-breakpoints="xs sm md" style="display: table-cell;">Tekil</th>
-                        <th data-breakpoints="xs sm md" style="display: table-cell;">Çoğul</th>
-                        <th data-breakpoints="xs sm md" style="display: table-cell;">Kategori</th>
-                        <th data-breakpoints="xs sm" style="display: table-cell;">Drum</th>
+
 
                     </tr>
                     </thead>
@@ -203,41 +199,26 @@
                     {{--                    @foreach($sayi as $haber)--}}
 
                     {{--                    @endforeach--}}
+                    @php($i=0)
                     @foreach($endNews as  $row)
-                        {{--                        {{$sayi}}--}}
+                        @php($i++)
                         <tr>
                             <td class="footable-first-visible" style="display: table-cell;">{{$loop->iteration}}</td>
-                            <td style="display: table-cell;"><a href="#"> <img src="{{asset($row->image)}}" width="80"
-                                                                               height="50" alt=""></a></td>
-                            <td style="display: table-cell;">{{Str::limit($row->title_tr,45)}}</td>
+                            <td><a href="{{URL::to($row['url'])}}">{{$row['pageTitle'] }}</a> </td>
+{{--                            <td style="display: table-cell;"><a href="#"> <img src="{{asset($row->image)}}" width="80"--}}
+{{--                                                                               height="50" alt=""></a></td>--}}
+{{--                            <td style="display: table-cell;">{{Str::limit($row->title_tr,45)}}</td>--}}
                             {{--                            @php($i=0)--}}
                             {{--                                {{ $loop->index }}--}}
                             <td style="display: table-cell;"><span
-                                    class="badge badge-success">{{views($row)->period(Period::subHours(24))->unique()->count()}}</span>
+                                    class="badge badge-success">{{$row['pageViews'] }}</span>
                             </td>
-                            <td style="display: table-cell;"><span
-                                    class="badge badge-success">{{views($row)->period(Period::subHours(24))->count()}}</span>
-                            </td>
+{{--                            <td style="display: table-cell;"><span--}}
+{{--                                    class="badge badge-success">ggg</span>--}}
+{{--                            </td>--}}
 
-                            <td style="display: table-cell;">{{$row->category->category_tr}}</td>
-                            <td class="text-center footable-last-visible" style="display: table-cell;">
-                                <div class="list-icons">
-                                    <div class="dropdown position-static">
-                                        <a href="#" class="list-icons-item" data-toggle="dropdown"
-                                           aria-expanded="false">
-                                            <i class="icon-menu9"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right" style="">
-                                            <a href="#" class="dropdown-item"><i class="icon-file-pdf"></i> Export to
-                                                .pdf</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-file-excel"></i> Export to
-                                                .csv</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-file-word"></i> Export to
-                                                .doc</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
+{{--                            <td style="display: table-cell;">{{$row->category->category_tr}}</td>--}}
+
                         </tr>
                     @endforeach
                     </tbody>
@@ -292,10 +273,10 @@
                                         </a>
                                     </td>
                                     <td style="display: table-cell;"><span
-                                            class="badge badge-success">{{views($row)->period(Period::subHours(24))->unique()->count()}}</span>
+                                            class="badge badge-success">hhh</span>
                                     </td>
                                     <td style="display: table-cell;"><span
-                                            class="badge badge-success">{{views($row)->period(Period::subHours(24))->count()}}</span>
+                                            class="badge badge-success">iii</span>
                                     </td>
                                     <td class="text-center"><a href="{{route('edit.koseyazilari',$row->id)}}"
                                                                class="dropdown-item"><i

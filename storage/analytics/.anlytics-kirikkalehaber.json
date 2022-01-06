@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "spatie-analtyics",
+  "private_key_id": "f7c160901a9689a1f10e0cacbbdc5642e1259544",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCvP26tLek0q84S\npxr/eoNVSFZqhIYRNcAZhJU9SuJJqdrODYghN9YJ6XxiZsNoXFFdfSDobwIruBJ8\nsfQyGYBf9v0NNup9WVj2sjKL4kVFjItequZbRqKNgdPtGbDL2qYfYg68ON1HF52p\nm4KU35F7HYgmCRfXXerph8lrO+co2gBhQbQfnB466DrlByxfOZ6H1TeYgeQ0j3s7\n3asIcqU7U3uRlpG8fxcbf5aynq2EmMPDug6vNSYYoH5PJr06Y2rYusqkc63K9Rkt\n/6Cewa+1bFgzaAuOMqualJhHVk82kfTxxI7XaEJOdux893kBZLRliV2t3crSFMSl\nQCOfHuwFAgMBAAECggEAJxq0p9SLidr/VfavRcww45YLYGPXZZ40kg0dXwqnYVAT\nOLDYzC7BJj+RJ4TuPAqDhmSuM+dXWOmPSH9N8eLyXBeJIkp7ewJ1oUCkmkWgdvM0\nQyjH05y4l3Jdl3XI10ggEvcmuhXHPH6WyfqfIficJhhyIaicRwyYJ0mLJpA8lcbm\n0EvCPX4fKZLRrez1atjuv6ZF8ftXD9KxZTv/svXKgiTY6Ay0h2f1uSgu3Lb/lA0z\nj9AcdToMi2qAdsh27D9sAYBVOSuMhGA2jx2Ctu3/rDaFYB8TqLG5sbmRBk4OxuaZ\nO6SPg/JLVBWYmekxna98FEbs5FpSiY+WoOKlMsfdSQKBgQDV35uR9afF9Gywq/I5\n8+tHWTxJjzr+ElMWTqCeuciUNI7YR7B0CqNDB+hQ+aa7wrnCdnmDVvnIYb0tkFah\n2ysJsJRcavW6vL6vlOKwxTFkcHtbvBis2IRNmJ9j/vaszAT5gMAYwrXH33p4xaGh\nCvwyq6+jtb4EcZ4tYuQRs2aOnQKBgQDRxCgPhkuidzpLvrbNvT1yIFfKCRjONZEL\nQBPfDRwZglXKWagQv07F/tbmr3y6sAp8yGgUqsjcRwDeBC0o3F4IzD0oanfm/JJK\n7BfyRWU8nh3h8B0i+aqzo1NpWowor6ppU0mY9yD/AcF+Y+Jw0zTs/O2bDJbH8zLj\naySvRc7iiQKBgQDVl8K7i3Wpygi+jIqV/BdOIz2FTUkiMtTN42qf+nTqJm8+aqI7\n0d/o8r2+GQW+YKO6JS4H0FYXHB2dopgSf1rFC5evkJamjxd1LSEUX2uLnpZkMD8I\naBgBktokOJ7MRdj2APJYCCUZXwPmF6HqvpjOVg5MVhZWQ84wD6IsV1mmNQKBgGeZ\nGCvqqIoZlkn4a7IapzEpNhJLAdw96l+DCw1bHSigDRy9wNpckVwJ6zrNKq3M6bEN\nDRI/8qmPy6baqy8F/s8bh4zhYExNKzcjeQQnL8OLV7jRbKJsadkEbdqXZKdncqNI\nBg4s5zfqNxTj4d7VAMuWcwbjZchknRpiPSDvOij5AoGAA0ObbiegYPYpAvWdL7xL\n1G3VWQNDtK96DKj1DKl9n5EGINN17le0RvTAusLeumE6Wze9cPdatxctLK4TR0ue\nwOozTOsztm/oQ/K/mdn9rf+ZicXdNrSHwzH4NA95tgq/hu5T3k07sPsDsKOz/Bf4\nnhJU0UWYTMX7rQu/e8rzHvs=\n-----END PRIVATE KEY-----\n",
+  "client_email": "spatie-analytics@spatie-analtyics.iam.gserviceaccount.com",
+  "client_id": "102876857606826132067",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/spatie-analytics%40spatie-analtyics.iam.gserviceaccount.com"
+}

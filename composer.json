@@ -10,7 +10,6 @@
         "ext-json": "*",
         "ext-simplexml": "*",
         "bilginpro/agency-aa": "^1.0",
-        "cyrildewit/eloquent-viewable": "^6.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3",
@@ -26,6 +25,7 @@
         "livewire/livewire": "^2.0",
         "mafftor/laravel-file-manager": "^2.0",
         "roumen/sitemap": "^8.0",
+        "spatie/laravel-analytics": "^3.11",
         "spatie/laravel-image-optimizer": "^1.6"
     },
     "require-dev": {

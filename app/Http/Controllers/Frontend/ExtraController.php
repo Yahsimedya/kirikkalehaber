@@ -653,13 +653,13 @@ class ExtraController extends Controller
     {
         $post = Post::with(['category:id,category_tr'])->find($id);
 //        views($post)->record();
-        $expiresAt = now()->addMinute(20);
-//        views($post)->count();
-        $count = views($post)->count();
-
-        views($post)
-            ->cooldown($expiresAt)
-            ->record();
+//        $expiresAt = now()->addMinute(20);
+////        views($post)->count();
+//        $count = views($post)->count();
+//
+//        views($post)
+//            ->cooldown($expiresAt)
+//            ->record();
         $comments = Comments::where('posts_id', $id)->where('status', 1)->get();
 
 //dd($comments);
@@ -736,7 +736,7 @@ class ExtraController extends Controller
 //                ->limit(10)
 //                ->get();
 //        dd($related);
-        $random = Post::orderByUniqueViews()->limit(3)->get();
+        $random = Post::limit(3)->get();
 
 //        $tag = Tag::get();
 //        foreach ($tag as $item) {
@@ -765,7 +765,7 @@ class ExtraController extends Controller
 //        $related=$this->belongsToMany(Post::class, 'post_tags', 'tags');
         $seoset = Seos::first();
         $webSiteSetting = WebsiteSetting::first();
-        return view('main.body.single_post', compact('post', 'ads', 'webSiteSetting', 'random', 'slider', 'tagName', 'nextrelated', 'comments', 'seoset', 'maybeRelated', 'tagCount', 'count'));
+        return view('main.body.single_post', compact('post', 'ads', 'webSiteSetting', 'random', 'slider', 'tagName', 'nextrelated', 'comments', 'seoset', 'maybeRelated', 'tagCount'));
 
 
     }
@@ -893,10 +893,6 @@ class ExtraController extends Controller
 //            ->record();
         $webSiteSetting = WebsiteSetting::first();
         $yaziPost = AuthorsPost::whereId($Authorid)->first(); // done bope
-        $expiresAt = now()->addHours(24);
-        views($yaziPost)
-            ->cooldown($expiresAt)
-            ->record();
 //        $yaziPost=AuthorsPost::find($Authorid); // done bope
 
 //dd($yaziPost);

@@ -163,8 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         Intervention\Image\ImageServiceProvider::class,
-        CyrildeWit\EloquentViewable\EloquentViewableServiceProvider::class,
-
+        Spatie\Analytics\AnalyticsServiceProvider::class,
 
 
         /*
@@ -238,7 +237,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
-
+        'Analytics'=> Spatie\Analytics\AnalyticsFacade::class,
 
 
     ],
