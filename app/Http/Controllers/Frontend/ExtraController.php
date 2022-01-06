@@ -492,7 +492,11 @@ class ExtraController extends Controller
                 $multiple_category = $row->multiple_category;
                 $explode_id = json_decode($multiple_category, true);
             }
-            return Post::whereIn('category_id', $explode_id)->where('status', 1)->latest('updated_at')->limit(15)->get();
+            return Post::with(['category:id'])->whereIn('category_id', $explode_id)->where('status', 1)->latest('updated_at')->limit(15)->get();
+//            return Post::with(['category' => function($query){
+//                $query->whereIn('category_id', $explode_id)->where('status', 1)->latest('updated_at')->limit(15);
+//            }])->get();
+
         });
 
 
@@ -503,23 +507,23 @@ class ExtraController extends Controller
 
         $ekonomi = Cache::remember("ekeonomi", Carbon::now()->addYear(), function () use ($category1) {
             if (Cache::has('ekeonomi')) return Cache::has('ekeonomi');
-            return Post::where('category_id', $category1)->where('status', 1)->limit(9)->latest('created_at')->get();
+            return Post::with(['category:id'])->where('category_id', $category1)->where('status', 1)->limit(9)->latest('created_at')->get();
 
         });
 
         $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () use ($category2) {
             if (Cache::has('gundem')) return Cache::has('gundem');
-            return Post::where('category_id', '=', $category2)->where('status', 1)->limit(9)->latest('created_at')->get();
+            return Post::with(['category:id'])->where('category_id', '=', $category2)->where('status', 1)->limit(9)->latest('created_at')->get();
         });
 
         $siyaset = Cache::remember("siyaset", Carbon::now()->addYear(), function () use ($category3) {
             if (Cache::has('siyaset')) return Cache::has('siyaset');
-            return Post::where('category_id', '=', $category3)->where('status', 1)->limit(9)->latest('created_at')->get();
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category3)->where('status', 1)->limit(9)->latest('created_at')->get();
         });
 
         $spor = Cache::remember("spor", Carbon::now()->addYear(), function () use ($category4) {
             if (Cache::has('spor')) return Cache::has('spor');
-            return Post::where('category_id', '=', $category4)->where('status', 1)->limit(6)->latest('created_at')->get();
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->where('status', 1)->limit(6)->latest('created_at')->get();
         });
         $themeSetting = Cache::remember("themeSetting", Carbon::now()->addYear(), function () {
             if (Cache::has('themeSetting')) return Cache::has('themeSetting');
@@ -647,22 +651,6 @@ class ExtraController extends Controller
 //    }
     public function SinglePost($slug, $id)
     {
-//        $post = Cache::remember("post.{$id}", Carbon::now()->addYear(), function () use ($id) {
-//             if (Cache::has('post')) return Cache::has('post')->find($id); //here am simply trying Laravel Collection method -find
-//             return Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
-//                 ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
-//                 ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
-//                 ->leftjoin('subdistricts', 'posts.subdistrict_id', '=','subdistricts.id')
-////                 ->join('users', 'posts.user_id','=', 'users.id')
-//                 ->select(['posts.*', 'categories.category_tr', 'categories.category_en','categories.id', 'subcategories.subcategory_tr', 'subcategories.subcategory_en'
-//                     ])
-//                 ->latest('updated_at')->where('status','=', 1)
-//                 ->where('posts.id','=', $id)->first();
-//         });
-
-//        $post = Post::latest('updated_at')->where('status', '=', 1)
-//                ->where('id', '=', $id)->first();
-
         $post = Post::find($id);
 //        views($post)->record();
         $expiresAt = now()->addMinute(20);
