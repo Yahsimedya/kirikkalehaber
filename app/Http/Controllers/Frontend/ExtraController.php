@@ -507,13 +507,13 @@ class ExtraController extends Controller
 
         $ekonomi = Cache::remember("ekeonomi", Carbon::now()->addYear(), function () use ($category1) {
             if (Cache::has('ekeonomi')) return Cache::has('ekeonomi');
-            return Post::with(['category:id'])->where('category_id', $category1)->where('status', 1)->limit(9)->latest('created_at')->get();
+            return Post::with(['category:id,category_tr'])->where('category_id', $category1)->where('status', 1)->limit(9)->latest('created_at')->get();
 
         });
 
         $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () use ($category2) {
             if (Cache::has('gundem')) return Cache::has('gundem');
-            return Post::with(['category:id'])->where('category_id', '=', $category2)->where('status', 1)->limit(9)->latest('created_at')->get();
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category2)->where('status', 1)->limit(9)->latest('created_at')->get();
         });
 
         $siyaset = Cache::remember("siyaset", Carbon::now()->addYear(), function () use ($category3) {
@@ -651,7 +651,7 @@ class ExtraController extends Controller
 //    }
     public function SinglePost($slug, $id)
     {
-        $post = Post::find($id);
+        $post = Post::with(['category:id,category_tr'])->find($id);
 //        views($post)->record();
         $expiresAt = now()->addMinute(20);
 //        views($post)->count();
@@ -668,7 +668,7 @@ class ExtraController extends Controller
 //            ->offset(1)->limit(10)
 //            ->get();
         $slider = Post::latest('updated_at')
-            ->with('category')
+            ->with('category:id,category_tr')
             ->limit(10)
             ->get();
 
