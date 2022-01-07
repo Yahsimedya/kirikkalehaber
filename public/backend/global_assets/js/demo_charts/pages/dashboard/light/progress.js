@@ -18,7 +18,7 @@ var DashboardProgress = function() {
     //
 
     // Rounded progress charts
-    var _ProgressRoundedChart = function(element, radius, border, color, end, iconClass, textTitle, textAverage) {
+    var _ProgressRoundedChart = function(element, radius, border, color, end, iconClass, textTitle, textAverage,integar) {
         if (typeof d3 == 'undefined') {
             console.warn('Warning - d3.min.js is not loaded.');
             return;

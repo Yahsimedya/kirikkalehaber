@@ -40,7 +40,7 @@ var DashboardBars = function() {
             // Main variables
             var d3Container = d3.select(element),
                 width = d3Container.node().getBoundingClientRect().width;
-            
+
 
 
             // Construct scales
@@ -201,9 +201,9 @@ var DashboardBars = function() {
             sidebarToggle && sidebarToggle.addEventListener('click', barsResize);
 
             // Resize function
-            // 
+            //
             // Since D3 doesn't support SVG resize by default,
-            // we need to manually specify parts of the graph that need to 
+            // we need to manually specify parts of the graph that need to
             // be updated on window resize
             function barsResize() {
 

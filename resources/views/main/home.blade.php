@@ -280,7 +280,7 @@
                                 <div class="swiper-slide" style="position:relative">
                                     <a href="{{URL::to('/'.str_slug($home[$i]->title_tr).'/'.$home[$i]->id.'/'.'haberi')}}">
                                         <div class="position-relative">
-                                            <img class="img-fluid slider-foto swiper-lazy  min-height lazyload"
+                                            <img class="img-fluid slider-foto swiper-lazy   lazyload"
                                                  width="100%" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                                  data-src="{{ asset($home[$i]->image) }}"/>
                                             @if($themeSetting[0]->slider_title!=0)

@@ -49,35 +49,13 @@ class AdminController extends Controller
         $comments=DB::table('comments')->get('id');
         $commentsCount=$comments->count();
         $authors_posts=DB::table('authors_posts')->get('id');
-//        $posts = Post::all();
-//        $hatirla= views($endNews[0]['id'])->period(Period::subHours(6))->remember()->count();
 
-//        dd($endNews[0]['id']);
-//        $posts = Post::all();
-$i=0;
-//        foreach($endNews as $post) { $i++;
-//            $sayi[$i] = views($post)->period(Period::subHours(24))->count();
-////            return $sayi;
-//        }
-//                $count2 = views($sayi)->count();
-
-//        $habersayi= $post;
-//        dd($count2);
-
-//        $count = views(Post::class)->period(Period::subHours(24))->count();
-//        $countwrites = views(AuthorsPost::class)->period(Period::subHours(24))->count();
-////        $count = views(Post::class)->count();
-//
-//        $countTekil =views(Post::class)->period(Period::subHours(24))->unique()->count();
-
-//$newVisitor= views(Post::class)
-//    ->useVisitor(new Visitor()) // or app(Visitor::class)
-//    ->record();
-        $days=Carbon::today();
 //        $analyticsData=Analytics::fetchMostVisitedPages(Period::days(7));
         $endNews=Analytics::fetchMostVisitedPages(Period::days(1)); //son 24 saatte ençok ziyaret edilen sayfalar
         $topReferrers=Analytics::fetchTopReferrers(Period::days(1)); //Yönlendirme yapan yerler ve sayfa gösterimleri
         $userTypes =Analytics::fetchUserTypes(Period::days(1)); //Geri dönen ve Yeni gelen ziyaretçiler
+        $userTypesWeek =Analytics::fetchUserTypes(Period::days(7)); //Geri dönen ve Yeni gelen ziyaretçiler
+
         $analyticsData = Analytics::performQuery(
             Period::days(1),
             'ga:sessions',
@@ -104,26 +82,15 @@ $i=0;
 //            ]
 //        );
 //        echo $endNews[0]['pageTitle'];
-//        dd($endNews);
+//        dd($topReferrers);
 
 //        echo $analyticsData['totalsForAllResults']['ga:sessions'];
 //        dd($analyticsData);
 //        $peryot=Views::forViewable(Post::class)->countAndRemember();
 
 //        dd($newVisitor);
-
-
-
-
-
-
-
-//        dd($count);
-
-//        $posts = Post::latest()->orderByUniqueViews()->paginate(20);
-
         $authors_postsCount=$authors_posts->count();
-        return view('admin.index',compact('newsCount','commentsCount','endNews','endComments','endAuthors_posts','authors_postsCount','analyticsData','analyticsDataMonth'));
+        return view('admin.index',compact('newsCount','commentsCount','endNews','endComments','endAuthors_posts','authors_postsCount','analyticsData','analyticsDataMonth','topReferrers','userTypes','userTypesWeek'));
 
     }
 }
