@@ -36,9 +36,7 @@
         <div class="row" id="gotur">
 
             {{--        {{dd($sehirsay)}}--}}
-            @if($sehirsay!=0)
-
-
+            @if($sehirsay!=0 & $sehir!=NULL)
                 <div class="col-md-8 pb-4 pt-4">
                     <h2><b>{{$sehir->district_tr. " Haberleri"}}</b></h2>
                     <h5>{{$sehir->district_tr." haber , ".$sehir->district_tr." son dakika haberleri ve gelişmeleri."}}</h5>
@@ -76,6 +74,7 @@
                         </div>
                     </div>
                 </div>
+
             @endif
 
         </div>

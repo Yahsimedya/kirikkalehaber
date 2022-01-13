@@ -256,7 +256,7 @@ class ExtraController extends Controller
             ->get();
         $webSiteSetting = WebsiteSetting::get();
         $themeSetting = Theme::get();
-        return view('main.body.tags', compact('tagPosts', 'count', 'themeSetting', 'webSiteSetting', 'nextnews', 'ads'));
+        return view('main.body.tags', compact('tagPosts', 'count', 'themeSetting', 'webSiteSetting', 'nextnews', 'ads','tagPostsSlideralti','nextnewsyan'));
         $webSiteSetting=WebsiteSetting::get();
         $themeSetting=Theme::get();
         return view('main.body.tags', compact('tagPosts', 'count','nextnewsyan','themeSetting','webSiteSetting', 'nextnews', 'ads', 'tagPostsSlideralti'));
@@ -301,9 +301,8 @@ class ExtraController extends Controller
             ->count();
 
         $sehir = District::where('slug', $id)
-            ->first();
-
-
+            ->firstOrFail();
+//dd($sehir);
         $districts = Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
             ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
             ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
@@ -830,7 +829,7 @@ class ExtraController extends Controller
 
 
         $searchText = $request['searchtext'];
-        $json = Post::orWhere('title_tr', 'LIKE', '%' . $searchText . '%')->orWhere('title_en', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_tr', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_en', 'LIKE', '%' . $searchText . '%')->get();
+        $json = Post::orWhere('title_tr', 'LIKE', '%' . $searchText . '%')->orWhere('title_en', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_tr', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_en', 'LIKE', '%' . $searchText . '%')->whereStatus('1')->get();
         $searchNews = $this->change($json);
         $webSiteSetting = WebsiteSetting::first();
 
@@ -891,33 +890,19 @@ class ExtraController extends Controller
 //        views($Authorid)
 //            ->cooldown($expiresAt)
 //            ->record();
-        $webSiteSetting = WebsiteSetting::first();
-        $yaziPost = AuthorsPost::whereId($Authorid)->first(); // done bope
-//        $yaziPost=AuthorsPost::find($Authorid); // done bope
-
-//dd($yaziPost);
-        $yazarID = $yaziPost->authors_id;
+//        $webSiteSetting = WebsiteSetting::first();
+//        $yaziPost = AuthorsPost::whereId($Authorid)->first(); // done bope
+////        $yaziPost=AuthorsPost::find($Authorid); // done bope
+//
+//dd($yaziPost->authors_id);
+//        $yazarID = $yaziPost->authors_id;
 //        dd($yazarID);
-        $nextauthors_posts = AuthorsPost::where('status', 1)->where('authors_id', $yazarID)->latest()->limit(10)->get();
-        $OtherAuthors = Authors::limit(10)->get();
-        $seoset = Seos::first();
-        $themeSetting = Theme::get();
-
-
-//        $nextauthorCount=$nextauthors_posts->count();
-
-//        $nextauthors_posts = DB::table('authors_posts')
-//            ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $Authorid)->limit(10)
-//            ->get();
-
-//        $yazi = AuthorsPost::where('id', '=', $Authorid)->limit(10)->get();
-//        $nextauthors_posts = DB::table('authors_posts')
-//            ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $Authorid)->limit(10)
-//            ->get();
-//        $yazar = Authors::where('id', '=', $Authorid)->get();
-//$yazi= AuthorsPost::where($slug_name)->where($Authorid);
-//dd($yazi);
-        return view('main.body.authors_writes', compact('yaziPost', 'webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'themeSetting'));
+//        $nextauthors_posts = AuthorsPost::where('status', 1)->where('authors_id', $yazarID)->latest()->limit(10)->get();
+//        $OtherAuthors = Authors::limit(10)->get();
+//        $seoset = Seos::first();
+//        $themeSetting = Theme::get();
+//
+//        return view('main.body.authors_writes', compact('yaziPost', 'webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'themeSetting'));
     }
 
     public function breakingnews()
