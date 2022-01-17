@@ -133,7 +133,7 @@ class SitemapController extends Controller
             $sitemapimages->store('xml', 'sitemap-images-' . $sitemapCounterImages);
             $sitemapimages->addSitemap(secure_url('sitemap-images-' . $sitemapCounterImages . '.xml'));
             $sitemapimages->model->resetItems();
-            for ($Images = 0; $Images <= $sitemapCounter+1; $Images++) {
+            for ($Images = 0; $Images <= $sitemapCounter; $Images++) {
                 $sitemaphome->addSitemap(URL::to('sitemap-images-' . $Images . '.xml'), Carbon::today());
             }
         }
