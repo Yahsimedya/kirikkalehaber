@@ -786,7 +786,7 @@ class ExtraController extends Controller
         $manset =
             Post::join('categories', 'posts.category_id', 'categories.id')
                 ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-                ->where('posts.category_id', $id)->where('posrts.status', 1)->where('posts.manset', 1)
+                ->where('posts.category_id', $id)->where('posts.status', 1)->where('posts.manset', 1)
                 ->orderBy('created_at', 'desc')
                 ->limit(25)->get();
 
