@@ -780,7 +780,7 @@ class ExtraController extends Controller
 
     public function CategoryPost($slug, $id)
     {
-        $category = Category::latest()->where('id', $id)->orderBy('id', 'desc')->where('status', 1)->first();
+        $category = Category::latest()->where('id', $id)->where('status', 1)->orderBy('id', 'desc')->first();
 
 
         $manset =
