@@ -24,10 +24,10 @@ class SitemapController extends Controller
         $sitemapimages = App::make('sitemap');//images
         $sitemapfotogaleri = App::make('sitemap');//fotogaleri
         $sitemapvideogaleri = App::make('sitemap');//videogaleri
-        $posts = Post::orderByDesc('id')->orderByDesc('id')->get();
-        $postsvideo = Post::where('posts_video', '!=', "")->orderByDesc('id')->get();
+        $posts = Post::orderByDesc('id')->orderByDesc('id')->where('status', 1)->get();
+        $postsvideo = Post::where('posts_video', '!=', "")->orderByDesc('id')->where('status', 1)->get();
         $photos =Photo::orderByDesc('id')->get();
-        $categories = Category::get();
+        $categories = Category::where('status', 1)->get();
         $districts = District::get();
         $counter = 0;
         $sitemapCounter = 0;
