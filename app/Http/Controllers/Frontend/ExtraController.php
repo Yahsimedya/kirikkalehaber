@@ -650,7 +650,7 @@ class ExtraController extends Controller
 //    }
     public function SinglePost($slug, $id)
     {
-        $post = Post::with(['category:id,category_tr'])->find($id);
+        $post = Post::with(['category:id,category_tr'])->where('status', 1)->find($id);
 //        views($post)->record();
 //        $expiresAt = now()->addMinute(20);
 ////        views($post)->count();
@@ -668,7 +668,7 @@ class ExtraController extends Controller
 //            ->get();
         $slider = Post::latest('updated_at')
             ->with('category:id,category_tr')
-            ->limit(10)
+            ->where('status', 1)->limit(10)
             ->get();
 
         $ads =
@@ -713,6 +713,7 @@ class ExtraController extends Controller
                 ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
                 ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
                 ->where('posts.id', $id)
+                ->where('posts.status', 1)
                 ->limit(10)
                 ->get();
 //        Post::find($post)->get();
@@ -746,7 +747,7 @@ class ExtraController extends Controller
 //                    ->where('post_tags.tag_id', $item->id)->latest()
 //                    ->get();
             Post::latest('updated_at')
-                ->where('id', $post)
+                ->where('id', $post)->where('status', 1)
                 ->with(['tag' => function ($query) {
                     // $query->sum('quantity');
                     $query->select('name'); // without `order_id`
@@ -780,13 +781,15 @@ class ExtraController extends Controller
 
     public function CategoryPost($slug, $id)
     {
-        $category = Category::latest()->where('id', $id)->orderBy('id', 'desc')->first();
+        $category = Category::latest()->where('id', $id)->where('category_status', 1)->orderBy('id', 'desc')->first();
 
 
         $manset =
             Post::join('categories', 'posts.category_id', 'categories.id')
                 ->select('posts.*', 'categories.category_tr', 'categories.category_en')
+
                 ->where('posts.category_id', $id)->where('posts.manset', 1)
+                ->where('posts.status', 1)
                 ->orderBy('created_at', 'desc')
                 ->limit(25)->get();
 
@@ -794,12 +797,15 @@ class ExtraController extends Controller
         $count = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
             ->where('posts.category_id', $id)
+            ->where('posts.status', 1)
             ->count();
 
 
         $catpost = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-            ->where('posts.category_id', $id)->orWhere('posts.manset', NULL)->offset(1)
+            ->where('posts.category_id', $id)
+            ->where('posts.status', 1)
+            ->orWhere('posts.manset', NULL)->offset(1)
             ->paginate(20);
 
 
@@ -810,6 +816,7 @@ class ExtraController extends Controller
 
         $nextnews = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
+            ->where('posts.status', 1)
             ->where('posts.category_id', $id)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
             ->inRandomOrder()->limit(10)
             ->get();
@@ -908,7 +915,7 @@ class ExtraController extends Controller
         $webSiteSetting = WebsiteSetting::first();
         $themeSetting = Theme::get();
 
-        $sondakika = Post::where('updated_at', '>', Carbon::now()->subDay(1))->latest()
+        $sondakika = Post::where('status', 1)->where('updated_at', '>', Carbon::now()->subDay(1))->latest()
             ->get();
 
         return view('main.body.breakingnews', compact('sondakika', 'webSiteSetting', 'themeSetting'));
