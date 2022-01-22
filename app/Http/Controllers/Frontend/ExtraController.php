@@ -509,8 +509,8 @@ class ExtraController extends Controller
         $ekonomi = Cache::remember("ekeonomi", Carbon::now()->addYear(), function () use ($category1) {
             if (Cache::has('ekeonomi')) return Cache::has('ekeonomi');
             return Post::with(['category:id,category_tr'])->where('category_id', $category1)->where('status', 1)
-                ->orWhere(function($query) {
-                    ->Where(function($query) {
+
+                -> Where(function($query) {
                         $query->orWhere('featured',0)
                             ->orWhere('featured',null);
                 })
@@ -521,7 +521,7 @@ class ExtraController extends Controller
         $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () use ($category2) {
             if (Cache::has('gundem')) return Cache::has('gundem');
             return Post::with(['category:id,category_tr'])->where('category_id', '=', $category2)->where('status', 1)
-                ->orWhere(function($query) {
+
                     ->Where(function($query) {
                         $query->orWhere('featured',0)
                             ->orWhere('featured',null);
@@ -532,8 +532,7 @@ class ExtraController extends Controller
         $siyaset = Cache::remember("siyaset", Carbon::now()->addYear(), function () use ($category3) {
             if (Cache::has('siyaset')) return Cache::has('siyaset');
             return Post::with(['category:id,category_tr'])->where('category_id', '=', $category3)->where('status', 1)
-                ->orWhere(function($query) {
-                    ->Where(function($query) {
+                ->Where(function($query) {
                         $query->orWhere('featured',0)
                             ->orWhere('featured',null);
                 })
@@ -543,9 +542,9 @@ class ExtraController extends Controller
 
         $spor = Cache::remember("spor", Carbon::now()->addYear(), function () use ($category4) {
             if (Cache::has('spor')) return Cache::has('spor');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->where('status', 1)
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->where('status', 1)->
 
-                ->Where(function($query) {
+                Where(function($query) {
                     $query->orWhere('featured',0)
                         ->orWhere('featured',null);
                 })
