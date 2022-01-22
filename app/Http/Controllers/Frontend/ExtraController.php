@@ -510,8 +510,9 @@ class ExtraController extends Controller
             if (Cache::has('ekeonomi')) return Cache::has('ekeonomi');
             return Post::with(['category:id,category_tr'])->where('category_id', $category1)->where('status', 1)
                 ->orWhere(function($query) {
-                    $query->where('featured' ,0)
-                        ->where('featured',null);
+                    ->Where(function($query) {
+                        $query->orWhere('featured',0)
+                            ->orWhere('featured',null);
                 })
                 ->limit(9)->latest('created_at')->get();
 
@@ -521,8 +522,9 @@ class ExtraController extends Controller
             if (Cache::has('gundem')) return Cache::has('gundem');
             return Post::with(['category:id,category_tr'])->where('category_id', '=', $category2)->where('status', 1)
                 ->orWhere(function($query) {
-                    $query->where('featured' ,0)
-                        ->where('featured',null);
+                    ->Where(function($query) {
+                        $query->orWhere('featured',0)
+                            ->orWhere('featured',null);
                 })
                 ->limit(9)->latest('created_at')->get();
         });
@@ -531,8 +533,9 @@ class ExtraController extends Controller
             if (Cache::has('siyaset')) return Cache::has('siyaset');
             return Post::with(['category:id,category_tr'])->where('category_id', '=', $category3)->where('status', 1)
                 ->orWhere(function($query) {
-                    $query->where('featured' ,0)
-                        ->where('featured',null);
+                    ->Where(function($query) {
+                        $query->orWhere('featured',0)
+                            ->orWhere('featured',null);
                 })
 
                 ->limit(9)->latest('created_at')->get();
@@ -542,9 +545,9 @@ class ExtraController extends Controller
             if (Cache::has('spor')) return Cache::has('spor');
             return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->where('status', 1)
 
-                ->orWhere(function($query) {
-                    $query->where('featured' ,0)
-                        ->where('featured',null);
+                ->Where(function($query) {
+                    $query->orWhere('featured',0)
+                        ->orWhere('featured',null);
                 })
                 ->limit(6)->latest('created_at')->get();
         });
