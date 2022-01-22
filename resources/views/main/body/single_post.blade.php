@@ -373,11 +373,11 @@
                         <div class="card kart kart-width shadow mt-3">
                             <img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" src="{{asset($row->image)}}" class="img-fluid kart_img lazyload" alt="">
                             <div class="card-body kart-body  bordercolor-1 border-3 text-dark">
-                                <p class="card-text card-kisalt">
+                                <span class="card-text card-kisalt">
 
                                     {{ Str::ucFirst($row->title_tr) }}
 
-                                </p>
+                                </span>
                             </div>
                         </div>
                     </a>
