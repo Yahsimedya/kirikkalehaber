@@ -340,10 +340,10 @@
                                 <!-- Additional required wrapper -->
                                 <div class="swiper-wrapper">
                                     <!-- Slides -->
-                                    @php
-                                        $fotogaleri=DB::table('photos')->where('status',1)->groupBY('photocategory_id')->get();
-                                    @endphp
-                                    @foreach ($fotogaleri as $row )
+
+
+
+                                @foreach ($fotogaleri as $row )
 
                                         @if(empty(!$row->photocategory_id))
                                             <div class="swiper-slide position-relative">
@@ -352,7 +352,7 @@
                                                                                           data-src="{{asset($row->photo)}}"/>
                                                     </div>
                                                 </a>
-                                                <span class="yazi-span">{{$row->title}}</span>
+                                                <span class="yazi-span">{{$row->category_title	}}</span>
                                             </div>
                                         @endif
 

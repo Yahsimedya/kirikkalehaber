@@ -663,7 +663,15 @@ class ExtraController extends Controller
 
         Session::put('havadurumu', $veri['sicaklik']);
         $webSiteSetting = WebsiteSetting::first();
-        return view('main.home', compact('home', 'ekonomi','ekonomimanset', 'webSiteSetting', 'surmanset', 'gundem','gundemmanset', 'spor', 'siyaset','spormanset', 'siyasetmanset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
+
+        //$fotogaleri=Photo::where('status',1)->groupBY('photocategory_id')->get();
+        $fotogaleri=Photo::leftjoin('photocategories', 'photos.photocategory_id', '=', 'photocategories.id')
+            ->where('photocategories.status', 1)->where('photos.status', 1)
+            ->latest("photocategories.updated_at")
+            ->get();
+
+
+        return view('main.home', compact('home', 'fotogaleri', 'ekonomi','ekonomimanset', 'webSiteSetting', 'surmanset', 'gundem','gundemmanset', 'spor', 'siyaset','spormanset', 'siyasetmanset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 
