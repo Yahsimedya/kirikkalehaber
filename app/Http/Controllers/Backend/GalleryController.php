@@ -210,7 +210,8 @@ public function EditPhotoGalery($photocategory_id)
 public function DeletePhoto($id)
 {
     $photo= DB::table('photos')->where('id',$id)->first();
-    unlink($photo->photo);
+
+   //unlink($photo->photo);
     DB::table('photos')->where('id',$id)->delete();
     return Redirect()->back();
 
