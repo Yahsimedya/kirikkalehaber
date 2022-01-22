@@ -666,7 +666,7 @@ class ExtraController extends Controller
 
         //$fotogaleri=Photo::where('status',1)->groupBY('photocategory_id')->get();
         $fotogaleri=Photo::leftjoin('photocategories', 'photos.photocategory_id', '=', 'photocategories.id')
-            ->where('photocategories.status', 1)->where('photos.status', 1)
+            ->where('photocategories.status', 1)->where('photos.status', 1)->groupBY('photocategories.id')
             ->latest("photocategories.updated_at")
             ->get();
 
