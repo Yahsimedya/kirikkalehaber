@@ -473,7 +473,6 @@ class ExtraController extends Controller
         $category2 = $themeSettings[0]->category2;
         $category3 = $themeSettings[0]->category3;
         $category4 = $themeSettings[0]->category4;
-
         $surmanset = Cache::remember("surmanset", Carbon::now()->addYear(), function () {
             if (Cache::has('surmanset')) return Cache::has('surmanset');
             return Post::where('status', 1)
@@ -509,24 +508,49 @@ class ExtraController extends Controller
 
         $ekonomi = Cache::remember("ekeonomi", Carbon::now()->addYear(), function () use ($category1) {
             if (Cache::has('ekeonomi')) return Cache::has('ekeonomi');
-            return Post::with(['category:id,category_tr'])->where('category_id', $category1)->where('status', 1)->where('featured','!=' ,1)->orwhere('featured','!=' ,null)->limit(9)->latest('created_at')->get();
+            return Post::with(['category:id,category_tr'])->where('category_id', $category1)->where('status', 1)
+                ->orWhere(function($query) {
+                    $query->where('featured' ,0)
+                        ->where('featured',null);
+                })
+                ->limit(9)->latest('created_at')->get();
 
         });
 
         $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () use ($category2) {
             if (Cache::has('gundem')) return Cache::has('gundem');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category2)->where('status', 1)->where('featured','!=' ,1)->orwhere('featured','!=' ,null)->limit(9)->latest('created_at')->get();
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category2)->where('status', 1)
+                ->orWhere(function($query) {
+                    $query->where('featured' ,0)
+                        ->where('featured',null);
+                })
+                ->limit(9)->latest('created_at')->get();
         });
 
         $siyaset = Cache::remember("siyaset", Carbon::now()->addYear(), function () use ($category3) {
             if (Cache::has('siyaset')) return Cache::has('siyaset');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category3)->where('status', 1)->where('featured','!=' ,1)->orwhere('featured','!=' ,null)->limit(9)->latest('created_at')->get();
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category3)->where('status', 1)
+                ->orWhere(function($query) {
+                    $query->where('featured' ,0)
+                        ->where('featured',null);
+                })
+
+                ->limit(9)->latest('created_at')->get();
         });
 
         $spor = Cache::remember("spor", Carbon::now()->addYear(), function () use ($category4) {
             if (Cache::has('spor')) return Cache::has('spor');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->where('status', 1)->where('featured','!=' ,1)->orwhere('featured','!=' ,null)->limit(6)->latest('created_at')->get();
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->where('status', 1)
+
+                ->orWhere(function($query) {
+                    $query->where('featured' ,0)
+                        ->where('featured',null);
+                })
+                ->limit(6)->latest('created_at')->get();
         });
+
+
+
 
 
         $ekonomimanset = Cache::remember("ekeonomimanset", Carbon::now()->addYear(), function () use ($category1) {
