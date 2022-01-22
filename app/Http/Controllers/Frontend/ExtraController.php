@@ -504,26 +504,56 @@ class ExtraController extends Controller
             return Sehirler::orderByRaw('sehir_ad')->get();
         });
 
+
+
+
         $ekonomi = Cache::remember("ekeonomi", Carbon::now()->addYear(), function () use ($category1) {
             if (Cache::has('ekeonomi')) return Cache::has('ekeonomi');
-            return Post::with(['category:id,category_tr'])->where('category_id', $category1)->where('status', 1)->limit(9)->latest('created_at')->get();
+            return Post::with(['category:id,category_tr'])->where('category_id', $category1)->where('status', 1)->where('featured', 0)->limit(9)->latest('created_at')->get();
 
         });
 
         $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () use ($category2) {
             if (Cache::has('gundem')) return Cache::has('gundem');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category2)->where('status', 1)->limit(9)->latest('created_at')->get();
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category2)->where('status', 1)->where('featured', 0)->limit(9)->latest('created_at')->get();
         });
 
         $siyaset = Cache::remember("siyaset", Carbon::now()->addYear(), function () use ($category3) {
             if (Cache::has('siyaset')) return Cache::has('siyaset');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category3)->where('status', 1)->limit(9)->latest('created_at')->get();
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category3)->where('status', 1)->where('featured', 0)->limit(9)->latest('created_at')->get();
         });
 
         $spor = Cache::remember("spor", Carbon::now()->addYear(), function () use ($category4) {
             if (Cache::has('spor')) return Cache::has('spor');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->where('status', 1)->limit(6)->latest('created_at')->get();
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->where('status', 1)->where('featured', 0)->limit(6)->latest('created_at')->get();
         });
+
+
+        $ekonomimanset = Cache::remember("ekeonomimanset", Carbon::now()->addYear(), function () use ($category1) {
+            if (Cache::has('ekeonomimanset')) return Cache::has('ekeonomimanset');
+            return Post::with(['category:id,category_tr'])->where('category_id', $category1)->where('status', 1)->where('featured', 1)->limit(9)->latest('created_at')->get();
+
+        });
+
+        $gundemmanset = Cache::remember("gundemmanset", Carbon::now()->addYear(), function () use ($category2) {
+            if (Cache::has('gundemmanset')) return Cache::has('gundemmanset');
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category2)->where('status', 1)->where('featured', 1)->limit(9)->latest('created_at')->get();
+        });
+
+        $siyasetmanset = Cache::remember("siyasetmanset", Carbon::now()->addYear(), function () use ($category3) {
+            if (Cache::has('siyasetmanset')) return Cache::has('siyasetmanset');
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category3)->where('status', 1)->where('featured', 1)->limit(9)->latest('created_at')->get();
+        });
+
+        $spormanset = Cache::remember("spormanset", Carbon::now()->addYear(), function () use ($category4) {
+            if (Cache::has('spormanset')) return Cache::has('spormanset');
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->where('status', 1)->where('featured', 1)->limit(9)->latest('created_at')->get();
+        });
+
+
+
+
+
         $themeSetting = Cache::remember("themeSetting", Carbon::now()->addYear(), function () {
             if (Cache::has('themeSetting')) return Cache::has('themeSetting');
             return Theme::get();
@@ -633,7 +663,7 @@ class ExtraController extends Controller
 
         Session::put('havadurumu', $veri['sicaklik']);
         $webSiteSetting = WebsiteSetting::first();
-        return view('main.home', compact('home', 'ekonomi', 'webSiteSetting', 'surmanset', 'gundem', 'spor', 'siyaset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
+        return view('main.home', compact('home', 'ekonomi','ekonomimanset', 'webSiteSetting', 'surmanset', 'gundem','gundemmanset', 'spor', 'siyaset','spormanset', 'siyasetmanset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 

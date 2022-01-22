@@ -42,6 +42,7 @@ class DemoCron extends Command
      */
     public function handle()
     {
+        print_r('şfdskvdsşlcösdlşcödsşlcöds');
         $editiha = \DB::table('iha')->get();
         $cek = $editiha[0];
         $username = $cek->iha_username;
@@ -90,96 +91,101 @@ class DemoCron extends Command
                 foreach ($xml->channel as $icerik) {
                     $i = 0;
                     foreach ($icerik->item as $kanal) {
-                        $sehirnameXml = Str::title($kanal->Sehir);
-                        $dir = "storage/app/public/postimg";
-                        $benzersiz = uniqid();
-                        $name = $kanal->title;
-                        $resim = $kanal->images->image[0] == "" ? "https://yahsimedya.com/yonetim/dimg/settings/yahsi-logo.png" : $kanal->images->image[0];
-                        $isim = str_slug($name) . 1;
-                        $year = date("Y");
-                        $month = date("m");
-                        $jpegklasor = "jpeg";
-                        $filenamejpeg = $dir . "/" . $year . "/" . $month;
-                        $filenamejpegay = $dir . "/" . $year . "/" . $month;
-                        if (file_exists($filenamejpeg)) {
-                            if (file_exists($filenamejpegay) == false) {
-                                mkdir($filenamejpegay, 0777, true);
-                            }
-                        } else {
-                            mkdir($filenamejpeg, 0777, true);
-                        }
-                        $content = file_get_contents($resim);
-                        file_put_contents(realpath($filenamejpegay) . '/' . $benzersiz . "-" . $isim . "." . 'jpg', $content);
-                        $imagesArray[0] = $filenamejpeg . "/" . $benzersiz . "-" . $isim . '.jpg';
-                        $image = imagecreatefromstring(file_get_contents($resim));
-                        ob_start();
-                        imagejpeg($image, NULL, 100);
-                        $cont = ob_get_contents();
-                        ob_end_clean();
-                        imagedestroy($image);
-                        $content = imagecreatefromstring($cont);
-                        imagedestroy($content);
-                        $sehirs = District::where('district_tr', $sehirnameXml)->get();
-                        $i++;
-                        $kategoriID;
+                        print($kanal->Sehir);
 
-                        if ($kanal->Kategori == "MAGAZİN") {
-                            $kategoriID = 2;
-                        } elseif ($kanal->Kategori == "SPOR") {
-                            $kategoriID = 6;
-                        } elseif ($kanal->Kategori == "POLİTİKA") {
-                            $kategoriID = 3;
-                        } elseif ($kanal->Kategori == "ASAYİŞ") {
-                            $kategoriID = 1;
-                        } elseif ($kanal->Kategori == "DÜNYA") {
-                            $kategoriID = 2;
-                        } elseif ($kanal->Kategori == "GENEL") {
-                            $kategoriID = 2;
-                        } elseif ($kanal->Kategori == "EKONOMİ") {
-                            $kategoriID = 5;
-                        } elseif ($kanal->Kategori == "HABERDE İNSAN") {
-                            $kategoriID = 2;
-                        } elseif ($kanal->Kategori == "SAĞLIK") {
-                            $kategoriID = 7;
-                        } elseif ($kanal->Kategori == "EĞİTİM") {
-                            $kategoriID = 4;
-                        } elseif ($kanal->Kategori == "BİLİM VE TEKNOLOJİ") {
-                            $kategoriID = 9;
-                        } elseif ($kanal->Kategori == "KÜLTÜR SANAT") {
-                            $kategoriID = 8;
-                        } elseif ($kanal->Kategori == "ÇEVRE") {
-                            $kategoriID = 2;
-                        } else {
-                            $kategoriID = 2;
-                        }
-                        $haberkodu = $kanal->HaberKodu;
-                        $ustkategori = $kanal->UstKategori;
-                        $Kategori = $kanal->Kategori;
-                        $Sehir = $kanal->Sehir;
-                        $SonDakika = $kanal->SonDakika;
-                        $title = $kanal->title;
-                        $description = $kanal->description;
-                        $pubDate = $kanal->pubDate;
-                        $SonHaberGuncellenmeTarihi = $kanal->SonHaberGuncellenmeTarihi;
-                        $images['image'] = $resim;
-                        $videos = $kanal->videos;
-                        $data['title_tr'] = $title;
-                        $data['category_id'] = $kategoriID;
-                        $data['details_tr'] = $description;
-                        $data['title_en'] = $description;
-                        $data['district_id'] = $sehirs[0]->id;
-                        $data['image'] = "storage/postimg" . "/" . $year . "/" . $month . "/" . $benzersiz . "-" . $isim . '.jpg';
-                        $data['user_id'] = 1;
-                        $data['status'] = 1;
-                        $data['manset'] = 1;
-                        $data['haber_iha_kod'] = $haberkodu;
-                        $data['created_at'] = Carbon::now();
-                        Artisan::call('cache:clear');
-                        Artisan::call('route:clear');
-                        Artisan::call('config:clear');
-                        Artisan::call('view:clear');
-                        Artisan::call('optimize');
-                        DB::table('posts')->insert($data);
+             if($kanal->Sehir){
+
+                 $sehirnameXml = Str::title($kanal->Sehir);
+                 $dir = "storage/app/public/postimg";
+                 $benzersiz = uniqid();
+                 $name = $kanal->title;
+                 $resim = $kanal->images->image[0] == "" ? "https://yahsimedya.com/yonetim/dimg/settings/yahsi-logo.png" : $kanal->images->image[0];
+                 $isim = str_slug($name) . 1;
+                 $year = date("Y");
+                 $month = date("m");
+                 $jpegklasor = "jpeg";
+                 $filenamejpeg = $dir . "/" . $year . "/" . $month;
+                 $filenamejpegay = $dir . "/" . $year . "/" . $month;
+                 if (file_exists($filenamejpeg)) {
+                     if (file_exists($filenamejpegay) == false) {
+                         mkdir($filenamejpegay, 0777, true);
+                     }
+                 } else {
+                     mkdir($filenamejpeg, 0777, true);
+                 }
+                 $content = file_get_contents($resim);
+                 file_put_contents(realpath($filenamejpegay) . '/' . $benzersiz . "-" . $isim . "." . 'jpg', $content);
+                 $imagesArray[0] = $filenamejpeg . "/" . $benzersiz . "-" . $isim . '.jpg';
+                 $image = imagecreatefromstring(file_get_contents($resim));
+                 ob_start();
+                 imagejpeg($image, NULL, 100);
+                 $cont = ob_get_contents();
+                 ob_end_clean();
+                 imagedestroy($image);
+                 $content = imagecreatefromstring($cont);
+                 imagedestroy($content);
+                 $sehirs = District::where('district_tr', $sehirnameXml)->get();
+                 $i++;
+                 $kategoriID;
+
+                 if ($kanal->Kategori == "MAGAZİN") {
+                     $kategoriID = 2;
+                 } elseif ($kanal->Kategori == "SPOR") {
+                     $kategoriID = 6;
+                 } elseif ($kanal->Kategori == "POLİTİKA") {
+                     $kategoriID = 3;
+                 } elseif ($kanal->Kategori == "ASAYİŞ") {
+                     $kategoriID = 1;
+                 } elseif ($kanal->Kategori == "DÜNYA") {
+                     $kategoriID = 2;
+                 } elseif ($kanal->Kategori == "GENEL") {
+                     $kategoriID = 2;
+                 } elseif ($kanal->Kategori == "EKONOMİ") {
+                     $kategoriID = 5;
+                 } elseif ($kanal->Kategori == "HABERDE İNSAN") {
+                     $kategoriID = 2;
+                 } elseif ($kanal->Kategori == "SAĞLIK") {
+                     $kategoriID = 7;
+                 } elseif ($kanal->Kategori == "EĞİTİM") {
+                     $kategoriID = 4;
+                 } elseif ($kanal->Kategori == "BİLİM VE TEKNOLOJİ") {
+                     $kategoriID = 9;
+                 } elseif ($kanal->Kategori == "KÜLTÜR SANAT") {
+                     $kategoriID = 8;
+                 } elseif ($kanal->Kategori == "ÇEVRE") {
+                     $kategoriID = 2;
+                 } else {
+                     $kategoriID = 2;
+                 }
+                 $haberkodu = $kanal->HaberKodu;
+                 $ustkategori = $kanal->UstKategori;
+                 $Kategori = $kanal->Kategori;
+                 $Sehir = $kanal->Sehir;
+                 $SonDakika = $kanal->SonDakika;
+                 $title = $kanal->title;
+                 $description = $kanal->description;
+                 $pubDate = $kanal->pubDate;
+                 $SonHaberGuncellenmeTarihi = $kanal->SonHaberGuncellenmeTarihi;
+                 $images['image'] = $resim;
+                 $videos = $kanal->videos;
+                 $data['title_tr'] = $title;
+                 $data['category_id'] = $kategoriID;
+                 $data['details_tr'] = $description;
+                 $data['title_en'] = $description;
+                 $data['district_id'] = $sehirs[0]->id;
+                 $data['image'] = "storage/postimg" . "/" . $year . "/" . $month . "/" . $benzersiz . "-" . $isim . '.jpg';
+                 $data['user_id'] = 1;
+                 $data['status'] = 1;
+                 $data['manset'] = 1;
+                 $data['haber_iha_kod'] = $haberkodu;
+                 $data['created_at'] = Carbon::now();
+                 Artisan::call('cache:clear');
+                 Artisan::call('route:clear');
+                 Artisan::call('config:clear');
+                 Artisan::call('view:clear');
+                 Artisan::call('optimize');
+                 DB::table('posts')->insert($data);
+             }
 ///php artisan schedule:run ile çalışıyor
                     }
                 }

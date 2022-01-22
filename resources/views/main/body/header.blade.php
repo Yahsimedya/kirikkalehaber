@@ -376,7 +376,7 @@ $gelenil=Session::get('gelenil');
                             @endphp
                             <div class="kalansure">
                                 <span>{{ $totalDuration}}</span>
-                                <p>Yatsıy'a Kalan Süre</p>
+                                <p>Yatsı'ya Kalan Süre</p>
                             </div>
 
 

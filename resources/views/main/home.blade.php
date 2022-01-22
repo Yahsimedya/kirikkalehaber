@@ -801,7 +801,7 @@
                      style="background-color:{{$themeSetting[0]->siteColorTheme}}!important;">
                     <div class="swiper-wrapper">
                         <!-------------ECONOMY FEATURED---->
-                        @foreach ($ekonomi as $row )
+                        @foreach ($ekonomimanset as $row )
                             @if($row->featured ==1)
                             <div class="swiper-slide" style="">
                                 <div class="card kart kart-width kart-margin shadow" style="">
@@ -852,7 +852,6 @@
             <div class="row">
                 @foreach($ekonomi as $homes)
 
-                    @if($homes->featured ==null|| $homes->featured ==0)
 
 
                         <div class="col-md-4 float-left mb-3  ">
@@ -878,7 +877,6 @@
                         </div>
 
 
-                    @endif
 
 
 
@@ -912,8 +910,7 @@
                 <!-- <div class="row"> -->
                 <div class="swiper-container ekonomi">
                     <div class="swiper-wrapper" style="background-color: {{$themeSetting[0]->agenda}}">
-                        @foreach($gundem as $homes)
-                            @if($homes->featured ==1)
+                        @foreach($gundemmanset as $homes)
                             <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
@@ -934,7 +931,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endif
 
                         @endforeach
 
@@ -963,7 +959,6 @@
         <div class="container pt-2 pb-2">
             <div class="row">
                 @foreach($gundem as $homes)
-                    @if($homes->featured ==0)
                     <div class="col-md-4 float-left mb-3  ">
                         <div class="card kart kart-width kart-margin shadow" style="">
                             <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
@@ -985,7 +980,6 @@
                             </div>
                         </div>
                     </div>
-@endif
 
 
 
@@ -1020,8 +1014,7 @@
                     <div class="swiper-wrapper">
 
 
-                        @foreach($siyaset as $homes)
-                            @if($homes->featured ==1)
+                        @foreach($siyasetmanset as $homes)
 
                                 <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
@@ -1042,7 +1035,6 @@
                                             </div>
                                     </div>
                                 </div>
-                            @endif
                         @endforeach
 
 
@@ -1061,7 +1053,6 @@
         <div class="container pt-2 pb-2">
             <div class="row">
                 @foreach($siyaset as $homes)
-                    @if($homes->featured ==0)
 
                     <div class="col-md-4 float-left mb-3  ">
                         <div class="card kart kart-width kart-margin shadow" style="">
@@ -1083,7 +1074,6 @@
                             </div>
                         </div>
                     </div>
-                    @endif
                 @endforeach
             </div>
         </div>
@@ -1117,8 +1107,7 @@
                 <div class="swiper-container spor">
                     <div class="swiper-wrapper">
 
-                        @foreach($spor as $homes)
-                            @if($homes->featured ==1)
+                        @foreach($spormanset as $homes)
 
                                 <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
@@ -1139,7 +1128,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endif
                         @endforeach
 
 
@@ -1178,7 +1166,6 @@
                 <div class="col-lg-8">
                     <div class="row mt-3">
                         @foreach($spor as $homes)
-                            @if($homes->featured ==0)
 
                             <div class="col-md-6 float-left mb-3  ">
                                 <div class="card kart kart-width kart-margin shadow" style="">
@@ -1200,7 +1187,6 @@
                                     </div>
                                 </div>
                             </div>
-                            @endif
                         @endforeach
                         <!--  ÜST BLOK 1140x90 REKLAM-->
                             @foreach($ads as $ad)
