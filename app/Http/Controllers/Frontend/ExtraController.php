@@ -525,7 +525,7 @@ class ExtraController extends Controller
 
         $spor = Cache::remember("spor", Carbon::now()->addYear(), function () use ($category4) {
             if (Cache::has('spor')) return Cache::has('spor');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->where('status', 1)->->where('featured','!=' ,1)->limit(6)->latest('created_at')->get();
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->where('status', 1)->where('featured','!=' ,1)->limit(6)->latest('created_at')->get();
         });
 
 
