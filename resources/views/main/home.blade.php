@@ -1053,14 +1053,14 @@
         <div class="container pt-2 pb-2">
             <div class="row">
                 @foreach($siyaset as $homes)
-
                     <div class="col-md-4 float-left mb-3  ">
                         <div class="card kart kart-width kart-margin shadow" style="">
                             <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                 <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                    class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
-                                    alt="Card image cap"></a>
-                            <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->politics}}; ">
+                                     class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
+                                     alt="Card image cap"></a>
+
+                            <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->agenda}}; ">
                                 @if($homes->headlinetag==1)
                                     <div class="short-tag" style="background-color:{{$themeSetting[0]->politics}}">
                                         <span>Son Dakika</span>
@@ -1074,6 +1074,10 @@
                             </div>
                         </div>
                     </div>
+
+
+
+
                 @endforeach
             </div>
         </div>
