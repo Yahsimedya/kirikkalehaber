@@ -904,11 +904,11 @@
             </div>
         </div>
 
-        <section class=" pb-4" style="background-color: {{$themeSetting[0]->agenda}}">
+        <section class=" pb-4" style="background-color: {{$themeSetting[0]->agenda}};">
             <div class="container pt-2 pb-2">
                 <h4 class="pt-2 pb-2 ana-baslik">Öne Çıkan {{$gundemmanset[0]->category->category_tr}} Haberleri</h4>
                 <!-- <div class="row"> -->
-                <div class="swiper-container ekonomi">
+                <div class="swiper-container ekonomi" style="background-image: linear-gradient(-10deg, {{$themeSetting[0]->agenda}}, {{$themeSetting[0]->agenda}}) !important">
                     <div class="swiper-wrapper" style="background-color: {{$themeSetting[0]->agenda}}">
                         @foreach($gundemmanset as $homes)
                             <div class="swiper-slide" style="">
