@@ -31,6 +31,7 @@ class CategoryController extends Controller
 
     public function CreateCategory(Request $request)
     {
+
         $validatedData = $request->validate(
             [
                 'category_tr' => 'required|unique:categories|max:255',
@@ -51,7 +52,7 @@ class CategoryController extends Controller
                 'category_description' => '255 karakterden büyük olamaz',
             ]
         );
-
+        $request['category_menu'] = $request->category_menu == null ? 0 : 1;
         Category::create($request->all());
 
 
@@ -113,6 +114,7 @@ class CategoryController extends Controller
             ]
         );
 
+        $request['category_menu'] = $request->category_menu == null ? 0 : 1;
         $category->Update($request->all());
 //        Category::Update($request->all());
         $notification = array(

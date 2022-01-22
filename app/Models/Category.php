@@ -16,8 +16,8 @@ class Category extends Model
         'category_description',
         'category_icon',
         'category_status',
-        'category_status',
         'category_order',
+        'category_menu',
         'categorycolor',
 
     ];

@@ -23,6 +23,7 @@ class CreateCategoriesTable extends Migration
             $table->string('category_icon')->nullable();
             $table->boolean('category_status')->default(1);
             $table->integer('category_order')->default(0);
+            $table->integer('category_menu')->default(0);
             $table->string('soft_delete')->nullable()->default(0); // boş bırakılabilir değeri otomatik 0 atar
             $table->string('categorycolor')->nullable(); // boş bırakılabilir değeri otomatik 0 atar
 
@@ -30,8 +31,8 @@ class CreateCategoriesTable extends Migration
         });
 
         //Schema::table('categories', function (Blueprint $table) {
-         //  $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');
-      //  });
+        //  $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');
+        //  });
     }
 
     /**
