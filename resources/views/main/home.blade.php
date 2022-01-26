@@ -813,6 +813,8 @@
 
                 </h4>
                 <!-- <div class="row"> -->
+                <div class="col-md-12 p-0 m-0">
+
                 <div class="swiper-container siyaset"
                      style="background-color:{{$themeSetting[0]->siteColorTheme}}!important;">
                     <div class="swiper-wrapper">
@@ -857,6 +859,7 @@
                         <div class="swiper-button-next white-next"></div>
                         <div class="swiper-button-prev white-prev"></div>
                     </div>
+                </div>
                 </div>
                 <!-- </div> -->
             </div>
@@ -924,6 +927,8 @@
             <div class="container pt-2 pb-2">
                 <h4 class="pt-2 pb-2 ana-baslik">Öne Çıkan {{$gundemmanset[0]->category->category_tr}} Haberleri</h4>
                 <!-- <div class="row"> -->
+                <div class="col-md-12 p-0 m-0">
+
                 <div class="swiper-container ekonomi" style="background-image: linear-gradient(-10deg, {{$themeSetting[0]->agenda}}, {{$themeSetting[0]->agenda}}) !important">
                     <div class="swiper-wrapper" style="background-color: {{$themeSetting[0]->agenda}}">
                         @foreach($gundemmanset as $homes)
@@ -960,6 +965,7 @@
                         <div class="swiper-button-prev white-prev"></div>
                     </div>
                 </div>
+            </div>
                 <!-- </div> -->
             </div>
 
@@ -1026,6 +1032,7 @@
             <div class="container pt-2 pb-2">
                 <h4 class="pt-2 pb-2 ana-baslik">Öne Çıkan {{$siyasetmanset[0]->category->category_tr}} Haberleri </h4>
                 <!-- <div class="row"> -->
+                <div class="col-md-12">
                 <div class="swiper-container ekonomi">
                     <div class="swiper-wrapper">
 
@@ -1063,6 +1070,8 @@
                         <div class="swiper-button-prev white-prev"></div>
                     </div>
                 </div>
+                </div>
+
                 <!-- </div> -->
             </div>
         </section>
@@ -1122,8 +1131,10 @@
         <!--SPOR SLİDER-->
         <section class="spor pb-4">
             <div class="container pt-2 pb-2">
+
                 <h4 class="pt-2 pb-2 ana-baslik">Öne Çıkan {{$spormanset[0]->category->category_tr}} Haberleri</h4>
                 <!-- <div class="row"> -->
+                <div class="col-md-12">
                 <div class="swiper-container spor">
                     <div class="swiper-wrapper">
 
@@ -1160,6 +1171,7 @@
                         <div class="swiper-button-prev white-prev"></div>
                     </div>
                 </div>
+            </div>
                 <!-- </div> -->
             </div>
         </section>
