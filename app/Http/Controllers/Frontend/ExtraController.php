@@ -536,7 +536,6 @@ class ExtraController extends Controller
                         $query->orWhere('featured',0)
                             ->orWhere('featured',null);
                 })
-
                 ->limit(9)->latest('created_at')->get();
         });
 
@@ -957,6 +956,7 @@ class ExtraController extends Controller
 
     public function yazilars($slug_name, $Authorid)
     {
+
         $expiresAt = now()->addHours(24);
 
         $webSiteSetting = WebsiteSetting::first();
@@ -966,12 +966,35 @@ class ExtraController extends Controller
 //dd($yaziPost->authors_id);
         $yazarID = $yaziPost->authors_id;
 //        dd($yazarID);
-        $nextauthors_posts = AuthorsPost::where('status', 1)->where('authors_id', $yazarID)->latest()->limit(10)->get();
-        $OtherAuthors = Authors::limit(10)->get();
+        $nextauthors_posts = AuthorsPost::where('status', 1)->where('authors_id', $yazarID)->latest()->limit(8)->get();
+        $OtherAuthors =AuthorsPost::whereId($Authorid)->limit(10)->orderBy('id', 'desc')->get(); //
         $seoset = Seos::first();
-        $themeSetting = Theme::get();
 
-        return view('main.body.authors_writes', compact('yaziPost', 'webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'themeSetting'));
+        $themeSetting = Theme::get();
+        $yazardes=DB::table('authors')->where('id','=',$yaziPost->authors_id)->first();
+        return view('main.body.authors_writes', compact('yaziPost', 'webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset','yazardes', 'themeSetting'));
+    }
+
+
+
+
+
+
+    public function Author_post($slug_name, $Authorid)
+    {
+
+        $expiresAt = now()->addHours(24);
+
+        $webSiteSetting = WebsiteSetting::first();
+
+        $yazarID = $Authorid;
+        $nextauthors_posts = AuthorsPost::where('status', 1)->where('authors_id', $yazarID)->paginate(15);
+        $OtherAuthors =AuthorsPost::whereId($Authorid)->limit(10)->orderBy('id', 'desc')->get(); //
+        $seoset = Seos::first();
+
+        $themeSetting = Theme::get();
+        $yazardes=DB::table('authors')->where('id','=',$yazarID)->first();
+        return view('main.body.allAuthorsPost', compact( 'webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset','yazardes', 'themeSetting'));
     }
 
     public function breakingnews()

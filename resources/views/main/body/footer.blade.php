@@ -103,16 +103,17 @@
             <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
             <p>
                 <a class="dark-grey-text" href="https://apps.apple.com/us/developer/yah%C5%9Fi-medya/id1495158559?l=tr"><img
-                        class="img-fluid lazyload" data-src="{{asset('image/apple.png')}}"></a>
+                        class="img-fluid lazyload" style="max-width: 150px" data-src="{{asset('image/apple.png')}}"></a>
             </p>
             <p>
                 <a class="dark-grey-text"
                    href="https://play.google.com/store/apps/developer?id=Yah%C5%9Fi+Medya&hl=tr&gl=US"><img
-                        class="img-fluid lazyload" data-src="{{asset('image/play.png')}}"></a>
+                        class="img-fluid lazyload" style="max-width: 150px" data-src="{{asset('image/play.png')}}"></a>
             </p>
             <p>
-                <a class="dark-grey-text" href="https://appgallery.huawei.com/app/C104177315"><img class="img-fluid lazyload"
-                                                                                                   data-src="{{asset('image/huawei.png')}}"></a>
+                <a class="dark-grey-text"
+                   href="https://appgallery.huawei.com/app/C104177315"><img
+                        class="img-fluid lazyload" style="max-width: 150px" data-src="{{asset('image/huawei.png')}}"></a>
             </p>
                 @endif
             @if($themeSetting[0]->subscription==1)
@@ -187,8 +188,8 @@ image/sanalbasin_üyesidir.png')}}" style="width: 120px"
 <!-- Footer Links -->
 
 <!-- Copyright -->
-<div class="footer-copyright text-center text-black-50 py-3">
-    © 2020 Copyright: <a class="dark-grey-text" rel="noopener" target="_blank" href="https://yahsimedya.com/"><img width="75" class="img-fluid lazyload" src="https://yahsimedya.com/yonetim/dimg/settings/yahsi-logo.png"></a>
+<div class="footer-copyright text-center text-black-50 py-3 ">
+     <a class="dark-grey-text " rel="noopener" target="_blank" href="https://yahsimedya.com/">© 2020 Copyright:<img width="75" class="img-fluid lazyload yahsilogo" src="https://yahsimedya.com/yonetim/dimg/settings/yahsi-logo.png"></a>
 </div>
 <!-- Copyright -->
 

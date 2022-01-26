@@ -399,6 +399,7 @@ Route::get('/yazar/{id}', [ExtraController::class, 'yazilar'])->name('authors.ya
 Route::get('/{slug_name}/{id}', [ExtraController::class, 'yazilars'])->name('authors.yazilars');
 // SİNGLE POST PAGE
 Route::get('/{slug_name}/{Authorid}', [ExtraController::class, 'yazilars']);
+Route::get('AuthorAllPost/{Author_name}/{Authorid}', [ExtraController::class, 'Author_post'])->name('Author_post');
 
 Route::get('/{slug}/{id}/haberi', [ExtraController::class, 'SinglePost'])->name('singlePost'); // haber detay sayfası
 Route::get('/Category/{slug}/{id}', [ExtraController::class, 'CategoryPost']);

@@ -29,6 +29,8 @@ class CreateThemesTable extends Migration
             $table->bigInteger('category3');
             $table->bigInteger('category4');
             $table->string('multiple_category');
+            $table->bigInteger('fotogaleri');
+            $table->bigInteger('videogaleri');
 
 
 

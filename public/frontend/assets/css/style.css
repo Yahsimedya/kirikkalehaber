@@ -12151,3 +12151,6 @@ img.lazyload:not([src]) {
 .navbar-dark .navbar-text a:hover, .navbar-dark .navbar-text a:focus {
     color: #fff
 }
+.yahsilogo{
+    display:initial;
+}

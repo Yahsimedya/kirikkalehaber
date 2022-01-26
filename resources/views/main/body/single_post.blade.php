@@ -313,7 +313,8 @@
                         <div class="w-100">{!!$ad->ad_code!!}</div>
                     @endif
                 @endforeach
-                <!-- HABER DETAY SLİDER -->
+
+                    <!-- HABER DETAY SLİDER -->
                 <div class="swiper-container detay-slider mb-2">
                     <div class="swiper-wrapper">
                         {{--@php--}}
@@ -325,7 +326,11 @@
                                 <a href="{{'/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi'}}">
                                     <img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" src="{{asset($row->image)}}" class="img-fluid kart_img lazyload" alt="">
                                     {{-- <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div> --}}
-                                </a>
+                                </a> @if($themeSetting[0]->slider_title!=0)
+                                <div class="kartlar__effect position-absolute">
+                                    <p class="sag-manset-text">{{$row->title_tr}}</p>
+                                </div>
+                                @endif
                             </div>
                         @endforeach
 

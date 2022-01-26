@@ -2,6 +2,7 @@
 @section('admin')
     @php
         error_reporting(1);
+
     @endphp
 
 
@@ -178,7 +179,41 @@
                                             <label>Haber Kategori</label>
                                             <input type="hidden" name="user_id" value="{{Auth::id()}}">
                                             <select name="category_id" id="" class="form-control">
+                                                @php
+                                                    $kategoriID;
 
+                     if ($news[$i]['Kategori'] == "MAGAZİN") {
+                         $kategoriID = 2;
+                     } elseif ($news[$i]['Kategori'] == "SPOR") {
+                         $kategoriID = 6;
+                     } elseif ($news[$i]['Kategori'] == "POLİTİKA") {
+                         $kategoriID = 3;
+                     } elseif ($news[$i]['Kategori'] == "ASAYİŞ") {
+                         $kategoriID = 1;
+                     } elseif ($news[$i]['Kategori'] == "DÜNYA") {
+                         $kategoriID = 2;
+                     } elseif ($news[$i]['Kategori'] == "GENEL") {
+                         $kategoriID = 2;
+                     } elseif ($news[$i]['Kategori'] == "EKONOMİ") {
+                         $kategoriID = 5;
+                     } elseif ($news[$i]['Kategori'] == "HABERDE İNSAN") {
+                         $kategoriID = 2;
+                     } elseif ($news[$i]['Kategori'] == "SAĞLIK") {
+                         $kategoriID = 7;
+                     } elseif ($news[$i]['Kategori'] == "EĞİTİM") {
+                         $kategoriID = 4;
+                     } elseif ($news[$i]['Kategori'] == "BİLİM VE TEKNOLOJİ") {
+                         $kategoriID = 9;
+                     } elseif ($news[$i]['Kategori'] == "KÜLTÜR SANAT") {
+                         $kategoriID = 8;
+                     } elseif ($news[$i]['Kategori'] == "ÇEVRE") {
+                         $kategoriID = 2;
+                     } else {
+                         $kategoriID = 2;
+                     }
+                                                @endphp
+                                                <option
+                                                    value="{{$kategoriID}}">{{$news[$i]['Kategori']}}</option>
                                                 @foreach ($category as $kategori )
                                                     <option
                                                         value="{{$kategori->id}}">{{$kategori->category_tr}}</option>
@@ -190,10 +225,16 @@
                                             <label>İller </label>
                                             <input type="hidden" name="user_id" value="{{Auth::id()}}">
                                             <select name="district" id="" class="form-control">
-                                                <option value="{{$news[$i]['Sehir'][0]->id}}">{{$news[$i]['Sehir'][0]->district_tr}}</option>
+                                                @if($news[$i]['Sehir'][0]->id!=null)
+                                                    <option
+                                                        value="{{$news[$i]['Sehir'][0]->id}}">{{$news[$i]['Sehir'][0]->district_tr}}</option>
+                                                @else
+                                                    <option value="71">Kırıkkale</option>
 
+                                                @endif
                                                 @foreach ($district as $districts  )
-                                                    <option value="{{$districts->id}}">{{$districts->district_tr}}</option>
+                                                    <option
+                                                        value="{{$districts->id}}">{{$districts->district_tr}}</option>
                                                 @endforeach
 
                                             </select>

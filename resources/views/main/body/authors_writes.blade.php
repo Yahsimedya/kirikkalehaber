@@ -16,112 +16,103 @@
 {{--@endforeach--}}
 
 @section('content')
+    <style>
+        .siteTema{
+            color: {{$themeSetting[0]->siteColorTheme}};
+        }
+    </style>
     <div class="container">
+        <div class="col-lg-12 bg-light my-2">
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="col-lg-6">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
+                            <img class="rounded-circle border border-secondary border-5" height="175px" width="175px"
+                                 src="{{asset($yazardes->image)}}">
+                        </div>
+                        <div class="flex-grow-1 ms-3 pt-4">
+                            <p class="ml-3  ">Köşe Yazarı</p>
+                            <p class="ml-3 "><b>{{$yazardes->name}}</b></p>
+                            <p class="ml-3  ">{{$yazardes->mail}}</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6 ">
+                    <ul class=" float-right d-flex align-items-center" style="list-style-type: none;">
+                        <li><a target="_blank" href="{{$yazardes->facebook}}"><i
+                                    class="fa fa-facebook-square text-primary p-2  border border-light rounded-circle"
+                                    style="font-size:25px;"></i>
+                            </a>
+                        </li>
+                        <li><a target="_blank" href="{{$yazardes->twitter}}"><i
+                                    class="fa fa-twitter-square text-info p-2  border border-light rounded-circle"
+                                    style="font-size:25px;"></i>
+                            </a>
+                        </li>
+                        <li><a target="_blank" href="{{$yazardes->youtube}}"><i
+                                    class="fa fa-youtube-square text-danger p-2 fa-color border border-light rounded-circle"
+                                    style="font-size:25px;"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
         <div class="row">
 
             <div class="container col-lg-8">
 
                 <div class="container  mt-2 mb-5">
 
-                    <div class="row shadow-lg p-4">
-                        <h1 class="text-dark font-weight-bold pt-3"> {{$yaziPost->title}}</h1>
-                        <br>
+
+                    <div class="row  pt-4">
                         <div class="container col-lg-12">
                             <div class="row">
 
                                 <li style="list-style-type: none;">
-                                    <i class="fas fa-calendar fa-lg"
-                                       style="color:red"></i>&nbsp{{date('d-m-Y', strtotime($yaziPost->created_at))}}
-                                    <i class="fas fa-clock fa-lg"
-                                       style="color:red"></i>&nbsp{{date('H:i:s', strtotime($yaziPost->created_at))}}
+                                   &nbsp Ekleme Tarihi:
+                                    <i class="fas fa-calendar fa-md siteTema" ></i>&nbsp{{ \Carbon\Carbon::parse($yaziPost->created_at)->isoFormat('DD MMMM YYYY') }}
                                 </li>
                             </div>
                         </div>
+                        <h1 class="text-dark font-weight-bold pt-3"> {{$yaziPost->title}}</h1>
+                        <br>
+
 
                         {!! $yaziPost->text !!}
                     </div>
 
                 </div>
             </div>
-            @php
-                $yazardes=DB::table('authors')->where('id','=',$yaziPost->authors_id)->get();
-            @endphp
+
             <div class="container col-lg-4 mt-5 mb-5">
-                @foreach($yazardes as $yazars)
-                    <div class="position-relative d-table-cell align-middle">
-
-                        <div class="kapsayici position-relative">
-                            <div class="kartlar__effect position-absolute">
-                            </div>
-                            <img src="/{{$yazars->image}}" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="detay-image"
-                                 style="width: 100%;max-height: 250px;object-fit: fill;" alt="">
-                        </div>
-
-                        <div class="position-relative  text-light" style="background-color: {{$webSiteSetting->siteColorTheme}}">
-                            <p class=" detay-text text-center text-light align-middle" style="height: auto;">
-                                <b>{{$yazars->name}}</b></p>
-                            <div class="row text-center p-2">
-                                <div class="col-md-3 p-1">
-                                    <a target="_blank" href="{{$yazars->facebook}}"><i
-                                            class="fa fa-facebook-square text-light p-2  border border-light rounded-circle"
-                                            style="font-size:25px;"></i>
-                                        <p class="text-light">Facebook</p></a>
-                                </div>
-                                <div class="col-md-3 p-1">
-                                    <a target="_blank" href="{{$yazars->twitter}}"><i
-                                            class="fa fa-twitter-square text-light p-2  border border-light rounded-circle"
-                                            style="font-size:25px;"></i>
-                                        <p class="text-light">Twitter</p></a>
-
-                                </div>
-                                <div class="col-md-3 p-1"><a target="_blank" href="#"><i
-                                            class="fa fa-instagram text-light p-2  border border-light rounded-circle"
-                                            style="font-size:25px;"></i>
-                                        <p class="text-light">İnstagram</p></a>
-
-                                </div>
-                                <div class="col-md-3 p-1"><a target="_blank" href="{{$yazars->youtube}}"><i
-                                            class="fa fa-youtube-square text-light p-2  border border-light rounded-circle"
-                                            style="font-size:25px;"></i>
-                                        <p class="text-light">Youtube</p></a>
-
-                                </div>
-
-                            </div>
-                        </div>
+                <div class="position-relative mt-3">
+                    <div class="flex-shrink-0">
+                        <ul class="d-flex align-items-center justify-content-between p-0" style="list-style-type: none;">
+                            <li class="m-0">
+                                <img class="rounded-circle border border-light border-5 p-1 bg-light" height="100px" width="100px"
+                                     src="{{asset($yazardes->image)}}">
+                            </li>
+                            <li>
+                                <a href="{{route('Author_post',[$yazardes->name,$yazardes->id])}}" class="float-right ">
+                                    Tüm Yazıları
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="position-relative mt-3">
-
-                        <b>SIRADAKİ</b> <span>YAZILAR</span>
-
-                        <p class="detay__sidebar-baslik "></p>
-                    </div>
-                    <div class="list-group detay__liste mt-3">
-                        @php
-                            $i=0;
+                </div>
 
 
-                        @endphp
-                        @foreach ($nextauthors_posts as $row )
-                            @php
-                                $i++;
-                            @endphp
-                            <a href="{{URL::to('/'.str_slug($row->title).'/'.$row->id)}}"
 
-                               class="list-group-item list-group-item-action detay__liste-item ">
-                                <i class="detay__liste-rakam d-table-cell align-middle">{{$i}}</i>
-                                <span class="d-table-cell">
 
-                                        {{ Str::ucFirst($row->title) }}
-                                    </span>
-                            </a>
-                        @endforeach
-
-                    </div>
-                @endforeach
                 <div class="position-relative mt-3">
 
-                    <b>DİĞER </b> <span>YAZARLAR</span>
+                    <b>DİĞER </b> <span>YAZILARI</span>
 
                     <p class="detay__sidebar-baslik "></p>
                 </div>
@@ -132,15 +123,33 @@
                     {{--          ->get();--}}
 
                     {{--                    @endphp--}}
-                    @foreach ($OtherAuthors as $row )
+                    @foreach ($nextauthors_posts as $row )
 
-                        <div class="card bg-dark text-white">
+                        <div class="card  text-white">
                             <a href="{{URL::to('/'.str_slug($row->name).'/'.$row->id)}}">
 
-                                <img class="card-img" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" src="{{asset($row->image)}}" alt="Card image">
-                                <div class="card-img-overlay">
-                                    <h5 class="card-title"> {{ Str::ucFirst($row->name) }}</h5>
+                                <div class="card" >
+                                    <div class="row no-gutters">
+
+                                        <div class="col-md-3 text-center text-secondary bg-light d-flex align-items-center">
+
+                                            <div class="d-flex flex-column">
+                                                <div class="pl-3 siteTema" style="font-size: 22px"><b>{{ \Carbon\Carbon::parse($yaziPost->created_at)->isoFormat('DD') }}</b></div>
+                                                <div class="pl-3"> {{ \Carbon\Carbon::parse($yaziPost->created_at)->isoFormat('MMMM') }}</div>
+
+
+
+                                          </div>
+
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="card-body">
+                                                <p class="card-text">{{ Str::ucFirst($row->title) }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </a>
 
                         </div>
@@ -148,8 +157,12 @@
                         <br>
 
                     @endforeach
+                    <a  href="{{route('Author_post',[$yazardes->name,$yazardes->id])}}" class="float-right ">
+                        Tüm Yazıları
+                    </a>
 
                 </div>
+
             </div>
 
         </div>

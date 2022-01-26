@@ -70,6 +70,7 @@ class IhaController extends Controller
         $iha['iha_password'] = $request->iha_password;
         $iha['auto_Bot'] = $request->auto_Bot=="on"?1:0;
         $iha['iha_rss'] = $request->iha_rss;
+        $iha['district'] = $request->district;
 
         \DB::table('iha')->where('id', '=', $request->id)->update($iha);
 

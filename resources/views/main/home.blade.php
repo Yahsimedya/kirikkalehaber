@@ -306,8 +306,6 @@
                                                     <span>Bu Habere Dikkat</span>
                                                 </div>
                                             @endif
-
-
                                         </div>
                                     </a>
                                 </div>
@@ -321,7 +319,11 @@
                         <div class="swiper-button-next manset-next"></div>
                         <div class="swiper-button-prev manset-prev"></div>
                     </div>
+
+
                     <div class="row mt-0">
+
+                        @if($themeSetting[0]->fotogaleri!=0)
                         <div class="col-md-6 mt-3 ">
                             <div class="card-header border-left border-red border-3"
                                  style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"
@@ -373,6 +375,9 @@
                                 <!-- If we need scrollbar -->
                             </div>
                         </div>
+                        @endif
+
+                    @if($themeSetting[0]->videogaleri!=0 )
                         <div class="col-md-6 mt-3 ">
                             <div class="card-header border-left  border-3"
                                  style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"
@@ -414,7 +419,13 @@
                                 <!-- If we need scrollbar -->
                             </div>
                         </div>
+                    @endif
+
                     </div>
+
+
+
+
                 </div>
                 <!--SLİDER YANI 4 KOLON-->
                 <div class="col-md-4 position-relative text-center">
@@ -446,9 +457,14 @@
                                     <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}"><img
                                             class="img-fluid sag-manset-img swiper-lazy lazyloaded swiper-lazy-loaded lazyload"
                                             data-src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"></a>
-                                            <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">  <div class="kartlar__effect position-absolute">
-                                        <p class="sag-manset-text">{{$row->title_tr}}</p>
-                                    </div></a>
+                                            <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
+                                                @if($themeSetting[0]->slider_title!=0)
+
+                                                <div class="kartlar__effect position-absolute">
+                                                    <p class="sag-manset-text">{{$row->title_tr}}</p>
+                                    </div>
+                                                @endif
+                                            </a>
                                 </div>
                             @endforeach
 

@@ -42,18 +42,16 @@ class DemoCron extends Command
      */
     public function handle()
     {
-        print_r('şfdskvdsşlcösdlşcödsşlcöds');
         $editiha = \DB::table('iha')->get();
         $cek = $editiha[0];
         $username = $cek->iha_username;
         $user = $cek->iha_usercode;
         $password = $cek->iha_password;
         $rss = $cek->iha_rss;
-//        $auto_Bot = $cek->auto_Bot;
-        $auto_Bot = 1;
+        $auto_Bot = $cek->auto_Bot;
 
         if ($auto_Bot == 1) {
-            $sehir = 0;
+            $sehir = $cek->district;
             $kategori = 0;
             $ustkategori = 0;
             $url = 'http://abonerss.iha.com.tr/xml/standartrss?UserCode=' . $user . '&UserName=' . $username . '&UserPassword=' . $rss . '&tip=1&';
@@ -175,7 +173,7 @@ class DemoCron extends Command
                  $data['district_id'] = $sehirs[0]->id;
                  $data['image'] = "storage/postimg" . "/" . $year . "/" . $month . "/" . $benzersiz . "-" . $isim . '.jpg';
                  $data['user_id'] = 1;
-                 $data['status'] = 1;
+                 $data['status'] = 0;
                  $data['manset'] = 1;
                  $data['haber_iha_kod'] = $haberkodu;
                  $data['created_at'] = Carbon::now();
@@ -187,6 +185,7 @@ class DemoCron extends Command
                  DB::table('posts')->insert($data);
              }
 ///php artisan schedule:run ile çalışıyor
+///php artisan schedule:work ile çalışıyor
                     }
                 }
             }
