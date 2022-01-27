@@ -622,17 +622,17 @@
                     </div>
                 </div>
                 <div class="col-md-3 col-12 pl-0">
-                    <div class="col-md-12" style="background: linear-gradient(
+                    <div class="col-md-12 pb-1 mb-1" style="background: linear-gradient(
 100deg
  , #262626, #515151);">
                         <div class="">
-                            <div class="position-relative position-relative  text-center pt-3 pb-2">
-                                <div class="pb-1 pt-2 mx-auto " style="font-size: 19px;
+                            <div class="position-relative position-relative  text-center pt-3 pb-3">
+                                <div class="pb-0 pt-1 mx-auto " style="font-size: 19px;
     color: white;"><b>NAMAZ</b> <span>VAKİTLERİ</span></div>
                                 {{--                            <p class="detay__sidebar-baslik "></p>--}}
                             </div>
 
-                            <form id="form" class="text-center pb-3">
+                            <form id="form" class="text-center pb-2">
                                 @csrf
                                 <select class="btn dropdown-toggle btn-light" name="sehirsec" id="">
                                     <option value="548">KIRIKKALE</option>
@@ -656,7 +656,7 @@
 
 
                             {{--        {{$now=Carbon\Carbon::now()->format('H:i:S')}}--}}
-                            <table class="table table-borderless text-light w-100 " id="gotur">
+                            <table class="table table-borderless text-light w-100 mb-2" id="gotur">
 
                                 <tbody>
 
