@@ -585,9 +585,8 @@ class ExtraController extends Controller
         });
 
         $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-            ->select(['authors.*', 'authors_posts.title', 'authors_posts.id', 'authors_posts.updated_at'])
             ->where('authors.status', 1)->where('authors_posts.status', 1)
-            ->latest("authors_posts.updated_at")->limit(8)
+           ->groupBy('authors.id')->latest('authors_posts.updated_at')
             ->get();
 //        $authors = AuthorsPost::leftjoin('authors', 'authors_posts.id', '=', 'authors.id')
 //            ->select(['authors_posts.*', 'authors.id',])

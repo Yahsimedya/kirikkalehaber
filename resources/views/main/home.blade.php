@@ -616,8 +616,9 @@
                             @endforeach
 
                         </div>
+                      <!-- Okları kaldırmak için gizlendi
                         <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-prev"></div>  -->
                         <div class="swiper-pagination" style="bottom:-5px!important;"></div>
                     </div>
                 </div>

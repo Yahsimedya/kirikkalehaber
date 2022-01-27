@@ -37,7 +37,7 @@
                                     <select data-placeholder="Select your state" name="header"
                                             style="width: 150px; height: 30px" class="form-control form-control-select2"
                                             data-fouc>
-                                        <option @php if($row->header ==0 ) { echo "selected";} @endphp value="0">Klasik
+                                        <option @php if($row->header ==0 ) { echo "selected";} @endphp value="0">Global
                                             Header
                                         </option>
                                         <option @php if($row->header ==1 ) { echo "selected";} @endphp value="1">Modern

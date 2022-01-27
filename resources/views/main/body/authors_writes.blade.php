@@ -72,10 +72,10 @@
 
                     <div class="row  pt-4">
                         <div class="container col-lg-12">
-                            <div class="row">
+                            <div class="row" style="opacity: 0.2;font-weight: 600">
 
                                 <li style="list-style-type: none;">
-                                   &nbsp Ekleme Tarihi:
+
                                     <i class="fas fa-calendar fa-md siteTema" ></i>&nbsp{{ \Carbon\Carbon::parse($yaziPost->created_at)->isoFormat('DD MMMM YYYY') }}
                                 </li>
                             </div>

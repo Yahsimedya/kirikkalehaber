@@ -11,6 +11,12 @@
     <style>
         .il-isimleri div{
             background: {{$siteSetting[0]->siteColorTheme}};
+             margin-top: 75px;
+        }
+
+
+        #svg-turkiye-haritasi path {
+            fill: #7e7e7e;
         }
         #svg-turkiye-haritasi path:hover {
             fill: {{$siteSetting[0]->siteColorTheme}};;

@@ -189,7 +189,7 @@ image/sanalbasin_üyesidir.png')}}" style="width: 120px"
 
 <!-- Copyright -->
 <div class="footer-copyright text-center text-black-50 py-3 ">
-     <a class="dark-grey-text " rel="noopener" target="_blank" href="https://yahsimedya.com/">© 2020 Copyright:<img width="75" class="img-fluid lazyload yahsilogo" src="https://yahsimedya.com/yonetim/dimg/settings/yahsi-logo.png"></a>
+     <a class="dark-grey-text " rel="noopener" target="_blank" href="https://yahsimedya.com/">© 2020 Copyright: &nbsp<img width="80" class="img-fluid lazyload yahsilogo" src="https://yahsimedya.com/yonetim/dimg/settings/yahsi-logo.png"></a>
 </div>
 <!-- Copyright -->
 

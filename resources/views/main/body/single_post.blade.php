@@ -104,8 +104,7 @@
                         </div>
                         <img src="" alt="">
                     </div>
-                    <ul class="detay__kategori list-unstyled pb-3 social-icons font-weight-bold">
-                        <!-- <li class="float-left mr-2"><i class="fa fa-circle  text-danger pr-1"></i>Kategori : Gündem</li> -->
+                    <ul class="detay__kategori list-unstyled pb-3 social-icons " style="opacity: 0.7;font-weight: 600">
                         <li class="float-left mr-2"><i class="fa fa-calendar-alt  text-danger pr-1">
                             </i> {{ \Carbon\Carbon::parse($post->created_at)->isoFormat('DD MMMM YYYY') }}</li>
                         <li class="float-left mr-2"><i
@@ -117,7 +116,7 @@
                                 class="text-danger">İL:</span> {{ $post->districts->district_tr}}
                         </li>
                         <li class="float-left mr-2"><span
-                                class="text-danger">Kategori:</span>{{ $post->category->category_tr}}
+                                class="text-danger ">Kategori: </span>{{ $post->category->category_tr}}
                         </li>
                         <a target="_blank"
                            href="https://www.facebook.com/sharer.php?u={{ URL::to('/' . str_slug($post->title_tr) . '/' . $post->id . '/' . 'haberi') }}"

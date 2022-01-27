@@ -119,8 +119,12 @@
         slidesPerView: 4,
         spaceBetween: 10,
         slidesPerGroup: 3,
-        loop: false,
-        loopFillGroupWithBlank: true,
+        loop: true,
+        speed: 20000,
+        autoplay: {
+            delay: 6000,
+        },
+        loopFillGroupWithBlank: false,
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
