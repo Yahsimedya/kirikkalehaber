@@ -220,8 +220,8 @@
                         @foreach($ads as $ad)
                             @if($ad->type==1 && $ad->category_id==9)
                                 <a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
-                                                             height="250"
-                                                             data-src="{{asset($ad->ads)}}"></a>
+                                                                             height="250"
+                                                                             data-src="{{asset($ad->ads)}}"></a>
                             @elseif($ad->type==2 && $ad->category_id==9)
                                 <div class="w-100">{!!$ad->ad_code!!}</div>
                         @endif
@@ -244,7 +244,7 @@
                 @foreach($surmanset as $row)
                     <div class="col-lg-3 col-md-6 col-sm-12 pb-2 d-none d-md-block padding-left kartlar">
                         <div class="card shadow  d-inline-block  ">
-{{--                            {{$row->category->category_tr}}--}}
+                            {{--                            {{$row->category->category_tr}}--}}
                             <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
                                 @if($row->headlinetag==1)
                                     <div class="sondakika top-left">
@@ -284,9 +284,9 @@
                                                  width="100%" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                                  data-src="{{ asset($home[$i]->image) }}"/>
                                             @if($themeSetting[0]->slider_title!=0)
-                                            <div class="kartlar__effect position-absolute">
-                                                <p class="ana-manset-text">{{$home[$i]->title_tr}}</p>
-                                            </div>
+                                                <div class="kartlar__effect position-absolute">
+                                                    <p class="ana-manset-text">{{$home[$i]->title_tr}}</p>
+                                                </div>
                                             @endif
                                             @if(isset($home[$i]->posts_video))
                                                 <div class="videohaber top-right">
@@ -324,102 +324,102 @@
                     <div class="row mt-0">
 
                         @if($themeSetting[0]->fotogaleri!=0)
-                        <div class="col-md-6 mt-3 ">
-                            <div class="card-header border-left border-red border-3"
-                                 style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"
-                            >
-                                <h5 class=" text-dark">Foto Galeri</h5>
-                                <div class="butonlar">
-                                    <div class="swiper-button-prev prev-1"
-                                         style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"></div>
-                                    <div class="swiper-pagination pagination-1"
-                                         style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"></div>
-                                    <div class="swiper-button-next next-1"
-                                         style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"></div>
+                            <div class="col-md-6 mt-3 ">
+                                <div class="card-header border-left border-red border-3"
+                                     style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"
+                                >
+                                    <h5 class=" text-dark">Foto Galeri</h5>
+                                    <div class="butonlar">
+                                        <div class="swiper-button-prev prev-1"
+                                             style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"></div>
+                                        <div class="swiper-pagination pagination-1"
+                                             style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"></div>
+                                        <div class="swiper-button-next next-1"
+                                             style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="swiper-container slider1">
-                                <!-- Additional required wrapper -->
-                                <div class="swiper-wrapper">
-                                    <!-- Slides -->
+                                <div class="swiper-container slider1">
+                                    <!-- Additional required wrapper -->
+                                    <div class="swiper-wrapper">
+                                        <!-- Slides -->
 
 
 
-                                @foreach ($fotogaleri as $row )
+                                        @foreach ($fotogaleri as $row )
 
-                                        @if(empty(!$row->photocategory_id))
-                                            <div class="swiper-slide position-relative">
-                                                <a href="{{route('photo.gallerydetail',$row->photocategory_id)}}">
-                                                    <div class="swiper-slide__foto "><img class="img-fluid lazyload" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                                                                          data-src="{{asset($row->photo)}}"/>
-                                                    </div>
-                                                </a>
-                                                <span class="yazi-span">{{$row->category_title	}}</span>
-                                            </div>
+                                            @if(empty(!$row->photocategory_id))
+                                                <div class="swiper-slide position-relative">
+                                                    <a href="{{route('photo.gallerydetail',$row->photocategory_id)}}">
+                                                        <div class="swiper-slide__foto "><img class="img-fluid lazyload" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                                                              data-src="{{asset($row->photo)}}"/>
+                                                        </div>
+                                                    </a>
+                                                    <span class="yazi-span">{{$row->category_title	}}</span>
+                                                </div>
                                         @endif
 
-                                @endforeach
+                                    @endforeach
 
-                                <!-- <div class="swiper-slide">Slide 1</div>
+                                    <!-- <div class="swiper-slide">Slide 1</div>
                 <div class="swiper-slide">Slide 1</div>
                 <div class="swiper-slide">Slide 1</div>
                 <div class="swiper-slide">Slide 1</div> -->
 
 
+                                    </div>
+                                    <!-- If we need pagination -->
+
+                                    <!-- If we need navigation buttons -->
+
+
+                                    <!-- If we need scrollbar -->
                                 </div>
-                                <!-- If we need pagination -->
-
-                                <!-- If we need navigation buttons -->
-
-
-                                <!-- If we need scrollbar -->
                             </div>
-                        </div>
                         @endif
 
-                    @if($themeSetting[0]->videogaleri!=0 )
-                        <div class="col-md-6 mt-3 ">
-                            <div class="card-header border-left  border-3"
-                                 style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"
-                            >
-                                <h5 class=" text-dark">Video Galeri</h5>
-                                <div class="butonlar">
-                                    <div class="swiper-button-prev prev-2"
-                                         style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"></div>
-                                    <div class="swiper-pagination pagination-2"
-                                         style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"></div>
-                                    <div class="swiper-button-next next-2"
-                                         style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"></div>
+                        @if($themeSetting[0]->videogaleri!=0 )
+                            <div class="col-md-6 mt-3 ">
+                                <div class="card-header border-left  border-3"
+                                     style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"
+                                >
+                                    <h5 class=" text-dark">Video Galeri</h5>
+                                    <div class="butonlar">
+                                        <div class="swiper-button-prev prev-2"
+                                             style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"></div>
+                                        <div class="swiper-pagination pagination-2"
+                                             style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"></div>
+                                        <div class="swiper-button-next next-2"
+                                             style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"></div>
+                                    </div>
+                                </div>
+                                <div class="swiper-container slider2">
+                                    <!-- Additional required wrapper -->
+                                    <div class="swiper-wrapper">
+                                        <!-- Slidessssssssss -->
+
+                                        @foreach ($video_gallary as $row )
+
+                                            <div class="swiper-slide position-relative">
+                                                <a href="{{URL::to('/'.Str::slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
+                                                    <div class="swiper-slide__foto "><img class="img-fluid lazyload" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                                                          data-src="{{asset($row->image)}}"/>
+                                                    </div>
+                                                    <span class="yazi-span">{{$row->title_tr}}</span>
+                                                </a>
+                                            </div>
+
+                                        @endforeach
+
+                                    </div>
+                                    <!-- If we need pagination -->
+
+                                    <!-- If we need navigation buttons -->
+
+
+                                    <!-- If we need scrollbar -->
                                 </div>
                             </div>
-                            <div class="swiper-container slider2">
-                                <!-- Additional required wrapper -->
-                                <div class="swiper-wrapper">
-                                    <!-- Slidessssssssss -->
-
-                                    @foreach ($video_gallary as $row )
-
-                                        <div class="swiper-slide position-relative">
-                                            <a href="{{URL::to('/'.Str::slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
-                                                <div class="swiper-slide__foto "><img class="img-fluid lazyload" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                                                                      data-src="{{asset($row->image)}}"/>
-                                                </div>
-                                                <span class="yazi-span">{{$row->title_tr}}</span>
-                                            </a>
-                                        </div>
-
-                                    @endforeach
-
-                                </div>
-                                <!-- If we need pagination -->
-
-                                <!-- If we need navigation buttons -->
-
-
-                                <!-- If we need scrollbar -->
-                            </div>
-                        </div>
-                    @endif
+                        @endif
 
                     </div>
 
@@ -457,14 +457,14 @@
                                     <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}"><img
                                             class="img-fluid sag-manset-img swiper-lazy lazyloaded swiper-lazy-loaded lazyload"
                                             data-src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"></a>
-                                            <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
-                                                @if($themeSetting[0]->slider_title!=0)
+                                    <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
+                                        @if($themeSetting[0]->slider_title!=0)
 
-                                                <div class="kartlar__effect position-absolute">
-                                                    <p class="sag-manset-text">{{$row->title_tr}}</p>
-                                    </div>
-                                                @endif
-                                            </a>
+                                            <div class="kartlar__effect position-absolute">
+                                                <p class="sag-manset-text">{{$row->title_tr}}</p>
+                                            </div>
+                                        @endif
+                                    </a>
                                 </div>
                             @endforeach
 
@@ -786,71 +786,74 @@
             </div>
 
         </div>
-        <section class="bg-dark mt-3 pt-3 pb-3">
-            <div class="container">
-                <div class="m-2">
-                <h4 class="text-center text-light">LOGO</h4>
-                </div>
-                <div class="row">
-<div class="col-md-6 p-2">
-    <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-    <img class="img-fluid" src="{{asset('image/video-1.png')}}"></div>
-                    <div class="col-md-6 ">
-                        <div class="row">
-                            <div class="col-md-6 mt-2" style="padding-left: 7px !important;padding-right: 7px !important;">
-                                <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                                <img class="img-fluid" src="{{asset('image/video-1.png')}}">
+        @if(count($video_gallary)>7)
+            <section class="bg-dark mt-3 pt-3 pb-3">
+                <div class="container">
+                    <div class="m-2">
+                        <h4 class="text-center text-light">LOGO</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 p-2">
+                            <div class="video-overlay">
+                                <i class="fa fa-play-circle"></i></div>
+                            <img class="img-fluid" src="{{$video_gallary[0]->image}}"></div>
+                        <div class="col-md-6 ">
+                            <div class="row">
+                                <div class="col-md-6 mt-2" style="padding-left: 7px !important;padding-right: 7px !important;">
+                                    <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+                                    <img class="img-fluid" src="{{$video_gallary[1]->image}}">
+                                </div>
+                                <div class="col-md-6 mt-2" style="padding-left: 7px !important;padding-right: 7px !important;">
+                                    <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+                                    <img class="img-fluid" src="{{$video_gallary[2]->image}}"></div>
+                                <div class="col-md-6 mt-2" style="padding-left: 7px !important;padding-right: 7px !important;">
+                                    <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+                                    <img class="img-fluid" src="{{$video_gallary[3]->image}}"></div>
+                                <div class="col-md-6 mt-2" style="padding-left: 7px !important;padding-right: 7px !important;">
+                                    <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+                                    <img class="img-fluid" src="{{$video_gallary[4]->image}}"></div>
                             </div>
-                            <div class="col-md-6 mt-2" style="padding-left: 7px !important;padding-right: 7px !important;">
+                        </div>
+                        <div class="col-md-3 d-flex" style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
+                            <div class="position-relative float-left">
                                 <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                                <img class="img-fluid" src="{{asset('image/video-1.png')}}"></div>
-                            <div class="col-md-6 mt-2" style="padding-left: 7px !important;padding-right: 7px !important;">
+                                <img class="img-fluid" width="150" src="{{$video_gallary[5]->image}}">
+                            </div>
+                            <p class="ml-1 float-left text-white text-center my-auto" style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;"
+                            >{{$video_gallary[5]->title_tr}}
+                            </p>
+                        </div>
+                        <div class="col-md-3 d-flex" style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
+                            <div class="position-relative float-left">
                                 <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                                <img class="img-fluid" src="{{asset('image/video-1.png')}}"></div>
-                            <div class="col-md-6 mt-2" style="padding-left: 7px !important;padding-right: 7px !important;">
+                                <img class="img-fluid" width="150" src="{{$video_gallary[6]->image}}">
+                            </div>
+                            <p class="ml-1 float-left text-white text-center my-auto" style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;"
+                            >{{$video_gallary[6]->title_tr}}
+                            </p>
+                        </div>
+                        <div class="col-md-3 d-flex" style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
+                            <div class="position-relative float-left">
                                 <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                                <img class="img-fluid" src="{{asset('image/video-1.png')}}"></div>
+                                <img class="img-fluid" width="150" src="{{$video_gallary[7]->image}}">
+                            </div>
+                            <p class="ml-1 float-left text-white text-center my-auto" style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;"
+                            >{{$video_gallary[7]->title_tr}}
+                            </p>
                         </div>
-                    </div>
-                    <div class="col-md-3 d-flex" style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
-                        <div class="position-relative float-left">
-                        <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                        <img class="img-fluid" width="150" src="{{asset('image/video-1.png')}}">
+                        <div class="col-md-3 d-flex" style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
+                            <div class="position-relative float-left">
+                                <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+                                <img class="img-fluid" width="150" src="{{$video_gallary[8]->image}}">
+                            </div>
+                            <p class="ml-1 float-left text-white text-center my-auto" style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;"
+                            >{{$video_gallary[8]->title_tr}}
+                            </p>
                         </div>
-                        <p class="ml-1 float-left text-white text-center my-auto" style="width: 117px;font-size: 14px;"
-                        >asdasdasd Öne Çıkan Ekonomi Haberleri
-                        </p>
-                    </div>
-                    <div class="col-md-3 d-flex" style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
-                        <div class="position-relative float-left">
-                            <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                            <img class="img-fluid" width="150" src="{{asset('image/video-1.png')}}">
-                        </div>
-                        <p class="ml-1 float-left text-white text-center my-auto" style="width: 117px;font-size: 14px;"
-                        >asdasdasd Öne Çıkan Ekonomi Haberleri
-                        </p>
-                    </div>
-                    <div class="col-md-3 d-flex" style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
-                        <div class="position-relative float-left">
-                            <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                            <img class="img-fluid" width="150" src="{{asset('image/video-1.png')}}">
-                        </div>
-                        <p class="ml-1 float-left text-white text-center my-auto" style="width: 117px;font-size: 14px;"
-                        >asdasdasd Öne Çıkan Ekonomi Haberleri
-                        </p>
-                    </div>
-                    <div class="col-md-3 d-flex" style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
-                        <div class="position-relative float-left">
-                            <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                            <img class="img-fluid" width="150" src="{{asset('image/video-1.png')}}">
-                        </div>
-                        <p class="ml-1 float-left text-white text-center my-auto" style="width: 117px;font-size: 14px;"
-                        >asdasdasd Öne Çıkan Ekonomi Haberleri
-                        </p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
         <div class="container">
             <div class="row">
                 <!--  ÜST BLOK 1140x90 REKLAM-->
@@ -880,51 +883,51 @@
                 <!-- <div class="row"> -->
                 <div class="col-md-12 p-0 m-0">
 
-                <div class="swiper-container siyaset"
-                     style="background-color:{{$themeSetting[0]->siteColorTheme}}!important;">
-                    <div class="swiper-wrapper">
-                        <!-------------ECONOMY FEATURED---->
-                        @foreach ($ekonomimanset as $row )
-                            @if($row->featured ==1)
-                            <div class="swiper-slide" style="">
-                                <div class="card kart kart-width kart-margin shadow" style="">
-                                    <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
-                                        <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                            class="img_fluid kart_img lazyload" src="{{asset($row->image)}}"
-                                            alt="Card image cap"></a>
+                    <div class="swiper-container siyaset"
+                         style="background-color:{{$themeSetting[0]->siteColorTheme}}!important;">
+                        <div class="swiper-wrapper">
+                            <!-------------ECONOMY FEATURED---->
+                            @foreach ($ekonomimanset as $row )
+                                @if($row->featured ==1)
+                                    <div class="swiper-slide" style="">
+                                        <div class="card kart kart-width kart-margin shadow" style="">
+                                            <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
+                                                <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                     class="img_fluid kart_img lazyload" src="{{asset($row->image)}}"
+                                                     alt="Card image cap"></a>
 
-                                    <div class="card-body kart-body   border-3 text-dark" style="border-top:1px solid {{$themeSetting[0]->economy}}">
-                                        @if($row->headlinetag==1)
-                                            <div class="short-tag" style="background-color:{{$themeSetting[0]->economy}}">
-                                                <span>Son Dakika</span>
+                                            <div class="card-body kart-body   border-3 text-dark" style="border-top:1px solid {{$themeSetting[0]->economy}}">
+                                                @if($row->headlinetag==1)
+                                                    <div class="short-tag" style="background-color:{{$themeSetting[0]->economy}}">
+                                                        <span>Son Dakika</span>
+                                                    </div>
+                                                @else
+                                                    <div class="short-tag category" style="background-color:{{$themeSetting[0]->economy}}">
+                                                        <span>{{$row->category->category_tr}}</span>
+                                                    </div>
+                                                @endif
+                                                <p class="card-text"
+                                                   style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$row->title_tr}}</p>
                                             </div>
-                                        @else
-                                            <div class="short-tag category" style="background-color:{{$themeSetting[0]->economy}}">
-                                                <span>{{$row->category->category_tr}}</span>
-                                            </div>
-                                        @endif
-                                        <p class="card-text"
-                                           style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$row->title_tr}}</p>
+
+                                        </div>
                                     </div>
-
-                                </div>
-                                </div>
-                            @endif
+                                @endif
 
 
 
-                        @endforeach
+                            @endforeach
 
 
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="spor-buton">
+                            <div class="swiper-pagination spor-pagination"></div>
+                            <!-- Add Arrows -->
+                            <div class="swiper-button-next white-next"></div>
+                            <div class="swiper-button-prev white-prev"></div>
+                        </div>
                     </div>
-                    <!-- Add Pagination -->
-                    <div class="spor-buton">
-                        <div class="swiper-pagination spor-pagination"></div>
-                        <!-- Add Arrows -->
-                        <div class="swiper-button-next white-next"></div>
-                        <div class="swiper-button-prev white-prev"></div>
-                    </div>
-                </div>
                 </div>
                 <!-- </div> -->
             </div>
@@ -938,27 +941,27 @@
 
 
 
-                        <div class="col-md-4 float-left mb-3  ">
-                            <div class="card kart kart-width kart-margin shadow" style="">
-                                <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
-                                    <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                        class="img_fluid kart_img lazyload" src="{{asset($homes->image)}}"
-                                        alt="Card image cap"></a>
-                                @if($homes->headlinetag==1)
-                                    <div class="short-tag" style="background-color:{{$themeSetting[0]->economy}}">
-                                        <span>Son Dakika</span>
-                                    </div>
-                                    @else
-                                    <div class="short-tag category" style="background-color:{{$themeSetting[0]->economy}}">
-                                        <span>{{$homes->category->category_tr}}</span>
-                                    </div>
-                                @endif
-                                <div class="card-body kart-body   border-3 text-dark" style="border-top:1px solid {{$themeSetting[0]->economy}}">
-                                    <p class="card-text"
-                                       style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$homes->title_tr}}</p>
+                    <div class="col-md-4 float-left mb-3  ">
+                        <div class="card kart kart-width kart-margin shadow" style="">
+                            <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
+                                <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                     class="img_fluid kart_img lazyload" src="{{asset($homes->image)}}"
+                                     alt="Card image cap"></a>
+                            @if($homes->headlinetag==1)
+                                <div class="short-tag" style="background-color:{{$themeSetting[0]->economy}}">
+                                    <span>Son Dakika</span>
                                 </div>
+                            @else
+                                <div class="short-tag category" style="background-color:{{$themeSetting[0]->economy}}">
+                                    <span>{{$homes->category->category_tr}}</span>
+                                </div>
+                            @endif
+                            <div class="card-body kart-body   border-3 text-dark" style="border-top:1px solid {{$themeSetting[0]->economy}}">
+                                <p class="card-text"
+                                   style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$homes->title_tr}}</p>
                             </div>
                         </div>
+                    </div>
 
 
 
@@ -979,7 +982,7 @@
                     @if($ad->type==1 && $ad->category_id==19)
                         <div class="col-md-12">
                             <a href="{{$ad->link}}"><img  class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                         src="{{asset($ad->ads)}}"></a>
+                                                          src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==19)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -994,14 +997,14 @@
                 <!-- <div class="row"> -->
                 <div class="col-md-12 p-0 m-0">
 
-                <div class="swiper-container ekonomi" style="background-image: linear-gradient(-10deg, {{$themeSetting[0]->agenda}}, {{$themeSetting[0]->agenda}}) !important">
-                    <div class="swiper-wrapper" style="background-color: {{$themeSetting[0]->agenda}}">
-                        @foreach($gundemmanset as $homes)
-                            <div class="swiper-slide" style="">
+                    <div class="swiper-container ekonomi" style="background-image: linear-gradient(-10deg, {{$themeSetting[0]->agenda}}, {{$themeSetting[0]->agenda}}) !important">
+                        <div class="swiper-wrapper" style="background-color: {{$themeSetting[0]->agenda}}">
+                            @foreach($gundemmanset as $homes)
+                                <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                             <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid kart_img lazyload" src="{{asset($homes->image)}}"
-                                                /></a>
+                                            /></a>
 
                                         <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->agenda}}; ">
                                             @if($homes->headlinetag==1)
@@ -1018,19 +1021,19 @@
                                     </div>
                                 </div>
 
-                        @endforeach
+                            @endforeach
 
 
-                    </div>
-                    <!-- Add Pagination -->
-                    <div class="spor-buton">
-                        <div class="swiper-pagination spor-pagination"></div>
-                        <!-- Add Arrows -->
-                        <div class="swiper-button-next white-next"></div>
-                        <div class="swiper-button-prev white-prev"></div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="spor-buton">
+                            <div class="swiper-pagination spor-pagination"></div>
+                            <!-- Add Arrows -->
+                            <div class="swiper-button-next white-next"></div>
+                            <div class="swiper-button-prev white-prev"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
                 <!-- </div> -->
             </div>
 
@@ -1050,8 +1053,8 @@
                         <div class="card kart kart-width kart-margin shadow" style="">
                             <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                 <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                    class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
-                                    alt="Card image cap"></a>
+                                     class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
+                                     alt="Card image cap"></a>
 
                             <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->agenda}}; ">
                                 @if($homes->headlinetag==1)
@@ -1098,11 +1101,11 @@
                 <h4 class="pt-2 pb-2 ana-baslik">Öne Çıkan {{$siyasetmanset[0]->category->category_tr}} Haberleri </h4>
                 <!-- <div class="row"> -->
                 <div class="col-md-12">
-                <div class="swiper-container ekonomi">
-                    <div class="swiper-wrapper">
+                    <div class="swiper-container ekonomi">
+                        <div class="swiper-wrapper">
 
 
-                        @foreach($siyasetmanset as $homes)
+                            @foreach($siyasetmanset as $homes)
 
                                 <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
@@ -1123,18 +1126,18 @@
                                             </div>
                                     </div>
                                 </div>
-                        @endforeach
+                            @endforeach
 
 
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="spor-buton">
+                            <div class="swiper-pagination spor-pagination"></div>
+                            <!-- Add Arrows -->
+                            <div class="swiper-button-next white-next"></div>
+                            <div class="swiper-button-prev white-prev"></div>
+                        </div>
                     </div>
-                    <!-- Add Pagination -->
-                    <div class="spor-buton">
-                        <div class="swiper-pagination spor-pagination"></div>
-                        <!-- Add Arrows -->
-                        <div class="swiper-button-next white-next"></div>
-                        <div class="swiper-button-prev white-prev"></div>
-                    </div>
-                </div>
                 </div>
 
                 <!-- </div> -->
@@ -1200,10 +1203,10 @@
                 <h4 class="pt-2 pb-2 ana-baslik">Öne Çıkan {{$spormanset[0]->category->category_tr}} Haberleri</h4>
                 <!-- <div class="row"> -->
                 <div class="col-md-12">
-                <div class="swiper-container spor">
-                    <div class="swiper-wrapper">
+                    <div class="swiper-container spor">
+                        <div class="swiper-wrapper">
 
-                        @foreach($spormanset as $homes)
+                            @foreach($spormanset as $homes)
 
                                 <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
@@ -1224,19 +1227,19 @@
                                         </div>
                                     </div>
                                 </div>
-                        @endforeach
+                            @endforeach
 
 
-                    </div>
-                    <!-- Add Pagination -->
-                    <div class="spor-buton">
-                        <div class="swiper-pagination spor-pagination"></div>
-                        <!-- Add Arrows -->
-                        <div class="swiper-button-next white-next"></div>
-                        <div class="swiper-button-prev white-prev"></div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="spor-buton">
+                            <div class="swiper-pagination spor-pagination"></div>
+                            <!-- Add Arrows -->
+                            <div class="swiper-button-next white-next"></div>
+                            <div class="swiper-button-prev white-prev"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
                 <!-- </div> -->
             </div>
         </section>
@@ -1268,8 +1271,8 @@
                                 <div class="card kart kart-width kart-margin shadow" style="">
                                     <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                         <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                            class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
-                                            alt="Card image cap"></a>
+                                             class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
+                                             alt="Card image cap"></a>
                                     <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->sport}}; ">
                                         @if($homes->headlinetag==1)
                                             <div class="short-tag" style="background-color:{{$themeSetting[0]->sport}}">
@@ -1285,17 +1288,17 @@
                                 </div>
                             </div>
                         @endforeach
-                        <!--  ÜST BLOK 1140x90 REKLAM-->
-                            @foreach($ads as $ad)
-                                @if($ad->type==1 && $ad->category_id==22)
-                                    <div class="col-md-12">
-                                        <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                                     data-src="{{asset($ad->ads)}}"></a>
-                                    </div>
-                                @elseif($ad->type==2 && $ad->category_id==22)
-                                    <div class="w-100">{!!$ad->ad_code!!}</div>
-                                @endif
-                            @endforeach
+                    <!--  ÜST BLOK 1140x90 REKLAM-->
+                        @foreach($ads as $ad)
+                            @if($ad->type==1 && $ad->category_id==22)
+                                <div class="col-md-12">
+                                    <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
+                                                                 data-src="{{asset($ad->ads)}}"></a>
+                                </div>
+                            @elseif($ad->type==2 && $ad->category_id==22)
+                                <div class="w-100">{!!$ad->ad_code!!}</div>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-lg-4" style="">
@@ -1335,7 +1338,7 @@
                     <div class="desktop-sticy" style="width:100%; height:auto;">
                         <div class="reklam-alani mt-1 mb-1 text-center">
                             <a target="_blank" href=""><img  data-src="./img/reklamlar/" class="img-fluid lazyload "
-                                                            alt=""></a>
+                                                             alt=""></a>
 
                         </div>
 
