@@ -12154,6 +12154,16 @@ img.lazyload:not([src]) {
 .yahsilogo{
     display:initial;
 }
+npm.video-overlay {
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -52%);
+    font-size: 50px;
+    opacity: .8;
+    color: white
+}
+
 
 /*!
  *  Weather Icons 2.0.10
@@ -14434,7 +14444,7 @@ img.mfp-img {
 }
 
 /**
- * Swiper 7.2.0
+ * Swiper 7.4.1
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -14442,7 +14452,7 @@ img.mfp-img {
  *
  * Released under the MIT License
  *
- * Released on: October 27, 2021
+ * Released on: December 24, 2021
  */
 
 @font-face {
