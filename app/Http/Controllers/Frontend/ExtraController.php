@@ -583,12 +583,16 @@ class ExtraController extends Controller
         });
 
 
-       $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-           ->select(['authors.id','authors.name', 'authors_posts.*'])
-           ->where('authors.status', 1)->where('authors_posts.status', 1)->groupBy("authors.id")
-           ->orderBy('authors_posts.updated_at','ASC')
-           ->get();
-
+//       $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
+//           ->select(['authors.id','authors.name', 'authors_posts.*'])
+//           ->where('authors.status', 1)->where('authors_posts.status', 1)->groupBy("authors.id")
+//           ->orderBy('authors_posts.updated_at','ASC')
+//           ->get();
+        $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
+            ->where('authors.status', 1)->where('authors_posts.status', 1)
+            ->whereRaw('authors_posts.id in (select max(id) from authors_posts group by (authors_posts.authors_id))')
+            ->latest("authors_posts.created_at")->limit(8)
+            ->get();
 //        $authors = AuthorsPost::leftjoin('authors', 'authors_posts.id', '=', 'authors.id')
 //            ->select(['authors_posts.*', 'authors.id',])
 //            ->where('authors.status', 1)->where('authors_posts.status', 1)

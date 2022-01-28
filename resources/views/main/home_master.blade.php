@@ -119,7 +119,7 @@
         slidesPerView: 4,
         spaceBetween: 10,
         slidesPerGroup: 3,
-        loop: true,
+        loop: false,
         speed: 20000,
         autoplay: {
             delay: 6000,
