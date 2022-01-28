@@ -616,9 +616,8 @@
                             @endforeach
 
                         </div>
-                      <!-- Okları kaldırmak için gizlendi
                         <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>  -->
+                        <div class="swiper-button-prev"></div>
                         <div class="swiper-pagination" style="bottom:-5px!important;"></div>
                     </div>
                 </div>
@@ -787,6 +786,71 @@
             </div>
 
         </div>
+        <section class="bg-dark mt-3 pt-3 pb-3">
+            <div class="container">
+                <div class="m-2">
+                <h4 class="text-center text-light">LOGO</h4>
+                </div>
+                <div class="row">
+<div class="col-md-6 p-2">
+    <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+    <img class="img-fluid" src="{{asset('image/video-1.png')}}"></div>
+                    <div class="col-md-6 ">
+                        <div class="row">
+                            <div class="col-md-6 mt-2" style="padding-left: 7px !important;padding-right: 7px !important;">
+                                <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+                                <img class="img-fluid" src="{{asset('image/video-1.png')}}">
+                            </div>
+                            <div class="col-md-6 mt-2" style="padding-left: 7px !important;padding-right: 7px !important;">
+                                <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+                                <img class="img-fluid" src="{{asset('image/video-1.png')}}"></div>
+                            <div class="col-md-6 mt-2" style="padding-left: 7px !important;padding-right: 7px !important;">
+                                <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+                                <img class="img-fluid" src="{{asset('image/video-1.png')}}"></div>
+                            <div class="col-md-6 mt-2" style="padding-left: 7px !important;padding-right: 7px !important;">
+                                <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+                                <img class="img-fluid" src="{{asset('image/video-1.png')}}"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 d-flex" style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
+                        <div class="position-relative float-left">
+                        <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+                        <img class="img-fluid" width="150" src="{{asset('image/video-1.png')}}">
+                        </div>
+                        <p class="ml-1 float-left text-white text-center my-auto" style="width: 117px;font-size: 14px;"
+                        >asdasdasd Öne Çıkan Ekonomi Haberleri
+                        </p>
+                    </div>
+                    <div class="col-md-3 d-flex" style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
+                        <div class="position-relative float-left">
+                            <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+                            <img class="img-fluid" width="150" src="{{asset('image/video-1.png')}}">
+                        </div>
+                        <p class="ml-1 float-left text-white text-center my-auto" style="width: 117px;font-size: 14px;"
+                        >asdasdasd Öne Çıkan Ekonomi Haberleri
+                        </p>
+                    </div>
+                    <div class="col-md-3 d-flex" style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
+                        <div class="position-relative float-left">
+                            <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+                            <img class="img-fluid" width="150" src="{{asset('image/video-1.png')}}">
+                        </div>
+                        <p class="ml-1 float-left text-white text-center my-auto" style="width: 117px;font-size: 14px;"
+                        >asdasdasd Öne Çıkan Ekonomi Haberleri
+                        </p>
+                    </div>
+                    <div class="col-md-3 d-flex" style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
+                        <div class="position-relative float-left">
+                            <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+                            <img class="img-fluid" width="150" src="{{asset('image/video-1.png')}}">
+                        </div>
+                        <p class="ml-1 float-left text-white text-center my-auto" style="width: 117px;font-size: 14px;"
+                        >asdasdasd Öne Çıkan Ekonomi Haberleri
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
         <div class="container">
             <div class="row">
                 <!--  ÜST BLOK 1140x90 REKLAM-->

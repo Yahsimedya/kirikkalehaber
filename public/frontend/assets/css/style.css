@@ -12154,3 +12154,13 @@ img.lazyload:not([src]) {
 .yahsilogo{
     display:initial;
 }
+npm.video-overlay {
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -52%);
+    font-size: 50px;
+    opacity: .8;
+    color: white
+}
+

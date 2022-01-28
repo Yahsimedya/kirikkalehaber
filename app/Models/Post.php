@@ -81,7 +81,7 @@ class Post extends Model
 //    {
 //        return $this->morphToMany(Tag::class,'tags','post_tags');
 //    }
-    public function scopePublished($query) {
+    public function scopeStatus($query) {
         return $query->where('status',1);
     }
     public function scopeDrafted($query) {
