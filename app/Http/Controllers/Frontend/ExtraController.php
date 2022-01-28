@@ -575,19 +575,20 @@ class ExtraController extends Controller
             return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->where('status', 1)->where('featured', 1)->limit(9)->latest('created_at')->get();
         });
 
-
-
-
+        
 
         $themeSetting = Cache::remember("themeSetting", Carbon::now()->addYear(), function () {
             if (Cache::has('themeSetting')) return Cache::has('themeSetting');
             return Theme::get();
         });
 
-        $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-            ->where('authors.status', 1)->where('authors_posts.status', 1)
-           ->groupBy('authors.id')->latest('authors_posts.updated_at')
-            ->get();
+
+       $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
+           ->select(['authors.id','authors.name', 'authors_posts.*'])
+           ->where('authors.status', 1)->where('authors_posts.status', 1)->groupBy("authors.id")
+           ->orderBy('authors_posts.updated_at','ASC')
+           ->get();
+
 //        $authors = AuthorsPost::leftjoin('authors', 'authors_posts.id', '=', 'authors.id')
 //            ->select(['authors_posts.*', 'authors.id',])
 //            ->where('authors.status', 1)->where('authors_posts.status', 1)
@@ -596,7 +597,6 @@ class ExtraController extends Controller
 
 //        $authors= AuthorsPost::latest('id')->groupBy('authors_id')->get();
 //        $authors=AuthorsPost::whereAuthorsId($Authorid)->first(); // done bope
-
 
         $ads = Cache::remember("ads", Carbon::now()->addYear(), function () {
             if (Cache::has('ads')) return Cache::has('ads');

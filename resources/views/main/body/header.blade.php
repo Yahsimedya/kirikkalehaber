@@ -249,8 +249,11 @@ $gelenil=Session::get('gelenil');
                 <div class="collapse navbar-collapse navbar-light" id="main_nav"
                      style="z-index:999;background-color: white;">
                     <ul class="navbar-nav ml-auto mx-auto" style="background-color: white;">
-
-                        <li class="nav-item"><a class="nav-link" href="{{URL::to('/') }}">Ana Sayfa</a></li>
+                        <a style="box-shadow: none;" class="btn  "
+                           id="dropdownMenuButton"
+                           href="{{URL::to('/') }}">
+                            Ana Sayfa
+                        </a>
 
 
                         @foreach ($category as $row)
@@ -316,8 +319,7 @@ $gelenil=Session::get('gelenil');
                            href="{{route('TumKategoriler')}}">
                             Tümü
                         </a>
-                    <li>
-                        <div class="col-md-2 col-2">
+
                             <form class="form-inline mt-1 mt-md-0 position-relative" action="{{route('search')}}"
                                   method="POST">
                                 @csrf
@@ -343,8 +345,7 @@ $gelenil=Session::get('gelenil');
 
                             </form>
 
-                        </div>
-                    </li>
+
                     </ul>
 
 
