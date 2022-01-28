@@ -575,7 +575,7 @@ class ExtraController extends Controller
             return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->where('status', 1)->where('featured', 1)->limit(9)->latest('created_at')->get();
         });
 
-        
+
 
         $themeSetting = Cache::remember("themeSetting", Carbon::now()->addYear(), function () {
             if (Cache::has('themeSetting')) return Cache::has('themeSetting');
