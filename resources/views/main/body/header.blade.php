@@ -55,11 +55,11 @@ $gelenil=Session::get('gelenil');
 <style>
 
     .border-danger {
-        border-color: {{$themeSetting[0]->siteColorTheme}}  !important;
+        border-color: {{$themeSetting[0]->siteColorTheme}}   !important;
     }
 
     .nav-link:after {
-        border-bottom-color: {{$themeSetting[0]->siteColorTheme}}  !important;
+        border-bottom-color: {{$themeSetting[0]->siteColorTheme}}   !important;
     }
 
     .dropdown:hover .dropdown-menu {
@@ -314,13 +314,13 @@ $gelenil=Session::get('gelenil');
 
                             </div>
                         @endforeach
-                        <a style="box-shadow: none;" class="btn  "
+                        <a style="box-shadow: none;" class="btn "
                            id="dropdownMenuButton"
                            href="{{route('TumKategoriler')}}">
                             Tümü
                         </a>
-
-                            <form class="form-inline mt-1 mt-md-0 position-relative" action="{{route('search')}}"
+                        <a>
+                            <form class="form-inline   position-relative" action="{{route('search')}}"
                                   method="POST">
                                 @csrf
                                 <div class="close">
@@ -328,7 +328,8 @@ $gelenil=Session::get('gelenil');
                                 </div>
                                 <div class="search mt-2">
                                     <i class="fa fa-search" style="color: {{$themeSetting[0]->siteColorTheme}}"></i>
-                                    <input type="text"  name="searchtext" class="input mt-5 text-white" placeholder="Arama Yap">
+                                    <input type="text" name="searchtext" class="input mt-5 text-white"
+                                           placeholder="Arama Yap">
                                 </div>
 
                             <!----- close button
@@ -345,6 +346,7 @@ $gelenil=Session::get('gelenil');
 
                             </form>
 
+                        </a>
 
                     </ul>
 

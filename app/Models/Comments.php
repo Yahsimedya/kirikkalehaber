@@ -14,6 +14,12 @@ class Comments extends Model
         'posts_id',
         'created_at',
     ];
+    public function scopeStatus($query) {
+        return $query->where('status',1);
+    }
+    public function scopeDrafted($query) {
+        return $query->where('status',0);
+    }
 //    public function posts(){
 //        return $this->hasmany(Post::class);
 //    }

@@ -15,11 +15,11 @@
     ?>
     <style>
         .anamanset-pagination > .swiper-pagination-bullet-active {
-            background-color: {{$themeSetting[0]->siteColorTheme}}   !important;
+            background-color: {{$themeSetting[0]->siteColorTheme}}     !important;
         }
 
         .pagination-1 > .swiper-pagination-bullet-active, .pagination-2 > .swiper-pagination-bullet-active {
-            background-color: {{$themeSetting[0]->siteColorTheme}}                    !important;
+            background-color: {{$themeSetting[0]->siteColorTheme}}                      !important;
         }
 
         .media.media-weather {
@@ -40,6 +40,7 @@
         .spor {
             background-image: linear-gradient(-10deg, {{$themeSetting[0]->sport}}, {{$themeSetting[0]->sport}}) !important;
         }
+
         .custom-select {
             border: none;
             margin-right: 10px;
@@ -219,7 +220,8 @@
                         <!--  ÜST BLOK 970x250 REKLAM-->
                         @foreach($ads as $ad)
                             @if($ad->type==1 && $ad->category_id==9)
-                                <a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload" width="1140"
+                                <a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload"
+                                                                             width="1140"
                                                                              height="250"
                                                                              data-src="{{asset($ad->ads)}}"></a>
                             @elseif($ad->type==2 && $ad->category_id==9)
@@ -259,11 +261,15 @@
                                         <span>Bu Habere Dikkat</span>
                                     </div>
                                 @endif
-                                <img class="card-img-top lazy" height="180" src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" alt="Kavga ettiği amcasını sokak ortasında tabancayla vurdu" style="">
+                                <img class="card-img-top lazy" height="180" src="{{asset($row->image)}}"
+                                     onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                     alt="Kavga ettiği amcasını sokak ortasında tabancayla vurdu" style="">
                                 <div class="card-body align-middle d-table-cell">
-                                    <p class="card-baslik text-left d-table-cell"><b class="card-kisalt">{{$row->title_tr}}</b></p>
+                                    <p class="card-baslik text-left d-table-cell"><b
+                                            class="card-kisalt">{{$row->title_tr}}</b></p>
                                     {{--                                <span class="card__kategori position-absolute">3. Sayfa</span>--}}
-                                </div></a>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 @endforeach
@@ -281,7 +287,8 @@
                                     <a href="{{URL::to('/'.str_slug($home[$i]->title_tr).'/'.$home[$i]->id.'/'.'haberi')}}">
                                         <div class="position-relative">
                                             <img class="img-fluid slider-foto swiper-lazy   lazyload"
-                                                 width="100%" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                 width="100%"
+                                                 onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                                  data-src="{{ asset($home[$i]->image) }}"/>
                                             @if($themeSetting[0]->slider_title!=0)
                                                 <div class="kartlar__effect position-absolute">
@@ -344,13 +351,13 @@
                                         <!-- Slides -->
 
 
-
                                         @foreach ($fotogaleri as $row )
 
                                             @if(empty(!$row->photocategory_id))
                                                 <div class="swiper-slide position-relative">
                                                     <a href="{{route('photo.gallerydetail',$row->photocategory_id)}}">
-                                                        <div class="swiper-slide__foto "><img class="img-fluid lazyload" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                        <div class="swiper-slide__foto "><img class="img-fluid lazyload"
+                                                                                              onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                                                                               data-src="{{asset($row->photo)}}"/>
                                                         </div>
                                                     </a>
@@ -401,7 +408,8 @@
 
                                             <div class="swiper-slide position-relative">
                                                 <a href="{{URL::to('/'.Str::slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
-                                                    <div class="swiper-slide__foto "><img class="img-fluid lazyload" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                    <div class="swiper-slide__foto "><img class="img-fluid lazyload"
+                                                                                          onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                                                                           data-src="{{asset($row->image)}}"/>
                                                     </div>
                                                     <span class="yazi-span">{{$row->title_tr}}</span>
@@ -424,8 +432,6 @@
                     </div>
 
 
-
-
                 </div>
                 <!--SLİDER YANI 4 KOLON-->
                 <div class="col-md-4 position-relative text-center">
@@ -437,11 +443,14 @@
                             Edin</p>
                         <div class="social-icons float-right position-relative">
                             @foreach($socials as $social)
-                                <a class="facebook" href="{{$social->facebook}}"><i class="fa fa-facebook text-light"></i></a>
+                                <a class="facebook" href="{{$social->facebook}}"><i
+                                        class="fa fa-facebook text-light"></i></a>
                                 <a class="twitter" href="{{$social->twitter}}"><i class="fa fa-twitter text-light"></i></a>
                                 <a class="youtube" href="{{$social->youtube}}"><i class="fa fa-youtube text-light"></i></a>
-                                <a class="facebook" style="background-color: deeppink" href="{{$social->instagram}}"><i class="fa fa-instagram text-light"></i></a>
-                                <a class="linkedin" href="{{$social->linkedin}}"><i class="fa fa-linkedin text-light"></i></a>
+                                <a class="facebook" style="background-color: deeppink" href="{{$social->instagram}}"><i
+                                        class="fa fa-instagram text-light"></i></a>
+                                <a class="linkedin" href="{{$social->linkedin}}"><i
+                                        class="fa fa-linkedin text-light"></i></a>
                         @endforeach
                         <!-- <a class="whatsapp" href="#"><i class="fa fa-youtube"></i></a> -->
                         </div>
@@ -456,7 +465,8 @@
                                 <div class="swiper-slide">
                                     <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}"><img
                                             class="img-fluid sag-manset-img swiper-lazy lazyloaded swiper-lazy-loaded lazyload"
-                                            data-src="{{asset($row->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"></a>
+                                            data-src="{{asset($row->image)}}"
+                                            onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"></a>
                                     <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
                                         @if($themeSetting[0]->slider_title!=0)
 
@@ -586,205 +596,216 @@
             <!--  ÜST BLOK 1140x90 REKLAM-->
             @foreach($ads as $ad)
                 @if($ad->type==1 && $ad->category_id==16)
-                    <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="1140" height="90" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                    <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="1140" height="90"
+                                                 onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                                  data-src="{{asset($ad->ads)}}"></a>
                 @elseif($ad->type==2 && $ad->category_id==16)
                     <div class="w-100">{!!$ad->ad_code!!}</div>
-            @endif
-        @endforeach
+                @endif
+            @endforeach
+
+            @if(count($authors)>0)
         <!--  ÜST BLOK 1140x90 REKLAM-->
-
-            <div class="position-relative mt-3 ">
-                <b>YAZARLARIMIZ</b>
-                <p class="detay__sidebar-baslik "></p>
-            </div>
-            <div class="row">
-                <div class="col-md-9 col-12 pr-2">
-                    <div class="swiper-container mySwiper">
-                        <div class="swiper-wrapper">
-                            @foreach($authors as $author)
-
-                                <div class="swiper-slide border" style="min-height: 285px;max-height: 285px;">
-                                    <a href=" {{URL::to('/'.str_slug($author->title).'/'.$author->id)}}">
-                                        <img data-src="{{asset($author->image)}}" onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid lazyload" alt="">
-                                        <div style="color:{{$themeSetting[0]->siteColorTheme}}!important;"
-                                             class="text-center text-orange-400">{{Str::limit($author->name,17)}}</div>
-                                        <div
-                                            class="text-center text-orange-400 font-weight-thin " style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$author->title}}</div>
-                                    </a>
-                                </div>
-                            @endforeach
-
-                        </div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-pagination" style="bottom:-5px!important;"></div>
-                    </div>
+                <div class="position-relative mt-3 ">
+                    <b>YAZARLARIMIZ</b>
+                    <p class="detay__sidebar-baslik "></p>
                 </div>
-                <div class="col-md-3 col-12 pl-0">
-                    <div class="col-md-12 pb-1 mb-1" style="background: linear-gradient(
+                <div class="row">
+                    <div class="col-md-12 col-12 pr-2">
+                        <div class="swiper-container mySwiper">
+                            <div class="swiper-wrapper">
+                                @foreach($authors as $author)
+
+                                    <div class="swiper-slide border" style="min-height: 285px;max-height: 285px;">
+                                        <a href=" {{URL::to('/'.str_slug($author->title).'/'.$author->id)}}">
+                                            <img data-src="{{asset($author->image)}}"
+                                                 onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                 class="img-fluid lazyload" alt="">
+                                            <div style="color:{{$themeSetting[0]->siteColorTheme}}!important;"
+                                                 class="text-center text-orange-400">{{Str::limit($author->name,17)}}</div>
+                                            <div
+                                                class="text-center text-orange-400 font-weight-thin "
+                                                style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$author->title}}</div>
+                                        </a>
+                                    </div>
+                                @endforeach
+
+                            </div>
+                            <!--
+                          <div class="swiper-button-next"></div>
+                          <div class="swiper-button-prev"></div>
+                          -->
+                          <div class="swiper-pagination" style="bottom:-5px!important;"></div>
+                      </div>
+                  </div>
+
+              </div>
+
+          @endif
+
+          <!--Namaz vakitleri-->
+            <div class="col-md-3 col-12 pl-0">
+                <div class="col-md-12 pb-1 mb-1" style="background: linear-gradient(
 100deg
  , #262626, #515151);">
-                        <div class="">
-                            <div class="position-relative position-relative  text-center pt-3 pb-3">
-                                <div class="pb-0 pt-1 mx-auto " style="font-size: 19px;
+                    <div class="">
+                        <div class="position-relative position-relative  text-center pt-3 pb-3">
+                            <div class="pb-0 pt-1 mx-auto " style="font-size: 19px;
     color: white;"><b>NAMAZ</b> <span>VAKİTLERİ</span></div>
-                                {{--                            <p class="detay__sidebar-baslik "></p>--}}
-                            </div>
+                            {{--                            <p class="detay__sidebar-baslik "></p>--}}
+                        </div>
 
-                            <form id="form" class="text-center pb-2">
-                                @csrf
-                                <select class="btn dropdown-toggle btn-light" name="sehirsec" id="">
-                                    <option value="548">KIRIKKALE</option>
+                        <form id="form" class="text-center pb-2">
+                            @csrf
+                            <select class="btn dropdown-toggle btn-light" name="sehirsec" id="">
+                                <option value="548">KIRIKKALE</option>
 
-                                    @foreach($sehir as $row)
-                                        <option value="{{$row->id}}">{{$row->sehir_ad}}</option>
-                                    @endforeach
-                                </select>
-                            </form>
-                            @php
-                                $now = Carbon\Carbon::now()->format('H:i');
-                                $vakitler=Session::get('vakitler');
-                                $imsak = $vakitler["imsak"];
-                                $gunes = $vakitler['gunes'];
-                                $ogle = $vakitler['ogle'];
-                                $ikindi = $vakitler['ikindi'];
-                                $aksam = $vakitler['aksam'];
-                                $yatsi = $vakitler['yatsi'];
+                                @foreach($sehir as $row)
+                                    <option value="{{$row->id}}">{{$row->sehir_ad}}</option>
+                                @endforeach
+                            </select>
+                        </form>
+                        @php
+                            $now = Carbon\Carbon::now()->format('H:i');
+                            $vakitler=Session::get('vakitler');
+                            $imsak = $vakitler["imsak"];
+                            $gunes = $vakitler['gunes'];
+                            $ogle = $vakitler['ogle'];
+                            $ikindi = $vakitler['ikindi'];
+                            $aksam = $vakitler['aksam'];
+                            $yatsi = $vakitler['yatsi'];
 
-                            @endphp
+                        @endphp
 
 
-                            {{--        {{$now=Carbon\Carbon::now()->format('H:i:S')}}--}}
-                            <table class="table table-borderless text-light w-100 mb-2" id="gotur">
+                        {{--        {{$now=Carbon\Carbon::now()->format('H:i:S')}}--}}
+                        <table class="table table-borderless text-light w-100 mb-2" id="gotur">
 
-                                <tbody>
+                            <tbody>
 
-                                {{--                                @if ($now->between($imsak, $gunes))--}}
-                                @if ($now>=$imsak && $now<=$gunes)
+                            {{--                                @if ($now->between($imsak, $gunes))--}}
+                            @if ($now>=$imsak && $now<=$gunes)
+                                <tr data-hour="05:26" data-time-name="imsak" class="bg-light text-dark">
+                            @else
+                                <tr data-hour="05:26" data-time-name="imsak">
+                                    @endif
+                                    <td class="text-center"><i class="wi wi-day-fog text-warning"></i></td>
+                                    <td class="text-uppercase ">İmsak</td>
+                                    <td class="font-weight-bold imsak ">{{$vakitler['imsak']}}
+                                    </td>
+                                    <td>
+                                        @if ($now>=$imsak)
+                                            <i class="fas fa-check-circle text-success"></i>
+                                        @else
+                                            <i class="fas fa-hourglass text-warning"></i>
+                                        @endif
+                                    </td>
+                                </tr>
+                                {{--                                    @if ($now->between($gunes, $ogle))--}}
+                                @if ($now>=$gunes && $now<=$ogle)
                                     <tr data-hour="05:26" data-time-name="imsak" class="bg-light text-dark">
                                 @else
                                     <tr data-hour="05:26" data-time-name="imsak">
                                         @endif
-                                        <td class="text-center"><i class="wi wi-day-fog text-warning"></i></td>
-                                        <td class="text-uppercase ">İmsak</td>
-                                        <td class="font-weight-bold imsak ">{{$vakitler['imsak']}}
-                                        </td>
+                                        <td class="text-center"><i class="wi wi-sunrise text-warning"></i></td>
+                                        <td class="text-uppercase">Güneş</td>
+                                        <td class="font-weight-bold gunes">{{$vakitler["gunes"]}}</td>
                                         <td>
-                                            @if ($now>=$imsak)
+                                            @if ($now>=$gunes)
                                                 <i class="fas fa-check-circle text-success"></i>
                                             @else
                                                 <i class="fas fa-hourglass text-warning"></i>
                                             @endif
                                         </td>
                                     </tr>
-                                    {{--                                    @if ($now->between($gunes, $ogle))--}}
-                                    @if ($now>=$gunes && $now<=$ogle)
+                                    {{--                                        @if ($now->between($ogle, $ikindi))--}}
+                                    @if ($now>=$ogle && $now<=$ikindi)
                                         <tr data-hour="05:26" data-time-name="imsak" class="bg-light text-dark">
                                     @else
                                         <tr data-hour="05:26" data-time-name="imsak">
                                             @endif
-                                            <td class="text-center"><i class="wi wi-sunrise text-warning"></i></td>
-                                            <td class="text-uppercase">Güneş</td>
-                                            <td class="font-weight-bold gunes">{{$vakitler["gunes"]}}</td>
+                                            <td class="text-center"><i class="wi wi-day-sunny text-warning"></i>
+                                            </td>
+                                            <td class="text-uppercase">Öğle</td>
+                                            <td class="font-weight-bold ogle">{{$vakitler["ogle"]}}</td>
                                             <td>
-                                                @if ($now>=$gunes)
+                                                @if ($now>=$ogle)
                                                     <i class="fas fa-check-circle text-success"></i>
                                                 @else
                                                     <i class="fas fa-hourglass text-warning"></i>
                                                 @endif
                                             </td>
                                         </tr>
-                                        {{--                                        @if ($now->between($ogle, $ikindi))--}}
-                                        @if ($now>=$ogle && $now<=$ikindi)
+                                        {{--                                            @if ($now->between($ikindi, $aksam))--}}
+                                        @if ($now>=$ikindi && $now<=$aksam)
+
                                             <tr data-hour="05:26" data-time-name="imsak" class="bg-light text-dark">
-                                        @else
-                                            <tr data-hour="05:26" data-time-name="imsak">
                                                 @endif
-                                                <td class="text-center"><i class="wi wi-day-sunny text-warning"></i>
+                                                <td class="text-center"><i class="wi wi-sunset text-warning"></i>
                                                 </td>
-                                                <td class="text-uppercase">Öğle</td>
-                                                <td class="font-weight-bold ogle">{{$vakitler["ogle"]}}</td>
+                                                <td class="text-uppercase">İkindi</td>
+                                                <td class="font-weight-bold ikindi">{{$vakitler["ikindi"]}}
+
+                                                    {{--                                                        @if($now<$ikindi)--}}
+                                                    {{--                                                            {{ $dateDiff = Carbon\Carbon::now()->diffInMinutes($ikindi,false)}}--}}
+
+                                                    {{--                                                        @endif--}}
+
+                                                </td>
                                                 <td>
-                                                    @if ($now>=$ogle)
+                                                    {{--                                                        @if($now->between($ikindi,$aksam) || $now>$ikindi)--}}
+                                                    @if ($now>=$ikindi)
+
                                                         <i class="fas fa-check-circle text-success"></i>
                                                     @else
                                                         <i class="fas fa-hourglass text-warning"></i>
                                                     @endif
                                                 </td>
                                             </tr>
-                                            {{--                                            @if ($now->between($ikindi, $aksam))--}}
-                                            @if ($now>=$ikindi && $now<=$aksam)
+                                            {{--                                                @if ($now->between($aksam, $yatsi))--}}
+                                            @if ($now>=$aksam && $now<=$yatsi)
 
-                                                <tr data-hour="05:26" data-time-name="imsak" class="bg-light text-dark">
+                                                <tr data-hour="05:26" data-time-name="imsak"
+                                                    class="bg-light text-dark">
                                                     @endif
-                                                    <td class="text-center"><i class="wi wi-sunset text-warning"></i>
-                                                    </td>
-                                                    <td class="text-uppercase">İkindi</td>
-                                                    <td class="font-weight-bold ikindi">{{$vakitler["ikindi"]}}
-
-                                                        {{--                                                        @if($now<$ikindi)--}}
-                                                        {{--                                                            {{ $dateDiff = Carbon\Carbon::now()->diffInMinutes($ikindi,false)}}--}}
-
-                                                        {{--                                                        @endif--}}
+                                                    <td class="text-center"><i
+                                                            class="wi wi-moonrise text-warning"></i></td>
+                                                    <td class="text-uppercase">Akşam</td>
+                                                    <td class="font-weight-bold aksam">{{$vakitler["aksam"]}}
 
                                                     </td>
                                                     <td>
-                                                        {{--                                                        @if($now->between($ikindi,$aksam) || $now>$ikindi)--}}
-                                                        @if ($now>=$ikindi)
-
+                                                        @if ($now>=$aksam)
                                                             <i class="fas fa-check-circle text-success"></i>
                                                         @else
                                                             <i class="fas fa-hourglass text-warning"></i>
                                                         @endif
                                                     </td>
                                                 </tr>
-                                                {{--                                                @if ($now->between($aksam, $yatsi))--}}
-                                                @if ($now>=$aksam && $now<=$yatsi)
-
+                                                @if ($now<$imsak)
                                                     <tr data-hour="05:26" data-time-name="imsak"
                                                         class="bg-light text-dark">
                                                         @endif
                                                         <td class="text-center"><i
-                                                                class="wi wi-moonrise text-warning"></i></td>
-                                                        <td class="text-uppercase">Akşam</td>
-                                                        <td class="font-weight-bold aksam">{{$vakitler["aksam"]}}
-
-                                                        </td>
+                                                                class="wi wi-night-clear text-warning"></i></td>
+                                                        <td class="text-uppercase">Yatsı</td>
+                                                        <td class="font-weight-bold yatsi">{{$vakitler["yatsi"]}}</td>
                                                         <td>
-                                                            @if ($now>=$aksam)
+                                                            @if($now>=$yatsi)
                                                                 <i class="fas fa-check-circle text-success"></i>
                                                             @else
                                                                 <i class="fas fa-hourglass text-warning"></i>
                                                             @endif
                                                         </td>
                                                     </tr>
-                                                    @if ($now<$imsak)
-                                                        <tr data-hour="05:26" data-time-name="imsak"
-                                                            class="bg-light text-dark">
-                                                            @endif
-                                                            <td class="text-center"><i
-                                                                    class="wi wi-night-clear text-warning"></i></td>
-                                                            <td class="text-uppercase">Yatsı</td>
-                                                            <td class="font-weight-bold yatsi">{{$vakitler["yatsi"]}}</td>
-                                                            <td>
-                                                                @if($now>=$yatsi)
-                                                                    <i class="fas fa-check-circle text-success"></i>
-                                                                @else
-                                                                    <i class="fas fa-hourglass text-warning"></i>
-                                                                @endif
-                                                            </td>
-                                                        </tr>
-                                </tbody>
-                            </table>
-                            <div class="w-100" id="al"></div>
-                        </div>
-
-
+                            </tbody>
+                        </table>
+                        <div class="w-100" id="al"></div>
                     </div>
+
+
                 </div>
             </div>
-
         </div>
         @if(count($video_gallary)>7)
             <section class="bg-dark mt-3 pt-3 pb-3">
@@ -796,66 +817,79 @@
                         <div class="col-md-6 p-2">
                             <div class="video-overlay">
                                 <i class="fa fa-play-circle"></i></div>
-                            <a href="{{URL::to('/'.Str::slug($video_gallary[0]->title_tr).'/'.$video_gallary[0]->id.'/'.'haberi')}}"> <img class="img-fluid" src="{{$video_gallary[0]->image}}"></a></div>
+                            <a href="{{URL::to('/'.Str::slug($video_gallary[0]->title_tr).'/'.$video_gallary[0]->id.'/'.'haberi')}}">
+                                <img class="img-fluid" src="{{$video_gallary[0]->image}}"></a></div>
                         <div class="col-md-6 ">
                             <div class="row">
-                                <div class="col-md-6 mt-2" style="padding-left: 7px !important;padding-right: 7px !important;">
+                                <div class="col-md-6 mt-2"
+                                     style="padding-left: 7px !important;padding-right: 7px !important;">
                                     <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                     <a href="{{URL::to('/'.Str::slug($video_gallary[1]->title_tr).'/'.$video_gallary[1]->id.'/'.'haberi')}}">
-                                    <img class="img-fluid" src="{{$video_gallary[1]->image}}"></a>
+                                        <img class="img-fluid" src="{{$video_gallary[1]->image}}"></a>
                                 </div>
-                                <div class="col-md-6 mt-2" style="padding-left: 7px !important;padding-right: 7px !important;">
+                                <div class="col-md-6 mt-2"
+                                     style="padding-left: 7px !important;padding-right: 7px !important;">
                                     <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                     <a href="{{URL::to('/'.Str::slug($video_gallary[2]->title_tr).'/'.$video_gallary[2]->id.'/'.'haberi')}}">
-                                    <img class="img-fluid" src="{{$video_gallary[2]->image}}"></a></div>
-                                <div class="col-md-6 mt-2" style="padding-left: 7px !important;padding-right: 7px !important;">
+                                        <img class="img-fluid" src="{{$video_gallary[2]->image}}"></a></div>
+                                <div class="col-md-6 mt-2"
+                                     style="padding-left: 7px !important;padding-right: 7px !important;">
 
 
                                     <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                     <a href="{{URL::to('/'.Str::slug($video_gallary[3]->title_tr).'/'.$video_gallary[3]->id.'/'.'haberi')}}">
-                                    <img class="img-fluid" src="{{$video_gallary[3]->image}}"></a></div>
-                                <div class="col-md-6 mt-2" style="padding-left: 7px !important;padding-right: 7px !important;">
+                                        <img class="img-fluid" src="{{$video_gallary[3]->image}}"></a></div>
+                                <div class="col-md-6 mt-2"
+                                     style="padding-left: 7px !important;padding-right: 7px !important;">
                                     <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                     <a href="{{URL::to('/'.Str::slug($video_gallary[4]->title_tr).'/'.$video_gallary[4]->id.'/'.'haberi')}}">
-                                    <img class="img-fluid" src="{{$video_gallary[4]->image}}"></a></div>
+                                        <img class="img-fluid" src="{{$video_gallary[4]->image}}"></a></div>
                             </div>
                         </div>
-                        <div class="col-md-3 d-flex" style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
+                        <div class="col-md-3 d-flex"
+                             style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
                             <div class="position-relative float-left">
                                 <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                 <a href="{{URL::to('/'.Str::slug($video_gallary[5]->title_tr).'/'.$video_gallary[5]->id.'/'.'haberi')}}">
-                                <img class="img-fluid" width="150" src="{{$video_gallary[5]->image}}"></a>
+                                    <img class="img-fluid" width="150" src="{{$video_gallary[5]->image}}"></a>
                             </div>
-                            <p class="ml-1 float-left text-white text-center my-auto" style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;">{{$video_gallary[5]->title_tr}}
+                            <p class="ml-1 float-left text-white text-center my-auto"
+                               style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;">{{$video_gallary[5]->title_tr}}
                             </p>
                         </div>
-                        <div class="col-md-3 d-flex" style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
+                        <div class="col-md-3 d-flex"
+                             style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
                             <div class="position-relative float-left">
                                 <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                 <a href="{{URL::to('/'.Str::slug($video_gallary[6]->title_tr).'/'.$video_gallary[6]->id.'/'.'haberi')}}">
-                                <img class="img-fluid" width="150" src="{{$video_gallary[6]->image}}"></a>
+                                    <img class="img-fluid" width="150" src="{{$video_gallary[6]->image}}"></a>
                             </div>
-                            <p class="ml-1 float-left text-white text-center my-auto" style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;"
+                            <p class="ml-1 float-left text-white text-center my-auto"
+                               style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;"
                             >{{$video_gallary[6]->title_tr}}
                             </p>
                         </div>
-                        <div class="col-md-3 d-flex" style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
+                        <div class="col-md-3 d-flex"
+                             style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
                             <div class="position-relative float-left">
                                 <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                 <a href="{{URL::to('/'.Str::slug($video_gallary[7]->title_tr).'/'.$video_gallary[7]->id.'/'.'haberi')}}">
-                                <img class="img-fluid" width="150" src="{{$video_gallary[7]->image}}"></a>
+                                    <img class="img-fluid" width="150" src="{{$video_gallary[7]->image}}"></a>
                             </div>
-                            <p class="ml-1 float-left text-white text-center my-auto" style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;"
+                            <p class="ml-1 float-left text-white text-center my-auto"
+                               style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;"
                             >{{$video_gallary[7]->title_tr}}
                             </p>
                         </div>
-                        <div class="col-md-3 d-flex" style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
+                        <div class="col-md-3 d-flex"
+                             style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
                             <div class="position-relative float-left">
                                 <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                 <a href="{{URL::to('/'.Str::slug($video_gallary[8]->title_tr).'/'.$video_gallary[8]->id.'/'.'haberi')}}">
-                                <img class="img-fluid" width="150" src="{{$video_gallary[8]->image}}"></a>
+                                    <img class="img-fluid" width="150" src="{{$video_gallary[8]->image}}"></a>
                             </div>
-                            <p class="ml-1 float-left text-white text-center my-auto" style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;"
+                            <p class="ml-1 float-left text-white text-center my-auto"
+                               style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;"
                             >{{$video_gallary[8]->title_tr}}
                             </p>
                         </div>
@@ -869,8 +903,10 @@
                 @foreach($ads as $ad)
                     @if($ad->type==1 && $ad->category_id==18)
                         <div class="col-md-12">
-                            <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                         data-src="{{asset($ad->ads)}}" ></a>
+                            <a href="{{$ad->link}}"><img
+                                    onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                    class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
+                                    data-src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==18)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -901,17 +937,21 @@
                                     <div class="swiper-slide" style="">
                                         <div class="card kart kart-width kart-margin shadow" style="">
                                             <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
-                                                <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                                     class="img_fluid kart_img lazyload" src="{{asset($row->image)}}"
-                                                     alt="Card image cap"></a>
+                                                <img
+                                                    onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                    class="img_fluid kart_img lazyload" src="{{asset($row->image)}}"
+                                                    alt="Card image cap"></a>
 
-                                            <div class="card-body kart-body   border-3 text-dark" style="border-top:1px solid {{$themeSetting[0]->economy}}">
+                                            <div class="card-body kart-body   border-3 text-dark"
+                                                 style="border-top:1px solid {{$themeSetting[0]->economy}}">
                                                 @if($row->headlinetag==1)
-                                                    <div class="short-tag" style="background-color:{{$themeSetting[0]->economy}}">
+                                                    <div class="short-tag"
+                                                         style="background-color:{{$themeSetting[0]->economy}}">
                                                         <span>Son Dakika</span>
                                                     </div>
                                                 @else
-                                                    <div class="short-tag category" style="background-color:{{$themeSetting[0]->economy}}">
+                                                    <div class="short-tag category"
+                                                         style="background-color:{{$themeSetting[0]->economy}}">
                                                         <span>{{$row->category->category_tr}}</span>
                                                     </div>
                                                 @endif
@@ -965,7 +1005,8 @@
                                     <span>{{$homes->category->category_tr}}</span>
                                 </div>
                             @endif
-                            <div class="card-body kart-body   border-3 text-dark" style="border-top:1px solid {{$themeSetting[0]->economy}}">
+                            <div class="card-body kart-body   border-3 text-dark"
+                                 style="border-top:1px solid {{$themeSetting[0]->economy}}">
                                 <p class="card-text"
                                    style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$homes->title_tr}}</p>
                             </div>
@@ -990,8 +1031,8 @@
                 @foreach($ads as $ad)
                     @if($ad->type==1 && $ad->category_id==19)
                         <div class="col-md-12">
-                            <a href="{{$ad->link}}"><img  class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                          src="{{asset($ad->ads)}}"></a>
+                            <a href="{{$ad->link}}"><img class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
+                                                         src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==19)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -1006,22 +1047,28 @@
                 <!-- <div class="row"> -->
                 <div class="col-md-12 p-0 m-0">
 
-                    <div class="swiper-container ekonomi" style="background-image: linear-gradient(-10deg, {{$themeSetting[0]->agenda}}, {{$themeSetting[0]->agenda}}) !important">
+                    <div class="swiper-container ekonomi"
+                         style="background-image: linear-gradient(-10deg, {{$themeSetting[0]->agenda}}, {{$themeSetting[0]->agenda}}) !important">
                         <div class="swiper-wrapper" style="background-color: {{$themeSetting[0]->agenda}}">
                             @foreach($gundemmanset as $homes)
                                 <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
-                                            <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid kart_img lazyload" src="{{asset($homes->image)}}"
+                                            <img
+                                                onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                class="img-fluid kart_img lazyload" src="{{asset($homes->image)}}"
                                             /></a>
 
-                                        <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->agenda}}; ">
+                                        <div class="card-body kart-body   border-3 text-dark"
+                                             style="border-top-color:{{$themeSetting[0]->agenda}}; ">
                                             @if($homes->headlinetag==1)
-                                                <div class="short-tag" style="background-color:{{$themeSetting[0]->agenda}}">
+                                                <div class="short-tag"
+                                                     style="background-color:{{$themeSetting[0]->agenda}}">
                                                     <span>Son Dakika</span>
                                                 </div>
                                             @else
-                                                <div class="short-tag category" style="background-color:{{$themeSetting[0]->agenda}}">
+                                                <div class="short-tag category"
+                                                     style="background-color:{{$themeSetting[0]->agenda}}">
                                                     <span>{{$homes->category->category_tr}}</span>
                                                 </div>
                                             @endif
@@ -1065,13 +1112,15 @@
                                      class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
                                      alt="Card image cap"></a>
 
-                            <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->agenda}}; ">
+                            <div class="card-body kart-body   border-3 text-dark"
+                                 style="border-top-color:{{$themeSetting[0]->agenda}}; ">
                                 @if($homes->headlinetag==1)
                                     <div class="short-tag" style="background-color:{{$themeSetting[0]->agenda}}">
                                         <span>Son Dakika</span>
                                     </div>
                                 @else
-                                    <div class="short-tag category" style="background-color:{{$themeSetting[0]->agenda}}">
+                                    <div class="short-tag category"
+                                         style="background-color:{{$themeSetting[0]->agenda}}">
                                         <span>{{$homes->category->category_tr}}</span>
                                     </div>
                                 @endif
@@ -1119,15 +1168,20 @@
                                 <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
-                                            <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid kart_img lazyload"
-                                                 data-src="{{asset($homes->image)}}"/><a/>
-                                            <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->politics}}; ">
+                                            <img
+                                                onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                class="img-fluid kart_img lazyload"
+                                                data-src="{{asset($homes->image)}}"/><a/>
+                                            <div class="card-body kart-body   border-3 text-dark"
+                                                 style="border-top-color:{{$themeSetting[0]->politics}}; ">
                                                 @if($homes->headlinetag==1)
-                                                    <div class="short-tag" style="background-color:{{$themeSetting[0]->politics}}">
+                                                    <div class="short-tag"
+                                                         style="background-color:{{$themeSetting[0]->politics}}">
                                                         <span>Son Dakika</span>
                                                     </div>
                                                 @else
-                                                    <div class="short-tag category" style="background-color:{{$themeSetting[0]->politics}}">
+                                                    <div class="short-tag category"
+                                                         style="background-color:{{$themeSetting[0]->politics}}">
                                                         <span>{{$homes->category->category_tr}}</span>
                                                     </div>
                                                 @endif
@@ -1162,13 +1216,15 @@
                                      class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
                                      alt="Card image cap"></a>
 
-                            <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->agenda}}; ">
+                            <div class="card-body kart-body   border-3 text-dark"
+                                 style="border-top-color:{{$themeSetting[0]->agenda}}; ">
                                 @if($homes->headlinetag==1)
                                     <div class="short-tag" style="background-color:{{$themeSetting[0]->politics}}">
                                         <span>Son Dakika</span>
                                     </div>
                                 @else
-                                    <div class="short-tag category" style="background-color:{{$themeSetting[0]->politics}}">
+                                    <div class="short-tag category"
+                                         style="background-color:{{$themeSetting[0]->politics}}">
                                         <span>{{$homes->category->category_tr}}</span>
                                     </div>
                                 @endif
@@ -1189,8 +1245,10 @@
                 @foreach($ads as $ad)
                     @if($ad->type==1 && $ad->category_id==21)
                         <div class="col-md-12">
-                            <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                         data-src="{{asset($ad->ads)}}"></a>
+                            <a href="{{$ad->link}}"><img
+                                    onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                    class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
+                                    data-src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==21)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -1220,15 +1278,20 @@
                                 <div class="swiper-slide" style="">
                                     <div class="card kart kart-width shadow" style="">
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
-                                            <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid kart_img lazyload"
-                                                 data-src="{{asset($homes->image)}}"/></a>
-                                        <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->sport}}; ">
+                                            <img
+                                                onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                class="img-fluid kart_img lazyload"
+                                                data-src="{{asset($homes->image)}}"/></a>
+                                        <div class="card-body kart-body   border-3 text-dark"
+                                             style="border-top-color:{{$themeSetting[0]->sport}}; ">
                                             @if($homes->headlinetag==1)
-                                                <div class="short-tag" style="background-color:{{$themeSetting[0]->sport}}">
+                                                <div class="short-tag"
+                                                     style="background-color:{{$themeSetting[0]->sport}}">
                                                     <span>Son Dakika</span>
                                                 </div>
                                             @else
-                                                <div class="short-tag category" style="background-color:{{$themeSetting[0]->sport}}">
+                                                <div class="short-tag category"
+                                                     style="background-color:{{$themeSetting[0]->sport}}">
                                                     <span>{{$homes->category->category_tr}}</span>
                                                 </div>
                                             @endif
@@ -1260,8 +1323,10 @@
                 @foreach($ads as $ad)
                     @if($ad->type==1 && $ad->category_id==23)
                         <div class="col-md-12">
-                            <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                         data-src="{{asset($ad->ads)}}"></a>
+                            <a href="{{$ad->link}}"><img
+                                    onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                    class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
+                                    data-src="{{asset($ad->ads)}}"></a>
                         </div>
                     @elseif($ad->type==2 && $ad->category_id==23)
                         <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -1282,13 +1347,15 @@
                                         <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                              class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
                                              alt="Card image cap"></a>
-                                    <div class="card-body kart-body   border-3 text-dark" style="border-top-color:{{$themeSetting[0]->sport}}; ">
+                                    <div class="card-body kart-body   border-3 text-dark"
+                                         style="border-top-color:{{$themeSetting[0]->sport}}; ">
                                         @if($homes->headlinetag==1)
                                             <div class="short-tag" style="background-color:{{$themeSetting[0]->sport}}">
                                                 <span>Son Dakika</span>
                                             </div>
                                         @else
-                                            <div class="short-tag category" style="background-color:{{$themeSetting[0]->sport}}">
+                                            <div class="short-tag category"
+                                                 style="background-color:{{$themeSetting[0]->sport}}">
                                                 <span>{{$homes->category->category_tr}}</span>
                                             </div>
                                         @endif
@@ -1301,8 +1368,10 @@
                         @foreach($ads as $ad)
                             @if($ad->type==1 && $ad->category_id==22)
                                 <div class="col-md-12">
-                                    <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';" class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                                                 data-src="{{asset($ad->ads)}}"></a>
+                                    <a href="{{$ad->link}}"><img
+                                            onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                            class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
+                                            data-src="{{asset($ad->ads)}}"></a>
                                 </div>
                             @elseif($ad->type==2 && $ad->category_id==22)
                                 <div class="w-100">{!!$ad->ad_code!!}</div>
@@ -1346,8 +1415,8 @@
                     <div id="footer-kapat" class="kapat-buton"><span>Reklamı Kapat</span></div>
                     <div class="desktop-sticy" style="width:100%; height:auto;">
                         <div class="reklam-alani mt-1 mb-1 text-center">
-                            <a target="_blank" href=""><img  data-src="./img/reklamlar/" class="img-fluid lazyload "
-                                                             alt=""></a>
+                            <a target="_blank" href=""><img data-src="./img/reklamlar/" class="img-fluid lazyload "
+                                                            alt=""></a>
 
                         </div>
 

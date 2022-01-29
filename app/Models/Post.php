@@ -51,6 +51,7 @@ class Post extends Model
         'headlinetag',
         'flahtag',
         'attentiontag',
+        'publish_date',
 
 
     ];

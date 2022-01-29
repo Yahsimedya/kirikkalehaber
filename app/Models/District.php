@@ -18,6 +18,12 @@ class District extends Model
         'district_order',
 
     ];
+    public function scopeStatus($query) {
+        return $query->where('district_status',1);
+    }
+    public function scopeDrafted($query) {
+        return $query->where('district_status',0);
+    }
 //    public function posts(){
 //        return $this->hasMany(Post::class,'district_id');
 //    }

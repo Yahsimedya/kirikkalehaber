@@ -18,4 +18,10 @@ class Photocategory extends Model
         'district_order',
 
     ];
+    public function scopeStatus($query) {
+        return $query->where('status',1);
+    }
+    public function scopeDrafted($query) {
+        return $query->where('status',0);
+    }
 }

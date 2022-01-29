@@ -27,4 +27,5 @@ class Theme extends Model
         'fotogaleri',
         'videogaleri',
     ];
+
 }

@@ -13,8 +13,9 @@ use App\Models\AuthorsPost;
 //use CyrildeWit\EloquentViewable\View;
 use CyrildeWit\EloquentViewable\Visitor;
 use Analytics;
-//use Spatie\Analytics\AnalyticsClient;
 use Spatie\Analytics\Period;
+//use Spatie\Analytics\AnalyticsClient;
+
 class AdminController extends Controller
 {
     public function Logout(Request $request)

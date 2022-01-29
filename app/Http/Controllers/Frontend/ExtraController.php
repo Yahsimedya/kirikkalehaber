@@ -35,7 +35,8 @@ use Illuminate\View\View;
 use Session;
 use App\Models\Category;
 use Illuminate\Support\Facades\Cache;
-
+use Analytics;
+use Spatie\Analytics\Period;
 //use PublicApi;
 class ExtraController extends Controller
 {
@@ -196,7 +197,7 @@ class ExtraController extends Controller
         $photos = Photo::leftjoin('photocategories', 'photos.photocategory_id', '=', 'photocategories.id')
             ->where('photos.photocategory_id', $photogalery)
             ->get();
-        $relatedgalery = Photo::where('status', 1)->take(10)->groupBy('photocategory_id')->latest()->get();
+        $relatedgalery = Photo::status()->take(10)->groupBy('photocategory_id')->latest()->get();
         $webSiteSetting = WebsiteSetting::first();
 //    $relatedgalery =Photo::leftjoin('photocategories','photos.photocategory_id','=','photocategories.id')
 //        ->select(['photos.*','photocategories.id','photocategories.category_title'])
@@ -214,14 +215,14 @@ class ExtraController extends Controller
             ->leftjoin('categories', 'posts.category_id', '=', 'categories.id')
             ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name', 'categories.id'])
             ->groupBy('post_tags.post_id')
-            ->where('post_tags.tag_id', $id)->where('posts.featured', 1)->where('status', 1)->limit(24)->latest()
+            ->where('post_tags.tag_id', $id)->where('posts.featured', 1)->status()->limit(24)->latest()
             ->get();
         $tagPostsSlideralti = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
             ->leftjoin('tags', 'tags.id', 'post_tags.tag_id')
             ->leftjoin('categories', 'posts.category_id', '=', 'categories.id')
             ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name', 'categories.id'])
             ->groupBy('post_tags.post_id')
-            ->where('post_tags.tag_id', $id)->where('status', 1)->limit(30)->latest()
+            ->where('post_tags.tag_id', $id)->status()->limit(30)->latest()
             ->get();
 //       echo $category = $tagPosts->category_id;
 //        foreach ($category as $object){
@@ -232,7 +233,7 @@ class ExtraController extends Controller
             ->leftjoin('categories', 'posts.category_id', '=', 'categories.id')
             ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name', 'categories.id'])
             ->groupBy('posts.id')
-            ->where('post_tags.tag_id', $id)->where('status', 1)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
+            ->where('post_tags.tag_id', $id)->status()->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
             ->inRandomOrder()->limit(10)
             ->get();
         $nextnewsyan = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
@@ -240,7 +241,7 @@ class ExtraController extends Controller
             ->leftjoin('categories', 'posts.category_id', '=', 'categories.id')
             ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name', 'categories.id'])
             ->groupBy('posts.id')
-            ->where('post_tags.tag_id', $id)->where('status', 1)->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
+            ->where('post_tags.tag_id', $id)->status()->whereDate('posts.created_at', '>', \Carbon\Carbon::parse()->now()->subYear())
             ->inRandomOrder()->limit(5)
             ->get();
         $count = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
@@ -251,7 +252,7 @@ class ExtraController extends Controller
         $ads = Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
 //            ->join('ads','ad_categories.id','ads.category_id')
             ->select(['ads.*', 'ad_categories.id'])
-            ->where('status', 1)
+            ->status()
             ->whereIN('ad_categories.id', [1, 2, 3, 12]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
             ->get();
         $webSiteSetting = WebsiteSetting::get();
@@ -273,7 +274,7 @@ class ExtraController extends Controller
             ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
             ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
             ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-            ->latest('updated_at')->where('status', 1)->limit(50)
+            ->latest('updated_at')->status()->limit(50)
             ->get();
         return response()->view('main.body.feed', compact('posts', 'seoset'))->header('Content-Type', 'application/xml');
 
@@ -355,13 +356,33 @@ class ExtraController extends Controller
 
     public function Home()
     {
+        $encokOkunan;
+        $endNews=Analytics::fetchMostVisitedPages(Period::days(1));
+        $enCokOkunanID[]=array();
+        foreach ($endNews as $News){
+            $i=1;
+            $r =$News["url"];
+            $r = explode('?', $r);
+            $r = array_filter($r);
+            $r = array_merge($r, array());
+            $id = $r[0];
+            $id = explode('-', $id);
+            $id = array_filter($id);
+            $id = array_merge($id, array());
+            $idCount = count($id) - 1;
+            $alinanID = $id[$idCount];
 
+            $enCokOkunanID[]=['id' =>$alinanID];
+            $encokOkunan=Post::status()->where('id',$enCokOkunanID[$i]['id'])->get();
+            $i++;
+//Burayı pazartesi Canlıda kontrol edilecek
+        }
 
         $sondakika = Cache::remember("headline", Carbon::now()->addYear(), function () {
             if (Cache::has('headline')) return Cache::has('headline');
             return Post::where('posts.headline', 1)
                 ->where('created_at', '>', Carbon::now()->subDay(1))
-                ->where('status', 1)
+                ->status()
                 ->limit(5)
                 ->get();
         });
@@ -435,7 +456,7 @@ class ExtraController extends Controller
 
         $video_gallary = Cache::remember("video_gallary", Carbon::now()->addYear(), function () {
             if (Cache::has('video_gallary')) return Cache::has('video_gallary');
-            return Post::where('posts_video', '!=', NULL)->orderByDesc('id')->limit(10)->get();
+            return Post::status()->where('posts_video', '!=', NULL)->orderByDesc('id')->limit(10)->get();
         });
 //        $home =
 ////            Cache::remember("home", Carbon::now()->addYear(), function () {
@@ -445,13 +466,13 @@ class ExtraController extends Controller
 //                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
 //                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
 //                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-//                ->where('status', 1)->latest('updated_at')
+//                ->status()->latest('updated_at')
 //                ->get();
 ////            });
 
         $home = Cache::remember("home", Carbon::now()->addYear(), function () {
             if (Cache::has('home')) return Cache::has('home');
-            return Post::where('status', 1)->where('manset', 1)
+            return Post::status()->where('manset', 1)
                 ->latest('created_at')
                 ->get();
         });
@@ -464,7 +485,7 @@ class ExtraController extends Controller
 //                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
 //                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
 //                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-//                ->where('status', 1)->latest('updated_at')->limit(4)
+//                ->status()->latest('updated_at')->limit(4)
 //                ->get();
 ////            });
 
@@ -475,7 +496,7 @@ class ExtraController extends Controller
         $category4 = $themeSettings[0]->category4;
         $surmanset = Cache::remember("surmanset", Carbon::now()->addYear(), function () {
             if (Cache::has('surmanset')) return Cache::has('surmanset');
-            return Post::where('status', 1)
+            return Post::status()
                 ->where('surmanset', 1)
                 ->with('category')
                 ->limit(4)
@@ -490,9 +511,9 @@ class ExtraController extends Controller
                 $multiple_category = $row->multiple_category;
                 $explode_id = json_decode($multiple_category, true);
             }
-            return Post::with(['category:id'])->whereIn('category_id', $explode_id)->where('status', 1)->latest('updated_at')->limit(15)->get();
+            return Post::with(['category:id'])->whereIn('category_id', $explode_id)->status()->latest('updated_at')->limit(15)->get();
 //            return Post::with(['category' => function($query){
-//                $query->whereIn('category_id', $explode_id)->where('status', 1)->latest('updated_at')->limit(15);
+//                $query->whereIn('category_id', $explode_id)->status()->latest('updated_at')->limit(15);
 //            }])->get();
 
         });
@@ -508,7 +529,7 @@ class ExtraController extends Controller
 
         $ekonomi = Cache::remember("ekeonomi", Carbon::now()->addYear(), function () use ($category1) {
             if (Cache::has('ekeonomi')) return Cache::has('ekeonomi');
-            return Post::with(['category:id,category_tr'])->where('category_id', $category1)->where('status', 1)
+            return Post::with(['category:id,category_tr'])->where('category_id', $category1)->status()
 
                 -> Where(function($query) {
                         $query->orWhere('featured',0)
@@ -520,9 +541,7 @@ class ExtraController extends Controller
 
         $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () use ($category2) {
             if (Cache::has('gundem')) return Cache::has('gundem');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category2)->where('status', 1)
-
-                    ->Where(function($query) {
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category2)->status()->Where(function($query) {
                         $query->orWhere('featured',0)
                             ->orWhere('featured',null);
                 })
@@ -531,8 +550,7 @@ class ExtraController extends Controller
 
         $siyaset = Cache::remember("siyaset", Carbon::now()->addYear(), function () use ($category3) {
             if (Cache::has('siyaset')) return Cache::has('siyaset');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category3)->where('status', 1)
-                ->Where(function($query) {
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category3)->status()->Where(function($query) {
                         $query->orWhere('featured',0)
                             ->orWhere('featured',null);
                 })
@@ -541,7 +559,7 @@ class ExtraController extends Controller
 
         $spor = Cache::remember("spor", Carbon::now()->addYear(), function () use ($category4) {
             if (Cache::has('spor')) return Cache::has('spor');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->where('status', 1)->
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->status()->
 
                 Where(function($query) {
                     $query->orWhere('featured',0)
@@ -556,23 +574,23 @@ class ExtraController extends Controller
 
         $ekonomimanset = Cache::remember("ekeonomimanset", Carbon::now()->addYear(), function () use ($category1) {
             if (Cache::has('ekeonomimanset')) return Cache::has('ekeonomimanset');
-            return Post::with(['category:id,category_tr'])->where('category_id', $category1)->where('status', 1)->where('featured', 1)->limit(9)->latest('created_at')->get();
+            return Post::with(['category:id,category_tr'])->where('category_id', $category1)->status()->where('featured', 1)->limit(9)->latest('created_at')->get();
 
         });
 
         $gundemmanset = Cache::remember("gundemmanset", Carbon::now()->addYear(), function () use ($category2) {
             if (Cache::has('gundemmanset')) return Cache::has('gundemmanset');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category2)->where('status', 1)->where('featured', 1)->limit(9)->latest('created_at')->get();
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category2)->status()->where('featured', 1)->limit(9)->latest('created_at')->get();
         });
 
         $siyasetmanset = Cache::remember("siyasetmanset", Carbon::now()->addYear(), function () use ($category3) {
             if (Cache::has('siyasetmanset')) return Cache::has('siyasetmanset');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category3)->where('status', 1)->where('featured', 1)->limit(9)->latest('created_at')->get();
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category3)->status()->where('featured', 1)->limit(9)->latest('created_at')->get();
         });
 
         $spormanset = Cache::remember("spormanset", Carbon::now()->addYear(), function () use ($category4) {
             if (Cache::has('spormanset')) return Cache::has('spormanset');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->where('status', 1)->where('featured', 1)->limit(9)->latest('created_at')->get();
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->status()->where('featured', 1)->limit(9)->latest('created_at')->get();
         });
 
 
@@ -607,7 +625,7 @@ class ExtraController extends Controller
             return Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
 //            ->join('ads','ad_categories.id','ads.category_id')
                 ->select(['ads.*', 'ad_categories.id'])
-                ->where('status', 1)
+                ->status()
                 // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
                 ->get();
 
@@ -698,8 +716,7 @@ class ExtraController extends Controller
             ->latest("photocategories.updated_at")
             ->get();
 
-
-        return view('main.home', compact('home', 'fotogaleri', 'ekonomi','ekonomimanset', 'webSiteSetting', 'surmanset', 'gundem','gundemmanset', 'spor', 'siyaset','spormanset', 'siyasetmanset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
+        return view('main.home', compact('home','encokOkunan', 'fotogaleri', 'ekonomi','ekonomimanset', 'webSiteSetting', 'surmanset', 'gundem','gundemmanset', 'spor', 'siyaset','spormanset', 'siyasetmanset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 
@@ -716,7 +733,7 @@ class ExtraController extends Controller
 //    }
     public function SinglePost($slug, $id)
     {
-        $post = Post::with(['category:id,category_tr'])->where('status', 1)->find($id);
+        $post = Post::with(['category:id,category_tr'])->status()->find($id);
 //        views($post)->record();
 //        $expiresAt = now()->addMinute(20);
 ////        views($post)->count();
@@ -725,27 +742,27 @@ class ExtraController extends Controller
 //        views($post)
 //            ->cooldown($expiresAt)
 //            ->record();
-        $comments = Comments::where('posts_id', $id)->where('status', 1)->get();
+        $comments = Comments::where('posts_id', $id)->status()->get();
 
 //dd($comments);
 //        $slider =  Post::latest('created_at')
-//            ->where('status', 1)->where('category_id', $post->category_id)
+//            ->status()->where('category_id', $post->category_id)
 //            ->offset(1)->limit(10)
 //            ->get();
         $slider = Post::latest('updated_at')
             ->with('category:id,category_tr')
-            ->where('status', 1)->limit(10)
+            ->status()->limit(10)
             ->get();
 
         $ads =
 //            Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
 ////            ->join('ads','ad_categories.id','ads.category_id')
 //            ->select(['ads.*', 'ad_categories.id'])
-//            ->where('status', 1)
+//            ->status()
 //            ->whereIN('ad_categories.id', [1, 2, 3, 12]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
 //            ->get();
             Ad::latest('updated_at')
-                ->where('status', 1)
+                ->status()
                 ->with('adcategory')
                 ->get();
         $tag_ids = $post->tag()->get();
@@ -813,7 +830,7 @@ class ExtraController extends Controller
 //                    ->where('post_tags.tag_id', $item->id)->latest()
 //                    ->get();
             Post::latest('updated_at')
-                ->where('id', $post)->where('status', 1)
+                ->where('id', $post)->status()
                 ->with(['tag' => function ($query) {
                     // $query->sum('quantity');
                     $query->select('name'); // without `order_id`
@@ -889,7 +906,7 @@ class ExtraController extends Controller
         $ads = Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
 //            ->join('ads','ad_categories.id','ads.category_id')
             ->select(['ads.*', 'ad_categories.id'])
-            ->where('status', 1)
+            ->status()
             ->get();
 
         return view('main.body.category_post', compact('manset', 'webSiteSetting', 'category', 'catpost', 'ads', 'nextnews', 'count'));
@@ -940,7 +957,7 @@ class ExtraController extends Controller
 
     public function TumKategoriler()
     {
-        $allcategories = Category::get();
+        $allcategories = Category::status()->get();
         $themeSetting = Theme::get();
         return view('main.body.allcategories', compact('allcategories', 'themeSetting'));
     }
@@ -952,7 +969,7 @@ class ExtraController extends Controller
 //        $yazi = AuthorsPost::where('authors_id', '=', $id)->limit(10)->get();
 //        $yazar = Authors::where('id', '=', $id)->get();
 //        $nextauthors_posts = DB::table('authors_posts')
-//            ->latest('updated_at')->where('status', 1)->where('authors_id', '=', $id)->limit(10)
+//            ->latest('updated_at')->status()->where('authors_id', '=', $id)->limit(10)
 //            ->get();
 //        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
 //    }
@@ -969,7 +986,7 @@ class ExtraController extends Controller
 //dd($yaziPost->authors_id);
         $yazarID = $yaziPost->authors_id;
 //        dd($yazarID);
-        $nextauthors_posts = AuthorsPost::where('status', 1)->where('authors_id', $yazarID)->latest()->limit(8)->get();
+        $nextauthors_posts = AuthorsPost::status()->where('authors_id', $yazarID)->latest()->limit(8)->get();
         $OtherAuthors =AuthorsPost::whereId($Authorid)->limit(10)->orderBy('id', 'desc')->get(); //
         $seoset = Seos::first();
 
@@ -991,7 +1008,7 @@ class ExtraController extends Controller
         $webSiteSetting = WebsiteSetting::first();
 
         $yazarID = $Authorid;
-        $nextauthors_posts = AuthorsPost::where('status', 1)->where('authors_id', $yazarID)->paginate(15);
+        $nextauthors_posts = AuthorsPost::status()->where('authors_id', $yazarID)->paginate(15);
         $OtherAuthors =AuthorsPost::whereId($Authorid)->limit(10)->orderBy('id', 'desc')->get(); //
         $seoset = Seos::first();
 
@@ -1005,7 +1022,7 @@ class ExtraController extends Controller
         $webSiteSetting = WebsiteSetting::first();
         $themeSetting = Theme::get();
 
-        $sondakika = Post::where('status', 1)->where('updated_at', '>', Carbon::now()->subDay(1))->latest()
+        $sondakika = Post::status()->where('updated_at', '>', Carbon::now()->subDay(1))->latest()
             ->get();
 
         return view('main.body.breakingnews', compact('sondakika', 'webSiteSetting', 'themeSetting'));

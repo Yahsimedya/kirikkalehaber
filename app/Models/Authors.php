@@ -19,4 +19,10 @@ class Authors extends Model
         'youtube',
 
     ];
+    public function scopeStatus($query) {
+        return $query->where('status',1);
+    }
+    public function scopeDrafted($query) {
+        return $query->where('status',0);
+    }
 }

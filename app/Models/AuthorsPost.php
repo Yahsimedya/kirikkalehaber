@@ -23,4 +23,10 @@ class AuthorsPost extends Model
     public function author() {
         return $this->belongsTo(Authors::class,'authors_id');
     }
+    public function scopeStatus($query) {
+        return $query->where('status',1);
+    }
+    public function scopeDrafted($query) {
+        return $query->where('status',0);
+    }
 }

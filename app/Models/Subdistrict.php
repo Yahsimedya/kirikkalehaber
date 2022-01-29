@@ -18,4 +18,10 @@ class Subdistrict extends Model
         'subdistrict_order',
 
     ];
+    public function scopeStatus($query) {
+        return $query->where('subcategory_status',1);
+    }
+    public function scopeDrafted($query) {
+        return $query->where('subcategory_status',0);
+    }
 }

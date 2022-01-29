@@ -31,4 +31,11 @@ class Category extends Model
     public function posts(){
         return $this->hasmany(Post::class);
     }
+
+    public function scopeStatus($query) {
+        return $query->where('category_status',1);
+    }
+    public function scopeDrafted($query) {
+        return $query->where('category_status',0);
+    }
 }

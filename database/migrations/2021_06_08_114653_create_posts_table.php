@@ -51,6 +51,7 @@ class CreatePostsTable extends Migration
             $table->string('posts_video')->nullable();
             $table->string('slug_tr')->nullable();
             $table->string('slug_en')->nullable();
+            $table->string('publish_date')->nullable();
 
             $table->timestamps();
         });

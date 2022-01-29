@@ -20,4 +20,10 @@ class Ad extends Model
     public function adcategory() {
         return $this->belongsTo(AdCategory::class);
     }
+    public function scopeStatus($query) {
+        return $query->where('status',1);
+    }
+    public function scopeDrafted($query) {
+        return $query->where('status',0);
+    }
 }
