@@ -1,0 +1,52 @@
+body {
+    background-color: #313131 !important;
+    color: white !important;
+}
+
+.text-dark {
+    color: white !important;
+}
+.detay-pagination > .swiper-pagination-bullet{
+    color: white !important;
+}
+
+.anamanset-pagination > .swiper-pagination-bullet {
+    background: #1b1b1b !important;
+    color: white !important;
+}
+
+.card {
+    background: #3d3d3d !important;
+    color: white !important;
+}
+
+.list-group-item {
+    background-color: #1b1b1b !important;
+    color: white !important;
+}
+
+.card-kisalt {
+    color: white !important;
+}
+
+.card-text {
+    color: white !important;
+}
+.btn {
+    color: white !important;
+}
+.btn-light{
+    background-color: transparent !important;
+}
+.nav-link {
+    -webkit-text-fill-color: white !important;
+}
+.table {
+    -webkit-text-fill-color: white !important;
+}
+.bg-light{
+    background-color: red!important;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+    background-color: #313131 !important;
+}

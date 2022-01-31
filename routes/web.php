@@ -374,6 +374,7 @@ Route::post('/save_likedislike', [AjaxController::class, 'save_likedislike'])->n
 
 //Search
 Route::post('/search', [ExtraController::class, 'search'])->name('search');
+Route::get('/Mode/dark/{themeChange}', [ExtraController::class, 'darkMode'])->name('darkMode');
 
 //BREAKİNG NEWS
 Route::get('/sondakika', [ExtraController::class, 'breakingnews'])->name('breakingnews');

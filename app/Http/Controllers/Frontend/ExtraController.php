@@ -356,27 +356,12 @@ class ExtraController extends Controller
 
     public function Home()
     {
-        $encokOkunan;
-        $endNews=Analytics::fetchMostVisitedPages(Period::days(1));
-        $enCokOkunanID[]=array();
-        foreach ($endNews as $News){
-            $i=1;
-            $r =$News["url"];
-            $r = explode('?', $r);
-            $r = array_filter($r);
-            $r = array_merge($r, array());
-            $id = $r[0];
-            $id = explode('-', $id);
-            $id = array_filter($id);
-            $id = array_merge($id, array());
-            $idCount = count($id) - 1;
-            $alinanID = $id[$idCount];
+        $encokOkunan[]=array();
+        $endNews=Analytics::fetchMostVisitedPages(Period::days(1),$maxResults = 8);
 
-            $enCokOkunanID[]=['id' =>$alinanID];
-            $encokOkunan=Post::status()->where('id',$enCokOkunanID[$i]['id'])->get();
-            $i++;
-//Burayı pazartesi Canlıda kontrol edilecek
-        }
+
+
+
 
         $sondakika = Cache::remember("headline", Carbon::now()->addYear(), function () {
             if (Cache::has('headline')) return Cache::has('headline');
@@ -715,8 +700,7 @@ class ExtraController extends Controller
             ->where('photocategories.status', 1)->where('photos.status', 1)->groupBY('photocategories.id')
             ->latest("photocategories.updated_at")
             ->get();
-
-        return view('main.home', compact('home','encokOkunan', 'fotogaleri', 'ekonomi','ekonomimanset', 'webSiteSetting', 'surmanset', 'gundem','gundemmanset', 'spor', 'siyaset','spormanset', 'siyasetmanset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
+        return view('main.home', compact('home','encokOkunan', 'fotogaleri', 'ekonomi', 'endNews','ekonomimanset', 'webSiteSetting', 'surmanset', 'gundem','gundemmanset', 'spor', 'siyaset','spormanset', 'siyasetmanset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 
@@ -924,6 +908,15 @@ class ExtraController extends Controller
         $webSiteSetting = WebsiteSetting::first();
 
         return \view('main.body.search', compact('searchNews', 'webSiteSetting',));
+    }
+    public function darkMode(Request $request,$themeChange)
+    {
+        if ($themeChange==0){
+            Session::put('theme',1);
+        }else{
+            Session::put('theme',0);
+        }
+        return redirect()->back();
     }
 
 

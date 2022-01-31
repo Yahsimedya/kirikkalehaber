@@ -55,11 +55,11 @@ $gelenil=Session::get('gelenil');
 <style>
 
     .border-danger {
-        border-color: {{$themeSetting[0]->siteColorTheme}}   !important;
+        border-color: {{$themeSetting[0]->siteColorTheme}}        !important;
     }
 
     .nav-link:after {
-        border-bottom-color: {{$themeSetting[0]->siteColorTheme}}   !important;
+        border-bottom-color: {{$themeSetting[0]->siteColorTheme}}        !important;
     }
 
     .dropdown:hover .dropdown-menu {
@@ -147,8 +147,8 @@ $gelenil=Session::get('gelenil');
 
 @foreach($themeSetting as $navbar)
     @if($navbar->header==0)
-        <section class="border-top border-danger border-3 " style="background-color:white;">
-            <div class="container text-center" style="background-color:white;">
+        <section class="border-top border-danger border-3 ">
+            <div class="container text-center">
                 <div class="d-flex align-items-center justify-content-between">
 
                     <div class="col-12 col-md-2 d-none d-md-block text-center ">
@@ -162,81 +162,91 @@ $gelenil=Session::get('gelenil');
                     <div class=" col-md-5 col-12 text-center mt-3 mb-3">
                         <a
                             href="{{URL::to('/')}}">
-                            <img width="100%" src="{{asset($websetting->logo)}}" alt=""></a>
+                            <img class="logo img-fluid" src="{{asset($websetting->logo)}}" alt=""></a>
                     </div>
 
+                    <div class="row d-flex align-items-center justify-content-start">
+                        @if(Session::get('theme')==0)
+                            <a class=" d-none d-md-block h6 pt-2" style="font-size: 14px"
+                               href="{{URL::to('Mode/dark/'.Session::get('theme'))}}"> Gece modu <i
+                                    class="fa fa-moon"></i></a>
+                        @else
+                            <a class=" d-none d-md-block text-light h6 pt-2" style="font-size: 14px"
+                               href="{{URL::to('Mode/dark/'.Session::get('theme'))}}"> Gündüz Modu <i
+                                    class="fa fa-sun"></i></a>
+                        @endif
 
-                    <div class=" col-12 col-md-2 d-none d-md-block text-center ">
-                        @php $now = Carbon\Carbon::now()->format('H:i');
+                        <div class=" col-12 col-md-2 d-none d-md-block text-center ">
+                            @php $now = Carbon\Carbon::now()->format('H:i');
                   $imsak = $vakitler["imsak"];
                                 $gunes = $vakitler['gunes'];
                                 $ogle = $vakitler['ogle'];
                                 $ikindi = $vakitler['ikindi'];
                                 $aksam = $vakitler['aksam'];
                                 $yatsi = $vakitler['yatsi'];
-                        @endphp
-                        @if($now < $imsak )
-                            @php $startTime = Carbon\Carbon::parse($now);
+                            @endphp
+                            @if($now < $imsak )
+                                @php $startTime = Carbon\Carbon::parse($now);
                     $finishTime = Carbon\Carbon::parse($gunes);
                 $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                            @endphp
+                                @endphp
 
-                            <div class="kalansure">
-                                <span>{{ $totalDuration}}</span>
-                                <p> İmsak'a Kalan Süre</p>
-                            </div>
+                                <div class="kalansure">
+                                    <span>{{ $totalDuration}}</span>
+                                    <p> İmsak'a Kalan Süre</p>
+                                </div>
 
 
-                        @elseif($now<$ogle )
-                            @php $startTime = Carbon\Carbon::parse($now);
+                            @elseif($now<$ogle )
+                                @php $startTime = Carbon\Carbon::parse($now);
                     $finishTime = Carbon\Carbon::parse($ogle);
                 $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                            @endphp
+                                @endphp
 
-                            <div class="kalansure">
-                                <span>{{ $totalDuration}}</span>
-                                <p> Öğleye kalan Süre</p>
-                            </div>
-                        @elseif($now<$ikindi)
-                            @php $startTime = Carbon\Carbon::parse($now);
+                                <div class="kalansure">
+                                    <span>{{ $totalDuration}}</span>
+                                    <p> Öğleye kalan Süre</p>
+                                </div>
+                            @elseif($now<$ikindi)
+                                @php $startTime = Carbon\Carbon::parse($now);
                     $finishTime = Carbon\Carbon::parse($ikindi);
                 $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                            @endphp
-                            {{--                    <span style="    font-size: 16px;font-weight: 700;color: #006726;letter-spacing: .25px;padding: 5px 6px;background: #e6f0e7;display: block;position: relative;">{{ $totalDuration}}</span>--}}
-                            <div class="kalansure pt-2">
-                                <span>{{ $totalDuration}}</span>
-                                <p>İkindi'ye Kalan Süre</p>
-                            </div>
-                        @elseif ($now<$aksam )
-                            @php $startTime = Carbon\Carbon::parse($now);
+                                @endphp
+                                {{--                    <span style="    font-size: 16px;font-weight: 700;color: #006726;letter-spacing: .25px;padding: 5px 6px;background: #e6f0e7;display: block;position: relative;">{{ $totalDuration}}</span>--}}
+                                <div class="kalansure pt-2">
+                                    <span>{{ $totalDuration}}</span>
+                                    <p>İkindi'ye Kalan Süre</p>
+                                </div>
+                            @elseif ($now<$aksam )
+                                @php $startTime = Carbon\Carbon::parse($now);
                     $finishTime = Carbon\Carbon::parse($aksam);
                 $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                            @endphp
-                            <div class="kalansure">
-                                <span>{{ $totalDuration}}</span>
-                                <p>Akşam'a Kalan Süre</p>
+                                @endphp
+                                <div class="kalansure">
+                                    <span>{{ $totalDuration}}</span>
+                                    <p>Akşam'a Kalan Süre</p>
 
-                            </div>
-                        @elseif($now<$yatsi )
-                            @php $startTime = Carbon\Carbon::parse($now);
+                                </div>
+                            @elseif($now<$yatsi )
+                                @php $startTime = Carbon\Carbon::parse($now);
                     $finishTime = Carbon\Carbon::parse($yatsi);
                 $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                            @endphp
-                            <div class="kalansure">
-                                <span>{{ $totalDuration}}</span>
-                                <p>Yatsı'ya Kalan Süre</p>
-                            </div>
+                                @endphp
+                                <div class="kalansure">
+                                    <span>{{ $totalDuration}}</span>
+                                    <p>Yatsı'ya Kalan Süre</p>
+                                </div>
 
 
-                        @endif
+                            @endif
+                        </div>
                     </div>
-
 
                 </div>
             </div>
         </section>
         <nav id="navbar_top"
-             class="navbar navbar-expand-lg navbar-light bg-white p-0 m-0 shadow-sm border-top">
+             class="navbar navbar-expand-lg  p-0 m-0 shadow-sm border-top">
 
 
             <div class="container">
@@ -247,8 +257,8 @@ $gelenil=Session::get('gelenil');
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse navbar-light" id="main_nav"
-                     style="z-index:999;background-color: white;">
-                    <ul class="navbar-nav ml-auto mx-auto" style="background-color: white;">
+                     style="z-index:999;">
+                    <ul class="navbar-nav ml-auto mx-auto">
                         <a style="box-shadow: none;" class="btn  "
                            id="dropdownMenuButton"
                            href="{{URL::to('/') }}">

@@ -237,7 +237,7 @@
                     </div> -->
 
 
-                        <div class="col-md-12 shadow-lg p-3 mt-3 bg-light">
+                        <div class="col-md-12 shadow-lg p-3 mt-3">
                             <h3 class="text-dark">Haber Yorumları</h3>
 
 
@@ -250,7 +250,7 @@
 
 
                         </div>
-                        <div class="col-md-12 shadow-lg  p-3 mt-3 bg-light">
+                        <div class="col-md-12 shadow-lg  p-3 mt-3 ">
 
                             <p class="text-dark"></p>
                             <span class="position-relative" id="cevap"><h5><i

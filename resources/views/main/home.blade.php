@@ -14,12 +14,18 @@
     $icon = Session::get('icon');
     ?>
     <style>
+
+
+        .detay__sidebar-baslik::before {
+            background: {{$themeSetting[0]->siteColorTheme}} !important;
+        }
+
         .anamanset-pagination > .swiper-pagination-bullet-active {
-            background-color: {{$themeSetting[0]->siteColorTheme}}     !important;
+            background-color: {{$themeSetting[0]->siteColorTheme}}           !important;
         }
 
         .pagination-1 > .swiper-pagination-bullet-active, .pagination-2 > .swiper-pagination-bullet-active {
-            background-color: {{$themeSetting[0]->siteColorTheme}}                      !important;
+            background-color: {{$themeSetting[0]->siteColorTheme}}                            !important;
         }
 
         .media.media-weather {
@@ -605,7 +611,7 @@
             @endforeach
 
             @if(count($authors)>0)
-        <!--  ÜST BLOK 1140x90 REKLAM-->
+            <!--  ÜST BLOK 1140x90 REKLAM-->
                 <div class="position-relative mt-3 ">
                     <b>YAZARLARIMIZ</b>
                     <p class="detay__sidebar-baslik "></p>
@@ -624,8 +630,8 @@
                                             <div style="color:{{$themeSetting[0]->siteColorTheme}}!important;"
                                                  class="text-center text-orange-400">{{Str::limit($author->name,17)}}</div>
                                             <div
-                                                class="text-center text-orange-400 font-weight-thin "
-                                                style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$author->title}}</div>
+                                                class="text-center text-orange-400 font-weight-thin card-kisalt"
+                                                >{{$author->title}}</div>
                                         </a>
                                     </div>
                                 @endforeach
@@ -635,177 +641,207 @@
                           <div class="swiper-button-next"></div>
                           <div class="swiper-button-prev"></div>
                           -->
-                          <div class="swiper-pagination" style="bottom:-5px!important;"></div>
-                      </div>
-                  </div>
+                            <div class="swiper-pagination" style="bottom:-5px!important;"></div>
+                        </div>
+                    </div>
 
-              </div>
+                </div>
 
-          @endif
+            @endif
 
-          <!--Namaz vakitleri-->
-            <div class="col-md-3 col-12 pl-0">
-                <div class="col-md-12 pb-1 mb-1" style="background: linear-gradient(
+            <div class="position-relative mt-3 ">
+                <b>EN ÇOK OKUNANLAR</b>
+                <p class="detay__sidebar-baslik "></p>
+            </div>
+            <div class="row">
+
+                <div class="col-md-9 col-12 pl-0">
+
+                    <div class="col-md-12 col-12 pr-2">
+                        <ul class="list-group">
+                            @foreach($endNews as $row)
+                             <a href="{{URL::to($row['url'])}}">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{$row['pageTitle']}}
+                                    <span class="badge  badge-pill"
+                                          style="background-color: {{$themeSetting[0]->siteColorTheme}} ;color: white"> {{$row['pageViews']}}</span>
+                                </li>
+                             </a>
+                            @endforeach
+
+
+                        </ul>
+
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-3 col-12 pl-0">
+                    <div class="col-md-12 pb-1 mb-1" style="background: linear-gradient(
 100deg
  , #262626, #515151);">
-                    <div class="">
-                        <div class="position-relative position-relative  text-center pt-3 pb-3">
-                            <div class="pb-0 pt-1 mx-auto " style="font-size: 19px;
+                        <div class="">
+                            <div class="position-relative position-relative  text-center pt-3 pb-3">
+                                <div class="pb-0 pt-1 mx-auto " style="font-size: 19px;
     color: white;"><b>NAMAZ</b> <span>VAKİTLERİ</span></div>
-                            {{--                            <p class="detay__sidebar-baslik "></p>--}}
-                        </div>
+                                {{--                            <p class="detay__sidebar-baslik "></p>--}}
+                            </div>
 
-                        <form id="form" class="text-center pb-2">
-                            @csrf
-                            <select class="btn dropdown-toggle btn-light" name="sehirsec" id="">
-                                <option value="548">KIRIKKALE</option>
+                            <form id="form" class="text-center pb-2">
+                                @csrf
+                                <select class="btn dropdown-toggle btn-light" name="sehirsec" id="">
+                                    <option value="548">KIRIKKALE</option>
 
-                                @foreach($sehir as $row)
-                                    <option value="{{$row->id}}">{{$row->sehir_ad}}</option>
-                                @endforeach
-                            </select>
-                        </form>
-                        @php
-                            $now = Carbon\Carbon::now()->format('H:i');
-                            $vakitler=Session::get('vakitler');
-                            $imsak = $vakitler["imsak"];
-                            $gunes = $vakitler['gunes'];
-                            $ogle = $vakitler['ogle'];
-                            $ikindi = $vakitler['ikindi'];
-                            $aksam = $vakitler['aksam'];
-                            $yatsi = $vakitler['yatsi'];
+                                    @foreach($sehir as $row)
+                                        <option value="{{$row->id}}">{{$row->sehir_ad}}</option>
+                                    @endforeach
+                                </select>
+                            </form>
+                            @php
+                                $now = Carbon\Carbon::now()->format('H:i');
+                                $vakitler=Session::get('vakitler');
+                                $imsak = $vakitler["imsak"];
+                                $gunes = $vakitler['gunes'];
+                                $ogle = $vakitler['ogle'];
+                                $ikindi = $vakitler['ikindi'];
+                                $aksam = $vakitler['aksam'];
+                                $yatsi = $vakitler['yatsi'];
 
-                        @endphp
+                            @endphp
 
 
-                        {{--        {{$now=Carbon\Carbon::now()->format('H:i:S')}}--}}
-                        <table class="table table-borderless text-light w-100 mb-2" id="gotur">
+                            {{--        {{$now=Carbon\Carbon::now()->format('H:i:S')}}--}}
+                            <table class="table table-borderless text-light w-100 mb-2" id="gotur">
 
-                            <tbody>
+                                <tbody>
 
-                            {{--                                @if ($now->between($imsak, $gunes))--}}
-                            @if ($now>=$imsak && $now<=$gunes)
-                                <tr data-hour="05:26" data-time-name="imsak" class="bg-light text-dark">
-                            @else
-                                <tr data-hour="05:26" data-time-name="imsak">
-                                    @endif
-                                    <td class="text-center"><i class="wi wi-day-fog text-warning"></i></td>
-                                    <td class="text-uppercase ">İmsak</td>
-                                    <td class="font-weight-bold imsak ">{{$vakitler['imsak']}}
-                                    </td>
-                                    <td>
-                                        @if ($now>=$imsak)
-                                            <i class="fas fa-check-circle text-success"></i>
-                                        @else
-                                            <i class="fas fa-hourglass text-warning"></i>
-                                        @endif
-                                    </td>
-                                </tr>
-                                {{--                                    @if ($now->between($gunes, $ogle))--}}
-                                @if ($now>=$gunes && $now<=$ogle)
+                                {{--                                @if ($now->between($imsak, $gunes))--}}
+                                @if ($now>=$imsak && $now<=$gunes)
                                     <tr data-hour="05:26" data-time-name="imsak" class="bg-light text-dark">
                                 @else
                                     <tr data-hour="05:26" data-time-name="imsak">
                                         @endif
-                                        <td class="text-center"><i class="wi wi-sunrise text-warning"></i></td>
-                                        <td class="text-uppercase">Güneş</td>
-                                        <td class="font-weight-bold gunes">{{$vakitler["gunes"]}}</td>
+                                        <td class="text-center"><i class="wi wi-day-fog text-warning"></i></td>
+                                        <td class="text-uppercase ">İmsak</td>
+                                        <td class="font-weight-bold imsak ">{{$vakitler['imsak']}}
+                                        </td>
                                         <td>
-                                            @if ($now>=$gunes)
+                                            @if ($now>=$imsak)
                                                 <i class="fas fa-check-circle text-success"></i>
                                             @else
                                                 <i class="fas fa-hourglass text-warning"></i>
                                             @endif
                                         </td>
                                     </tr>
-                                    {{--                                        @if ($now->between($ogle, $ikindi))--}}
-                                    @if ($now>=$ogle && $now<=$ikindi)
+                                    {{--                                    @if ($now->between($gunes, $ogle))--}}
+                                    @if ($now>=$gunes && $now<=$ogle)
                                         <tr data-hour="05:26" data-time-name="imsak" class="bg-light text-dark">
                                     @else
                                         <tr data-hour="05:26" data-time-name="imsak">
                                             @endif
-                                            <td class="text-center"><i class="wi wi-day-sunny text-warning"></i>
-                                            </td>
-                                            <td class="text-uppercase">Öğle</td>
-                                            <td class="font-weight-bold ogle">{{$vakitler["ogle"]}}</td>
+                                            <td class="text-center"><i class="wi wi-sunrise text-warning"></i></td>
+                                            <td class="text-uppercase">Güneş</td>
+                                            <td class="font-weight-bold gunes">{{$vakitler["gunes"]}}</td>
                                             <td>
-                                                @if ($now>=$ogle)
+                                                @if ($now>=$gunes)
                                                     <i class="fas fa-check-circle text-success"></i>
                                                 @else
                                                     <i class="fas fa-hourglass text-warning"></i>
                                                 @endif
                                             </td>
                                         </tr>
-                                        {{--                                            @if ($now->between($ikindi, $aksam))--}}
-                                        @if ($now>=$ikindi && $now<=$aksam)
-
+                                        {{--                                        @if ($now->between($ogle, $ikindi))--}}
+                                        @if ($now>=$ogle && $now<=$ikindi)
                                             <tr data-hour="05:26" data-time-name="imsak" class="bg-light text-dark">
+                                        @else
+                                            <tr data-hour="05:26" data-time-name="imsak">
                                                 @endif
-                                                <td class="text-center"><i class="wi wi-sunset text-warning"></i>
+                                                <td class="text-center"><i class="wi wi-day-sunny text-warning"></i>
                                                 </td>
-                                                <td class="text-uppercase">İkindi</td>
-                                                <td class="font-weight-bold ikindi">{{$vakitler["ikindi"]}}
-
-                                                    {{--                                                        @if($now<$ikindi)--}}
-                                                    {{--                                                            {{ $dateDiff = Carbon\Carbon::now()->diffInMinutes($ikindi,false)}}--}}
-
-                                                    {{--                                                        @endif--}}
-
-                                                </td>
+                                                <td class="text-uppercase">Öğle</td>
+                                                <td class="font-weight-bold ogle">{{$vakitler["ogle"]}}</td>
                                                 <td>
-                                                    {{--                                                        @if($now->between($ikindi,$aksam) || $now>$ikindi)--}}
-                                                    @if ($now>=$ikindi)
-
+                                                    @if ($now>=$ogle)
                                                         <i class="fas fa-check-circle text-success"></i>
                                                     @else
                                                         <i class="fas fa-hourglass text-warning"></i>
                                                     @endif
                                                 </td>
                                             </tr>
-                                            {{--                                                @if ($now->between($aksam, $yatsi))--}}
-                                            @if ($now>=$aksam && $now<=$yatsi)
+                                            {{--                                            @if ($now->between($ikindi, $aksam))--}}
+                                            @if ($now>=$ikindi && $now<=$aksam)
 
-                                                <tr data-hour="05:26" data-time-name="imsak"
-                                                    class="bg-light text-dark">
+                                                <tr data-hour="05:26" data-time-name="imsak" class="bg-light text-dark">
                                                     @endif
-                                                    <td class="text-center"><i
-                                                            class="wi wi-moonrise text-warning"></i></td>
-                                                    <td class="text-uppercase">Akşam</td>
-                                                    <td class="font-weight-bold aksam">{{$vakitler["aksam"]}}
+                                                    <td class="text-center"><i class="wi wi-sunset text-warning"></i>
+                                                    </td>
+                                                    <td class="text-uppercase">İkindi</td>
+                                                    <td class="font-weight-bold ikindi">{{$vakitler["ikindi"]}}
+
+                                                        {{--                                                        @if($now<$ikindi)--}}
+                                                        {{--                                                            {{ $dateDiff = Carbon\Carbon::now()->diffInMinutes($ikindi,false)}}--}}
+
+                                                        {{--                                                        @endif--}}
 
                                                     </td>
                                                     <td>
-                                                        @if ($now>=$aksam)
+                                                        {{--                                                        @if($now->between($ikindi,$aksam) || $now>$ikindi)--}}
+                                                        @if ($now>=$ikindi)
+
                                                             <i class="fas fa-check-circle text-success"></i>
                                                         @else
                                                             <i class="fas fa-hourglass text-warning"></i>
                                                         @endif
                                                     </td>
                                                 </tr>
-                                                @if ($now<$imsak)
+                                                {{--                                                @if ($now->between($aksam, $yatsi))--}}
+                                                @if ($now>=$aksam && $now<=$yatsi)
+
                                                     <tr data-hour="05:26" data-time-name="imsak"
                                                         class="bg-light text-dark">
                                                         @endif
                                                         <td class="text-center"><i
-                                                                class="wi wi-night-clear text-warning"></i></td>
-                                                        <td class="text-uppercase">Yatsı</td>
-                                                        <td class="font-weight-bold yatsi">{{$vakitler["yatsi"]}}</td>
+                                                                class="wi wi-moonrise text-warning"></i></td>
+                                                        <td class="text-uppercase">Akşam</td>
+                                                        <td class="font-weight-bold aksam">{{$vakitler["aksam"]}}
+
+                                                        </td>
                                                         <td>
-                                                            @if($now>=$yatsi)
+                                                            @if ($now>=$aksam)
                                                                 <i class="fas fa-check-circle text-success"></i>
                                                             @else
                                                                 <i class="fas fa-hourglass text-warning"></i>
                                                             @endif
                                                         </td>
                                                     </tr>
-                            </tbody>
-                        </table>
-                        <div class="w-100" id="al"></div>
+                                                    @if ($now<$imsak)
+                                                        <tr data-hour="05:26" data-time-name="imsak"
+                                                            class="bg-light text-dark">
+                                                            @endif
+                                                            <td class="text-center"><i
+                                                                    class="wi wi-night-clear text-warning"></i></td>
+                                                            <td class="text-uppercase">Yatsı</td>
+                                                            <td class="font-weight-bold yatsi">{{$vakitler["yatsi"]}}</td>
+                                                            <td>
+                                                                @if($now>=$yatsi)
+                                                                    <i class="fas fa-check-circle text-success"></i>
+                                                                @else
+                                                                    <i class="fas fa-hourglass text-warning"></i>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                </tbody>
+                            </table>
+                            <div class="w-100" id="al"></div>
+                        </div>
+
+
                     </div>
-
-
                 </div>
+
             </div>
+            <!--Namaz vakitleri-->
         </div>
         @if(count($video_gallary)>7)
             <section class="bg-dark mt-3 pt-3 pb-3">

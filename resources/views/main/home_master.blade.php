@@ -10,24 +10,24 @@
     <title>@yield('title')</title>
     <meta name="keywords" content="@yield('meta_keywords')">
     <meta name="description" content="@yield('meta_description')">
-    <meta property="og:site_name" content="@yield('og:site_name')" />
+    <meta property="og:site_name" content="@yield('og:site_name')"/>
     <meta property="og:title" content="@yield('og:title')"/>
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="article"/>
     <meta property="og:description" content="@yield('og:description')"/>
     <meta property="og:image" content="@yield('og:image')"/>
-{{--    <meta property="og:type" content="article"/>--}}
+    {{--    <meta property="og:type" content="article"/>--}}
     <meta property="og:url" content="@yield('og:url')"/>
     <meta property="og:image:type" content="image/jpeg"/>
     <meta name="twitter:url" content="@yield(('twitter:url'))"/>
     <meta name="twitter:domain" content="@yield(('twitter:domain'))"/>
     <meta name="twitter:site" content="@yield(('twitter:site'))"/>
     <meta name="twitter:title" content="@yield(('twitter:title'))"/>
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="600" />
-    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="600"/>
+    <meta property="og:image:type" content="image/jpeg"/>
 
     {{--    <meta property="og:url" content="{{ $data->page_url}}" />--}}
-{{--    <meta property="og:image" content="{{ $data->imag_url}}"   />--}}
+    {{--    <meta property="og:image" content="{{ $data->imag_url}}"   />--}}
     <link rel="canonical" href="{{url()->current()}}"/>
     <meta name="google-site-verification" content="@yield('google_verification')"/>
     <script async src="https://www.googletagmanager.com/gtag/js?id=@yield('google_verification')"></script>
@@ -47,14 +47,20 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id='@yield('google_analytics')'"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', '@yield('google_analytics')');
     </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=@yield('adsense_code')"      crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=@yield('adsense_code')"
+            crossorigin="anonymous"></script>
     <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
-    <link rel="preload" href="{{mix('frontend/assets/css/combine.css')}}" as="style" onload="this.rel='stylesheet'" onerror="this.href='stylesheet'">
+    <link rel="preload" href="{{mix('frontend/assets/css/combine.css')}}" as="style" onload="this.rel='stylesheet'"
+          onerror="this.href='stylesheet'">
 
     <!-- FONT AWESOME-->
     <link rel="preload" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" as="style"
@@ -76,19 +82,23 @@
     <link rel="preload" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" as="style"
           onload="this.rel='stylesheet'" onerror="this.href='stylesheet' ">
     <!-- Add the slick-theme.css if you want default styling -->
-{{--    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>--}}
-    <!-- Add the slick-theme.css if you want default styling -->
-    <script rel="preload" src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+    {{--    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>--}}
+<!-- Add the slick-theme.css if you want default styling -->
+    <script rel="preload" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" async></script>
 
     <script src="{{mix('frontend/assets/js/combine.js')}}"></script>
-{{--    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js" async></script>--}}
-{{--    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>--}}
-{{--    <script src="{{mix('js/swiper-bundle.js')}}"></script>--}}
+    {{--    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js" async></script>--}}
+    {{--    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>--}}
+    {{--    <script src="{{mix('js/swiper-bundle.js')}}"></script>--}}
 
-{{--    <script type="text/javascript" src="{{asset('frontend/assets/js/marquee.js')}}"></script>--}}
-{{--    <script type="text/javascript" src="{{asset('frontend/assets/js/svg-turkiye-haritasi.js')}}"></script>--}}
+    {{--    <script type="text/javascript" src="{{asset('frontend/assets/js/marquee.js')}}"></script>--}}
+    {{--    <script type="text/javascript" src="{{asset('frontend/assets/js/svg-turkiye-haritasi.js')}}"></script>--}}
+    @if(Session::get('theme')==1)
 
+        <link rel="preload" href="{{asset('frontend/assets/css/darkMode.css')}}" as="style" onload="this.rel='stylesheet'"
+              onerror="this.href='stylesheet'">
+    @endif
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6265404652403069"
             crossorigin="anonymous"></script>
@@ -96,7 +106,6 @@
     @include('main.body.header')
 
 </head>
-
 <body>
 @yield('content')
 @include('main.body.footer')
