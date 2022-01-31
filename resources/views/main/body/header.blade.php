@@ -166,7 +166,7 @@ $gelenil=Session::get('gelenil');
                     </div>
 
                     <div class="row d-flex align-items-center justify-content-start">
-                        @if(Session::get('theme')==0)
+                   <!--     @if(Session::get('theme')==0)
                             <a class=" d-none d-md-block h6 pt-2" style="font-size: 14px"
                                href="{{URL::to('Mode/dark/'.Session::get('theme'))}}"> Gece modu <i
                                     class="fa fa-moon"></i></a>
@@ -175,7 +175,7 @@ $gelenil=Session::get('gelenil');
                                href="{{URL::to('Mode/dark/'.Session::get('theme'))}}"> Gündüz Modu <i
                                     class="fa fa-sun"></i></a>
                         @endif
-
+-->
                         <div class=" col-12 col-md-2 d-none d-md-block text-center ">
                             @php $now = Carbon\Carbon::now()->format('H:i');
                   $imsak = $vakitler["imsak"];
