@@ -12154,7 +12154,7 @@ img.lazyload:not([src]) {
 .yahsilogo{
     display:initial;
 }
-npm.video-overlay {
+.video-overlay {
     position: absolute;
     top: 47%;
     left: 50%;
@@ -12163,6 +12163,17 @@ npm.video-overlay {
     opacity: .8;
     color: white
 }
+
+.video-overlay__kucuk {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    opacity: .8;
+    color: white
+}
+
 
 
 /*!
@@ -14444,7 +14455,7 @@ img.mfp-img {
 }
 
 /**
- * Swiper 7.3.2
+ * Swiper 7.4.1
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -14452,7 +14463,7 @@ img.mfp-img {
  *
  * Released under the MIT License
  *
- * Released on: December 13, 2021
+ * Released on: December 24, 2021
  */
 
 @font-face {

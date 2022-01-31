@@ -392,7 +392,7 @@ function svgturkiyeharitasi() {
 }
 
 /**
- * Swiper 7.3.2
+ * Swiper 7.4.1
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -400,7 +400,7 @@ function svgturkiyeharitasi() {
  *
  * Released under the MIT License
  *
- * Released on: December 13, 2021
+ * Released on: December 24, 2021
  */
 
 (function (global, factory) {
@@ -2361,7 +2361,7 @@ function svgturkiyeharitasi() {
       } // Update Height
 
 
-      if (newHeight) swiper.$wrapperEl.css('height', `${newHeight}px`);
+      if (newHeight || newHeight === 0) swiper.$wrapperEl.css('height', `${newHeight}px`);
     }
 
     function updateSlidesOffset() {
@@ -3059,40 +3059,32 @@ function svgturkiyeharitasi() {
         return true;
       }
 
+      swiper.setTransition(speed);
+      swiper.setTranslate(translate);
+      swiper.updateActiveIndex(slideIndex);
+      swiper.updateSlidesClasses();
+      swiper.emit('beforeTransitionStart', speed, internal);
+      swiper.transitionStart(runCallbacks, direction);
+
       if (speed === 0) {
-        swiper.setTransition(0);
-        swiper.setTranslate(translate);
-        swiper.updateActiveIndex(slideIndex);
-        swiper.updateSlidesClasses();
-        swiper.emit('beforeTransitionStart', speed, internal);
-        swiper.transitionStart(runCallbacks, direction);
         swiper.transitionEnd(runCallbacks, direction);
-      } else {
-        swiper.setTransition(speed);
-        swiper.setTranslate(translate);
-        swiper.updateActiveIndex(slideIndex);
-        swiper.updateSlidesClasses();
-        swiper.emit('beforeTransitionStart', speed, internal);
-        swiper.transitionStart(runCallbacks, direction);
+      } else if (!swiper.animating) {
+        swiper.animating = true;
 
-        if (!swiper.animating) {
-          swiper.animating = true;
-
-          if (!swiper.onSlideToWrapperTransitionEnd) {
-            swiper.onSlideToWrapperTransitionEnd = function transitionEnd(e) {
-              if (!swiper || swiper.destroyed) return;
-              if (e.target !== this) return;
-              swiper.$wrapperEl[0].removeEventListener('transitionend', swiper.onSlideToWrapperTransitionEnd);
-              swiper.$wrapperEl[0].removeEventListener('webkitTransitionEnd', swiper.onSlideToWrapperTransitionEnd);
-              swiper.onSlideToWrapperTransitionEnd = null;
-              delete swiper.onSlideToWrapperTransitionEnd;
-              swiper.transitionEnd(runCallbacks, direction);
-            };
-          }
-
-          swiper.$wrapperEl[0].addEventListener('transitionend', swiper.onSlideToWrapperTransitionEnd);
-          swiper.$wrapperEl[0].addEventListener('webkitTransitionEnd', swiper.onSlideToWrapperTransitionEnd);
+        if (!swiper.onSlideToWrapperTransitionEnd) {
+          swiper.onSlideToWrapperTransitionEnd = function transitionEnd(e) {
+            if (!swiper || swiper.destroyed) return;
+            if (e.target !== this) return;
+            swiper.$wrapperEl[0].removeEventListener('transitionend', swiper.onSlideToWrapperTransitionEnd);
+            swiper.$wrapperEl[0].removeEventListener('webkitTransitionEnd', swiper.onSlideToWrapperTransitionEnd);
+            swiper.onSlideToWrapperTransitionEnd = null;
+            delete swiper.onSlideToWrapperTransitionEnd;
+            swiper.transitionEnd(runCallbacks, direction);
+          };
         }
+
+        swiper.$wrapperEl[0].addEventListener('transitionend', swiper.onSlideToWrapperTransitionEnd);
+        swiper.$wrapperEl[0].addEventListener('webkitTransitionEnd', swiper.onSlideToWrapperTransitionEnd);
       }
 
       return true;
@@ -3131,6 +3123,10 @@ function svgturkiyeharitasi() {
         swiper.loopFix(); // eslint-disable-next-line
 
         swiper._clientLeft = swiper.$wrapperEl[0].clientLeft;
+      }
+
+      if (params.rewind && swiper.isEnd) {
+        return swiper.slideTo(0, speed, runCallbacks, internal);
       }
 
       return swiper.slideTo(swiper.activeIndex + increment, speed, runCallbacks, internal);
@@ -3191,6 +3187,10 @@ function svgturkiyeharitasi() {
           prevIndex = prevIndex - swiper.slidesPerViewDynamic('previous', true) + 1;
           prevIndex = Math.max(prevIndex, 0);
         }
+      }
+
+      if (params.rewind && swiper.isBeginning) {
+        return swiper.slideTo(swiper.slides.length - 1, speed, runCallbacks, internal);
       }
 
       return swiper.slideTo(prevIndex, speed, runCallbacks, internal);
@@ -4460,6 +4460,8 @@ function svgturkiyeharitasi() {
       loopedSlides: null,
       loopFillGroupWithBlank: false,
       loopPreventsSlide: true,
+      // rewind
+      rewind: false,
       // Swiping/no swiping
       allowSlidePrev: true,
       allowSlideNext: true,
@@ -6036,19 +6038,19 @@ function svgturkiyeharitasi() {
           $nextEl,
           $prevEl
         } = swiper.navigation;
-        toggleEl($prevEl, swiper.isBeginning);
-        toggleEl($nextEl, swiper.isEnd);
+        toggleEl($prevEl, swiper.isBeginning && !swiper.params.rewind);
+        toggleEl($nextEl, swiper.isEnd && !swiper.params.rewind);
       }
 
       function onPrevClick(e) {
         e.preventDefault();
-        if (swiper.isBeginning && !swiper.params.loop) return;
+        if (swiper.isBeginning && !swiper.params.loop && !swiper.params.rewind) return;
         swiper.slidePrev();
       }
 
       function onNextClick(e) {
         e.preventDefault();
-        if (swiper.isEnd && !swiper.params.loop) return;
+        if (swiper.isEnd && !swiper.params.loop && !swiper.params.rewind) return;
         swiper.slideNext();
       }
 
@@ -6263,7 +6265,7 @@ function svgturkiyeharitasi() {
             $el.css(swiper.isHorizontal() ? 'width' : 'height', `${bulletSize * (params.dynamicMainBullets + 4)}px`);
 
             if (params.dynamicMainBullets > 1 && swiper.previousIndex !== undefined) {
-              dynamicBulletIndex += current - swiper.previousIndex;
+              dynamicBulletIndex += current - (swiper.previousIndex - swiper.loopedSlides || 0);
 
               if (dynamicBulletIndex > params.dynamicMainBullets - 1) {
                 dynamicBulletIndex = params.dynamicMainBullets - 1;
@@ -6272,7 +6274,7 @@ function svgturkiyeharitasi() {
               }
             }
 
-            firstIndex = current - dynamicBulletIndex;
+            firstIndex = Math.max(current - dynamicBulletIndex, 0);
             lastIndex = firstIndex + (Math.min(bullets.length, params.dynamicMainBullets) - 1);
             midIndex = (lastIndex + firstIndex) / 2;
           }
@@ -6316,7 +6318,7 @@ function svgturkiyeharitasi() {
               }
 
               if (swiper.params.loop) {
-                if (bulletIndex >= bullets.length - params.dynamicMainBullets) {
+                if (bulletIndex >= bullets.length) {
                   for (let i = params.dynamicMainBullets; i >= 0; i -= 1) {
                     bullets.eq(bullets.length - i).addClass(`${params.bulletActiveClass}-main`);
                   }
@@ -8242,7 +8244,7 @@ function svgturkiyeharitasi() {
       }
 
       function updateNavigation() {
-        if (swiper.params.loop || !swiper.navigation) return;
+        if (swiper.params.loop || swiper.params.rewind || !swiper.navigation) return;
         const {
           $nextEl,
           $prevEl
