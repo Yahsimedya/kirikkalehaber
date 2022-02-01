@@ -17,15 +17,15 @@
 
 
         .detay__sidebar-baslik::before {
-            background: {{$themeSetting[0]->siteColorTheme}} !important;
+            background: {{$themeSetting[0]->siteColorTheme}}         !important;
         }
 
         .anamanset-pagination > .swiper-pagination-bullet-active {
-            background-color: {{$themeSetting[0]->siteColorTheme}}           !important;
+            background-color: {{$themeSetting[0]->siteColorTheme}}                   !important;
         }
 
         .pagination-1 > .swiper-pagination-bullet-active, .pagination-2 > .swiper-pagination-bullet-active {
-            background-color: {{$themeSetting[0]->siteColorTheme}}                            !important;
+            background-color: {{$themeSetting[0]->siteColorTheme}}                                    !important;
         }
 
         .media.media-weather {
@@ -631,7 +631,7 @@
                                                  class="text-center text-orange-400">{{Str::limit($author->name,17)}}</div>
                                             <div
                                                 class="text-center text-orange-400 font-weight-thin card-kisalt"
-                                                >{{$author->title}}</div>
+                                            >{{$author->title}}</div>
                                         </a>
                                     </div>
                                 @endforeach
@@ -654,30 +654,19 @@
                 <p class="detay__sidebar-baslik "></p>
             </div>
             <div class="row">
-
                 <div class="col-md-9 col-12 pl-0">
-
-                    <div class="col-md-12 col-12 pr-2">
-                        <ul class="list-group">
-                            @foreach($endNews as $row)
-                             <a href="{{URL::to($row['url'])}}">
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    {{$row['pageTitle']}}
-                                    <span class="badge  badge-pill"
-                                          style="background-color: {{$themeSetting[0]->siteColorTheme}} ;color: white"> {{$row['pageViews']}}</span>
-                                </li>
-                             </a>
-                            @endforeach
-
-
-                        </ul>
-
-
-                    </div>
+                    <ul class="list-group p-2">
+                        @foreach($endNews as $row)
+                            <li class="list-group-item card-kisalttek"><img data-src="{{asset($row->image)}}"
+                                                                            onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                                            class="img-fluid lazyload"
+                                                                            width="100px"> {{$row->title_tr}}</li>
+                        @endforeach
+                    </ul>
                 </div>
 
 
-                <div class="col-md-3 col-12 pl-0">
+                <div class="col-md-3 col-12 pt-2">
                     <div class="col-md-12 pb-1 mb-1" style="background: linear-gradient(
 100deg
  , #262626, #515151);">

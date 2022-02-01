@@ -104,7 +104,7 @@
                         </div>
                         <img src="" alt="">
                     </div>
-                    <ul class="detay__kategori list-unstyled pb-3 social-icons " style="opacity: 0.7;font-weight: 600">
+                    <ul class="detay__kategori list-unstyled pb-3 social-icons ">
                         <li class="float-left mr-2"><i class="fa fa-calendar-alt  text-danger pr-1">
                             </i> {{ \Carbon\Carbon::parse($post->created_at)->isoFormat('DD MMMM YYYY') }}</li>
                         <li class="float-left mr-2"><i

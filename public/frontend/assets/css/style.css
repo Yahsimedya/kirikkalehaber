@@ -10139,6 +10139,14 @@ a, :hover {
     max-height: 58px;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical
+}.card-kisalttek {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box !important;
+    line-height: 26px;
+    max-height: 58px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical
 }
 
 .card-spor {
@@ -10667,6 +10675,10 @@ a, :hover {
 
 .detay__icerik {
     font-family: Poppins
+}
+.detay__kategori {
+    font-weight:700!important;
+    color:#343434;
 }
 
 .detay__spot {

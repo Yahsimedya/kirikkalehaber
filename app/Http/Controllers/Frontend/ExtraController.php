@@ -37,6 +37,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Cache;
 use Analytics;
 use Spatie\Analytics\Period;
+
 //use PublicApi;
 class ExtraController extends Controller
 {
@@ -257,10 +258,10 @@ class ExtraController extends Controller
             ->get();
         $webSiteSetting = WebsiteSetting::get();
         $themeSetting = Theme::get();
-        return view('main.body.tags', compact('tagPosts', 'count', 'themeSetting', 'webSiteSetting', 'nextnews', 'ads','tagPostsSlideralti','nextnewsyan'));
-        $webSiteSetting=WebsiteSetting::get();
-        $themeSetting=Theme::get();
-        return view('main.body.tags', compact('tagPosts', 'count','nextnewsyan','themeSetting','webSiteSetting', 'nextnews', 'ads', 'tagPostsSlideralti'));
+        return view('main.body.tags', compact('tagPosts', 'count', 'themeSetting', 'webSiteSetting', 'nextnews', 'ads', 'tagPostsSlideralti', 'nextnewsyan'));
+        $webSiteSetting = WebsiteSetting::get();
+        $themeSetting = Theme::get();
+        return view('main.body.tags', compact('tagPosts', 'count', 'nextnewsyan', 'themeSetting', 'webSiteSetting', 'nextnews', 'ads', 'tagPostsSlideralti'));
     }
 
     public function feed()
@@ -356,10 +357,28 @@ class ExtraController extends Controller
 
     public function Home()
     {
-        $encokOkunan[]=array();
-        $endNews=Analytics::fetchMostVisitedPages(Period::days(1),$maxResults = 8);
+        $news = Analytics::fetchMostVisitedPages(Period::days(1), $maxResults = 6);
+        $endNewss = [];
+
+        foreach ($news as $news) {
+            $r = $news['url'];
+            $r = explode('?', $r);
+            $r = array_filter($r);
+            $r = array_merge($r, array());
+            $id = $r[0];
+            $id = str_replace('/haberi', '', $id);
+            $id = explode('-', $id);
+            $id = array_filter($id);
+            $id = array_merge($id, array());
+            $idCount = count($id) - 1;
+            $alinanID = $id[$idCount];
+            $alinanIDs = explode('/', $alinanID);
+            $endNewss[] = $alinanIDs[1];
+
+        }
 
 
+        $endNews = Post::whereIn('id', $endNewss)->get();
 
 
 
@@ -510,15 +529,12 @@ class ExtraController extends Controller
         });
 
 
-
-
         $ekonomi = Cache::remember("ekeonomi", Carbon::now()->addYear(), function () use ($category1) {
             if (Cache::has('ekeonomi')) return Cache::has('ekeonomi');
             return Post::with(['category:id,category_tr'])->where('category_id', $category1)->status()
-
-                -> Where(function($query) {
-                        $query->orWhere('featured',0)
-                            ->orWhere('featured',null);
+                ->Where(function ($query) {
+                    $query->orWhere('featured', 0)
+                        ->orWhere('featured', null);
                 })
                 ->limit(9)->latest('created_at')->get();
 
@@ -526,19 +542,19 @@ class ExtraController extends Controller
 
         $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () use ($category2) {
             if (Cache::has('gundem')) return Cache::has('gundem');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category2)->status()->Where(function($query) {
-                        $query->orWhere('featured',0)
-                            ->orWhere('featured',null);
-                })
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category2)->status()->Where(function ($query) {
+                $query->orWhere('featured', 0)
+                    ->orWhere('featured', null);
+            })
                 ->limit(9)->latest('created_at')->get();
         });
 
         $siyaset = Cache::remember("siyaset", Carbon::now()->addYear(), function () use ($category3) {
             if (Cache::has('siyaset')) return Cache::has('siyaset');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category3)->status()->Where(function($query) {
-                        $query->orWhere('featured',0)
-                            ->orWhere('featured',null);
-                })
+            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category3)->status()->Where(function ($query) {
+                $query->orWhere('featured', 0)
+                    ->orWhere('featured', null);
+            })
                 ->limit(9)->latest('created_at')->get();
         });
 
@@ -546,15 +562,12 @@ class ExtraController extends Controller
             if (Cache::has('spor')) return Cache::has('spor');
             return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->status()->
 
-                Where(function($query) {
-                    $query->orWhere('featured',0)
-                        ->orWhere('featured',null);
-                })
+            Where(function ($query) {
+                $query->orWhere('featured', 0)
+                    ->orWhere('featured', null);
+            })
                 ->limit(6)->latest('created_at')->get();
         });
-
-
-
 
 
         $ekonomimanset = Cache::remember("ekeonomimanset", Carbon::now()->addYear(), function () use ($category1) {
@@ -577,7 +590,6 @@ class ExtraController extends Controller
             if (Cache::has('spormanset')) return Cache::has('spormanset');
             return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->status()->where('featured', 1)->limit(9)->latest('created_at')->get();
         });
-
 
 
         $themeSetting = Cache::remember("themeSetting", Carbon::now()->addYear(), function () {
@@ -696,11 +708,11 @@ class ExtraController extends Controller
         $webSiteSetting = WebsiteSetting::first();
 
         //$fotogaleri=Photo::where('status',1)->groupBY('photocategory_id')->get();
-        $fotogaleri=Photo::leftjoin('photocategories', 'photos.photocategory_id', '=', 'photocategories.id')
+        $fotogaleri = Photo::leftjoin('photocategories', 'photos.photocategory_id', '=', 'photocategories.id')
             ->where('photocategories.status', 1)->where('photos.status', 1)->groupBY('photocategories.id')
             ->latest("photocategories.updated_at")
             ->get();
-        return view('main.home', compact('home','encokOkunan', 'fotogaleri', 'ekonomi', 'endNews','ekonomimanset', 'webSiteSetting', 'surmanset', 'gundem','gundemmanset', 'spor', 'siyaset','spormanset', 'siyasetmanset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
+        return view('main.home', compact('home', 'fotogaleri', 'ekonomi', 'endNews', 'ekonomimanset', 'webSiteSetting', 'surmanset', 'gundem', 'gundemmanset', 'spor', 'siyaset', 'spormanset', 'siyasetmanset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 
@@ -854,7 +866,6 @@ class ExtraController extends Controller
         $manset =
             Post::join('categories', 'posts.category_id', 'categories.id')
                 ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-
                 ->where('posts.category_id', $id)->where('posts.manset', 1)
                 ->where('posts.status', 1)
                 ->orderBy('created_at', 'desc')
@@ -909,12 +920,13 @@ class ExtraController extends Controller
 
         return \view('main.body.search', compact('searchNews', 'webSiteSetting',));
     }
-    public function darkMode(Request $request,$themeChange)
+
+    public function darkMode(Request $request, $themeChange)
     {
-        if ($themeChange==0){
-            Session::put('theme',1);
-        }else{
-            Session::put('theme',0);
+        if ($themeChange == 0) {
+            Session::put('theme', 1);
+        } else {
+            Session::put('theme', 0);
         }
         return redirect()->back();
     }
@@ -980,17 +992,13 @@ class ExtraController extends Controller
         $yazarID = $yaziPost->authors_id;
 //        dd($yazarID);
         $nextauthors_posts = AuthorsPost::status()->where('authors_id', $yazarID)->latest()->limit(8)->get();
-        $OtherAuthors =AuthorsPost::whereId($Authorid)->limit(10)->orderBy('id', 'desc')->get(); //
+        $OtherAuthors = AuthorsPost::whereId($Authorid)->limit(10)->orderBy('id', 'desc')->get(); //
         $seoset = Seos::first();
 
         $themeSetting = Theme::get();
-        $yazardes=DB::table('authors')->where('id','=',$yaziPost->authors_id)->first();
-        return view('main.body.authors_writes', compact('yaziPost', 'webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset','yazardes', 'themeSetting'));
+        $yazardes = DB::table('authors')->where('id', '=', $yaziPost->authors_id)->first();
+        return view('main.body.authors_writes', compact('yaziPost', 'webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'yazardes', 'themeSetting'));
     }
-
-
-
-
 
 
     public function Author_post($slug_name, $Authorid)
@@ -1002,12 +1010,12 @@ class ExtraController extends Controller
 
         $yazarID = $Authorid;
         $nextauthors_posts = AuthorsPost::status()->where('authors_id', $yazarID)->paginate(15);
-        $OtherAuthors =AuthorsPost::whereId($Authorid)->limit(10)->orderBy('id', 'desc')->get(); //
+        $OtherAuthors = AuthorsPost::whereId($Authorid)->limit(10)->orderBy('id', 'desc')->get(); //
         $seoset = Seos::first();
 
         $themeSetting = Theme::get();
-        $yazardes=DB::table('authors')->where('id','=',$yazarID)->first();
-        return view('main.body.allAuthorsPost', compact( 'webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset','yazardes', 'themeSetting'));
+        $yazardes = DB::table('authors')->where('id', '=', $yazarID)->first();
+        return view('main.body.allAuthorsPost', compact('webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'yazardes', 'themeSetting'));
     }
 
     public function breakingnews()

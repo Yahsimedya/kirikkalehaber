@@ -94,11 +94,7 @@
 
     {{--    <script type="text/javascript" src="{{asset('frontend/assets/js/marquee.js')}}"></script>--}}
     {{--    <script type="text/javascript" src="{{asset('frontend/assets/js/svg-turkiye-haritasi.js')}}"></script>--}}
-    @if(Session::get('theme')==1)
 
-        <link rel="preload" href="{{asset('frontend/assets/css/darkMode.css')}}" as="style" onload="this.rel='stylesheet'"
-              onerror="this.href='stylesheet'">
-    @endif
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6265404652403069"
             crossorigin="anonymous"></script>
@@ -106,6 +102,7 @@
     @include('main.body.header')
 
 </head>
+
 <body>
 @yield('content')
 @include('main.body.footer')
@@ -118,6 +115,9 @@
         });
     });
 </script>
+
+<!-- Initialize Swiper -->
+
 <script>
     svgturkiyeharitasi();
 

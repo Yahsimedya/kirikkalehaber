@@ -55,11 +55,11 @@ $gelenil=Session::get('gelenil');
 <style>
 
     .border-danger {
-        border-color: {{$themeSetting[0]->siteColorTheme}}        !important;
+        border-color: {{$themeSetting[0]->siteColorTheme}}      !important;
     }
 
     .nav-link:after {
-        border-bottom-color: {{$themeSetting[0]->siteColorTheme}}        !important;
+        border-bottom-color: {{$themeSetting[0]->siteColorTheme}}      !important;
     }
 
     .dropdown:hover .dropdown-menu {
@@ -165,17 +165,7 @@ $gelenil=Session::get('gelenil');
                             <img class="logo img-fluid" src="{{asset($websetting->logo)}}" alt=""></a>
                     </div>
 
-                    <div class="row d-flex align-items-center justify-content-start">
-                   <!--     @if(Session::get('theme')==0)
-                            <a class=" d-none d-md-block h6 pt-2" style="font-size: 14px"
-                               href="{{URL::to('Mode/dark/'.Session::get('theme'))}}"> Gece modu <i
-                                    class="fa fa-moon"></i></a>
-                        @else
-                            <a class=" d-none d-md-block text-light h6 pt-2" style="font-size: 14px"
-                               href="{{URL::to('Mode/dark/'.Session::get('theme'))}}"> Gündüz Modu <i
-                                    class="fa fa-sun"></i></a>
-                        @endif
--->
+
                         <div class=" col-12 col-md-2 d-none d-md-block text-center ">
                             @php $now = Carbon\Carbon::now()->format('H:i');
                   $imsak = $vakitler["imsak"];
@@ -240,24 +230,22 @@ $gelenil=Session::get('gelenil');
 
                             @endif
                         </div>
-                    </div>
 
                 </div>
             </div>
         </section>
         <nav id="navbar_top"
-             class="navbar navbar-expand-lg  p-0 m-0 shadow-sm border-top">
+             class="navbar navbar-expand-lg navbar-light bg-white p-0 m-0 shadow-sm border-top">
 
 
             <div class="container">
-                <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-                {{--        {{dd($websetting)}}--}}
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse navbar-light" id="main_nav"
-                     style="z-index:999;">
+                     style="z-index:999;background-color: white;">
                     <ul class="navbar-nav ml-auto mx-auto">
                         <a style="box-shadow: none;" class="btn  "
                            id="dropdownMenuButton"
@@ -519,33 +507,6 @@ $gelenil=Session::get('gelenil');
                 {{--        </div>--}}
 
 
-                <div class="col-md-2 col-2">
-                    <form class="form-inline mt-1 mt-md-0 position-relative" action="{{route('search')}}"
-                          method="POST">
-                        @csrf
-                        <div class="close">
-                            <i class="fa fa-close"></i>
-                        </div>
-                        <div class="search mt-2">
-                            <i class="fa fa-search" style="color: {{$themeSetting[0]->siteColorTheme}}"></i>
-                            <input type="text" name="searchtext" class="input mt-5" placeholder="Arama Yap">
-                        </div>
-
-                    <!----- close button
-
-                            <form class="form-inline mt-1 mt-md-0 position-relative" action="{{route('search')}}" method="POST">
-
-                        <input class="form-control mr-sm-2 rounded-pill" name="searchtext" type="text" placeholder="Arama Yap"
-                               style="width: 150px; ">
-                        <button class="btn btn-primary my-2 my-sm-0 rounded-pill position-absolute search"
-                                style=" background-color:  {{$themeSetting[0]->siteColorTheme}} !important;" type="submit"><i
-                                class="fa fa-search"></i>
-                        </button>----->
-
-
-                    </form>
-
-                </div>
 
             </div>
             </div>
@@ -555,8 +516,7 @@ $gelenil=Session::get('gelenil');
 
 
             <div class="container">
-                <!-- <a class="navbar-brand" href="#">Navbar</a> -->
-                {{--        {{dd($websetting)}}--}}
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -630,6 +590,34 @@ $gelenil=Session::get('gelenil');
                            id="dropdownMenuButton"
                            href="{{route('TumKategoriler')}}">
                             Tümü
+                        </a>
+                        <a>
+                            <form class="form-inline   position-relative" action="{{route('search')}}"
+                                  method="POST">
+                                @csrf
+                                <div class="close">
+                                    <i class="fa fa-close"></i>
+                                </div>
+                                <div class="search mt-2">
+                                    <i class="fa fa-search" style="color: {{$themeSetting[0]->siteColorTheme}}"></i>
+                                    <input type="text" name="searchtext" class="input mt-5 text-white"
+                                           placeholder="Arama Yap">
+                                </div>
+
+                            <!----- close button
+
+                            <form class="form-inline mt-1 mt-md-0 position-relative" action="{{route('search')}}" method="POST">
+
+                        <input class="form-control mr-sm-2 rounded-pill" name="searchtext" type="text" placeholder="Arama Yap"
+                               style="width: 150px; ">
+                        <button class="btn btn-primary my-2 my-sm-0 rounded-pill position-absolute search"
+                                style=" background-color:  {{$themeSetting[0]->siteColorTheme}} !important;" type="submit"><i
+                                class="fa fa-search"></i>
+                        </button>----->
+
+
+                            </form>
+
                         </a>
                     </ul>
 
