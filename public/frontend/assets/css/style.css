@@ -10462,7 +10462,7 @@ a, :hover {
 }
 
 .swiper-button-next:after, .swiper-button-prev:after {
-    font-size: 10px !important
+    font-size: 10px !important;
 }
 
 .swiper-button-next:focus, .swiper-button-prev:focus {

@@ -329,8 +329,8 @@
                         <!-- Add Pagination -->
                         <div class="swiper-pagination anamanset-pagination">
                         </div>
-                        <div class="swiper-button-next manset-next"></div>
-                        <div class="swiper-button-prev manset-prev"></div>
+                        <div class="swiper-button-next manset-next pt-5 mt-5"></div>
+                        <div class="swiper-button-prev manset-prev pt-5 mt-5"></div>
                     </div>
 
 
