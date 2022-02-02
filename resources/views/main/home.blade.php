@@ -17,15 +17,15 @@
 
 
         .detay__sidebar-baslik::before {
-            background: {{$themeSetting[0]->siteColorTheme}}         !important;
+            background: {{$themeSetting[0]->siteColorTheme}}          !important;
         }
 
         .anamanset-pagination > .swiper-pagination-bullet-active {
-            background-color: {{$themeSetting[0]->siteColorTheme}}                   !important;
+            background-color: {{$themeSetting[0]->siteColorTheme}}                    !important;
         }
 
         .pagination-1 > .swiper-pagination-bullet-active, .pagination-2 > .swiper-pagination-bullet-active {
-            background-color: {{$themeSetting[0]->siteColorTheme}}                                    !important;
+            background-color: {{$themeSetting[0]->siteColorTheme}}                                     !important;
         }
 
         .media.media-weather {
@@ -657,10 +657,12 @@
                 <div class="col-md-9 col-12 pl-0">
                     <ul class="list-group p-2">
                         @foreach($endNews as $row)
-                            <li class="list-group-item card-kisalttek"><img data-src="{{asset($row->image)}}"
-                                                                            onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                                                            class="img-fluid lazyload"
-                                                                            width="100px"> {{$row->title_tr}}</li>
+                            <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
+                              <li class="list-group-item card-kisalttek"><img data-src="{{asset($row->image)}}"
+                                                                              onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                                              class="img-fluid lazyload"
+                                                                              width="100px"> {{$row->title_tr}}</li>
+                          </a>
                         @endforeach
                     </ul>
                 </div>
