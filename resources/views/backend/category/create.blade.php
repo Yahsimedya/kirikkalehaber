@@ -503,14 +503,26 @@
                         <div class="form-group row">
                             <label class="col-form-label col-lg-2">Kategori Sıra</label>
                             <div class="col-lg-4">
-                                <input type="number" name="category_order"  class="form-control">
+                                <input type="number" name="category_order" value="0"  class="form-control">
                             </div>
                             <div class="col-md-3 mb-3">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="checkbox" name="category_menu"  class="form-check-input-styled-primary"  data-fouc>
+                                        <input type="checkbox" name="category_menu" checked  class="form-check-input-styled-primary"  data-fouc>
                                         Kategori'yi Göster
                                     </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 mt-4"></div>
+                        <div class="form-group row">
+                            <label class="col-form-label col-lg-2">Kategori Renk</label>
+                            <div class="col-lg-10">
+                                <div class="example full" style="width: 100%; height: 30px">
+
+                                    <input type="text" class="coloris" name="categorycolor"
+                                           style="width: 100%; height: 30px"
+                                           >
                                 </div>
                             </div>
                         </div>
