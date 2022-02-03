@@ -369,7 +369,7 @@ $gelenil=Session::get('gelenil');
         <section class="border-top border-danger border-3 " style="background-color:white;">
             <div class="container" style="background-color:white;">
                 <div class="row">
-                    <div class=" col-md-2 col-12 text-center p-2 mt-3 mb-3"
+                    <div class=" col-md-2 col-12 text-center p-2 mt-3 mb-3">
                     <a class="justify-content-start" href="{{URL::to('/')}}">
                         <img width="270" src="{{asset($websetting->logo)}}" alt=""></a></div>
                 <div class="col-md-4 d-none d-md-block p-2 ml-auto my-auto">
