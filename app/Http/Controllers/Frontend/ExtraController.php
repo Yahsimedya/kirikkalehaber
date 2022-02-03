@@ -729,7 +729,7 @@ class ExtraController extends Controller
 //    }
     public function SinglePost($slug, $id)
     {
-        $post = Post::with(['category:id,category_tr'])->status()->find($id);
+        $post = Post::with(['category:id,category_tr'])->where('manset',1)->status()->find($id);
 //        views($post)->record();
 //        $expiresAt = now()->addMinute(20);
 ////        views($post)->count();
@@ -746,7 +746,7 @@ class ExtraController extends Controller
 //            ->offset(1)->limit(10)
 //            ->get();
         $slider = Post::latest('updated_at')
-            ->with('category:id,category_tr')
+            ->with('category:id,category_tr')->where('manset',1)
             ->status()->limit(10)
             ->get();
 
