@@ -4,13 +4,6 @@
         error_reporting(1);
 
     @endphp
-
-
-
-
-
-
-
     <div class="content">
         <div class="card">
             <div class="card-body">

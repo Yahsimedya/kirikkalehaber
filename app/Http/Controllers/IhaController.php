@@ -68,7 +68,7 @@ class IhaController extends Controller
         $iha['iha_usercode'] = $request->iha_usercode;
         $iha['iha_username'] = $request->iha_username;
         $iha['iha_password'] = $request->iha_password;
-        $iha['auto_Bot'] = $request->auto_Bot=="on"?1:0;
+        $iha['auto_Bot'] = $request->auto_Bot == "on" ? 1 : 0;
         $iha['iha_rss'] = $request->iha_rss;
         $iha['district'] = $request->district;
 
@@ -152,7 +152,8 @@ class IhaController extends Controller
             $olustur = file_put_contents('dene.xml', $exec);
         }
 
-        if ($olustur) {
+
+        if ($olustur != 162) {
 
 
             $xmlDataString = file_get_contents(public_path('dene.xml'));
@@ -181,10 +182,10 @@ class IhaController extends Controller
                     $haberkodu = $kanal->HaberKodu;
                     $ustkategori = $kanal->UstKategori;
                     $Kategori = $kanal->Kategori;
-                   // $Sehir = $kanal->Sehir;
+                    // $Sehir = $kanal->Sehir;
                     //her ikisinide küçük harflere çevirip eşleştir ve geriye plaka kodu gönder
 
-                    $sehirs=District::where('district_tr',$sehirnameXml)->get();
+                    $sehirs = District::where('district_tr', $sehirnameXml)->get();
 
                     $title = $kanal->title;
                     $description = $kanal->description;
@@ -194,12 +195,11 @@ class IhaController extends Controller
                     $videos = $kanal->videos;
 
 
-
                     $news[$i]['title'] = $title;
 
                     $news[$i]['UstKategori'] = $ustkategori;
                     $news[$i]['Kategori'] = $Kategori;
-                  //  $news[$i]['Sehir'] = $SonDakika;
+                    //  $news[$i]['Sehir'] = $SonDakika;
                     $news[$i]['description'] = $description;
                     $news[$i]['resim'] = $images;
                     $news[$i]['pubDate'] = $pubDate;
@@ -217,8 +217,14 @@ class IhaController extends Controller
             $category = Category::latest()->paginate(20);
             $district = District::latest()->get();
 
-          return view('backend.iha.add', compact('count',  'news', 'category', 'district'));
+            return view('backend.iha.add', compact('count', 'news', 'category', 'district'));
 
+        } else {
+            $notification = array(
+                'message' => 'Haber Bulunamadı',
+                'alert-type' => 'info'
+            );
+            return Redirect()->route('addpage.iha')->with($notification);
         }
     }
 
@@ -279,9 +285,6 @@ class IhaController extends Controller
         $data['user_id'] = $request->user_id;
         $data['created_at'] = Carbon::now();
         DB::table('posts')->insert($data);
-
-
-
 
 
         return Redirect()->route('addpage.iha');
