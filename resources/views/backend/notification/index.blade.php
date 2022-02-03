@@ -142,7 +142,7 @@
                     <div class="col-xs-12">
                         <select name="bildirim_turu" id="">
                             <option value="politika">politika</option>
-                            <option value="onemliGelismeler">Г–nemli GeliЕџmeler</option>
+                            <option value="onemliGelismeler">Öenmeli GeliЕџmeler</option>
                             <option value="ekonomi">Ekonomi</option>
                             <option value="spor">Spor</option>
                             <option value="magazin">Magazin</option>
@@ -159,16 +159,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
 
-                <label class="form-check-label">
-                    <div class=""><span class=""><input type="radio" id="sunucucheck" class="form-check-input-styled" data-toggle="modal" data-target="#modal_full" name="optionsRadios" data-fouc=""></span></div>
-                    Sunucunuzdan dosya Yükleyiniz
-                    <div id="sunucu">
-                        <input type="input" name="" id="al" placeholder="FTP'den YГјkle" class="form-control" value="">
-                    </div>
-
-            </div>
 
             <!-- <input type="text" name="bildirim_turu"> -->
             <button class="btn btn-success" type="submit" name="bildirimgonder">Gönder</button>

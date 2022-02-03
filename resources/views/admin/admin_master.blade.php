@@ -280,6 +280,9 @@
     }
     @endif
 </script>
+@php
+    $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
+@endphp
 @include('admin.body.header')
 
 
@@ -306,5 +309,6 @@
         // });
     });
 </script>
+
 </body>
 </html>

@@ -1,7 +1,5 @@
 <!-- Main sidebar -->
-@php
-$photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
-@endphp
+
 
 <div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
 
@@ -10,7 +8,6 @@ $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
         <a href="#" class="sidebar-mobile-main-toggle">
             <i class="icon-arrow-left8"></i>
         </a>
-        Navigation
         <a href="#" class="sidebar-mobile-expand">
             <i class="icon-screen-full"></i>
             <i class="icon-screen-normal"></i>
@@ -51,11 +48,11 @@ $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
         <div class="card card-sidebar-mobile">
             <ul class="nav nav-sidebar" data-nav-type="accordion">
                 <li class="nav-item-header d-lg-none">
-                <a href="{{route('cacheClean')}}" class="badge bg-success ml-md-3 mr-md-auto ">Önbellek Temizle</a>
+                    <a href="{{route('cacheClean')}}" class="badge bg-success ml-md-3 mr-md-auto ">Önbellek Temizle</a>
                 </li>
                 <!-- Main -->
                 <li class="nav-item-header">
-                    <div class="text-uppercase font-size-xs line-height-xs">Main</div>
+                    <div class="text-uppercase font-size-xs line-height-xs"></div>
                     <i class="icon-menu" title="Main"></i></li>
                 <li class="nav-item">
                     <a href="/dashboard" class="nav-link active">
@@ -66,30 +63,30 @@ $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
                     </a>
                 </li>
                 <li class="nav-item nav-item-submenu">
-                    <a href="#kategori" class="nav-link"><i class="icon-copy" id="kategori"></i>
+                    <a href="#kategori" class="nav-link"><i class="fa fa-tasks" id="kategori"></i>
                         <span>Kategoriler</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Layouts">
-                        <li class="nav-item"><a href="{{route('categories')}}" class="nav-link active">Kategori</a></li>
+                        <li class="nav-item"><a href="{{route('categories')}}" class="nav-link">Kategori</a></li>
                         <li class="nav-item"><a href="{{ route('subcategories')}}" class="nav-link">Alt Kategori</a>
                         </li>
 
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu">
-                    <a href="#bolge" class="nav-link"><i class="icon-copy"></i> <span>Bölge Yönetimi</span></a>
+                    <a href="#bolge" class="nav-link"><i class="fa fa-globe"></i> <span>Bölge Yönetimi</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Layouts">
-                        <li class="nav-item"><a href="{{route('district')}}" class="nav-link active">Bölgeler</a></li>
+                        <li class="nav-item"><a href="{{route('district')}}" class="nav-link">Bölgeler</a></li>
                         <li class="nav-item"><a href="{{route('subdistrict')}}" class="nav-link">Alt Bölgeler</a></li>
 
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu">
-                    <a href="#bolge" class="nav-link"><i class="icon-copy"></i> <span>Haberler</span></a>
+                    <a href="#bolge" class="nav-link"><i class="fa fa-newspaper-o"></i> <span>Haberler</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Layouts">
-                        <li class="nav-item"><a href="{{route('add.post')}}" class="nav-link active">Haber Ekle</a></li>
+                        <li class="nav-item"><a href="{{route('add.post')}}" class="nav-link">Haber Ekle</a></li>
                         <li class="nav-item"><a href="{{route('all.post')}}" class="nav-link">Tüm Haberler</a></li>
 
                     </ul>
@@ -98,67 +95,35 @@ $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
 
 
                 <li class="nav-item nav-item-submenu">
-                    <a href="#ads" class="nav-link"><i class="icon-gear"></i> <span>İha Bot Ayarı</span></a>
+                    <a href="#photogaleri" class="nav-link"><i class="fa fa-picture-o"></i> <span>Galeri</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Layouts">
-                        <li class="nav-item"><a href="{{route('setting.settingindex')}}" class="nav-link "><i
-                                    class="icon-list"></i> <span>Bot Ayarları</span></a></li>
-                        <li class="nav-item"><a href="{{route('addpage.iha')}}" class="nav-link
-"><i
-                                    class="icon-list"></i> <span>Haber Ekle</span></a></li>
-
-                        {{--                        <li class="nav-item"><a href="{{route('seo.setting')}}" class="nav-link">SEO Ayarları</a></li>--}}
-
-                    </ul>
-                </li>
-
-
-                <li class="nav-item nav-item-submenu">
-                    <a href="#ads" class="nav-link"><i class="icon-gear"></i> <span>AA Bot Ayarı</span></a>
-
-                    <ul class="nav nav-group-sub" data-submenu-title="Layouts">
-                        <li class="nav-item"><a href="{{route('anadoluajans.settingindex')}}" class="nav-link "><i
-                                    class="icon-list"></i> <span>Bot Ayarları</span></a></li>
-                        <li class="nav-item"><a href="{{route('anadoluajans.index')}}" class="nav-link
-"><i
-                                    class="icon-list"></i> <span>Haber Ekle</span></a></li>
-
-                        {{--                        <li class="nav-item"><a href="{{route('seo.setting')}}" class="nav-link">SEO Ayarları</a></li>--}}
-
-                    </ul>
-                </li>
-
-
-                <li class="nav-item nav-item-submenu">
-                    <a href="#photogaleri" class="nav-link"><i class="icon-gear"></i> <span>Galeri</span></a>
-
-                    <ul class="nav nav-group-sub" data-submenu-title="Layouts">
-                        <li class="nav-item"><a href="{{route('galeri.categories')}}" class="nav-link active"><i
-                                    class="icon-list"></i> <span>Foto Galeri Kategori</span></a></li>
-                        <li class="nav-item"><a href="{{route('photo.galery')}}" class="nav-link active"><i
-                                    class="icon-list"></i> <span>Foto Galeri</span></a></li>
+                        <li class="nav-item"><a href="{{route('galeri.categories')}}" class="nav-link"> <span>Foto Galeri Kategori</span></a>
+                        </li>
+                        <li class="nav-item"><a href="{{route('photo.galery')}}" class="nav-link"> <span>Foto Galeri</span></a>
+                        </li>
                         {{-- <li class="nav-item"><a href="{{route('seo.setting')}}" class="nav-link">SEO Ayarları</a></li> --}}
 
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu">
-                    <a href="#ads" class="nav-link"><i class="icon-gear"></i> <span>Reklam Yönetimi</span></a>
+                    <a href="#ads" class="nav-link"><i class="fa fa-bar-chart"></i> <span>Reklam Yönetimi</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Layouts">
-                        <li class="nav-item"><a href="{{route('list.add')}}" class="nav-link active"><i
-                                    class="icon-list"></i> <span>Reklam Alanları</span></a></li>
+                        <li class="nav-item"><a href="{{route('list.add')}}" class="nav-link"> <span>Reklam Alanları</span></a>
+                        </li>
                         {{--                        <li class="nav-item"><a href="{{route('seo.setting')}}" class="nav-link">SEO Ayarları</a></li>--}}
 
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu">
-                    <a href="#ads" class="nav-link"><i class="icon-gear"></i> <span>Köşe Yazarları Yönetimi</span></a>
+                    <a href="#ads" class="nav-link"><i class="fa fa-pencil-square-o"></i> <span>Köşe Yazarları Yönetimi</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Layouts">
-                        <li class="nav-item"><a href="{{route('list.authorsposts')}}" class="nav-link active"><i
-                                    class="icon-list"></i> <span>Köşe Yazıları</span></a></li>
-                        <li class="nav-item"><a href="{{route('list.authors')}}" class="nav-link active"><i
-                                    class="icon-list"></i> <span>Yazarlar</span></a></li>
+                        <li class="nav-item"><a href="{{route('list.authorsposts')}}" class="nav-link"> <span>Köşe Yazıları</span></a>
+                        </li>
+                        <li class="nav-item"><a href="{{route('list.authors')}}" class="nav-link">
+                                <span>Yazarlar</span></a></li>
 
                         {{--                        <li class="nav-item"><a href="{{route('seo.setting')}}" class="nav-link">SEO Ayarları</a></li>--}}
 
@@ -166,21 +131,19 @@ $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
                 </li>
 
 
-
-
-
                 <li class="nav-item">
                     <a href="{{route('fixedpage.index')}}" class="nav-link">
-                        <i class="icon-stack2"></i>
+                        <i class="fa fa-file-text"></i>
                         <span>Sabit Sayfalar</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('comments.index')}}" class="nav-link">
-                        <i class="icon-comment"></i>
+                        <i class="fa fa-comments"></i>
                         <span>Yorumlar</span>
                     </a>
-                </li>  <li class="nav-item">
+                </li>
+                <li class="nav-item">
                     <a href="{{route('notification.index')}}" class="nav-link">
                         <i class="icon-bubble-notification"></i>
                         <span>Bildirim Gönder</span>
@@ -188,24 +151,46 @@ $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
                 </li>
 
 
-
-
                 <li class="nav-item nav-item-submenu">
                     <a href="#settings" class="nav-link"><i class="icon-user"></i> <span>Kullanıcı İşlemleri</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Layouts">
 
-                        <li class="nav-item"><a href="{{route('user.index')}}" class="nav-link active"><i
-                                    class="icon-list"></i> <span>Kullanıcılar</span></a></li>
-
+                        <li class="nav-item"><a href="{{route('user.index')}}" class="nav-link "> <span>Kullanıcılar</span></a>
+                        </li>
 
 
                     </ul>
                 </li>
 
+                <li class="nav-item nav-item-submenu">
+                    <a href="#ads" class="nav-link"><i class="icon-gear"></i> <span>İha Bot </span></a>
+
+                    <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                        <li class="nav-item"><a href="{{route('setting.settingindex')}}" class="nav-link "><span>Bot Ayarları</span></a>
+                        </li>
+                        <li class="nav-item"><a href="{{route('addpage.iha')}}" class="nav-link">
+                                <span>Haber Ekle</span></a></li>
+
+                        {{--                        <li class="nav-item"><a href="{{route('seo.setting')}}" class="nav-link">SEO Ayarları</a></li>--}}
+
+                    </ul>
+                </li>
 
 
+                <li class="nav-item nav-item-submenu">
+                    <a href="#ads" class="nav-link"><i class="icon-gear"></i> <span>AA Bot </span></a>
 
+                    <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                        <li class="nav-item"><a href="{{route('anadoluajans.settingindex')}}" class="nav-link ">
+                                <span>Bot Ayarları</span></a></li>
+                        <li class="nav-item"><a href="{{route('anadoluajans.index')}}" class="nav-link
+"> <span>Haber Ekle</span></a></li>
+
+                        {{--                        <li class="nav-item"><a href="{{route('seo.setting')}}" class="nav-link">SEO Ayarları</a></li>--}}
+
+                    </ul>
+                </li>
 
 
                 <li class="nav-item nav-item-submenu">
@@ -213,13 +198,13 @@ $photo=DB::table('users')->where('id','=',Auth::user()->id)->get();
 
                     <ul class="nav nav-group-sub" data-submenu-title="Layouts">
 
-                        <li class="nav-item"><a href="{{route('social.setting')}}" class="nav-link active"><i
-                                    class="icon-list"></i> <span>Sosyal Medya Ayarları</span></a></li>
+                        <li class="nav-item"><a href="{{route('social.setting')}}" class="nav-link "> <span>Sosyal Medya Ayarları</span></a>
+                        </li>
                         <li class="nav-item"><a href="{{route('seo.setting')}}" class="nav-link">SEO Ayarları</a></li>
-                        <li class="nav-item"><a href="{{route('website.setting')}}" class="nav-link active"><i
-                                    class="icon-list"></i> <span>Genel Ayarlar</span></a></li>
-<li class="nav-item"><a href="{{route('theme.index')}}" class="nav-link active"><i
-                                    class="icon-list"></i> <span>Tema Ayarları</span></a></li>
+                        <li class="nav-item"><a href="{{route('website.setting')}}" class="nav-link "> <span>Genel Ayarlar</span></a>
+                        </li>
+                        <li class="nav-item"><a href="{{route('theme.index')}}" class="nav-link "> <span>Tema Ayarları</span></a>
+                        </li>
                     </ul>
                 </li>
 

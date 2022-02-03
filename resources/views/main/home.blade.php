@@ -840,7 +840,7 @@
 
                     <div class=" m-2 d-flex justify-content-center">
                         <img class="text-center" width="300px" src="{{asset($webSiteSetting->logo)}}">
-                        <img class="text-center mt-5" width="70px" height="30px" src="{{asset('image/videologo.png')}}">
+                        <img class="text-center mt-4" width="70px" height="30px" src="{{asset('image/videologo.png')}}">
 
                     </div>
                     <div class="row">
