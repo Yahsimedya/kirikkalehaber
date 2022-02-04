@@ -609,7 +609,7 @@ class ExtraController extends Controller
 //           ->get();
         $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
             ->where('authors.status', 1)->where('authors_posts.status', 1)
-            ->select(['authors_posts.*', 'authors.id','authors.image'])
+//            ->select(['authors_posts.*', 'authors.id','authors.image'])
             ->whereRaw('authors_posts.id in (select max(id) from authors_posts group by (authors_posts.authors_id))')
             ->latest("authors_posts.created_at")->limit(8)
             ->get();
