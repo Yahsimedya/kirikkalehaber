@@ -10430,6 +10430,7 @@ a, :hover {
 .authors_height {
     min-height: 285px;
     max-height: 285px;
+    max-width: 200px;
 }
 
 .namazvakitleri_linear {
