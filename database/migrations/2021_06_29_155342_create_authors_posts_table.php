@@ -16,7 +16,6 @@ class CreateAuthorsPostsTable extends Migration
         Schema::create('authors_posts', function (Blueprint $table) {
             $table->id();
             $table->integer('authors_id');
-            $table->string('image');
             $table->text('text');
             $table->string('title');
             $table->integer('status')->default(0);
@@ -25,7 +24,6 @@ class CreateAuthorsPostsTable extends Migration
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
