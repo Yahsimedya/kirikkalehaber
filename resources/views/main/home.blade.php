@@ -471,16 +471,41 @@
             </div>
             <div class="row">
                 <div class="col-md-9 col-12 pl-0">
-                    <div class="row">
+                    <div class="row ml-0">
                         <div class="col-md-6">
                             @if(isset($endNews[0]))
-                            <a href="{{URL::to('/'.str_slug($endNews[0]->title_tr).'/'.$endNews[0]->id.'/'.'haberi')}}">
-                                <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                     class="img_fluid kart_img lazyload" data-src=" {{asset($endNews[0]->image)}}"
-                                     alt="Card image cap">
-                            <span class="w-100 text-center card-kisalttek">{{$endNews[0]->title_tr}}</span>
-                            </a>
-                                @endif
+                            <div class="card kart kart-width kart-margin shadow">
+                                <a href="{{URL::to('/'.str_slug($endNews[0]->title_tr).'/'.$endNews[0]->id.'/'.'haberi')}}">
+                                    <img
+                                        onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                        class="img_fluid kart_img lazyload" src="{{asset($endNews[0]->image)}}"
+                                        alt="Card image cap"></a>
+
+                                <div class="card-body kart-body   border-3 text-dark">
+{{--                                    @if($row->headlinetag==1)--}}
+{{--                                        <div class="short-tag"--}}
+{{--                                             style="background-color:{{$themeSetting[0]->economy}}">--}}
+{{--                                            <span>Son Dakika</span>--}}
+{{--                                        </div>--}}
+{{--                                    @else--}}
+{{--                                        <div class="short-tag category"--}}
+{{--                                             style="background-color:{{$themeSetting[0]->economy}}">--}}
+{{--                                            <span>{{$row->category->category_tr}}</span>--}}
+{{--                                        </div>--}}
+{{--                                    @endif--}}
+                                    <p class="card-text card-kisalt">{{$endNews[0]->title_tr}}</p>
+                                </div>
+
+                            </div>
+                            @endif
+{{--                            @if(isset($endNews[0]))--}}
+{{--                            <a href="{{URL::to('/'.str_slug($endNews[0]->title_tr).'/'.$endNews[0]->id.'/'.'haberi')}}">--}}
+{{--                                <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"--}}
+{{--                                     class="img_fluid kart_img lazyload" data-src=" {{asset($endNews[0]->image)}}"--}}
+{{--                                     alt="Card image cap">--}}
+{{--                            <span class="w-100 text-center card-kisalttek">{{$endNews[0]->title_tr}}</span>--}}
+{{--                            </a>--}}
+{{--                                @endif--}}
                         </div>
                         <div class="col-md-6">
                             <ul class="list-group p-2">
