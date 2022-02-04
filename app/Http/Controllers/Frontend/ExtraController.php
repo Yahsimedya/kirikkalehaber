@@ -378,10 +378,7 @@ class ExtraController extends Controller
         }
 
 
-        $endNews = Post::whereIn('id', $endNewss)->get();
-
-
-
+        $endNews = Post::whereIn('id', $endNewss)->latest('created_at')->get();
         $sondakika = Cache::remember("headline", Carbon::now()->addYear(), function () {
             if (Cache::has('headline')) return Cache::has('headline');
             return Post::where('posts.headline', 1)
