@@ -513,7 +513,7 @@
                                 @for($i=1;$i<count($endNews);$i++)
 
                                     <a href="{{URL::to('/'.str_slug($endNews[$i]->title_tr).'/'.$endNews[$i]->id.'/'.'haberi')}}">
-                                        <li class="border-bottom card-kisalttek m-1"><img
+                                        <li class="border-bottom card-kisalttek mb-1"><img
                                                 data-src="{{asset($endNews[$i]->image)}}"
                                                 onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                                 class="img-fluid lazyload"
