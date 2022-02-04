@@ -464,6 +464,9 @@
             </div>
             <div class="row">
                 <div class="col-md-9 col-12 pl-0">
+                    <div class="row">
+                    <div class="col-md-6">assad</div>
+                    <div class="col-md-6">
                 <ul class="list-group p-2">
                     @foreach($endNews as $row)
                         <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
@@ -474,6 +477,8 @@
                         </a>
                     @endforeach
                 </ul>
+                    </div>
+                    </div>
             </div>
 
 
