@@ -10139,7 +10139,9 @@ a, :hover {
     max-height: 58px;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical
-}.card-kisalttek {
+}
+
+.card-kisalttek {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box !important;
@@ -10421,6 +10423,45 @@ a, :hover {
     font-family: Poppins !important
 }
 
+.zindex {
+    z-index: 999;
+}
+
+.authors_height {
+    min-height: 285px;
+    max-height: 285px;
+}
+
+.namazvakitleri_linear {
+    background: linear-gradient(
+        100deg, #262626, #515151);
+}
+
+.namazvakitleri_title {
+    font-size: 19px;
+    color: white;
+}
+
+.videogaleri_dortlu {
+    width: 150px;
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+}
+
+.videogaleri_alan {
+    padding-left: 7px !important;
+    padding-right: 7px !important;
+}
+
+.videogaleri_alt_kisalt {
+    width: 117px;
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 .swiper-slide__foto {
     position: absolute;
     top: 9px;
@@ -10676,9 +10717,10 @@ a, :hover {
 .detay__icerik {
     font-family: Poppins
 }
+
 .detay__kategori {
-    font-weight:700!important;
-    color:#343434;
+    font-weight: 700 !important;
+    color: #343434;
 }
 
 .detay__spot {
@@ -12163,9 +12205,11 @@ img.lazyload:not([src]) {
 .navbar-dark .navbar-text a:hover, .navbar-dark .navbar-text a:focus {
     color: #fff
 }
-.yahsilogo{
-    display:initial;
+
+.yahsilogo {
+    display: initial;
 }
+
 .video-overlay {
     position: absolute;
     top: 47%;

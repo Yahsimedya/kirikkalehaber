@@ -14,39 +14,29 @@
     $icon = Session::get('icon');
     ?>
     <style>
-
-
         .detay__sidebar-baslik::before {
             background: {{$themeSetting[0]->siteColorTheme}}            !important;
         }
-
         .anamanset-pagination > .swiper-pagination-bullet-active {
             background-color: {{$themeSetting[0]->siteColorTheme}}                      !important;
         }
-
         .pagination-1 > .swiper-pagination-bullet-active, .pagination-2 > .swiper-pagination-bullet-active {
             background-color: {{$themeSetting[0]->siteColorTheme}}                                       !important;
         }
-
         .media.media-weather {
             color: #fff;
             position: relative;
             overflow: visible;
         }
-
-
         .siyaset {
             background-image: linear-gradient(-10deg, {{$themeSetting[0]->economy}}, {{$themeSetting[0]->economy}}) !important;
         }
-
         .ekonomi {
             background-image: linear-gradient(-10deg, {{$themeSetting[0]->politics}}, {{$themeSetting[0]->politics}}) !important;
         }
-
         .spor {
             background-image: linear-gradient(-10deg, {{$themeSetting[0]->sport}}, {{$themeSetting[0]->sport}}) !important;
         }
-
         .custom-select {
             border: none;
             margin-right: 10px;
@@ -63,11 +53,8 @@
     </style>
     <script>
         $(document).ready(function (e) {
-
-
             $('#form select').on('change', function () {
                 e = $('#sehirsec').val();
-// var str =$(this).serialize();
                 $.ajax({
                     type: "POST",
                     url: "{{route('il.namaz')}}",
@@ -94,10 +81,8 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
             $('#havadurum select').on('change', function () {
                 e = $('#ilsec').val();
-// var str =$(this).serialize();
                 $.ajax({
                     type: "POST",
                     url: "{{  route('il.home') }}",
@@ -112,28 +97,13 @@
                     },
                 })
             });
-            {{--            e = $('#ilsec').val();--}}
-            {{--// var str =$(this).serialize();--}}
-            {{--            $.ajax({--}}
-            {{--                type: "POST",--}}
-            {{--                url: "{{  route('il.stabilhome') }}",--}}
-            {{--                headers: {'X-CSRF-TOKEN': '{{csrf_token()}}'},--}}
-            {{--                data: $('#havadurum').serialize(),--}}
-            {{--                success: function (donen) {--}}
-            {{--                    veri = donen;--}}
-            {{--                    $('#ilsec').attr("disabled", false);--}}
-            {{--                    $('#cek').html(veri);--}}
-            {{--// console.log();--}}
-            {{--                },--}}
-            {{--            })--}}
         });
 
     </script>
     @if (!empty($sondakika[0]->headline))
-
-        <section class="section-sdk position-relative d-flex w-100" style="margin-top:0px;">
+        <section class="section-sdk position-relative d-flex w-100 mt-0">
             <div class="container ">
-                <div class="simple-marquee-container" style="z-index: 999;">
+                <div class="simple-marquee-container zindex">
                     <a href="{{route('breakingnews')}}">
                         <div class="marquee-sibling">
                             Son Dakika
@@ -144,46 +114,21 @@
                             @foreach ($sondakika as $row)
                                 @if(($row->headline==1) )
                                     <a href="
-                                    {{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}
-
-                                        ">
-                                        <li><strong>
-
-                                                {{ $row->title_tr }}
-
-                                            </strong></li>
+                                    {{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
+                                        <li><strong>{{ $row->title_tr }}</strong></li>
                                     </a>
                             @endif
                         @endforeach
-                        <!-- <li>Item 2</li>
-          <li>Item 3</li>
-          <li>Item 4</li>
-                            <li>Item 5</li> -->
-
-                        </ul>
+                     </ul>
                     </div>
                 </div>
             </div>
-
             @endif
-
-
         </section>
-
-        <!--AÇILIP KAPANABİLİR REKLAM ALANI-->
-        <!-- <div class="row mb-5 mt-5">
-            </div> -->
         <div class="container text-center mt-2 position-relative">
-            <!-- HABER DETAY REKLAM 336x270 -->
-
-            <!-- HABER DETAY REKLAM 336x270 -->
-
             <div class="row">
                 <div class="col-12 padding-left">
-                    {{--                    <div class="kapat float-left"><a id="kapat" class="kapat__link " href="">X</a></div>--}}
-
                     <div class="reklam-alani mt-1 mb-1 text-center">
-                        <!--  ÜST BLOK 970x250 REKLAM-->
                         @foreach($ads as $ad)
                             @if($ad->type==1 && $ad->category_id==9)
                                 <a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload"
@@ -194,19 +139,10 @@
                                 <div class="w-100">{!!$ad->ad_code!!}</div>
                         @endif
                     @endforeach
-                    <!--  ÜST BLOK 970x250 REKLAM-->
-
                     </div>
-
-
-                    <!------------------KAPANABİLİR HEAD REKLAM ALANI -------------------->
                 </div>
             </div>
-
         </div>
-
-
-        <!--AÇILIP KAPANABİLİR REKLAM ALANI-->
         <div class="container mt-2">
             <div class="row">
                 @foreach($surmanset as $row)
@@ -229,27 +165,23 @@
                                 @endif
                                 <img class="card-img-top lazy" height="180" src="{{asset($row->image)}}"
                                      onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                     alt="Kavga ettiği amcasını sokak ortasında tabancayla vurdu" style="">
+                                     alt="Kavga ettiği amcasını sokak ortasında tabancayla vurdu">
                                 <div class="card-body align-middle d-table-cell">
                                     <p class="card-baslik text-left d-table-cell"><b
                                             class="card-kisalt">{{$row->title_tr}}</b></p>
-                                    {{--                                <span class="card__kategori position-absolute">3. Sayfa</span>--}}
                                 </div>
                             </a>
                         </div>
                     </div>
                 @endforeach
-
-
             </div>
             <div class="row">
-
                 <div class="col-md-8 col-12 col-sm-8 text-danger mb-2">
                     <div class="swiper-container kategori-slider mb-2">
-                        <div class="swiper-wrapper" style="height:100%;">
+                        <div class="swiper-wrapper">
 
                             @for($i=0;$i<=24;$i++)
-                                <div class="swiper-slide" style="position:relative">
+                                <div class="swiper-slide position-relative">
                                     <a href="{{URL::to('/'.str_slug($home[$i]->title_tr).'/'.$home[$i]->id.'/'.'haberi')}}">
                                         <div class="position-relative">
                                             <img class="img-fluid slider-foto swiper-lazy   lazyload"
@@ -283,19 +215,13 @@
                                     </a>
                                 </div>
                             @endfor
-
-
                         </div>
-                        <!-- Add Pagination -->
                         <div class="swiper-pagination anamanset-pagination">
                         </div>
                         <div class="swiper-button-next manset-next pt-5 mt-5"></div>
                         <div class="swiper-button-prev manset-prev pt-5 mt-5"></div>
                     </div>
-
-
                     <div class="row mt-0">
-
                         @if($themeSetting[0]->fotogaleri!=0)
                             <div class="col-md-6 mt-3 ">
                                 <div class="card-header border-left border-red border-3"
@@ -312,13 +238,8 @@
                                     </div>
                                 </div>
                                 <div class="swiper-container slider1">
-                                    <!-- Additional required wrapper -->
                                     <div class="swiper-wrapper">
-                                        <!-- Slides -->
-
-
                                         @foreach ($fotogaleri as $row )
-
                                             @if(empty(!$row->photocategory_id))
                                                 <div class="swiper-slide position-relative">
                                                     <a href="{{route('photo.gallerydetail',$row->photocategory_id)}}">
@@ -330,31 +251,15 @@
                                                     <span class="yazi-span">{{$row->category_title	}}</span>
                                                 </div>
                                         @endif
-
                                     @endforeach
-
-                                    <!-- <div class="swiper-slide">Slide 1</div>
-                <div class="swiper-slide">Slide 1</div>
-                <div class="swiper-slide">Slide 1</div>
-                <div class="swiper-slide">Slide 1</div> -->
-
-
-                                    </div>
-                                    <!-- If we need pagination -->
-
-                                    <!-- If we need navigation buttons -->
-
-
-                                    <!-- If we need scrollbar -->
+ </div>
                                 </div>
                             </div>
                         @endif
-
                         @if($themeSetting[0]->videogaleri!=0 )
                             <div class="col-md-6 mt-3 ">
                                 <div class="card-header border-left  border-3"
-                                     style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;"
-                                >
+                                     style="border-color: {{$themeSetting[0]->siteColorTheme}} !important;color: {{$themeSetting[0]->siteColorTheme}} !important;">
                                     <h5 class=" text-dark">Video Galeri</h5>
                                     <div class="butonlar">
                                         <div class="swiper-button-prev prev-2"
@@ -369,7 +274,6 @@
                                     <!-- Additional required wrapper -->
                                     <div class="swiper-wrapper">
                                         <!-- Slidessssssssss -->
-
                                         @foreach ($video_gallarySliderAlti as $row )
 
                                             <div class="swiper-slide position-relative">
@@ -381,30 +285,17 @@
                                                     <span class="yazi-span">{{$row->title_tr}}</span>
                                                 </a>
                                             </div>
-
                                         @endforeach
-
                                     </div>
-                                    <!-- If we need pagination -->
-
-                                    <!-- If we need navigation buttons -->
-
-
-                                    <!-- If we need scrollbar -->
                                 </div>
                             </div>
                         @endif
-
                     </div>
-
-
                 </div>
-                <!--SLİDER YANI 4 KOLON-->
                 <div class="col-md-4 position-relative text-center">
                     <div
                         class="col-md-12 mb-1 shadow-sm d-flex align-items-center border-left border-red border-3 color-red"
                         style="height:50px; border-color:{{$themeSetting[0]->siteColorTheme}}!important; ">
-
                         <p class="p-0 m-0 mb-2 font-weight-bold text-dark position-relative float-left mr-5">Bizi Takip
                             Edin</p>
                         <div class="social-icons float-right position-relative">
@@ -413,21 +304,14 @@
                                         class="fa fa-facebook text-light"></i></a>
                                 <a class="twitter" href="{{$social->twitter}}"><i class="fa fa-twitter text-light"></i></a>
                                 <a class="youtube" href="{{$social->youtube}}"><i class="fa fa-youtube text-light"></i></a>
-                                <a class="facebook" style="background-color: deeppink" href="{{$social->instagram}}"><i
+                                <a class="facebook" href="{{$social->instagram}}"><i
                                         class="fa fa-instagram text-light"></i></a>
-                                <a class="linkedin" href="{{$social->linkedin}}"><i
-                                        class="fa fa-linkedin text-light"></i></a>
                         @endforeach
-                        <!-- <a class="whatsapp" href="#"><i class="fa fa-youtube"></i></a> -->
                         </div>
                     </div>
-                    <!--SLİDER YANI REKLAM ALANI 300x600-->
-                    <!-- <img class="img-fluid lazyload" data-src="img/sag-reklam.png"> -->
                     <div class="swiper-container sag-slider">
-                        <div class="swiper-wrapper" style="height:100%;">
-
+                        <div class="swiper-wrapper">
                             @foreach ($sagmanset as $row )
-
                                 <div class="swiper-slide">
                                     <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}"><img
                                             class="img-fluid sag-manset-img swiper-lazy lazyloaded swiper-lazy-loaded lazyload"
@@ -435,7 +319,6 @@
                                             onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"></a>
                                     <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
                                         @if($themeSetting[0]->slider_title!=0)
-
                                             <div class="kartlar__effect position-absolute">
                                                 <p class="sag-manset-text">{{$row->title_tr}}</p>
                                             </div>
@@ -445,29 +328,11 @@
                             @endforeach
 
                         </div>
-                        <!-- Add Pagination -->
                         <div class="swiper-pagination sag-pagination"></div>
                     </div>
-
-                    <!--SLİDER YANI REKLAM ALANI 300x600-->
-
-
-                    <div class="row mt-2">
-                        {{--                <div class="col-md-12 ">--}}
-
-                        {{--                    <a href="hava-durum">--}}
-                        {{--                        <img data-src="./img/ogle.png" class="lazyload float-left mt-2 ml-2 lazyload">--}}
-                        {{--                        <div class="card-header bg-dark border-left border-red border-3 text-center mt-1 text-light">--}}
-                        {{--                            Namaz Vakitleri--}}
-                        {{--                        </div>--}}
-                        {{--                    </a>--}}
-                        {{--                </div>--}}
-
-                    </div>
-
-
+<div class="row mt-2">
+                </div>
                     <div class="col-md-12 pr-0 pl-0 position-sticky">
-                        <!--  ÜST BLOK 336x280 REKLAM-->
                         @foreach($ads as $ad)
                             @if($ad->type==1 && $ad->category_id==17)
                                 <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
@@ -477,17 +342,10 @@
                                 <div class="w-100">{!!$ad->ad_code!!}</div>
                         @endif
                     @endforeach
-                    <!--  ÜST BLOK 336x280 REKLAM-->
-                    </div>
+                  </div>
                 </div>
-                <!--SLİDER YANI 4 KOLON-->
-
-            </div>
-            <!-- DÖVİZ KURLARI-->
-            {{--        {{var_dump($kurlar)}}--}}
-            {{--{{$kurlar['dolar']['oran']}}--}}
-
-            <div class="container">
+           </div>
+     <div class="container">
                 <div class="row mb-2">
                     <div class="col-md-9 shadow border-left border-3 ml-0 mr-0"
                          style="border-color:{{$themeSetting[0]->siteColorTheme}}!important;">
@@ -534,9 +392,7 @@
                     <div class="col-md-3 shadow" style="background-color: {{$themeSetting[0]->siteColorTheme}}">
                         <div class="mx-auto my-auto h-100 row d-flex align-items-center">
                             <form id="havadurum" class="col-md-8 col-8">
-
-                                {{--                    <div style="width: 178px;" class="">--}}
-                                <select style="" id="ilsec"
+                                <select id="ilsec"
                                         class=" form-select align-middle custom-select bg-transparent border-light text-light "
                                         name="">
                                     <option value="{{Str::upper("KIRIKKALE")}}">KIRIKKALE</option>
@@ -582,7 +438,7 @@
                             <div class="swiper-wrapper">
                                 @foreach($authors as $author)
 
-                                    <div class="swiper-slide border" style="min-height: 285px;max-height: 285px;">
+                                    <div class="swiper-slide border authors_height" >
                                         <a href=" {{URL::to('/'.str_slug($author->title).'/'.$author->id)}}">
                                             <img data-src="{{asset($author->image)}}"
                                                  onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
@@ -601,7 +457,7 @@
                           <div class="swiper-button-next"></div>
                           <div class="swiper-button-prev"></div>
                           -->
-                            <div class="swiper-pagination" style="bottom:-5px!important;"></div>
+                            <div class="swiper-pagination"></div>
                         </div>
                     </div>
 
@@ -614,7 +470,7 @@
                 <p class="detay__sidebar-baslik "></p>
             </div>
             <div class="row">
-                <div class="col-md-9 col-12 pl-0"
+                <div class="col-md-9 col-12 pl-0">
                 <ul class="list-group p-2">
                     @foreach($endNews as $row)
                         <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
@@ -629,13 +485,10 @@
 
 
             <div class="col-md-3 col-12 pt-2">
-                <div class="col-md-12 pb-1 mb-1" style="background: linear-gradient(
-100deg
- , #262626, #515151);">
+                <div class="col-md-12 pb-1 mb-1 namazvakitleri_linear" >
                     <div class="">
                         <div class="position-relative position-relative  text-center pt-3 pb-3">
-                            <div class="pb-0 pt-1 mx-auto " style="font-size: 19px;
-    color: white;"><b>NAMAZ</b> <span>VAKİTLERİ</span></div>
+                            <div class="pb-0 pt-1 mx-auto namazvakitleri_title"><b>NAMAZ</b> <span>VAKİTLERİ</span></div>
                             {{--                            <p class="detay__sidebar-baslik "></p>--}}
                         </div>
 
@@ -660,9 +513,6 @@
                             $yatsi = $vakitler['yatsi'];
 
                         @endphp
-
-
-                        {{--        {{$now=Carbon\Carbon::now()->format('H:i:S')}}--}}
                         <table class="table table-borderless text-light w-100 mb-2" id="gotur">
 
                             <tbody>
@@ -810,75 +660,61 @@
                                 <img width="100%" height="310" src="{{$video_gallary[0]->image}}"></a></div>
                         <div class="col-md-6 ">
                             <div class="row">
-                                <div class="col-md-6 mt-2"
-                                     style="padding-left: 7px !important;padding-right: 7px !important;">
+                                <div class="col-md-6 mt-2 videogaleri_dortlu">
                                     <a href="{{URL::to('/'.Str::slug($video_gallary[1]->title_tr).'/'.$video_gallary[1]->id.'/'.'haberi')}}">
                                     <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                         <img width="100%" height="150" src="{{$video_gallary[1]->image}}"></a>
                                 </div>
-                                <div class="col-md-6 mt-2"
-                                     style="padding-left: 7px !important;padding-right: 7px !important;">
+                                <div class="col-md-6 mt-2 videogaleri_dortlu">
                                     <a href="{{URL::to('/'.Str::slug($video_gallary[2]->title_tr).'/'.$video_gallary[2]->id.'/'.'haberi')}}">
                                     <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                         <img width="100%" height="150" src="{{$video_gallary[2]->image}}"></a></div>
-                                <div class="col-md-6 mt-2"
-                                     style="padding-left: 7px !important;padding-right: 7px !important;">
-
+                                <div class="col-md-6 mt-2 videogaleri_dortlu">
                                     <a href="{{URL::to('/'.Str::slug($video_gallary[3]->title_tr).'/'.$video_gallary[3]->id.'/'.'haberi')}}">
                                     <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                         <img width="100%" height="150" src="{{$video_gallary[3]->image}}"></a></div>
-                                <div class="col-md-6 mt-2"
-                                     style="padding-left: 7px !important;padding-right: 7px !important;">
+                                <div class="col-md-6 mt-2 videogaleri_dortlu">
                                     <a href="{{URL::to('/'.Str::slug($video_gallary[4]->title_tr).'/'.$video_gallary[4]->id.'/'.'haberi')}}">
                                     <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                         <img width="100%" height="150" src="{{$video_gallary[4]->image}}"></a></div>
                             </div>
                         </div>
-                        <div class="col-md-3 d-flex"
-                             style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
+
+                        <div class="col-md-3 d-flex videogaleri_dortlu">
                             <div class="position-relative float-left">
                                 <a href="{{URL::to('/'.Str::slug($video_gallary[5]->title_tr).'/'.$video_gallary[5]->id.'/'.'haberi')}}">
                                 <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                     <img width="100%" height="110" src="{{$video_gallary[5]->image}}"></a>
                             </div>
-                            <p class="ml-1 float-left text-white text-center my-auto"
-                               style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;">{{$video_gallary[5]->title_tr}}
+                            <p class="ml-1 float-left text-white text-center my-auto videogaleri_alt_kisalt">{{$video_gallary[5]->title_tr}}
                             </p>
                         </div>
-                        <div class="col-md-3 d-flex"
-                             style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
+                        <div class="col-md-3 d-flex videogaleri_dortlu">
                             <div class="position-relative float-left">
                                 <a href="{{URL::to('/'.Str::slug($video_gallary[6]->title_tr).'/'.$video_gallary[6]->id.'/'.'haberi')}}">
                                 <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                     <img  width="100%" height="110" src="{{$video_gallary[6]->image}}"></a>
                             </div>
                             <p class="ml-1 float-left text-white text-center my-auto"
-                               style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;"
                             >{{$video_gallary[6]->title_tr}}
                             </p>
                         </div>
-                        <div class="col-md-3 d-flex"
-                             style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
+                        <div class="col-md-3 d-flex videogaleri_dortlu">
                             <div class="position-relative float-left">
                                 <a href="{{URL::to('/'.Str::slug($video_gallary[7]->title_tr).'/'.$video_gallary[7]->id.'/'.'haberi')}}">
                                 <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                     <img width="100%" height="110" src="{{$video_gallary[7]->image}}"></a>
                             </div>
-                            <p class="ml-1 float-left text-white text-center my-auto"
-                               style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;"
-                            >{{$video_gallary[7]->title_tr}}
+                            <p class="ml-1 float-left text-white text-center my-auto videogaleri_alt_kisalt">{{$video_gallary[7]->title_tr}}
                             </p>
                         </div>
-                        <div class="col-md-3 d-flex"
-                             style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
+                        <div class="col-md-3 d-flex videogaleri_dortlu">
                             <div class="position-relative float-left">
                                 <a href="{{URL::to('/'.Str::slug($video_gallary[8]->title_tr).'/'.$video_gallary[8]->id.'/'.'haberi')}}">
                                 <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                     <img width="100%" height="110" src="{{$video_gallary[8]->image}}"></a>
                             </div>
-                            <p class="ml-1 float-left text-white text-center my-auto"
-                               style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;"
-                            >{{$video_gallary[8]->title_tr}}
+                            <p class="ml-1 float-left text-white text-center my-auto videogaleri_alt_kisalt">{{$video_gallary[8]->title_tr}}
                             </p>
                         </div>
                     </div>
@@ -922,8 +758,8 @@
                             <!-------------ECONOMY FEATURED---->
                             @foreach ($ekonomimanset as $row )
                                 @if($row->featured ==1)
-                                    <div class="swiper-slide" style="">
-                                        <div class="card kart kart-width kart-margin shadow" style="">
+                                    <div class="swiper-slide" >
+                                        <div class="card kart kart-width kart-margin shadow">
                                             <a href="{{URL::to('/'.str_slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">
                                                 <img
                                                     onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
@@ -943,8 +779,7 @@
                                                         <span>{{$row->category->category_tr}}</span>
                                                     </div>
                                                 @endif
-                                                <p class="card-text"
-                                                   style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$row->title_tr}}</p>
+                                                <p class="card-text card-kisalt">{{$row->title_tr}}</p>
                                             </div>
 
                                         </div>
@@ -979,7 +814,7 @@
 
 
                     <div class="col-md-4 float-left mb-3  ">
-                        <div class="card kart kart-width kart-margin shadow" style="">
+                        <div class="card kart kart-width kart-margin shadow">
                             <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                 <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                      class="img_fluid kart_img lazyload" src="{{asset($homes->image)}}"
@@ -995,8 +830,7 @@
                             @endif
                             <div class="card-body kart-body   border-3 text-dark"
                                  style="border-top:1px solid {{$themeSetting[0]->economy}}">
-                                <p class="card-text"
-                                   style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2;  -webkit-box-orient: vertical;">{{$homes->title_tr}}</p>
+                                <p class="card-text card-kisalt">{{$homes->title_tr}}</p>
                             </div>
                         </div>
                     </div>
@@ -1039,8 +873,8 @@
                          style="background-image: linear-gradient(-10deg, {{$themeSetting[0]->agenda}}, {{$themeSetting[0]->agenda}}) !important">
                         <div class="swiper-wrapper" style="background-color: {{$themeSetting[0]->agenda}}">
                             @foreach($gundemmanset as $homes)
-                                <div class="swiper-slide" style="">
-                                    <div class="card kart kart-width shadow" style="">
+                                <div class="swiper-slide" >
+                                    <div class="card kart kart-width shadow">
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                             <img
                                                 onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
@@ -1094,7 +928,7 @@
             <div class="row">
                 @foreach($gundem as $homes)
                     <div class="col-md-4 float-left mb-3  ">
-                        <div class="card kart kart-width kart-margin shadow" style="">
+                        <div class="card kart kart-width kart-margin shadow">
                             <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                 <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                      class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
@@ -1153,8 +987,8 @@
 
                             @foreach($siyasetmanset as $homes)
 
-                                <div class="swiper-slide" style="">
-                                    <div class="card kart kart-width shadow" style="">
+                                <div class="swiper-slide">
+                                    <div class="card kart kart-width shadow">
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                             <img
                                                 onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
@@ -1198,7 +1032,7 @@
             <div class="row">
                 @foreach($siyaset as $homes)
                     <div class="col-md-4 float-left mb-3  ">
-                        <div class="card kart kart-width kart-margin shadow" style="">
+                        <div class="card kart kart-width kart-margin shadow">
                             <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                 <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                      class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
@@ -1220,16 +1054,11 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
                 @endforeach
             </div>
         </div>
         <div class="container">
             <div class="row">
-                <!--  ÜST BLOK 1140x90 REKLAM-->
                 @foreach($ads as $ad)
                     @if($ad->type==1 && $ad->category_id==21)
                         <div class="col-md-12">
@@ -1244,27 +1073,15 @@
                 @endforeach
             </div>
         </div>
-        <!---Siyaset HABERLERİ-->
-
-        <div class="container">
-            <div class="row">
-
-            </div>
-        </div>
-        <!--SPOR SLİDER-->
         <section class="spor pb-4">
             <div class="container pt-2 pb-2">
-
                 <h4 class="pt-2 pb-2 ana-baslik">Öne Çıkan {{$spormanset[0]->category->category_tr}} Haberleri</h4>
-                <!-- <div class="row"> -->
                 <div class="col-md-12">
                     <div class="swiper-container spor">
                         <div class="swiper-wrapper">
-
                             @foreach($spormanset as $homes)
-
-                                <div class="swiper-slide" style="">
-                                    <div class="card kart kart-width shadow" style="">
+                                <div class="swiper-slide" >
+                                    <div class="card kart kart-width shadow" >
                                         <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                             <img
                                                 onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
@@ -1288,26 +1105,18 @@
                                     </div>
                                 </div>
                             @endforeach
-
-
                         </div>
-                        <!-- Add Pagination -->
                         <div class="spor-buton">
                             <div class="swiper-pagination spor-pagination"></div>
-                            <!-- Add Arrows -->
                             <div class="swiper-button-next white-next"></div>
                             <div class="swiper-button-prev white-prev"></div>
                         </div>
                     </div>
                 </div>
-                <!-- </div> -->
             </div>
         </section>
-        <!--SPOR SLİDER-->
-
         <div class="container">
             <div class="col-md-12">
-                <!--  ÜST BLOK 1140x90 REKLAM-->
                 @foreach($ads as $ad)
                     @if($ad->type==1 && $ad->category_id==23)
                         <div class="col-md-12">
@@ -1320,17 +1129,14 @@
                         <div class="w-100">{!!$ad->ad_code!!}</div>
                     @endif
                 @endforeach
-
-
             </div>
             <div class="row">
-
                 <div class="col-lg-8">
                     <div class="row mt-3">
                         @foreach($spor as $homes)
 
                             <div class="col-md-6 float-left mb-3  ">
-                                <div class="card kart kart-width kart-margin shadow" style="">
+                                <div class="card kart kart-width kart-margin shadow" >
                                     <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
                                         <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                              class="img_fluid kart_img lazyload" data-src=" {{asset($homes->image)}}"
@@ -1352,7 +1158,6 @@
                                 </div>
                             </div>
                         @endforeach
-                    <!--  ÜST BLOK 1140x90 REKLAM-->
                         @foreach($ads as $ad)
                             @if($ad->type==1 && $ad->category_id==22)
                                 <div class="col-md-12">
@@ -1367,37 +1172,23 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="col-lg-4" style="">
+                <div class="col-lg-4" >
                     <div class="row mt-3">
                         <div class="col-md-12 ">
                             <div class="card-header card-spor  position-relative">
-                                <div class=" card-spor__link text-left pad text-center">
-                                    <!--<img class="img-fluid lazyload" style="margin: 1px 15px 0px -21px;" width="30" height="30" data-src="./img/superlig.png">--><b>Süper
+                                <div class=" card-spor__link text-left pad text-center"><b>Süper
                                         Lig</b> Puan Durumu
                                 </div>
                             </div>
-
                         @include('main.body.puan-durumu')
-
-                        <!--PUAN TABLOSU-->
                         </div>
-
                     </div>
                 </div>
-
             </div>
         </div>
-
-
-
-
         <div class="container">
-
-
-            <!-- <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css"> -->
-            <!-- Footer -->
             <footer class="page-footer font-small blue-grey lighten-5">
-                <div class="kapsayici" style="position:relative;">
+                <div class="kapsayici position-relative">
 
 
                     <div id="footer-kapat" class="kapat-buton"><span>Reklamı Kapat</span></div>
@@ -1405,14 +1196,10 @@
                         <div class="reklam-alani mt-1 mb-1 text-center">
                             <a target="_blank" href=""><img data-src="./img/reklamlar/" class="img-fluid lazyload "
                                                             alt=""></a>
-
                         </div>
-
                         <div class="reklam-alani mt-3 text-center">
                         </div>
                     </div>
                 </div>
         </div>
-
-
 @endsection
