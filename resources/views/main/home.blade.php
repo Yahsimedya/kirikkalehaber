@@ -437,26 +437,19 @@
                         <div class="swiper-container mySwiper">
                             <div class="swiper-wrapper">
                                 @foreach($authors as $author)
-
                                     <div class="swiper-slide border authors_height" >
                                         <a href=" {{URL::to('/'.str_slug($author->title).'/'.$author->id)}}">
                                             <img data-src="{{asset($author->image)}}"
-                                                 onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                                  class="img-fluid lazyload" alt="">
                                             <div style="color:{{$themeSetting[0]->siteColorTheme}}!important;"
                                                  class="text-center text-orange-400">{{Str::limit($author->name,17)}}</div>
                                             <div
-                                                class="text-center text-orange-400 font-weight-thin card-kisalt"
-                                            >{{$author->title}}</div>
+                                                class="text-center text-orange-400 font-weight-thin card-kisalt">{{$author->title}}</div>
                                         </a>
                                     </div>
                                 @endforeach
 
                             </div>
-                            <!--
-                          <div class="swiper-button-next"></div>
-                          <div class="swiper-button-prev"></div>
-                          -->
                             <div class="swiper-pagination"></div>
                         </div>
                     </div>
