@@ -473,14 +473,17 @@
                 <div class="col-md-9 col-12 pl-0">
                     <div class="row">
                         <div class="col-md-6">
+                            @if(isset($endNews[0])) {
+
                             <a href="{{URL::to('/'.str_slug($endNews[0]->title_tr).'/'.$endNews[0]->id.'/'.'haberi')}}">
                                 <img onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                      class="img_fluid kart_img lazyload" data-src=" {{asset($endNews[0]->image)}}"
                                      alt="Card image cap"></a>
+                                @endif
                         </div>
                         <div class="col-md-6">
                             <ul class="list-group p-2">
-
+@if(count($endNews)>0) {
                                 @for($i=1;$i<count($endNews);$i++)
 
                                     <a href="{{URL::to('/'.str_slug($endNews[$i]->title_tr).'/'.$endNews[$i]->id.'/'.'haberi')}}">
@@ -491,6 +494,7 @@
                                                 width="100px"> {{$endNews[$i]->title_tr}}</li>
                                     </a>
                                 @endfor
+    @endif
                             </ul>
                         </div>
                     </div>
