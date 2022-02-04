@@ -103,8 +103,9 @@ class AuthorController extends Controller
 //            DB::table('posts')->insert($data);
 //                dd($data);
             Authors::find($authors->id)->update($data);
-            unlink($old_image);
-
+            if(file_exists($old_image)) {
+                unlink($old_image);
+            }
             $notification = array(
                 'message' => 'Yazar Başarıyla Eklendi',
                 'alert-type' => 'success'
