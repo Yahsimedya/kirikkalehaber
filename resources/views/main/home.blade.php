@@ -370,7 +370,7 @@
                                     <div class="swiper-wrapper">
                                         <!-- Slidessssssssss -->
 
-                                        @foreach ($video_gallary as $row )
+                                        @foreach ($video_gallarySliderAlti as $row )
 
                                             <div class="swiper-slide position-relative">
                                                 <a href="{{URL::to('/'.Str::slug($row->title_tr).'/'.$row->id.'/'.'haberi')}}">

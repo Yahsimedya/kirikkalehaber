@@ -458,6 +458,10 @@ class ExtraController extends Controller
 //dd($kurlar);
         Session::put('kurlar', $kurlar);
 
+        $video_gallarySliderAlti = Cache::remember("video_gallarySliderAlti", Carbon::now()->addYear(), function () {
+            if (Cache::has('video_gallarySliderAlti')) return Cache::has('video_gallarySliderAlti');
+            return Post::status()->where('posts_video', '!=', NULL)->orderByDesc('updated_at')->limit(5)->get();
+        });
         $video_gallary = Cache::remember("video_gallary", Carbon::now()->addYear(), function () {
             if (Cache::has('video_gallary')) return Cache::has('video_gallary');
             return Post::status()->where('posts_video', '!=', NULL)->orderByDesc('updated_at')->limit(10)->get();
@@ -712,7 +716,7 @@ class ExtraController extends Controller
             ->where('photocategories.status', 1)->where('photos.status', 1)->groupBY('photocategories.id')
             ->latest("photocategories.updated_at")
             ->get();
-        return view('main.home', compact('home', 'fotogaleri', 'ekonomi', 'endNews', 'ekonomimanset', 'webSiteSetting', 'surmanset', 'gundem', 'gundemmanset', 'spor', 'siyaset', 'spormanset', 'siyasetmanset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary'));
+        return view('main.home', compact('home', 'fotogaleri', 'ekonomi', 'endNews', 'ekonomimanset', 'webSiteSetting', 'surmanset', 'gundem', 'gundemmanset', 'spor', 'siyaset', 'spormanset', 'siyasetmanset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary', 'video_gallarySliderAlti'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 
