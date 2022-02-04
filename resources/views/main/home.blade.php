@@ -506,7 +506,7 @@
                     </div>
 
 
-                    <div class="col-md-12 ">
+                    <div class="col-md-12 pr-0 pl-0 position-sticky">
                         <!--  ÜST BLOK 336x280 REKLAM-->
                         @foreach($ads as $ad)
                             @if($ad->type==1 && $ad->category_id==17)
