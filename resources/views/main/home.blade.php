@@ -493,7 +493,7 @@
 {{--                                            <span>{{$row->category->category_tr}}</span>--}}
 {{--                                        </div>--}}
 {{--                                    @endif--}}
-                                    <p class="card-text card-kisalt">{{$endNews[0]->title_tr}}</p>
+                                    <p class="card-text card-kisalt pt-3">{{$endNews[0]->title_tr}}</p>
                                 </div>
 
                             </div>
