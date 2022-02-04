@@ -12186,4 +12186,45 @@ img.lazyload:not([src]) {
     color: white
 }
 
+select option {
+    margin: 40px;
+
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+.media.media-weather .media-body {
+    overflow: visible;
+    position: relative;
+    width: auto;
+}
+
+.media.media-weather .media-body:before {
+    background: #007bfd;
+    right: 0;
+    top: 0;
+}
+
+.media.media-weather .media-body:after {
+    background: #6e8398;
+    left: 0;
+    top: 0;
+}
+
+.media.media-weather .media-body .wi, .media.media-weather .media-body .fa {
+    background: #fff;
+    border-radius: 50px;
+    color: #6e8398;
+    float: left;
+    font-size: 25px;
+    display: block;
+    line-height: 48px;
+    position: relative;
+    height: 48px;
+    width: 48px;
+    z-index: 1;
+    text-align: center;
+}
+
 
