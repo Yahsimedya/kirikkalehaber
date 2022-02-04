@@ -506,7 +506,7 @@
                     </div>
 
 
-                    <div class="col-md-12 pr-0 pl-0 position-sticky">
+                    <div class="col-md-12 ">
                         <!--  ÜST BLOK 336x280 REKLAM-->
                         @foreach($ads as $ad)
                             @if($ad->type==1 && $ad->category_id==17)
@@ -840,47 +840,48 @@
 
                     <div class=" m-2 d-flex justify-content-center">
                         <img class="text-center" width="300px" src="{{asset($webSiteSetting->logo)}}">
-                        <img class="text-center my-auto" width="70px" height="30px" src="{{asset('image/videologo.png')}}">
+                        <img class="text-center mt-4" width="70px" height="30px" src="{{asset('image/videologo.png')}}">
 
                     </div>
                     <div class="row">
                         <div class="col-md-6 p-2">
-                            <a href="{{URL::to('/'.Str::slug($video_gallary[0]->title_tr).'/'.$video_gallary[0]->id.'/'.'haberi')}}">
                             <div class="video-overlay">
                                 <i class="fa fa-play-circle"></i></div>
-                                <img  width="100%" height="310px" src="{{$video_gallary[0]->image}}"></a></div>
+                            <a href="{{URL::to('/'.Str::slug($video_gallary[0]->title_tr).'/'.$video_gallary[0]->id.'/'.'haberi')}}">
+                                <img class="img-fluid" src="{{$video_gallary[0]->image}}"></a></div>
                         <div class="col-md-6 ">
                             <div class="row">
                                 <div class="col-md-6 mt-2"
                                      style="padding-left: 7px !important;padding-right: 7px !important;">
-                                    <a href="{{URL::to('/'.Str::slug($video_gallary[1]->title_tr).'/'.$video_gallary[1]->id.'/'.'haberi')}}">
                                     <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                                        <img  width="100%" height="150px" src="{{$video_gallary[1]->image}}"></a>
+                                    <a href="{{URL::to('/'.Str::slug($video_gallary[1]->title_tr).'/'.$video_gallary[1]->id.'/'.'haberi')}}">
+                                        <img class="img-fluid" src="{{$video_gallary[1]->image}}"></a>
                                 </div>
                                 <div class="col-md-6 mt-2"
                                      style="padding-left: 7px !important;padding-right: 7px !important;">
-                                    <a href="{{URL::to('/'.Str::slug($video_gallary[2]->title_tr).'/'.$video_gallary[2]->id.'/'.'haberi')}}">
                                     <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                                        <img  width="100%" height="150px" src="{{$video_gallary[2]->image}}"></a></div>
+                                    <a href="{{URL::to('/'.Str::slug($video_gallary[2]->title_tr).'/'.$video_gallary[2]->id.'/'.'haberi')}}">
+                                        <img class="img-fluid" src="{{$video_gallary[2]->image}}"></a></div>
                                 <div class="col-md-6 mt-2"
                                      style="padding-left: 7px !important;padding-right: 7px !important;">
 
-                                    <a href="{{URL::to('/'.Str::slug($video_gallary[3]->title_tr).'/'.$video_gallary[3]->id.'/'.'haberi')}}">
+
                                     <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                                        <img  width="100%" height="150px" src="{{$video_gallary[3]->image}}"></a></div>
+                                    <a href="{{URL::to('/'.Str::slug($video_gallary[3]->title_tr).'/'.$video_gallary[3]->id.'/'.'haberi')}}">
+                                        <img class="img-fluid" src="{{$video_gallary[3]->image}}"></a></div>
                                 <div class="col-md-6 mt-2"
                                      style="padding-left: 7px !important;padding-right: 7px !important;">
-                                    <a href="{{URL::to('/'.Str::slug($video_gallary[4]->title_tr).'/'.$video_gallary[4]->id.'/'.'haberi')}}">
                                     <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                                        <img  width="100%" height="150px" src="{{$video_gallary[4]->image}}"></a></div>
+                                    <a href="{{URL::to('/'.Str::slug($video_gallary[4]->title_tr).'/'.$video_gallary[4]->id.'/'.'haberi')}}">
+                                        <img class="img-fluid" src="{{$video_gallary[4]->image}}"></a></div>
                             </div>
                         </div>
                         <div class="col-md-3 d-flex"
                              style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
                             <div class="position-relative float-left">
-                                <a href="{{URL::to('/'.Str::slug($video_gallary[5]->title_tr).'/'.$video_gallary[5]->id.'/'.'haberi')}}">
                                 <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                                    <img  width="100%" height="110"  src="{{$video_gallary[5]->image}}"></a>
+                                <a href="{{URL::to('/'.Str::slug($video_gallary[5]->title_tr).'/'.$video_gallary[5]->id.'/'.'haberi')}}">
+                                    <img class="img-fluid" width="150" src="{{$video_gallary[5]->image}}"></a>
                             </div>
                             <p class="ml-1 float-left text-white text-center my-auto"
                                style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;">{{$video_gallary[5]->title_tr}}
@@ -889,9 +890,9 @@
                         <div class="col-md-3 d-flex"
                              style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
                             <div class="position-relative float-left">
-                                <a href="{{URL::to('/'.Str::slug($video_gallary[6]->title_tr).'/'.$video_gallary[6]->id.'/'.'haberi')}}">
                                 <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                                    <img  width="100%" height="110" src="{{$video_gallary[6]->image}}"></a>
+                                <a href="{{URL::to('/'.Str::slug($video_gallary[6]->title_tr).'/'.$video_gallary[6]->id.'/'.'haberi')}}">
+                                    <img class="img-fluid" width="150" src="{{$video_gallary[6]->image}}"></a>
                             </div>
                             <p class="ml-1 float-left text-white text-center my-auto"
                                style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;"
@@ -901,9 +902,9 @@
                         <div class="col-md-3 d-flex"
                              style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
                             <div class="position-relative float-left">
-                                <a href="{{URL::to('/'.Str::slug($video_gallary[7]->title_tr).'/'.$video_gallary[7]->id.'/'.'haberi')}}">
                                 <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                                    <img  width="100%" height="110" src="{{$video_gallary[7]->image}}"></a>
+                                <a href="{{URL::to('/'.Str::slug($video_gallary[7]->title_tr).'/'.$video_gallary[7]->id.'/'.'haberi')}}">
+                                    <img class="img-fluid" width="150" src="{{$video_gallary[7]->image}}"></a>
                             </div>
                             <p class="ml-1 float-left text-white text-center my-auto"
                                style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;"
@@ -913,9 +914,9 @@
                         <div class="col-md-3 d-flex"
                              style="width: 150px; padding-left: 7px !important;padding-right: 7px !important;">
                             <div class="position-relative float-left">
-                                <a href="{{URL::to('/'.Str::slug($video_gallary[8]->title_tr).'/'.$video_gallary[8]->id.'/'.'haberi')}}">
                                 <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                                    <img  width="100%" height="110" src="{{$video_gallary[8]->image}}"></a>
+                                <a href="{{URL::to('/'.Str::slug($video_gallary[8]->title_tr).'/'.$video_gallary[8]->id.'/'.'haberi')}}">
+                                    <img class="img-fluid" width="150" src="{{$video_gallary[8]->image}}"></a>
                             </div>
                             <p class="ml-1 float-left text-white text-center my-auto"
                                style="width: 117px;font-size: 14px; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; overflow:hidden;"
