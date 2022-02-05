@@ -50,6 +50,7 @@ class ExtraController extends Controller
 
     public function redirect($slug)
     {
+
         $r = $_SERVER['REQUEST_URI'];
         $r = explode('?', $r);
         $r = array_filter($r);
@@ -358,12 +359,14 @@ class ExtraController extends Controller
     {
         $news = Analytics::fetchMostVisitedPages(Period::days(1));
         $endNewss = [];
+//        dd($news);
+
         foreach ($news as $news) {
             $r = $news['url'];
             $r = explode('?', $r);
             $r = array_filter($r);
             $r = array_merge($r, array());
-            $id = $r[0];
+             $id = $r[0];
             $id = str_replace('/haberi', '', $id);
             $id = explode('-', $id);
             $id = array_filter($id);
@@ -374,7 +377,20 @@ class ExtraController extends Controller
             $endNewss[] = $alinanIDs[1];
 
         }
-
+//        foreach ($news as $news) {
+//            $r = $news['url'];
+//            $r = explode('?', $r);
+//            $r = array_filter($r);
+//            $r = array_merge($r, array());
+//            $id = $r[0];
+//            $id = str_replace('/haberi', '', $id);
+//            $id = explode('-', $id);
+//            $id = array_filter($id);
+//           $id = array_merge($id, array());
+//                        $idCount = count($id) - 1;
+//
+//        }
+//
         $endNews = Post::whereIn('id', $endNewss)->limit(7)->get();
 
 
@@ -442,12 +458,12 @@ class ExtraController extends Controller
         $vakit = Vakitler::where('date', $date)->get();
 
         $vakitler = array(
-            "imsak" => $vakit[0]['imsak'] ?? null,
-            "gunes" => $vakit[0]['gunes'] ?? null,
-            "ogle" => $vakit[0]['ogle'] ?? null,
-            "ikindi" => $vakit[0]['ikindi'] ?? null,
-            "aksam" => $vakit[0]['aksam'] ?? null,
-            "yatsi" => $vakit[0]['yatsi'] ?? null,
+            "imsak" => $vakit[0]['imsak'],
+            "gunes" => $vakit[0]['gunes'],
+            "ogle" => $vakit[0]['ogle'],
+            "ikindi" => $vakit[0]['ikindi'],
+            "aksam" => $vakit[0]['aksam'],
+            "yatsi" => $vakit[0]['yatsi'],
         );
         Session::put('vakitler', $vakitler);
 
@@ -732,7 +748,7 @@ class ExtraController extends Controller
 //    }
     public function SinglePost($slug, $id)
     {
-        $post = Post::with(['category:id,category_tr'])->status()->find($id);
+        $post = Post::with(['category:id,category_tr'])->where('manset',1)->status()->find($id);
 //        views($post)->record();
 //        $expiresAt = now()->addMinute(20);
 ////        views($post)->count();
@@ -863,6 +879,7 @@ class ExtraController extends Controller
 
     public function CategoryPost($slug, $id)
     {
+        echo $id;
         $category = Category::latest()->where('id', $id)->where('category_status', 1)->orderBy('id', 'desc')->first();
 
 
@@ -885,11 +902,22 @@ class ExtraController extends Controller
         $catpost = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
             ->where('posts.category_id', $id)
-            ->where('posts.status', 1)
-            ->Where('posts.manset', 0)->orWhere('posts.manset', NULL)->latest()
+            ->where('posts.status', 1)->skip(25)->orderBy('created_at', 'desc')
+
             ->paginate(20);
 
 
+//        $catpost = Post::join('categories', 'posts.category_id', 'categories.id')
+//            ->select('posts.*', 'categories.category_tr', 'categories.category_en')
+//            ->where('posts.category_id', $id)
+//
+//            ->where(function($query){
+//                $query->where('posts.status', 1)
+//
+//                    ->orWhere('posts.manset', NULL);
+//            })
+//            ->offset(1)->latest()
+//            ->paginate(20);
 //        if ($catpost->count() == 0) {
 //            return redirect('/');
 //        }
@@ -914,12 +942,26 @@ class ExtraController extends Controller
 
     public function search(Request $request)
     {
+
+
         $searchText = $request['searchtext'];
-        $json = Post::orWhere('title_tr', 'LIKE', '%' . $searchText . '%')->orWhere('title_en', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_tr', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_en', 'LIKE', '%' . $searchText . '%')->whereStatus('1')->latest()->get();
+        $json = Post::orWhere('title_tr', 'LIKE', '%' . $searchText . '%')->orWhere('title_en', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_tr', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_en', 'LIKE', '%' . $searchText . '%')->whereStatus('1')->get();
         $searchNews = $this->change($json);
         $webSiteSetting = WebsiteSetting::first();
+
         return \view('main.body.search', compact('searchNews', 'webSiteSetting',));
     }
+
+    public function darkMode(Request $request, $themeChange)
+    {
+        if ($themeChange == 0) {
+            Session::put('theme', 1);
+        } else {
+            Session::put('theme', 0);
+        }
+        return redirect()->back();
+    }
+
 
     function change($json)
     {
