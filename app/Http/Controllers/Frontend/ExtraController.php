@@ -357,7 +357,7 @@ class ExtraController extends Controller
 
     public function Home()
     {
-        $news = Analytics::fetchMostVisitedPages(Period::days(1), $maxResults = 7);
+        $news = Analytics::fetchMostVisitedPages(Period::days(1));
         $endNewss = [];
 
         foreach ($news as $news) {
