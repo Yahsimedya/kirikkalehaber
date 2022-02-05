@@ -50,7 +50,6 @@ class ExtraController extends Controller
 
     public function redirect($slug)
     {
-
         $r = $_SERVER['REQUEST_URI'];
         $r = explode('?', $r);
         $r = array_filter($r);
@@ -359,7 +358,6 @@ class ExtraController extends Controller
     {
         $news = Analytics::fetchMostVisitedPages(Period::days(1));
         $endNewss = [];
-
         foreach ($news as $news) {
             $r = $news['url'];
             $r = explode('?', $r);
@@ -376,7 +374,6 @@ class ExtraController extends Controller
             $endNewss[] = $alinanIDs[1];
 
         }
-
 
         $endNews = Post::whereIn('id', $endNewss)->limit(7)->get();
 
@@ -445,12 +442,12 @@ class ExtraController extends Controller
         $vakit = Vakitler::where('date', $date)->get();
 
         $vakitler = array(
-            "imsak" => $vakit[0]['imsak'],
-            "gunes" => $vakit[0]['gunes'],
-            "ogle" => $vakit[0]['ogle'],
-            "ikindi" => $vakit[0]['ikindi'],
-            "aksam" => $vakit[0]['aksam'],
-            "yatsi" => $vakit[0]['yatsi'],
+            "imsak" => $vakit[0]['imsak'] ?? null,
+            "gunes" => $vakit[0]['gunes'] ?? null,
+            "ogle" => $vakit[0]['ogle'] ?? null,
+            "ikindi" => $vakit[0]['ikindi'] ?? null,
+            "aksam" => $vakit[0]['aksam'] ?? null,
+            "yatsi" => $vakit[0]['yatsi'] ?? null,
         );
         Session::put('vakitler', $vakitler);
 
@@ -735,7 +732,7 @@ class ExtraController extends Controller
 //    }
     public function SinglePost($slug, $id)
     {
-        $post = Post::with(['category:id,category_tr'])->where('manset',1)->status()->find($id);
+        $post = Post::with(['category:id,category_tr'])->status()->find($id);
 //        views($post)->record();
 //        $expiresAt = now()->addMinute(20);
 ////        views($post)->count();
@@ -889,7 +886,7 @@ class ExtraController extends Controller
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
             ->where('posts.category_id', $id)
             ->where('posts.status', 1)
-            ->orWhere('posts.manset', NULL)->offset(1)
+            ->offset(1)
             ->paginate(20);
 
 
@@ -917,26 +914,12 @@ class ExtraController extends Controller
 
     public function search(Request $request)
     {
-
-
         $searchText = $request['searchtext'];
-        $json = Post::orWhere('title_tr', 'LIKE', '%' . $searchText . '%')->orWhere('title_en', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_tr', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_en', 'LIKE', '%' . $searchText . '%')->whereStatus('1')->get();
+        $json = Post::orWhere('title_tr', 'LIKE', '%' . $searchText . '%')->orWhere('title_en', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_tr', 'LIKE', '%' . $searchText . '%')->orWhere('subtitle_en', 'LIKE', '%' . $searchText . '%')->whereStatus('1')->latest()->get();
         $searchNews = $this->change($json);
         $webSiteSetting = WebsiteSetting::first();
-
         return \view('main.body.search', compact('searchNews', 'webSiteSetting',));
     }
-
-    public function darkMode(Request $request, $themeChange)
-    {
-        if ($themeChange == 0) {
-            Session::put('theme', 1);
-        } else {
-            Session::put('theme', 0);
-        }
-        return redirect()->back();
-    }
-
 
     function change($json)
     {

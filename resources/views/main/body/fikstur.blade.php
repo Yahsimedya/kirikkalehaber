@@ -1,5 +1,9 @@
 @php
-    $url="http://www.amatorfutbol.org/tff/superlig/puandurumu-7027.html";
+  $url="http://www.amatorfutbol.org/tff/superlig/puandurumu-7027.html";
+      if (($data = @file_get_contents($url)) === false) {
+            $error = error_get_last();
+           return "";
+      } else {
     $veri=file_get_contents($url);
     $takimlar='@<tr class="hucre">(.*?)</tr>@si';
     $fikstur='@<tr class="hucre">(.*?)(.*?)</tr>@si';
@@ -77,5 +81,5 @@ a:hover
 
      //exit;
     // $dizi=[];
-
+}
 @endphp
