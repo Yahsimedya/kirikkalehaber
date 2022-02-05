@@ -885,7 +885,7 @@ class ExtraController extends Controller
         $catpost = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
             ->where('posts.category_id', $id)
-            ->where('posts.status', 1)
+            ->where('posts.status', 1)->latest()
             ->offset(1)
             ->paginate(20);
 
