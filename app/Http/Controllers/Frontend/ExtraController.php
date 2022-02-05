@@ -879,7 +879,6 @@ class ExtraController extends Controller
 
     public function CategoryPost($slug, $id)
     {
-        echo $id;
         $category = Category::latest()->where('id', $id)->where('category_status', 1)->orderBy('id', 'desc')->first();
 
 
