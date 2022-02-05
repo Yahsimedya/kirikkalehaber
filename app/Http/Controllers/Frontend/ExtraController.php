@@ -886,7 +886,7 @@ class ExtraController extends Controller
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
             ->where('posts.category_id', $id)
             ->where('posts.status', 1)
-            ->orWhere('posts.manset', NULL,0)->offset(1)->latest()
+            ->Where('posts.manset', 0)->orWhere('posts.manset', NULL)->latest()
             ->paginate(20);
 
 
