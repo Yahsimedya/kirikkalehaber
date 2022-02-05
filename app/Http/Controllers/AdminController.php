@@ -58,7 +58,7 @@ class AdminController extends Controller
         $userTypesWeek =Analytics::fetchUserTypes(Period::days(7)); //Geri dönen ve Yeni gelen ziyaretçiler
 
         $analyticsData = Analytics::performQuery(
-            Period::days(1),
+            Period::days(30),
             'ga:sessions',
             [
                 'metrics' => 'ga:sessions, ga:pageviews',
