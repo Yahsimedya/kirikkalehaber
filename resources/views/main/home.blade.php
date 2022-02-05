@@ -1225,7 +1225,7 @@
                                         Lig</b> Puan Durumu
                                 </div>
                             </div>
-                            <!--  @ include('main.body.puan-durumu')-->
+                              @include('main.body.puan-durumu')
                         </div>
                     </div>
                 </div>
