@@ -391,7 +391,7 @@ class ExtraController extends Controller
 //
 //        }
 //
-        $endNews = Post::whereIn('id', $endNewss)->limit(7)->get();
+        $endNews = Post::whereIn('id', $endNewss)->limit(6)->get();
 
 
 
