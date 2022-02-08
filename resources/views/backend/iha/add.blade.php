@@ -16,9 +16,10 @@
                         <div class="col-md-4">
                             <label>Şehir</label><br/>
                             <select name="sehir" id="" class="form-control">
-                                <option value="0">hepsi</option>
-                                <?php
+                                <option value="25">Kırıkkale</option>
+                            <?php
                                 for ($i = 0; $i < 80; $i++) { ?>
+                                    <option value="0">hepsi</option>
                                 <option value="1">Adana</option>
                                 <option value="40">Adıyaman</option>
                                 <option value="82">Afyonkarahisar</option>

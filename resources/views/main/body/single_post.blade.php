@@ -152,6 +152,15 @@
                     <!-- İÇERİK KARE REKLAM ALANI 250x250 -->
 
                     <div style="min-height:300px">{!! $post->details_tr !!}</div>
+                    <!-- İÇERİK KARE REKLAM ALANI 728x90 -->
+
+                    @foreach($ads as $ad)
+                        @if($ad->type==1 && $ad->category_id==12)
+                            <img class="img-fluid pb-2 pt-1 lazyload" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" width="100%" height="90" src="{{asset($ad->ads)}}">
+                        @elseif($ad->type==2 && $ad->category_id==12)
+                            <div class="w-100">{!!$ad->ad_code!!}</div>
+                        @endif
+                    @endforeach
 {{--                    <small class="float-lg-right">--}}
 {{--                        <span title="Likes" id="saveLikeDislike" data-type="like" data-post="{{$post->id}}" class="mr-2 btn btn-sm btn-outline-primary d-inline font-weight-bold">--}}
 {{--                            <i class="fa fa-thumbs-up"></i>--}}
@@ -196,15 +205,7 @@
                         @endforeach
                     @endif
 
-                <!-- İÇERİK KARE REKLAM ALANI 728x90 -->
 
-                    @foreach($ads as $ad)
-                        @if($ad->type==1 && $ad->category_id==12)
-                            <img class="img-fluid pb-2 pt-1 lazyload" onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" width="100%" height="90" src="{{asset($ad->ads)}}">
-                        @elseif($ad->type==2 && $ad->category_id==12)
-                            <div class="w-100">{!!$ad->ad_code!!}</div>
-                    @endif
-                @endforeach
 
                 <!-- order images-->
 
@@ -304,7 +305,8 @@
             </div>
 
             <div class="col-md-4">
-                @foreach($ads as $ad)
+
+            @foreach($ads as $ad)
                     @if($ad->type==1 && $ad->category_id==7)
                         <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid pb-1 pt-3 lazyload" width="100%" height="90"
                                                      src="{{asset($ad->ads)}}"></a>
@@ -339,7 +341,8 @@
                     <!-- Add Pagination -->
                     <div class="swiper-pagination detay-pagination"></div>
                 </div>
-                <!-- HABER DETAY REKLAM 336x270 -->
+
+                    <!-- HABER DETAY REKLAM 336x270 -->
                 @foreach($ads as $ad)
                     @if($ad->type==1 && $ad->category_id==2)
                         <a href="{{$ad->link}}"><img onerror="this.onerror=null;this.src='{{asset($webSiteSetting->defaultImage)}}';" class="img-fluid pb-1 pt-3 lazyload" width="100%" height="90"
@@ -387,7 +390,6 @@
                         </div>
                     </a>
             @endforeach
-
             <!--SIRADAKİ HABERLER-->
 
                     <div class="reklam-alani mt-1 mb-1 text-center">
