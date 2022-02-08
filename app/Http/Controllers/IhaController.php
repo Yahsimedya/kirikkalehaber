@@ -151,9 +151,38 @@ class IhaController extends Controller
 
             $olustur = file_put_contents('dene.xml', $exec);
         }
+        $xmlDataString = file_get_contents(public_path('dene.xml'));
+
+        $converted = Str::substr($xmlDataString, 0, 40);
+        $convertedistek = Str::substr($xmlDataString, 0, 39);
+
+        if ($converted == "Bu şehire ait haberler içi yetkiniz yok.") {
+            $notification = array(
+                'message' => 'Bu şehire ait haberler için yetkiniz yok',
+                'alert-type' => 'success'
+            );
+            return Redirect()->route('addpage.iha')->with($notification);
+        }
+        else if ($xmlDataString == "Hiç Haber Bulunmadı")
+        {
+            $notification = array(
+                'message' => 'Hiç Haber Bulunmadı',
+                'alert-type' => 'success'
+            );
+            return Redirect()->route('addpage.iha')->with($notification);
+        }
+
+       else if ($convertedistek == "İki rss isteği arasındaki süre en az 30")
+        {
+            $notification = array(
+                'message' => '30 Saniye sonra tekrar deneyiniz',
+                'alert-type' => 'info'
+            );
+            return Redirect()->route('addpage.iha')->with($notification);
+        }
 
 
-        if ($olustur != 162) {
+        else if ($olustur != 162) {
 
 
             $xmlDataString = file_get_contents(public_path('dene.xml'));
@@ -222,7 +251,7 @@ class IhaController extends Controller
         } else {
             $notification = array(
                 'message' => 'Haber Bulunamadı',
-                'alert-type' => 'info'
+                'alert-type' => 'success'
             );
             return Redirect()->route('addpage.iha')->with($notification);
         }
