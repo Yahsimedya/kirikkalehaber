@@ -8,7 +8,18 @@ class NotificationController extends Controller
 {
 
     public function index(){
-        return view('backend.notification.index');
+        $firebaseserverKey=Seos::first();
+        $serverKey = $firebaseserverKey->fcmserver;
+        if (empty($serverKey)){
+            $notification = array(
+                'message' => 'Lütfen Api Key Girininiz',
+                'alert-type' => 'success'
+            );
+            return Redirect()->route('seo.setting')->with($notification);
+
+        }else{
+            return view('backend.notification.index');
+        }
     }
 
 
