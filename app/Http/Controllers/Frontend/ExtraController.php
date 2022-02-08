@@ -901,22 +901,11 @@ class ExtraController extends Controller
         $catpost = Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
             ->where('posts.category_id', $id)
-            ->where('posts.status', 1)->skip(25)->orderBy('created_at', 'desc')
-
+            ->where('posts.status', 1)
+            ->orWhere('posts.manset', NULL)->offset(1)
             ->paginate(20);
 
 
-//        $catpost = Post::join('categories', 'posts.category_id', 'categories.id')
-//            ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-//            ->where('posts.category_id', $id)
-//
-//            ->where(function($query){
-//                $query->where('posts.status', 1)
-//
-//                    ->orWhere('posts.manset', NULL);
-//            })
-//            ->offset(1)->latest()
-//            ->paginate(20);
 //        if ($catpost->count() == 0) {
 //            return redirect('/');
 //        }
