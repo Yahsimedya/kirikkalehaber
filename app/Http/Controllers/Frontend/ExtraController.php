@@ -864,7 +864,7 @@ class ExtraController extends Controller
 //        $related=$this->belongsToMany(Post::class, 'post_tags', 'tags');
         $seoset = Seos::first();
         $webSiteSetting = WebsiteSetting::first();
-        return view('main.body.single_post', compact('post', 'ads', 'webSiteSetting', 'random', 'slider', 'tagName', 'nextrelated', 'comments', 'seoset', 'maybeRelated', 'tagCount'));
+        return view('main.body.single_post', compact('post','posts', 'ads', 'webSiteSetting', 'random', 'slider', 'tagName', 'nextrelated', 'comments', 'seoset', 'maybeRelated', 'tagCount'));
 
 
     }
