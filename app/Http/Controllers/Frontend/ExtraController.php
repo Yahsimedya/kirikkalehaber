@@ -749,6 +749,7 @@ class ExtraController extends Controller
     public function SinglePost($slug, $id)
     {
         $post = Post::with(['category:id,category_tr'])->where('manset',1)->status()->find($id);
+        $posts = Post::with(['category:id,category_tr'])->status()->find($id);
 //        views($post)->record();
 //        $expiresAt = now()->addMinute(20);
 ////        views($post)->count();
@@ -780,7 +781,7 @@ class ExtraController extends Controller
                 ->status()
                 ->with('adcategory')
                 ->get();
-        $tag_ids = $post->tag()->get();
+        $tag_ids = $posts->tag()->get();
         $tagCount = $tag_ids->count();
         $ids = array();
         foreach ($tag_ids as $tags) {
