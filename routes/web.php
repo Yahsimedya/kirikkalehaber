@@ -232,12 +232,14 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
 
 // PHOTO GALERY ROUTES
-    Route::get('/photo/galery', [GalleryController::class, 'PhotoGalery'])->name('photo.galery');
-    Route::get('/add/photogalery', [GalleryController::class, 'AddPhotoGalery'])->name('add.photogalery');
-    Route::post('/create/photo', [GalleryController::class, 'CreatePhoto'])->name('create.photo');
-    Route::get('/galery/detail/{id}', [GalleryController::class, 'GaleryDetail'])->name('galery.detail');
+    Route::get('/photo/galery', [GalleryController::class, 'PhotoGalery'])->name('photo.galery'); //Galerilerin listelendiği sayfa
+    Route::get('/add/photogalery', [GalleryController::class, 'AddPhotoGalery'])->name('add.photogalery'); // Fotogaleri ekleme sayfası
+    Route::post('/create/photo', [GalleryController::class, 'CreatePhoto'])->name('create.photo');// Fotogaleri ekleme sayfasında create ederek galeriyi oluşturur
+    Route::get('/galery/detail/{id}', [GalleryController::class, 'GaleryDetail'])->name('galery.detail'); //fotogaleriye eklenen tüm fotğrafları gösterir
+
     Route::get('/galery/Add/{id}', [GalleryController::class, 'GaleryDetailAdd'])->name('galery.detailAdd');
-//    Route::get('/galery/update/', [GalleryController::class, 'UpdatePhoto'])->name('update.photo');
+
+    Route::post('/galery/update/', [GalleryController::class, 'UpdatePhoto'])->name('update.photo');
     Route::post('/add/photo/text/{photocategory_id}', [GalleryController::class, 'AddText'])->name('add.text');
     Route::post('/galery/photo/active/{id}', [GalleryController::class, 'ActivePhotoGalery'])->name('active.photogalery');
     Route::get('/galery/delete/{id}', [GalleryController::class, 'DeleteGalery'])->name('delete.galery');
