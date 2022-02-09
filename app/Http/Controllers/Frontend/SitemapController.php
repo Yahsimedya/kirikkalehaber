@@ -27,14 +27,14 @@ class SitemapController extends Controller
         $posts = Post::orderByDesc('id')->orderByDesc('id')->where('status', 1)->get();
         $postsvideo = Post::where('posts_video', '!=', "")->orderByDesc('id')->where('status', 1)->get();
         $photos =Photo::orderByDesc('id')->get();
-        $categories = Category::where('status', 1)->get();
+        $categories = Category::where('category_status', 1)->get();
         $districts = District::get();
         $counter = 0;
         $sitemapCounter = 0;
         $sitemapCounters = 0;
         $sitemapCounterAllPage = 0;
         $sitemapCounterImages = 0;
-        $host = request()->getHttpHost();
+        $host = request()->getHost();
 
 //all page
         foreach ($posts as $p) {
