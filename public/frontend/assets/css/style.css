@@ -10142,13 +10142,12 @@ a, :hover {
 }
 
 .card-kisalttek {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow:hidden;
     line-height: 26px;
     max-height: 58px;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical
 }
 
 .card-spor {

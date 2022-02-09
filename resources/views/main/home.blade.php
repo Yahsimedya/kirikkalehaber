@@ -508,7 +508,7 @@
 {{--                                @endif--}}
                         </div>
                         <div class="col-md-6">
-                            <ul class="list-group p-2">
+                            <ul class="list-group ">
 @if(count($endNews)>0)
                                 @for($i=1;$i<count($endNews);$i++)
 
@@ -517,7 +517,7 @@
                                                 data-src="{{asset($endNews[$i]->image)}}"
                                                 onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
                                                 class="img-fluid lazyload"
-                                                width="100px"> {{$endNews[$i]->title_tr}}</li>
+                                                width="100px">{{$endNews[$i]->title_tr}}</li>
                                     </a>
                                 @endfor
     @endif
