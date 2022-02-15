@@ -516,7 +516,7 @@
                                         <li class="border-bottom card-kisalttek mb-1"><img
                                                 data-src="{{asset($endNews[$i]->image)}}"
                                                 onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                                class="img-fluid lazyload"
+                                                class="img-fluid lazyload mr-2""
                                                 width="100px">{{$endNews[$i]->title_tr}}</li>
                                     </a>
                                 @endfor
