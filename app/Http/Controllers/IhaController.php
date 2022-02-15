@@ -287,21 +287,21 @@ class IhaController extends Controller
         }
 
 
-        $content = file_get_contents($request->image);
+        $content = $request->image == null ? "" :file_get_contents($request->image);
 
         file_put_contents(realpath($filenamejpegay) . '/' . $benzersiz . "-" . $isim . "." . 'jpg', $content);
         //image/postimg//2021a/09"
         $imagesArray[0] = $filenamejpeg . "/" . $benzersiz . "-" . $isim . '.jpg';
-        $image = imagecreatefromstring(file_get_contents($request->image));
+        $image =$request->image == null ? "" : imagecreatefromstring(file_get_contents($request->image));
 
         ob_start();
-        imagejpeg($image, NULL, 100);
+        $request->image == null ? "" :       imagejpeg($image, NULL, 100);
         $cont = ob_get_contents();
         ob_end_clean();
-        imagedestroy($image);
-        $content = imagecreatefromstring($cont);
+        $request->image == null ? "" :  imagedestroy($image);
+        $request->image == null ? "" :    $content = imagecreatefromstring($cont);
 
-        imagedestroy($content);
+        $request->image == null ? "" : imagedestroy($content);
 
         $data = array();
         $images = $request->image == null ? "" : $request->image;
