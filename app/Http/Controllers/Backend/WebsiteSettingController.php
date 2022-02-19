@@ -99,12 +99,17 @@ class WebsiteSettingController extends Controller
                 'alert-type' => 'success'
             );
             return redirect()->back();
+        }
+        elseif ($favicon) {
+            $image_one = uniqid() . '.' . $favicon->getClientOriginalName();
+            Image::make($favicon)->save('image/logo/' . $yil . '/' . $ay . '/' . $image_one);
+            $data['favicon'] = 'image/logo/' . $yil . '/' . $ay . '/' . $image_one;
+            WebsiteSetting::find($websetting->id)->update($data);
+            return redirect()->back();
         } else {
-
             $data['logo'] = $old_image;
             $data['old_defaultImage'] = $old_defaultImage;
-
-
+            $data['favicon'] = $old_favicon;
             $websetting->update($request->all());
 
         }
