@@ -489,7 +489,7 @@
                                 </div>
                                 <script>
                                     lightbox.option({
-                                        'albumLabel': " {{ \Carbon\Carbon::parse($row->date)->isoFormat('DD MMMM YYYY') }}",
+                                        'albumLabel': "",
                                         //   'disableScrolling':true,
                                     })
                                 </script>
