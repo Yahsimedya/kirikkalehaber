@@ -288,6 +288,28 @@
 
                                 </div>
 
+                                <div class="col-lg-12 mt-4"></div>
+
+                                <label class="col-form-label col-lg-3">E Gazete</label>
+                                <div class="col-lg-9">
+
+
+                                    <select data-placeholder="Select your state" name="gazetesayisi"
+                                            style="width: 150px; height: 30px" class="form-control form-control-select2"
+                                            data-fouc>
+                                        <option @php if($row->gazetesayisi ==0 ) { echo "selected";} @endphp value="0">
+                                            Gösterme
+
+                                        </option>
+                                        <option @php if($row->gazetesayisi ==1 ) { echo "selected";} @endphp value="1">
+                                            Göster
+
+                                        </option>
+                                    </select>
+
+
+                                </div>
+
 
                                 <div class="col-lg-12 mt-4"></div>
 

@@ -21,6 +21,7 @@ mix.js('resources/js/app.js', 'public/js')
         'public/frontend/assets/js/marquee.js',
         'public/frontend/assets/js/svg-turkiye-haritasi.js',
         'node_modules/swiper/swiper-bundle.js',
+        'public/frontend/assets/js/lightbox-plus-jquery.min.js',
         'node_modules/slick-carousel/slick/slick.js',
     ], 'public/frontend/assets/js/combine.js')
 
@@ -31,6 +32,7 @@ mix.js('resources/js/app.js', 'public/js')
         'public/frontend/assets/css/magnific-popup.css',
         'public/frontend/assets/css/svg-turkiye-haritasi.css',
         'node_modules/swiper/swiper-bundle.css',
+        'public/frontend/assets/css/lightbox.css',
         'node_modules/slick-carousel/slick/slick.scss',
 
     ],'public/frontend/assets/css/combine.css')

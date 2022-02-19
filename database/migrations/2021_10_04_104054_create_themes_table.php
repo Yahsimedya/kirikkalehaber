@@ -31,7 +31,7 @@ class CreateThemesTable extends Migration
             $table->string('multiple_category');
             $table->bigInteger('fotogaleri');
             $table->bigInteger('videogaleri');
-
+            $table->bigInteger('gazetesayisi')->default(0);
 
 
 

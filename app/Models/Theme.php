@@ -26,6 +26,7 @@ class Theme extends Model
         'multiple_category',
         'fotogaleri',
         'videogaleri',
+        'gazetesayisi',
     ];
 
 }

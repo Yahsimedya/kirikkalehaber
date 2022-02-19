@@ -13,6 +13,7 @@ use App\Models\FixedPage;
 use App\Models\Photo;
 use App\Models\Photocategory;
 use App\Models\Post;
+use App\Models\Gazetesayis;
 use App\Models\PostTag;
 use App\Models\Sehirler;
 use App\Models\Seos;
@@ -731,7 +732,10 @@ class ExtraController extends Controller
             ->where('photocategories.status', 1)->where('photos.status', 1)->groupBY('photocategories.id')
             ->latest("photocategories.updated_at")
             ->get();
-        return view('main.home', compact('home', 'fotogaleri', 'ekonomi', 'endNews', 'ekonomimanset', 'webSiteSetting', 'surmanset', 'gundem', 'gundemmanset', 'spor', 'siyaset', 'spormanset', 'siyasetmanset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary', 'video_gallarySliderAlti'));
+        $egazete= Cache()->remember("home-egazete", Carbon::now()->addYear(), function () {
+            return Gazetesayis::latest()->where('status',1)->limit(9)->get();
+        });
+        return view('main.home', compact('home', 'fotogaleri','egazete', 'ekonomi', 'endNews', 'ekonomimanset', 'webSiteSetting', 'surmanset', 'gundem', 'gundemmanset', 'spor', 'siyaset', 'spormanset', 'siyasetmanset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary', 'video_gallarySliderAlti'));
 //        return view('main.home_master', compact('seoset'))
 //        return view('main.body.header', compact('vakitler'));
 
@@ -748,6 +752,7 @@ class ExtraController extends Controller
 //    }
     public function SinglePost($slug, $id)
     {
+
         $post = Post::with(['category:id,category_tr'])->status()->find($id);
 //        views($post)->record();
 //        $expiresAt = now()->addMinute(20);
@@ -863,6 +868,146 @@ class ExtraController extends Controller
 //        $related=$this->belongsToMany(Post::class, 'post_tags', 'tags');
         $seoset = Seos::first();
         $webSiteSetting = WebsiteSetting::first();
+
+
+        if (Session::get('kurlar')==""){
+            $ch = curl_init();
+            curl_setopt_array($ch, [
+                CURLOPT_URL => 'https://finans.truncgil.com/today.json',
+                CURLOPT_RETURNTRANSFER => true,
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false),
+
+            ]);
+            $output = curl_exec($ch);
+            curl_close($ch);
+
+            $result = json_decode($output, true);
+            function degistir($string)
+            {
+                $string = str_replace('%', '', $string);
+
+                return $string;
+            }
+            $kurlar = [
+                'DOLAR' => [
+                    'oran' => $result['USD']['Değişim'],
+                    'oranyonu' => str_replace(',', '.', degistir($result['USD']['Değişim'])),
+//                    'alis' => $usd['Buy'],
+                    'satis' => str_replace(',', '.', $result['USD']['Satış'])
+
+                ],
+                'EURO' => [
+                    'oran' => $result['EUR']['Değişim'],
+                    'oranyonu' => str_replace(',', '.', degistir($result['EUR']['Değişim'])),
+//                    'alis' => $usd['Buy'],
+                    'satis' => str_replace(',', '.', degistir($result['EUR']['Satış']))
+                ],
+                'ALTIN' => [
+                    'oran' => $result['gram-altin']['Değişim'],
+                    'oranyonu' => $result['gram-altin']['Değişim'],
+//                    'alis' => $usd['Buy'],
+                    'satis' => str_replace(',', '.', degistir((float)$result['gram-altin']['Satış']))
+
+                ],
+                'ceyrekaltin' => [
+                    'oran' => $result['ceyrek-altin']['Değişim'],
+                    'oranyonu' => $result['ceyrek-altin']['Değişim'],
+//                    'alis' => $usd['Buy'],
+                    'satis' => str_replace(',', '.', degistir($result['ceyrek-altin']['Satış']))
+                ]
+            ];
+
+            $date = Carbon::now()->format('d.m.Y');
+
+            $vakit = Vakitler::where('date', $date)->get();
+
+            $vakitler = array(
+                "imsak" => $vakit[0]['imsak'],
+                "gunes" => $vakit[0]['gunes'],
+                "ogle" => $vakit[0]['ogle'],
+                "ikindi" => $vakit[0]['ikindi'],
+                "aksam" => $vakit[0]['aksam'],
+                "yatsi" => $vakit[0]['yatsi'],
+            );
+            Session::put('vakitler', $vakitler);
+            Session::put('kurlar', $kurlar);
+
+
+//dd($kurlar);
+            $mgm = file_get_contents("http://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml");
+
+            $veri = simplexml_load_string($mgm);
+
+            $json = json_encode($veri);
+            $array = json_decode($json, TRUE);
+            $gelenil = "KIRIKKALE";
+            $bul = $gelenil;
+            $bulunacak = array('ç', 'Ç', 'ı', 'ğ', 'Ğ', 'ü', 'İ', 'ö', 'Ş', 'ş', 'Ö', 'Ü', ',', ' ', '(', ')', '[', ']');
+            $degistir = array('c', 'C', 'i', 'g', 'G', 'u', 'I', 'o', 'S', 's', 'O', 'U', '', '_', '', '', '', '');
+            $sonuc = str_replace($bulunacak, $degistir, $bul);
+            $sonuc;
+            function cevir($string)
+            {
+
+                $string = str_replace("SCK", "Sıcak", $string);
+                $string = str_replace("AB", "Az Bulutlu", $string);
+                $string = str_replace("HSY", "Hafif Sağnak Yağış", $string);
+                $string = str_replace("PB", "Parçalı Bulutlu", $string);
+                $string = str_replace("GSY", "Gökgürltülü Sağnak Yağışlı", $string);
+                $string = str_replace("KGY", "Kuvvetli Gökgürltülü Sağnak Yağışlı", $string);
+                $string = str_replace("MSY", "Mevzi Sağnak Yağışlı", $string);
+
+                return $string;
+            }
+
+//        dd($array);
+
+            foreach ($array['Merkez'] as $data) {
+                if ($data['ilEn'] == $sonuc) {
+                    if ($data['d1'] == "GSY") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>';
+                    } elseif ($data['d1'] == "SCK") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-sunny"></i>';
+                    } elseif ($data['d1'] == "KGY") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>';
+                    } elseif ($data['d1'] == "AB") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-night-partly-cloudy"></i>';
+                    } elseif ($data['d1'] == "PB") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-cloudy-windy"></i>';
+                    } elseif ($data['d1'] == "HSY") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-rain"></i>';
+                    } elseif ($data['d1'] == "MSY") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-showers"></i>';
+                    } elseif ($data['d1'] == "A") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-sunny"></i>';
+                    } elseif ($data['d1'] == "CB") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-cloudy"></i>';
+                    } elseif ($data['d1'] == "SIS") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
+                    } elseif ($data['d1'] == "R") {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
+                    } else {
+                        $icon = '<i  style="font-size: 20px;" class="wi wi-strong-wind"></i>';
+                    }
+
+
+                    $day1 = $data['makk1'];
+
+
+                }
+            }
+
+            $veri = array(
+                'gelenil' => $gelenil,
+                'sicaklik' => $day1,
+//            'icon' =>$icon,
+            );
+
+            Session::put('icon', $icon);
+            Session::put('gelenil', $gelenil);
+
+            Session::put('havadurumu', $veri['sicaklik']);
+        }
         return view('main.body.single_post', compact('post', 'ads', 'webSiteSetting', 'random', 'slider', 'tagName', 'nextrelated', 'comments', 'seoset', 'maybeRelated', 'tagCount'));
 
 

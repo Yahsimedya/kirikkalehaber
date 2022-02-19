@@ -150,7 +150,12 @@
                     </a>
                 </li>
 
-
+                <li class="nav-item">
+                    <a href="{{route('egazete.index')}}" class="nav-link">
+                        <i class="icon-stack2"></i>
+                        <span>E Gazete</span>
+                    </a>
+                </li>
                 <li class="nav-item nav-item-submenu">
                     <a href="#settings" class="nav-link"><i class="icon-user"></i> <span>Kullanıcı İşlemleri</span></a>
 

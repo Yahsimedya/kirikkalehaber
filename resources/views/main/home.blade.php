@@ -6,6 +6,7 @@
 @section('google_verification',$seoset->google_verification)
 @section('adsense_code',$seoset->adsense_code)
 
+
 @section('content')
     <?php
     $socials = DB::table('socials')->get();
@@ -464,6 +465,43 @@
                 </div>
 
             @endif
+
+           @if($themeSetting[0]->gazetesayisi!=0)
+            <div class="position-relative mt-3 ">
+                <b>YENİ SAYILARIMIZ</b>
+                <p class="detay__sidebar-baslik "></p>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-12 pr-2">
+                    <div class="swiper-container mySwiper">
+                        <div class="swiper-wrapper">
+                            @foreach($egazete as $row)
+                                <div class="swiper-slide border egazete_size">
+                                    <a class="example-image-link" target="_blank" href="{{$row->image}}"
+                                       data-lightbox="example-set" data-title="{{$row->title_tr}}">
+                                        <img data-src="{{asset($row->image)}}"
+                                             class="img-fluid lazyload" alt="">
+                                        <div style="color:{{$themeSetting[0]->siteColorTheme}}!important;"
+                                             class="text-center text-orange-400">{{Str::limit($row->title_tr)}}</div>
+                                        <div
+                                            class="text-center text-orange-400 font-weight-thin card-kisalt">{{ \Carbon\Carbon::parse($row->date)->isoFormat('DD MMMM YYYY') }}</div>
+                                    </a>
+                                </div>
+                                <script>
+                                    lightbox.option({
+                                        'albumLabel': " {{ \Carbon\Carbon::parse($row->date)->isoFormat('DD MMMM YYYY') }}",
+                                        //   'disableScrolling':true,
+                                    })
+                                </script>
+                            @endforeach
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+
+            </div>
+            @endif
+
 
             <div class="position-relative mt-3 ">
                 <b>EN ÇOK OKUNANLAR</b>

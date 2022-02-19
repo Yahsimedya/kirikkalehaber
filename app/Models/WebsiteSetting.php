@@ -10,6 +10,7 @@ class WebsiteSetting extends Model
     use HasFactory;
     protected $fillable = [
         'logo',
+        'favicon',
         'adress',
         'phone',
         'email',

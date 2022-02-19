@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\GaleryCategoryController;
 use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\EgazeteController;
 use App\Http\Controllers\Backend\WebsiteSettingController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubDistrictController;
@@ -314,6 +315,15 @@ Route::get('/fixedpage/delete/{id}', [FixedPageController::class, 'delete'])->na
 Route::post('/fixedpage/edit/{id}', [FixedPageController::class, 'edit'])->name('fixedpage.edit');
 Route::get('/fixedpage/editPage/{id}', [FixedPageController::class, 'editPage'])->name('fixedpage.editPage');
 
+//E Gazete Page
+
+Route::get('/egazete', [EgazeteController::class, 'index'])->name('egazete.index');
+Route::get('/egazete/add', [EgazeteController::class, 'add'])->name('egazete.add');
+Route::post('/egazete/post', [EgazeteController::class, 'store'])->name('egazete.postStore');
+Route::post('/egazete/status/{id}', [EgazeteController::class, 'status'])->name('egazete.status');
+Route::get('/egazete/delete/{id}', [EgazeteController::class, 'delete'])->name('egazete.delete');
+Route::post('/egazete/edit/{post}', [EgazeteController::class, 'edit'])->name('egazete.edit');
+Route::get('/egazete/editPage/{id}', [EgazeteController::class, 'editPage'])->name('egazete.editPage');
 
 // User Operations
 

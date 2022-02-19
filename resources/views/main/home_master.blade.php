@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="tr">
-
+@php
+use App\Models\WebsiteSetting;
+    $webSiteSetting = WebsiteSetting::first();
+@endphp
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="icon" href="{{asset('public/logo-kus.png')}}">
+    <link rel="icon" href="{{asset($webSiteSetting->favicon)}}">
     <meta name="csrf-token" content="{{csrf_token()}}"><!-- Otmatik alt kategori seçmek için ekledik-->
     <title>@yield('title')</title>
     <meta name="keywords" content="@yield('meta_keywords')">

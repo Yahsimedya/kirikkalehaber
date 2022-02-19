@@ -31,7 +31,7 @@ class themeSeeder extends Seeder
             'category4' => 4,
             'fotogaleri' => 1,
             'videogaleri' => 1,
-
+            'gazetesayisi' => 0,
             'multiple_category' => ["3","2","1"],
         ]);
     }
