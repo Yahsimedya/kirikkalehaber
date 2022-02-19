@@ -10131,6 +10131,10 @@ a, :hover {
     }
 }
 
+.egazete_size{
+    height: 350px!important;
+    max-width: 200px!important;
+}
 .card-kisalt {
     overflow: hidden;
     text-overflow: ellipsis;
