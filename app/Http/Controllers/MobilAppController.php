@@ -280,7 +280,14 @@ class MobilAppController extends Controller
         $json = $stmt;
         return $this->change($json);
     }
-
+    public function fotogaleriDetailid($id)
+    {
+        $stmt = DB::table('photocategories')->
+        leftjoin('photos', 'photocategories.id', '=', 'photos.photocategory_id')
+            ->latest('photocategories.id')->where("photos.photocategory_id",$id)->get();
+        $json = $stmt;
+        return $this->change($json);
+    }
 
     public function searchPost($ad)
     {
