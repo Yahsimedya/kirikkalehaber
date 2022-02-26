@@ -72,6 +72,11 @@ class MobilAppController extends Controller
         $json = $stmt;
         return $this->change($json);
     }
+    public function videogallary(){
+        $stmt = Post::where('status', '=', 1)->where('posts_video', '!=', null)->orderByDesc('created_at')->limit(50)->get();
+        $json = $stmt;
+        return $this->change($json);
+    }
 
     public function surmanset()
     {
