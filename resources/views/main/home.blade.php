@@ -256,7 +256,7 @@
                                                                                               data-src="{{asset($row->photo)}}"/>
                                                         </div>
                                                     </a>
-                                                    <span class="yazi-span">{{$row->category_title	}}</span>
+                                                    <span class="yazi-span">{{$row->title	}}</span>
                                                 </div>
                                             @endif
                                         @endforeach
