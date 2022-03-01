@@ -762,7 +762,6 @@
                                         <img width="100%" height="150" src="{{$video_gallary[4]->image}}"></a></div>
                             </div>
                         </div>
-
                         <div class="col-md-3 d-flex videogaleri_dortlu">
                             <div class="position-relative float-left">
                                 <a href="{{URL::to('/'.Str::slug($video_gallary[5]->title_tr).'/'.$video_gallary[5]->id.'/'.'haberi')}}">
@@ -778,7 +777,7 @@
                                     <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
                                     <img width="100%" height="110" src="{{$video_gallary[6]->image}}"></a>
                             </div>
-                            <p class="ml-1 float-left text-white text-center my-auto"
+                            <p class="ml-1 float-left text-white text-center my-auto  videogaleri_alt_kisalt"
                             >{{$video_gallary[6]->title_tr}}
                             </p>
                         </div>
@@ -887,15 +886,10 @@
                 <!-- </div> -->
             </div>
         </section>
-
-
         <!---EKONOMİ HABERLERİ-->
         <div class="container pt-2 pb-2">
             <div class="row">
                 @foreach($ekonomi as $homes)
-
-
-
                     <div class="col-md-4 float-left mb-3  ">
                         <div class="card kart kart-width kart-margin shadow">
                             <a href="{{URL::to('/'.str_slug($homes->title_tr).'/'.$homes->id.'/'.'haberi')}}">
@@ -917,18 +911,9 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
                 @endforeach
             </div>
         </div>
-
-
-
-
         <!---EKONOMİ HABERLERİ-->
         <div class="container pt-2 pb-2">
             <div class="row">
