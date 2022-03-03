@@ -510,7 +510,7 @@ class ExtraController extends Controller
 
         });
 
-        $home = $home->chunk(4)->each->push($ads)->collapse();
+//        $home = $home->chunk(4)->each->push($ads)->collapse();
 //        dd($home);
 //        $surmanset =
 ////            Cache::remember("surmanset", Carbon::now()->addYear(), function () {
