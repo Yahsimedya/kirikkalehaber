@@ -187,41 +187,17 @@
                 <div class="col-md-8 col-12 col-sm-8 text-danger mb-2">
                     <div class="swiper-container kategori-slider mb-2">
                         <div class="swiper-wrapper">
-                            @foreach($ads as $ad)
 
-                                @if($ad->category_id==28)
-                                    @php
-                                        $reklamkontrol= 1;
-                                    @endphp
-                                @else
-                                    @php
-                                        $reklamkontrol=0 ;
-                                    @endphp
-                                @endif
-                            @endforeach
+
                             @for($i=0;$i<=24;$i++)
                                 <div class="swiper-slide position-relative">
                                     <a href="{{URL::to('/'.str_slug($home[$i]->title_tr).'/'.$home[$i]->id.'/'.'haberi')}}">
                                         <div class="position-relative">
-                                            @if($reklamkontrol==0)
-                                                <img class="img-fluid slider-foto swiper-lazy   lazyload"
-                                                     width="100%"
-                                                     onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                                     data-src="{{ asset($home[$i]->image) }}"/>
-                                            @elseif($i==0 || $i==14)
-                                                @foreach($ads as $ad)
-                                                    @if($ad->type==1 && $ad->category_id==28)
-                                                        <a href="{{$ad->link}}"><img
-                                                                class="img-fluid pb-1 pt-2 lazyload" width="336"
-                                                                height="280"
-                                                                src="{{asset($ad->ads)}}"></a>
-                                                    @elseif($ad->type==2 && $ad->category_id==28)
-                                                        <div class="w-100">{!!$ad->ad_code!!}</div>
-                                                        {{$ad}}
-                                                    @endif
-                                                @endforeach
+                                            <img class="img-fluid slider-foto swiper-lazy   lazyload"
+                                                 width="100%"
+                                                 onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                 data-src="{{ asset($home[$i]->image) }}"/>
 
-                                            @endif
                                             @if($themeSetting[0]->slider_title!=0)
                                                 <div class="kartlar__effect position-absolute">
                                                     <p class="ana-manset-text">{{$home[$i]->title_tr}}</p>
