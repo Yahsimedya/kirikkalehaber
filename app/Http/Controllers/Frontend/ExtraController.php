@@ -499,7 +499,19 @@ class ExtraController extends Controller
                 ->latest('created_at')
                 ->get();
         });
+        $ads = Cache::remember("ads", Carbon::now()->addYear(), function () {
+            if (Cache::has('ads')) return Cache::has('ads');
+            return Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
+//            ->join('ads','ad_categories.id','ads.category_id')
+                ->select(['ads.*', 'ad_categories.id'])
+                ->status()
+                // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
+                ->get();
 
+        });
+
+        $home = $home->chunk(4)->each->push($ads)->collapse();
+//        dd($home);
 //        $surmanset =
 ////            Cache::remember("surmanset", Carbon::now()->addYear(), function () {
 ////            if (Cache::has('surmanset')) return Cache::has('surmanset');
@@ -638,16 +650,7 @@ class ExtraController extends Controller
 //        $authors= AuthorsPost::latest('id')->groupBy('authors_id')->get();
 //        $authors=AuthorsPost::whereAuthorsId($Authorid)->first(); // done bope
 
-        $ads = Cache::remember("ads", Carbon::now()->addYear(), function () {
-            if (Cache::has('ads')) return Cache::has('ads');
-            return Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
-//            ->join('ads','ad_categories.id','ads.category_id')
-                ->select(['ads.*', 'ad_categories.id'])
-                ->status()
-                // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
-                ->get();
 
-        });
 
         $seoset = Cache::remember("seoset", Carbon::now()->addYear(), function () {
             if (Cache::has('seoset')) return Cache::has('seoset');
