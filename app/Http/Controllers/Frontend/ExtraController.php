@@ -25,6 +25,7 @@ use App\Models\User;
 use App\Models\Vakitler;
 use App\Models\WebsiteSetting;
 use Carbon\Carbon;
+use Google\Service\ShoppingContent\Resource\Pos;
 use GuzzleHttp\ClientInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -1041,14 +1042,21 @@ class ExtraController extends Controller
             ->where('posts.category_id', $id)
             ->where('posts.status', 1)
             ->count();
-
-
-        $catpost = Post::join('categories', 'posts.category_id', 'categories.id')
+        $dataToEliminate =   Post::join('categories', 'posts.category_id', 'categories.id')
             ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-            ->where('posts.category_id', $id)
+            ->where('posts.category_id', $id)->where('posts.manset', 1)
             ->where('posts.status', 1)
-            ->orWhere('posts.manset', NULL)->offset(1)->latest()
-            ->paginate(20);
+            ->orderBy('created_at', 'desc')
+            ->limit(25)->pluck('id');
+//dd($dataToEliminate);
+
+        $catpost=Post::with(['category:id,category_tr'])->whereNotIn('id',$dataToEliminate)->where('category_id', $id)->latest()->paginate(20);
+//        $catpost = Post::join('categories', 'posts.category_id', 'categories.id')
+//            ->select('posts.*', 'categories.category_tr', 'categories.category_en')
+//            ->where('posts.category_id', $id)
+//            ->where('posts.status', 1)
+//            ->orWhere('posts.manset', NULL)->latest()->skip(25)
+//            ->paginate(20);
 
 
 //        if ($catpost->count() == 0) {
