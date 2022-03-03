@@ -97,6 +97,8 @@ class ad_category_Seeder extends Seeder
 
             26 =>  ['id' => 27,
                 'title' => '[Mobil Uygulama] Haber Detay Alt 1024x1024'],
+            27 =>  ['id' => 28,
+                'title' => '[Ana Sayfa] Ana Slider 1024x1024'],
         ]);
     }
 }
