@@ -1042,12 +1042,8 @@ class ExtraController extends Controller
             ->where('posts.category_id', $id)
             ->where('posts.status', 1)
             ->count();
-        $dataToEliminate =   Post::join('categories', 'posts.category_id', 'categories.id')
-            ->select('posts.*', 'categories.category_tr', 'categories.category_en')
-            ->where('posts.category_id', $id)->where('posts.manset', 1)
-            ->where('posts.status', 1)
-            ->orderBy('created_at', 'desc')
-            ->limit(25)->pluck('id');
+        $dataToEliminate= $manset->pluck('id');
+
 //dd($dataToEliminate);
 
         $catpost=Post::with(['category:id,category_tr'])->whereNotIn('id',$dataToEliminate)->where('category_id', $id)->latest()->paginate(20);
