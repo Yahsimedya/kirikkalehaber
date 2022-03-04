@@ -138,8 +138,10 @@
                 <div class="col-12 padding-left">
                     <div class="reklam-alani mt-1 mb-1 text-center">
                         @foreach($ads as $ad)
-                            @if($ad->type==1 && $ad->category_id==9)
-                                <a target="_blank" href="{{$ad->link}}"><img class="img-fluid pb-1 pt-3 lazyload"
+
+                           @if($ad->type==1 && $ad->category_id==9)
+                                <a target="_blank" href="{{$ad->link}}">
+                                    <img class="img-fluid pb-1 pt-3 lazyload"
                                                                              width="1140"
                                                                              height="250"
                                                                              data-src="{{asset($ad->ads)}}"></a>
@@ -190,39 +192,53 @@
 
 
                             @for($i=0;$i<=24;$i++)
-                                <div class="swiper-slide position-relative">
-                                    <a href="{{URL::to('/'.str_slug($home[$i]->title_tr).'/'.$home[$i]->id.'/'.'haberi')}}">
-                                        <div class="position-relative">
-                                            <img class="img-fluid slider-foto swiper-lazy   lazyload"
-                                                 width="100%"
-                                                 onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                                 data-src="{{ asset($home[$i]->image) }}"/>
 
-                                            @if($themeSetting[0]->slider_title!=0)
-                                                <div class="kartlar__effect position-absolute">
-                                                    <p class="ana-manset-text">{{$home[$i]->title_tr}}</p>
-                                                </div>
+                                <div class="swiper-slide position-relative">
+                                    @if($home[$i] == "1")
+                                        @foreach($ads as $ad)
+                                            @if($ad->type==1 && $ad->category_id==28)
+                                                <a href="{{$ad->link}}"><img class="img-fluid pb-1 pt-2 lazyload" width="336"
+                                                                             height="280"
+                                                                             src="{{asset($ad->ads)}}"></a>
+                                            @elseif($ad->type==2 && $ad->category_id==28)
+                                                <div class="w-100">{!!$ad->ad_code!!}</div>
                                             @endif
-                                            @if(isset($home[$i]->posts_video))
-                                                <div class="videohaber top-right">
-                                                    <span><i class="fa fa-play"></i> Video</span>
-                                                </div>
-                                            @endif
-                                            @if($home[$i]->headlinetag==1)
-                                                <div class="sondakikaSlider top-left">
-                                                    <span>Son Dakika</span>
-                                                </div>
-                                            @elseif($home[$i]->flahtag==1)
-                                                <div class="flashhaberSlider top-left">
-                                                    <span>Flaş Haber</span>
-                                                </div>
-                                            @elseif($home[$i]->attentiontag==1)
-                                                <div class="haberedikkatSlider top-left">
-                                                    <span>Bu Habere Dikkat</span>
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </a>
+                                        @endforeach
+                                    @else
+                                        <a href="{{URL::to('/'.str_slug($home[$i]->title_tr).'/'.$home[$i]->id.'/'.'haberi')}}">
+                                            <div class="position-relative">
+                                                <img class="img-fluid slider-foto swiper-lazy   lazyload"
+                                                     width="100%"
+                                                     onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
+                                                     data-src="{{ asset($home[$i]->image) }}"/>
+
+                                                @if($themeSetting[0]->slider_title!=0)
+                                                    <div class="kartlar__effect position-absolute">
+                                                        <p class="ana-manset-text">{{$home[$i]->title_tr}}</p>
+                                                    </div>
+                                                @endif
+                                                @if(isset($home[$i]->posts_video))
+                                                    <div class="videohaber top-right">
+                                                        <span><i class="fa fa-play"></i> Video</span>
+                                                    </div>
+                                                @endif
+                                                @if($home[$i]->headlinetag==1)
+                                                    <div class="sondakikaSlider top-left">
+                                                        <span>Son Dakika</span>
+                                                    </div>
+                                                @elseif($home[$i]->flahtag==1)
+                                                    <div class="flashhaberSlider top-left">
+                                                        <span>Flaş Haber</span>
+                                                    </div>
+                                                @elseif($home[$i]->attentiontag==1)
+                                                    <div class="haberedikkatSlider top-left">
+                                                        <span>Bu Habere Dikkat</span>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </a>
+                                    @endif
+
                                 </div>
                             @endfor
                         </div>
