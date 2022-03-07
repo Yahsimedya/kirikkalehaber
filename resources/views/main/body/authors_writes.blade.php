@@ -124,9 +124,9 @@
 
                     {{--                    @endphp--}}
                     @foreach ($nextauthors_posts as $row )
-
+{{--{{dd($nextauthors_posts)}}--}}
                         <div class="card  text-white">
-                            <a href="{{URL::to('/'.str_slug($row->name).'/'.$row->id)}}">
+                            <a href="{{URL::to('/'.str_slug($row->title).'/'.$row->id)}}">
 
                                 <div class="card" >
                                     <div class="row no-gutters">
@@ -134,7 +134,7 @@
                                         <div class="col-md-3 text-center text-secondary bg-light d-flex align-items-center">
 
                                             <div class="d-flex flex-column">
-                                                <div class="pl-3 siteTema" style="font-size: 22px"><b>{{ \Carbon\Carbon::parse($yaziPost->created_at)->isoFormat('DD') }}</b></div>
+                                                <div class="pl-3 siteTema" style="font-size: 22px"><b>{{ \Carbon\Carbon::parse($row->created_at)->isoFormat('DD') }}</b></div>
                                                 <div class="pl-3"> {{ \Carbon\Carbon::parse($yaziPost->created_at)->isoFormat('MMMM') }}</div>
 
 

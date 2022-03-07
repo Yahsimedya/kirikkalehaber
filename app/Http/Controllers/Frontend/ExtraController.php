@@ -1187,7 +1187,8 @@ class ExtraController extends Controller
         $webSiteSetting = WebsiteSetting::first();
 
         $yazarID = $Authorid;
-        $nextauthors_posts = AuthorsPost::status()->where('authors_id', $yazarID)->paginate(15);
+        $nextauthors_posts = AuthorsPost::status()->where('authors_id', $yazarID)->get();
+dd($nextauthors_posts);
         $OtherAuthors = AuthorsPost::whereId($Authorid)->limit(10)->orderBy('id', 'desc')->get(); //
         $seoset = Seos::first();
 
