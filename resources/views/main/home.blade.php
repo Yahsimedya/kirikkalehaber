@@ -569,7 +569,7 @@
                                         </div>
                                     </div>
                                     </a>
-                                    @for($i=2;$i<count($endNews);$i++)
+                                    @for($i=2;$i<count($endNews)-1;$i++)
 
                                         <a href="{{URL::to('/'.str_slug($endNews[$i]->title_tr).'/'.$endNews[$i]->id.'/'.'haberi')}}" class="pt-2">
                                             <li class="border-bottom card-kisalt mb-1"><img
