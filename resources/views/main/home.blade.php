@@ -244,8 +244,8 @@
                         </div>
                         <div class="swiper-pagination anamanset-pagination">
                         </div>
-                        <div class="swiper-button-next manset-next"></div>
-                        <div class="swiper-button-prev manset-prev"></div>
+                        <div class="swiper-button-next manset-next mt-5"></div>
+                        <div class="swiper-button-prev manset-prev mt-5"></div>
                     </div>
                     <div class="row mt-0">
                         @if($themeSetting[0]->fotogaleri!=0)
@@ -528,7 +528,7 @@
             <div class="row">
                 <div class="col-md-9 col-12 pl-0">
                     <div class="row ml-0">
-                        <div class="col-md-6">
+                        <div class="col-md-7">
                             @if(isset($endNews[0]))
                                 <div class="card kart kart-width kart-margin shadow">
                                     <a href="{{URL::to('/'.str_slug($endNews[0]->title_tr).'/'.$endNews[0]->id.'/'.'haberi')}}">
@@ -537,19 +537,9 @@
                                             class="img_fluid kart_img lazyload" src="{{asset($endNews[0]->image)}}"
                                             alt="Card image cap"></a>
 
-                                    <div class="card-body kart-body   border-3 text-dark">
-                                        {{--                                    @if($row->headlinetag==1)--}}
-                                        {{--                                        <div class="short-tag"--}}
-                                        {{--                                             style="background-color:{{$themeSetting[0]->economy}}">--}}
-                                        {{--                                            <span>Son Dakika</span>--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                    @else--}}
-                                        {{--                                        <div class="short-tag category"--}}
-                                        {{--                                             style="background-color:{{$themeSetting[0]->economy}}">--}}
-                                        {{--                                            <span>{{$row->category->category_tr}}</span>--}}
-                                        {{--                                        </div>--}}
-                                        {{--                                    @endif--}}
-                                        <p class="card-text card-kisalt pt-3">{{$endNews[0]->title_tr}}</p>
+                                    <div class="card-body kart-body   border-3 text-dark p-2">
+
+                                        <p class="card-text card-kisalt">{{$endNews[0]->title_tr}}</p>
                                     </div>
 
                                 </div>
@@ -563,16 +553,29 @@
                             {{--                            </a>--}}
                             {{--                                @endif--}}
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <ul class="list-group ">
                                 @if(count($endNews)>0)
-                                    @for($i=1;$i<count($endNews);$i++)
+                                    <a href="{{URL::to('/'.str_slug($endNews[1]->title_tr).'/'.$endNews[1]->id.'/'.'haberi')}}">
+
+                                    <div class="card bg-dark text-white">
+                                        <img class="card-img" src="{{asset($endNews[1]->image)}}" style="height: 150px" alt="Card image">
+                                        <div class="card-img-overlay">
+                                            <div class="kartlar__effect position-absolute">
+                                                <h5 class="sag-manset-text">{{$endNews[1]->title_tr}}</h5>
+                                            </div>
+                                            <h5 class="card-title mt-5"></h5>
+
+                                        </div>
+                                    </div>
+                                    </a>
+                                    @for($i=2;$i<count($endNews);$i++)
 
                                         <a href="{{URL::to('/'.str_slug($endNews[$i]->title_tr).'/'.$endNews[$i]->id.'/'.'haberi')}}">
-                                            <li class="border-bottom card-kisalttek mb-1"><img
+                                            <li class="border-bottom card-kisalt mb-1"><img
                                                     data-src="{{asset($endNews[$i]->image)}}"
                                                     onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                                    class="img-fluid lazyload mr-2""
+                                                    class="img-fluid lazyload mr-2"
                                                 width="100px">{{$endNews[$i]->title_tr}}</li>
                                         </a>
                                     @endfor
