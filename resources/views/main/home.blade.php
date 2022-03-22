@@ -534,7 +534,7 @@
                                     <a href="{{URL::to('/'.str_slug($endNews[0]->title_tr).'/'.$endNews[0]->id.'/'.'haberi')}}">
                                         <img
                                             onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
-                                            class="img_fluid kart_img lazyload" src="{{asset($endNews[0]->image)}}"
+                                            class="img_fluid kart_img lazyload"  style="height: 262px" src="{{asset($endNews[0]->image)}}"
                                             alt="Card image cap"></a>
 
                                     <div class="card-body kart-body   border-3 text-dark p-2">
@@ -571,7 +571,7 @@
                                     </a>
                                     @for($i=2;$i<count($endNews);$i++)
 
-                                        <a href="{{URL::to('/'.str_slug($endNews[$i]->title_tr).'/'.$endNews[$i]->id.'/'.'haberi')}}">
+                                        <a href="{{URL::to('/'.str_slug($endNews[$i]->title_tr).'/'.$endNews[$i]->id.'/'.'haberi')}}" class="pt-2">
                                             <li class="border-bottom card-kisalt mb-1"><img
                                                     data-src="{{asset($endNews[$i]->image)}}"
                                                     onerror="this.onerror=null;this.src='{{$webSiteSetting->defaultImage}}';"
