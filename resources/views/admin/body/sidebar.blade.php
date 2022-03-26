@@ -140,7 +140,13 @@
                 <li class="nav-item">
                     <a href="{{route('comments.index')}}" class="nav-link">
                         <i class="fa fa-comments"></i>
-                        <span>Yorumlar</span>
+                        <span>Haber YorumlarI</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('authorscomments.index')}}" class="nav-link">
+                        <i class="fa fa-comments"></i>
+                        <span>Yazar Yorumları</span>
                     </a>
                 </li>
                 <li class="nav-item">

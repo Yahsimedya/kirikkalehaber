@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 
+use App\Http\Controllers\AuthorsPostController;
 use App\Http\Controllers\Controller;
 use App\Models\Ad;
 use App\Models\Authors;
 use App\Models\AuthorsPost;
 use App\Models\Comments;
+use App\Models\authorscommentsModel;
 use App\Models\District;
 use App\Models\FixedPage;
 use App\Models\Photo;
@@ -1159,7 +1161,6 @@ class ExtraController extends Controller
 
     public function yazilars($slug_name, $Authorid)
     {
-
         $expiresAt = now()->addHours(24);
 
         $webSiteSetting = WebsiteSetting::first();
@@ -1173,9 +1174,11 @@ class ExtraController extends Controller
         $OtherAuthors = AuthorsPost::whereId($Authorid)->limit(10)->orderBy('id', 'desc')->get(); //
         $seoset = Seos::first();
 
+        $comments = DB::table('authorscomments')->where('authors_posts_id', $yaziPost->id)->where('status',1)->get();
+
         $themeSetting = Theme::get();
         $yazardes = DB::table('authors')->where('id', '=', $yaziPost->authors_id)->first();
-        return view('main.body.authors_writes', compact('yaziPost', 'webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'yazardes', 'themeSetting'));
+        return view('main.body.authors_writes', compact('yaziPost', 'webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'yazardes', 'themeSetting','comments'));
     }
 
 
@@ -1188,7 +1191,6 @@ class ExtraController extends Controller
 
         $yazarID = $Authorid;
         $nextauthors_posts = AuthorsPost::status()->where('authors_id', $yazarID)->get();
-dd($nextauthors_posts);
         $OtherAuthors = AuthorsPost::whereId($Authorid)->limit(10)->orderBy('id', 'desc')->get(); //
         $seoset = Seos::first();
 

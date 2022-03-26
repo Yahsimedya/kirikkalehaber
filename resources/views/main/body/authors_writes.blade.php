@@ -22,6 +22,7 @@
         }
     </style>
     <div class="container">
+
         <div class="col-lg-12 bg-light my-2">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="col-lg-6">
@@ -63,6 +64,9 @@
                 </div>
             </div>
         </div>
+
+
+
         <div class="row">
 
             <div class="container col-lg-8">
@@ -166,6 +170,70 @@
             </div>
 
         </div>
+
+        <div class="col-md-12 shadow-lg p-3 mt-3">
+            <h3 class="text-dark">Yazar Yorumları</h3>
+
+
+            @foreach($comments as $comment)
+                <hr>
+                <span class="text-dark"><i class="fa fa-user pr-1"></i>{{$comment->name}}</span>
+                <br>
+                <span class="position-relative" id="cevap">{{$comment->details}}</span>
+            @endforeach
+
+
+        </div>
+        <div class="col-md-12 shadow-lg  p-3 mt-3 ">
+
+            <p class="text-dark"></p>
+            <span class="position-relative" id="cevap"><h5><i
+                        class="fa fa-pencil pr-1"></i>Yorum Yaz</h5></span>
+
+            <form id="formum" action="{{route('add.authorscomments',$yaziPost->id)}}" method="post">
+            @csrf
+            <!-- <label for="">İsminiz</label> -->
+                <input type="text" name="name" id="isim" class="form-control mt-1"
+                       placeholder="Adınızı Yazınız"/>
+                <!-- <label for="">Yorumunuz</label> -->
+                <input type="text" name="details" id="yorum" class="form-control mt-1"
+                       placeholder="Yorumunuzu Yazınız"/>
+                <div class="row mt-2">
+                    <div class="col-md-2 col-6">
+                        @php
+                            $guvenlikkodu= rand(10000,99999);
+                        @endphp
+                        <p class="btn btn-success">{{$guvenlikkodu}}</p>
+
+
+                    </div>
+                    <div class="col-md-10 col-6">
+                        <input class="form-control" name="guvenlik" placeholder="Güvenlik Kodu"
+                               type="text">
+
+
+                    </div>
+                    <input type="hidden" name="authors_posts_id" value="{{$yazardes->id}}" id="haber_id">
+                    <input type="hidden" name="guvenlikkodu" value="{{$guvenlikkodu}}">
+                    <input type="hidden" name="yorumicerik" id="yorumicerik" class="form-control"
+                           aria-describedby="emailHelp" value="">
+
+                </div>
+
+                <button class="btn text-white"
+                        style="background-color: {{$themeSetting[0]->siteColorTheme}}">Gönder
+                </button>
+
+            </form>
+
+
+            <!-- <div id="cevap" class="mt-3"></div> -->
+            <div id="cevapgetir"></div>
+
+
+        </div>
+
+
     </div>
 
 

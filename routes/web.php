@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\WebsiteSettingController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubDistrictController;
 use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\Frontend\AuthorsCommentsController;
 use App\Http\Controllers\FixedPageController;
 use App\Http\Controllers\Frontend\ExtraController;
 use App\Http\Controllers\IhaController;
@@ -334,6 +335,13 @@ Route::get('/user/create', [UserController::class, 'create'])->name("user.create
 Route::get('/user/delete/{id}', [UserController::class, 'delete'])->name("user.delete");
 Route::post('/user/insert', [UserController::class, 'insert'])->name("user.insert");
 
+//Authors Comments
+Route::get('/authorscomments', [AuthorsCommentsController::class, 'adminCommentsindex'])->name("authorscomments.index");
+Route::post('/authorscomments/active/{id}', [AuthorsCommentsController::class, 'ActiveComments'])->name('active.authorscomments');
+Route::get('/authorscomments/delete/{id}', [AuthorsCommentsController::class, 'DeleteComments'])->name('delete.authorscomments');
+Route::get('/authorscomments/openPost/{postid}', [AuthorsCommentsController::class, 'OpenComments'])->name('open.authorscomments');
+Route::post('/authorscomments/post/{postid}', [AuthorsCommentsController::class, 'AddComments'])->name('add.authorscomments');
+
 
 //Mobile App Json
 Route::get('/json/manset', [MobilAppController::class, 'manset']);
@@ -418,7 +426,6 @@ Route::get('/Category/{slug}/{id}', [ExtraController::class, 'CategoryPost']);
 Route::get('/{id}/', [ExtraController::class, 'GetDistrict']);
 
 //Route::get('/', [ExtraController::class, 'akbankkur']);
-
 
 
 
