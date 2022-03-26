@@ -42,18 +42,18 @@
 
                 <div class="col-lg-6 ">
                     <ul class=" float-right d-flex align-items-center" style="list-style-type: none;">
-                        <li><a target="_blank" href="{{$yazardes->facebook}}"><i
-                                    class="fa fa-facebook-square text-primary p-2  border border-light rounded-circle"
+                        <li><a target="_blank" href="https://www.facebook.com/sharer.php?u={{ URL::to('/' . str_slug($yaziPost->title) . '/' . $yaziPost->id) }}"><i
+                                    class="fa-brands fa-facebook text-primary p-2  border border-light rounded-circle"
                                     style="font-size:25px;"></i>
                             </a>
                         </li>
-                        <li><a target="_blank" href="{{$yazardes->twitter}}"><i
-                                    class="fa fa-twitter-square text-info p-2  border border-light rounded-circle"
+                        <li><a target="_blank" href="https://twitter.com/share?url={{ URL::to('/' . str_slug($yaziPost->title). '/' . $yaziPost->id ) }}"><i
+                                    class="fa-brands fa-twitter text-info p-2  border border-light rounded-circle"
                                     style="font-size:25px;"></i>
                             </a>
                         </li>
-                        <li><a target="_blank" href="{{$yazardes->youtube}}"><i
-                                    class="fa fa-youtube-square text-danger p-2 fa-color border border-light rounded-circle"
+                        <li><a target="_blank" href="https://wa.me/?text={{ URL::to('/' . str_slug($yaziPost->title). '/' . $yaziPost->id) }}"><i
+                                    class="fab fa-whatsapp text-success p-2 fa-color border border-light rounded-circle"
                                     style="font-size:25px;"></i>
                             </a>
                         </li>

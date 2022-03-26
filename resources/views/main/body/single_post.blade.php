@@ -122,12 +122,12 @@
                            href="https://www.facebook.com/sharer.php?u={{ URL::to('/' . str_slug($post->title_tr) . '/' . $post->id . '/' . 'haberi') }}"
                            class="facebook">
 
-                            <li class="list-inline-item"><i style="padding: 6px;" class="fab fa-facebook-f"></i></li>
+                            <li class="list-inline-item"><i style="padding: 6px;"  class="fa-brands fa-facebook"></i></li>
                         </a>
                         <a target="_blank"
                            href="https://twitter.com/share?url={{ URL::to('/' . str_slug($post->title_tr). '/' . $post->id . '/' . 'haberi') }}"
                            class="twitter">
-                            <li class="list-inline-item"><i style="padding: 6px;" class="fab fa-twitter"></i></li>
+                            <li class="list-inline-item"><i style="padding: 6px;" class="fa-brands fa-twitter"></i></li>
                         </a>
                         <a href="https://wa.me/?text={{ URL::to('/' . str_slug($post->title_tr). '/' . $post->id . '/' . 'haberi') }}"
                            class="whatsapp">

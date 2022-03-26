@@ -1190,13 +1190,15 @@ class ExtraController extends Controller
         $webSiteSetting = WebsiteSetting::first();
 
         $yazarID = $Authorid;
-        $nextauthors_posts = AuthorsPost::status()->where('authors_id', $yazarID)->get();
+        $yaziPost = AuthorsPost::whereId($Authorid)->first(); // done bope
+
+        $nextauthors_posts = AuthorsPost::status()->where('authors_id', $yazarID)->paginate(10);
         $OtherAuthors = AuthorsPost::whereId($Authorid)->limit(10)->orderBy('id', 'desc')->get(); //
         $seoset = Seos::first();
 
         $themeSetting = Theme::get();
         $yazardes = DB::table('authors')->where('id', '=', $yazarID)->first();
-        return view('main.body.allAuthorsPost', compact('webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'yazardes', 'themeSetting'));
+        return view('main.body.allAuthorsPost', compact('webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'yazardes', 'themeSetting','yaziPost'));
     }
 
     public function breakingnews()
