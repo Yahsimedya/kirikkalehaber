@@ -53,7 +53,7 @@
                             </a>
                         </li>
                         <li><a target="_blank" href="https://wa.me/?text={{ URL::to('/' . str_slug($yaziPost->title). '/' . $yaziPost->id) }}"><i
-                                    class="fab fa-whatsapp text-success p-2 fa-color border border-light rounded-circle"
+                                    class="fab fa-whatsapp text-sunccess p-2 fa-color border border-light rounded-circle"
                                     style="font-size:25px;"></i>
                             </a>
                         </li>

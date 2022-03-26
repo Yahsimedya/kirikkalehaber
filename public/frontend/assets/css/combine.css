@@ -10672,7 +10672,7 @@ a, :hover {
     width: 35px !important;
     height: 35px !important;
     border-radius: 50%;
-    top: 30% !important
+    top: 23% !important
 }
 
 @media (max-width: 768px) {
@@ -14556,7 +14556,7 @@ img.mfp-img {
 }
 
 /**
- * Swiper 7.3.2
+ * Swiper 7.4.1
  * Most modern mobile touch slider and framework with hardware accelerated transitions
  * https://swiperjs.com
  *
@@ -14564,7 +14564,7 @@ img.mfp-img {
  *
  * Released under the MIT License
  *
- * Released on: December 13, 2021
+ * Released on: December 24, 2021
  */
 
 @font-face {
@@ -15445,7 +15445,7 @@ body.lb-disable-scrolling {
         float: right;
     }
     img {
-        display: block;
+        //display: block;
     }
     &.slick-loading img {
         display: none;
