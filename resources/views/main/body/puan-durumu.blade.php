@@ -53,7 +53,7 @@
                 <tbody>
 
                 <!-- SÜPER LİG  BEYAZ GROUP-->
-{{--                @include('main.body.lig')--}}
+                @include('main.body.lig')
 
                 </tbody>
 
