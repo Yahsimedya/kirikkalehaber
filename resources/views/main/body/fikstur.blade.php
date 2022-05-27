@@ -1,4 +1,4 @@
-@php
+{{-- @php
   $url="http://www.amatorfutbol.org/tff/superlig/puandurumu-7027.html";
       if (($data = @file_get_contents($url)) === false) {
             $error = error_get_last();
@@ -82,4 +82,4 @@ a:hover
      //exit;
     // $dizi=[];
 }
-@endphp
+@endphp --}}
