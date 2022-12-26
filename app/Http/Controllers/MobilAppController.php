@@ -29,7 +29,7 @@ class MobilAppController extends Controller
         $json = $stmt;
         return $this->change($json);
     }
-    public function distircts()
+    public function districts()
     {
         $stmt = Subdistrict::get();
         $json = $stmt;
