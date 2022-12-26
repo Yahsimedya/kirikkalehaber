@@ -17,16 +17,16 @@ class Sehirlers extends Seeder
         Sehirler::insert([
             0 => [
 
-                'id' => 500,
+                'id' => 1,
                 'sehir_ad' => 'Adana',
-                'ilce_id'=> 9146,
+                'ilce_id' => 9146,
 
             ],
             1 => [
 
                 'id' => 501,
                 'sehir_ad' => 'Adıyaman',
-                'ilce_id'=> 9158,
+                'ilce_id' => 9158,
 
 
             ],
@@ -34,7 +34,7 @@ class Sehirlers extends Seeder
 
                 'id' => 502,
                 'sehir_ad' => 'Afyonkarahisar',
-                'ilce_id'=> 9167,
+                'ilce_id' => 9167,
 
 
             ],
@@ -42,7 +42,7 @@ class Sehirlers extends Seeder
 
                 'id' => 503,
                 'sehir_ad' => 'Ağrı',
-                'ilce_id'=> 9185,
+                'ilce_id' => 9185,
 
 
             ],
@@ -50,7 +50,7 @@ class Sehirlers extends Seeder
 
                 'id' => 505,
                 'sehir_ad' => 'Amasya',
-                'ilce_id'=> 9198,
+                'ilce_id' => 9198,
 
 
             ],
@@ -58,7 +58,7 @@ class Sehirlers extends Seeder
 
                 'id' => 506,
                 'sehir_ad' => 'Ankara',
-                'ilce_id'=> 9206,
+                'ilce_id' => 9206,
 
 
             ],
@@ -66,7 +66,7 @@ class Sehirlers extends Seeder
 
                 'id' => 507,
                 'sehir_ad' => 'Antalya',
-                'ilce_id'=> 9225,
+                'ilce_id' => 9225,
 
 
             ],
@@ -74,7 +74,7 @@ class Sehirlers extends Seeder
 
                 'id' => 509,
                 'sehir_ad' => 'Artvin',
-                'ilce_id'=> 9246,
+                'ilce_id' => 9246,
 
 
             ],
@@ -82,7 +82,7 @@ class Sehirlers extends Seeder
 
                 'id' => 510,
                 'sehir_ad' => 'Aydın',
-                'ilce_id'=> 9252,
+                'ilce_id' => 9252,
 
 
             ],
@@ -90,7 +90,7 @@ class Sehirlers extends Seeder
 
                 'id' => 511,
                 'sehir_ad' => 'Balıkesir',
-                'ilce_id'=> 9270,
+                'ilce_id' => 9270,
 
 
             ],
@@ -98,7 +98,7 @@ class Sehirlers extends Seeder
 
                 'id' => 515,
                 'sehir_ad' => 'Bilecik',
-                'ilce_id'=> 9297,
+                'ilce_id' => 9297,
 
 
             ],
@@ -106,7 +106,7 @@ class Sehirlers extends Seeder
 
                 'id' => 516,
                 'sehir_ad' => 'Bingöl',
-                'ilce_id'=> 9303,
+                'ilce_id' => 9303,
 
 
             ],
@@ -114,7 +114,7 @@ class Sehirlers extends Seeder
 
                 'id' => 517,
                 'sehir_ad' => 'Bitlis',
-                'ilce_id'=> 9311,
+                'ilce_id' => 9311,
 
 
             ],
@@ -122,7 +122,7 @@ class Sehirlers extends Seeder
 
                 'id' => 518,
                 'sehir_ad' => 'Bolu',
-                'ilce_id'=> 9315,
+                'ilce_id' => 9315,
 
 
             ],
@@ -130,7 +130,7 @@ class Sehirlers extends Seeder
 
                 'id' => 519,
                 'sehir_ad' => 'Burdur',
-                'ilce_id'=> 9327,
+                'ilce_id' => 9327,
 
 
             ],
@@ -138,7 +138,7 @@ class Sehirlers extends Seeder
 
                 'id' => 520,
                 'sehir_ad' => 'Bursa',
-                'ilce_id'=> 9335,
+                'ilce_id' => 9335,
 
 
             ],
@@ -146,20 +146,20 @@ class Sehirlers extends Seeder
 
                 'id' => 521,
                 'sehir_ad' => 'Çanakkale',
-                'ilce_id'=> 9352,
+                'ilce_id' => 9352,
 
             ],
             17 => [
 
                 'id' => 522,
                 'sehir_ad' => 'Çankırı',
-                'ilce_id'=> 9359,
+                'ilce_id' => 9359,
             ],
             18 => [
 
                 'id' => 523,
                 'sehir_ad' => 'Çorum',
-                'ilce_id'=> 9370,
+                'ilce_id' => 9370,
 
 
             ],
@@ -167,7 +167,7 @@ class Sehirlers extends Seeder
 
                 'id' => 524,
                 'sehir_ad' => 'Denizli',
-                'ilce_id'=> 9392,
+                'ilce_id' => 9392,
 
 
             ],
@@ -175,7 +175,7 @@ class Sehirlers extends Seeder
 
                 'id' => 525,
                 'sehir_ad' => 'Diyarbakır',
-                'ilce_id'=> 9402,
+                'ilce_id' => 9402,
 
 
             ],
@@ -183,7 +183,7 @@ class Sehirlers extends Seeder
 
                 'id' => 527,
                 'sehir_ad' => 'Edirne',
-                'ilce_id'=> 9419,
+                'ilce_id' => 9419,
 
 
             ],
@@ -191,14 +191,14 @@ class Sehirlers extends Seeder
 
                 'id' => 528,
                 'sehir_ad' => 'Elazığ',
-                'ilce_id'=> 9432,
+                'ilce_id' => 9432,
 
             ],
             23 => [
 
-                'id' =>529 ,
+                'id' => 529,
                 'sehir_ad' => 'Erzincan',
-                'ilce_id'=> 9440,
+                'ilce_id' => 9440,
 
 
             ],
@@ -206,7 +206,7 @@ class Sehirlers extends Seeder
 
                 'id' => 530,
                 'sehir_ad' => 'Erzurum',
-                'ilce_id'=> 9451,
+                'ilce_id' => 9451,
 
 
             ],
@@ -214,7 +214,7 @@ class Sehirlers extends Seeder
 
                 'id' => 531,
                 'sehir_ad' => 'Eskişehir',
-                'ilce_id'=> 9470,
+                'ilce_id' => 9470,
 
 
             ],
@@ -222,7 +222,7 @@ class Sehirlers extends Seeder
 
                 'id' => 27,
                 'sehir_ad' => 'Gaziantep',
-                'ilce_id'=> 9479,
+                'ilce_id' => 9479,
 
 
             ],
@@ -230,7 +230,7 @@ class Sehirlers extends Seeder
 
                 'id' => 533,
                 'sehir_ad' => 'Giresun',
-                'ilce_id'=> 9494,
+                'ilce_id' => 9494,
 
 
             ],
@@ -238,7 +238,7 @@ class Sehirlers extends Seeder
 
                 'id' => 534,
                 'sehir_ad' => 'Gümüşhane',
-                'ilce_id'=> 9501,
+                'ilce_id' => 9501,
 
 
             ],
@@ -246,7 +246,7 @@ class Sehirlers extends Seeder
 
                 'id' => 535,
                 'sehir_ad' => 'Hakkari',
-                'ilce_id'=> 9507,
+                'ilce_id' => 9507,
 
 
             ],
@@ -254,7 +254,7 @@ class Sehirlers extends Seeder
 
                 'id' => 536,
                 'sehir_ad' => 'Hatay',
-                'ilce_id'=> 9515,
+                'ilce_id' => 9515,
 
 
             ],
@@ -262,7 +262,7 @@ class Sehirlers extends Seeder
 
                 'id' => 538,
                 'sehir_ad' => 'Isparta',
-                'ilce_id'=> 9528,
+                'ilce_id' => 9528,
 
 
             ],
@@ -270,112 +270,112 @@ class Sehirlers extends Seeder
 
                 'id' => 557,
                 'sehir_ad' => 'Mersin',
-                'ilce_id'=> 9737,
+                'ilce_id' => 9737,
 
             ],
             33 => [
 
                 'id' => 539,
                 'sehir_ad' => 'İstanbul',
-                'ilce_id'=> 9541,
+                'ilce_id' => 9541,
 
             ],
             34 => [
 
                 'id' => 540,
                 'sehir_ad' => 'İzmir',
-                'ilce_id'=> 9560,
+                'ilce_id' => 9560,
 
             ],
             35 => [
 
                 'id' => 544,
                 'sehir_ad' => 'Kars',
-                'ilce_id'=> 9594,
+                'ilce_id' => 9594,
 
             ],
             36 => [
 
                 'id' => 545,
                 'sehir_ad' => 'Kastamonu',
-                'ilce_id'=> 9609,
+                'ilce_id' => 9609,
 
             ],
             37 => [
 
                 'id' => 546,
                 'sehir_ad' => 'Kayseri',
-                'ilce_id'=> 9620,
+                'ilce_id' => 9620,
 
             ],
             38 => [
 
                 'id' => 549,
                 'sehir_ad' => 'Kırklareli',
-                'ilce_id'=> 9638,
+                'ilce_id' => 9638,
 
             ],
             39 => [
 
                 'id' => 550,
                 'sehir_ad' => 'Kırşehir',
-                'ilce_id'=> 9646,
+                'ilce_id' => 9646,
 
             ],
             40 => [
 
                 'id' => 551,
                 'sehir_ad' => 'Kocaeli',
-                'ilce_id'=> 9654,
+                'ilce_id' => 9654,
 
             ],
             41 => [
 
                 'id' => 552,
                 'sehir_ad' => 'Konya',
-                'ilce_id'=> 9676,
+                'ilce_id' => 9676,
 
             ],
             42 => [
 
                 'id' => 553,
                 'sehir_ad' => 'Kütahya',
-                'ilce_id'=> 9689,
+                'ilce_id' => 9689,
 
             ],
             43 => [
 
                 'id' => 554,
                 'sehir_ad' => 'Malatya',
-                'ilce_id'=> 9703,
+                'ilce_id' => 9703,
 
             ],
             44 => [
 
                 'id' => 555,
                 'sehir_ad' => 'Manisa',
-                'ilce_id'=> 9716,
+                'ilce_id' => 9716,
 
             ],
             45 => [
 
                 'id' => 541,
                 'sehir_ad' => 'Kahramanmaraş',
-                'ilce_id'=> 9577,
+                'ilce_id' => 9577,
 
             ],
             46 => [
 
                 'id' => 47,
                 'sehir_ad' => 'Mardin',
-                'ilce_id'=> 'mardin',
+                'ilce_id' => 'mardin',
 
             ],
             47 => [
 
                 'id' => 558,
                 'sehir_ad' => 'Muğla',
-                'ilce_id'=> 9747,
+                'ilce_id' => 9747,
 
 
             ],
@@ -383,14 +383,14 @@ class Sehirlers extends Seeder
 
                 'id' => 559,
                 'sehir_ad' => 'Muş',
-                'ilce_id'=> 9755,
+                'ilce_id' => 9755,
 
             ],
             49 => [
 
                 'id' => 560,
                 'sehir_ad' => 'Nevşehir',
-                'ilce_id'=> 9760,
+                'ilce_id' => 9760,
 
 
             ],
@@ -398,7 +398,7 @@ class Sehirlers extends Seeder
 
                 'id' => 561,
                 'sehir_ad' => 'Niğde',
-                'ilce_id'=> 9766,
+                'ilce_id' => 9766,
 
 
             ],
@@ -406,14 +406,14 @@ class Sehirlers extends Seeder
 
                 'id' => 562,
                 'sehir_ad' => 'Ordu',
-                'ilce_id'=> 9782,
+                'ilce_id' => 9782,
 
             ],
             52 => [
 
                 'id' => 564,
                 'sehir_ad' => 'Rize',
-                'ilce_id'=> 9799,
+                'ilce_id' => 9799,
 
 
             ],
@@ -421,7 +421,7 @@ class Sehirlers extends Seeder
 
                 'id' => 565,
                 'sehir_ad' => 'Sakarya',
-                'ilce_id'=> 9807,
+                'ilce_id' => 9807,
 
 
             ],
@@ -429,7 +429,7 @@ class Sehirlers extends Seeder
 
                 'id' => 566,
                 'sehir_ad' => 'Samsun',
-                'ilce_id'=> 9819,
+                'ilce_id' => 9819,
 
 
             ],
@@ -437,7 +437,7 @@ class Sehirlers extends Seeder
 
                 'id' => 568,
                 'sehir_ad' => 'Siirt',
-                'ilce_id'=> '9819',
+                'ilce_id' => '9819',
 
 
             ],
@@ -445,7 +445,7 @@ class Sehirlers extends Seeder
 
                 'id' => 569,
                 'sehir_ad' => 'Sinop',
-                'ilce_id'=> 9847,
+                'ilce_id' => 9847,
 
 
             ],
@@ -453,7 +453,7 @@ class Sehirlers extends Seeder
 
                 'id' => 571,
                 'sehir_ad' => 'Sivas',
-                'ilce_id'=> 9868,
+                'ilce_id' => 9868,
 
 
             ],
@@ -461,7 +461,7 @@ class Sehirlers extends Seeder
 
                 'id' => 572,
                 'sehir_ad' => 'Tekirdağ',
-                'ilce_id'=> 9879,
+                'ilce_id' => 9879,
 
 
             ],
@@ -469,7 +469,7 @@ class Sehirlers extends Seeder
 
                 'id' => 573,
                 'sehir_ad' => 'Tokat',
-                'ilce_id'=> 9887,
+                'ilce_id' => 9887,
 
 
             ],
@@ -477,7 +477,7 @@ class Sehirlers extends Seeder
 
                 'id' => 574,
                 'sehir_ad' => 'Trabzon',
-                'ilce_id'=> 9905,
+                'ilce_id' => 9905,
 
 
             ],
@@ -485,7 +485,7 @@ class Sehirlers extends Seeder
 
                 'id' => 575,
                 'sehir_ad' => 'Tunceli',
-                'ilce_id'=> 9914,
+                'ilce_id' => 9914,
 
 
             ],
@@ -493,14 +493,14 @@ class Sehirlers extends Seeder
 
                 'id' => 567,
                 'sehir_ad' => 'Şanlıurfa',
-                'ilce_id'=> 9831,
+                'ilce_id' => 9831,
 
             ],
             63 => [
 
                 'id' => 576,
                 'sehir_ad' => 'Uşak',
-                'ilce_id'=> 9919,
+                'ilce_id' => 9919,
 
 
             ],
@@ -508,7 +508,7 @@ class Sehirlers extends Seeder
 
                 'id' => 577,
                 'sehir_ad' => 'Van',
-                'ilce_id'=> 9930,
+                'ilce_id' => 9930,
 
 
             ],
@@ -516,7 +516,7 @@ class Sehirlers extends Seeder
 
                 'id' => 579,
                 'sehir_ad' => 'Yozgat',
-                'ilce_id'=> 9949,
+                'ilce_id' => 9949,
 
 
             ],
@@ -524,7 +524,7 @@ class Sehirlers extends Seeder
 
                 'id' => 580,
                 'sehir_ad' => 'Zonguldak',
-                'ilce_id'=> 9955,
+                'ilce_id' => 9955,
 
 
             ],
@@ -532,7 +532,7 @@ class Sehirlers extends Seeder
 
                 'id' => 504,
                 'sehir_ad' => 'Aksaray',
-                'ilce_id'=> 9193,
+                'ilce_id' => 9193,
 
 
             ],
@@ -540,7 +540,7 @@ class Sehirlers extends Seeder
 
                 'id' => 514,
                 'sehir_ad' => 'Bayburt',
-                'ilce_id'=> 9295,
+                'ilce_id' => 9295,
 
 
             ],
@@ -548,7 +548,7 @@ class Sehirlers extends Seeder
 
                 'id' => 543,
                 'sehir_ad' => 'Karaman',
-                'ilce_id'=> 9587,
+                'ilce_id' => 9587,
 
 
             ],
@@ -556,7 +556,7 @@ class Sehirlers extends Seeder
 
                 'id' => 548,
                 'sehir_ad' => 'Kırıkkale',
-                'ilce_id'=> 9635,
+                'ilce_id' => 9635,
 
 
             ],
@@ -564,7 +564,7 @@ class Sehirlers extends Seeder
 
                 'id' => 513,
                 'sehir_ad' => 'Batman',
-                'ilce_id'=> 9288,
+                'ilce_id' => 9288,
 
 
             ],
@@ -572,7 +572,7 @@ class Sehirlers extends Seeder
 
                 'id' => 570,
                 'sehir_ad' => 'Şırnak',
-                'ilce_id'=> 9854,
+                'ilce_id' => 9854,
 
 
             ],
@@ -580,7 +580,7 @@ class Sehirlers extends Seeder
 
                 'id' => 512,
                 'sehir_ad' => 'Bartın',
-                'ilce_id'=> 9285,
+                'ilce_id' => 9285,
 
 
             ],
@@ -588,7 +588,7 @@ class Sehirlers extends Seeder
 
                 'id' => 508,
                 'sehir_ad' => 'Ardahan',
-                'ilce_id'=> 9238,
+                'ilce_id' => 9238,
 
 
             ],
@@ -596,7 +596,7 @@ class Sehirlers extends Seeder
 
                 'id' => 537,
                 'sehir_ad' => 'Iğdır',
-                'ilce_id'=> 9522,
+                'ilce_id' => 9522,
 
 
             ],
@@ -604,7 +604,7 @@ class Sehirlers extends Seeder
 
                 'id' => 578,
                 'sehir_ad' => 'Yalova',
-                'ilce_id'=> 9935,
+                'ilce_id' => 9935,
 
 
             ],
@@ -612,33 +612,31 @@ class Sehirlers extends Seeder
 
                 'id' => 542,
                 'sehir_ad' => 'Karabük',
-                'ilce_id'=> 9581,
+                'ilce_id' => 9581,
 
             ],
             78 => [
 
                 'id' => 547,
                 'sehir_ad' => 'Kilis',
-                'ilce_id'=> 9629,
+                'ilce_id' => 9629,
 
             ],
             79 => [
 
                 'id' => 563,
                 'sehir_ad' => 'Osmaniye',
-                'ilce_id'=> 9788,
+                'ilce_id' => 9788,
 
             ],
             80 => [
 
                 'id' => 526,
                 'sehir_ad' => 'Düzce',
-                'ilce_id'=> 9414,
+                'ilce_id' => 9414,
 
 
             ],
         ]);
     }
 }
-
-

@@ -11,6 +11,8 @@ use App\Models\Photo;
 use App\Models\Photocategory;
 use App\Models\Post;
 use App\Models\Ad;
+use App\Models\Sehirler;
+use App\Models\Subdistrict;
 use Carbon\Carbon;
 
 use Composer\Semver\Interval;
@@ -21,6 +23,18 @@ use function MongoDB\BSON\toJSON;
 
 class MobilAppController extends Controller
 {
+    public function cities()
+    {
+        $stmt = Sehirler::get();
+        $json = $stmt;
+        return $this->change($json);
+    }
+    public function distircts()
+    {
+        $stmt = Subdistrict::get();
+        $json = $stmt;
+        return $this->change($json);
+    }
     public function manset()
     {
         $stmt = Post::where('status', '=', 1)->where('manset', '=', 1)->orderByDesc('created_at')->limit(10)->get();
@@ -54,7 +68,6 @@ class MobilAppController extends Controller
             $json = $stmt;
             return $this->change($json);
         }
-
     }
 
     public function benzerHaberler($id)
@@ -72,7 +85,8 @@ class MobilAppController extends Controller
         $json = $stmt;
         return $this->change($json);
     }
-    public function videogallary(){
+    public function videogallary()
+    {
         $stmt = Post::where('status', '=', 1)->where('posts_video', '!=', null)->orderByDesc('created_at')->limit(50)->get();
         $json = $stmt;
         return $this->change($json);
@@ -256,8 +270,6 @@ class MobilAppController extends Controller
 
         Comments::where('post_id', '=', $haber_id)->insert($postcommends);
         return true;
-
-
     }
 
     public function categories($id)
@@ -269,8 +281,7 @@ class MobilAppController extends Controller
 
     public function fotogaleri()
     {
-        $stmt = DB::table('photocategories')->
-        leftjoin('photos', 'photocategories.id', '=', 'photos.photocategory_id')
+        $stmt = DB::table('photocategories')->leftjoin('photos', 'photocategories.id', '=', 'photos.photocategory_id')
             ->latest('photocategories.id')
             ->groupBy('photocategories.id')->get();
         $json = $stmt;
@@ -279,17 +290,15 @@ class MobilAppController extends Controller
 
     public function fotogaleriDetail()
     {
-        $stmt = DB::table('photocategories')->
-        leftjoin('photos', 'photocategories.id', '=', 'photos.photocategory_id')
+        $stmt = DB::table('photocategories')->leftjoin('photos', 'photocategories.id', '=', 'photos.photocategory_id')
             ->latest('photocategories.id')->get();
         $json = $stmt;
         return $this->change($json);
     }
     public function fotogaleriDetailid($id)
     {
-        $stmt = DB::table('photocategories')->
-        leftjoin('photos', 'photocategories.id', '=', 'photos.photocategory_id')
-            ->latest('photocategories.id')->where("photos.photocategory_id",$id)->get();
+        $stmt = DB::table('photocategories')->leftjoin('photos', 'photocategories.id', '=', 'photos.photocategory_id')
+            ->latest('photocategories.id')->where("photos.photocategory_id", $id)->get();
         $json = $stmt;
         return $this->change($json);
     }
@@ -310,23 +319,25 @@ class MobilAppController extends Controller
     }
     public function reklamslideralt()
     {
-        $stmt = Ad::where('status',1)->where('category_id',25)->orderByDesc('created_at')->get();
+        $stmt = Ad::where('status', 1)->where('category_id', 25)->orderByDesc('created_at')->get();
         $json = $stmt;
         return $this->change($json);
     }
     public function reklamsliderüst()
     {
-        $stmt = Ad::where('status',1)->where('category_id',24)->orderByDesc('created_at')->get();
+        $stmt = Ad::where('status', 1)->where('category_id', 24)->orderByDesc('created_at')->get();
         $json = $stmt;
         return $this->change($json);
-    }public function reklamhaberdetayüst()
+    }
+    public function reklamhaberdetayüst()
     {
-        $stmt = Ad::where('status',1)->where('category_id',26)->orderByDesc('created_at')->get();
+        $stmt = Ad::where('status', 1)->where('category_id', 26)->orderByDesc('created_at')->get();
         $json = $stmt;
         return $this->change($json);
-    }public function reklamhaberdetayalt()
+    }
+    public function reklamhaberdetayalt()
     {
-        $stmt = Ad::where('status',1)->where('category_id',27)->orderByDesc('created_at')->get();
+        $stmt = Ad::where('status', 1)->where('category_id', 27)->orderByDesc('created_at')->get();
         $json = $stmt;
         return $this->change($json);
     }
@@ -335,13 +346,12 @@ class MobilAppController extends Controller
     public function allyazar()
     {
         $stmt = AuthorsPost::join('authors', 'authors_posts.authors_id', '=', 'authors.id')
-            ->where("authors_posts.status", 1)->where("authors.status",1)
-            ->select('authors_posts.id','authors_posts.authors_id','authors_posts.title','authors.name','authors.image')
+            ->where("authors_posts.status", 1)->where("authors.status", 1)
+            ->select('authors_posts.id', 'authors_posts.authors_id', 'authors_posts.title', 'authors.name', 'authors.image')
             ->groupBy('authors.id')->orderByDesc('authors_posts.created_at')
             ->get();
         $json = $stmt;
         return $this->change($json);
-
     }
     public function sondakika()
     {
@@ -378,5 +388,4 @@ class MobilAppController extends Controller
         $json = json_decode(str_replace("&quot;", "“", json_encode($json)));
         return $json;
     }
-
 }

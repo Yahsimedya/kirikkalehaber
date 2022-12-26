@@ -85,12 +85,12 @@ Route::get('/startbot', function () {
 
 // ADMİN Routes
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-    Route::get('/dashboard',[AdminController::class,'index'])->name('dashboard');
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
 
-    Route::get('/DBTrans',[ExtraController::class,'DBTrans']);
+    Route::get('/DBTrans', [ExtraController::class, 'DBTrans']);
 
 
-//Cache Clean
+    //Cache Clean
     Route::get('/clear-cache', function () {
         Artisan::call('cache:clear');
         Artisan::call('route:clear');
@@ -102,7 +102,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
 
         return redirect()->back();
-
     })->name('cacheClean');
 
 
@@ -116,7 +115,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/update/status/{category}', [CategoryController::class, 'ActiveCategory'])->name('update.ActiveCategory');
     Route::get('/delete/category/{category}', [CategoryController::class, 'DeleteCategory'])->name('delete.category');
 
-// ADMİN subcategory  Routes
+    // ADMİN subcategory  Routes
 
     Route::get('/subcategories', [SubCategoryController::class, 'index'])->name('subcategories');
     Route::get('/add/subcategory', [SubCategoryController::class, 'AddSubCategory'])->name('add.subcategory');
@@ -126,7 +125,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/subcategories/active/{subcategory}', [SubCategoryController::class, 'ActiveSubCategory'])->name('active.subcategory');
     Route::get('/delete/subcategory/{subcategory}', [SubCategoryController::class, 'DeleteSubCategory'])->name('delete.subcategory');
 
-// DİSTRİCT ALL WEB ROUTE
+    // DİSTRİCT ALL WEB ROUTE
     Route::get('/district', [DistrictController::class, 'index'])->name('district');
     Route::get('/add/district', [DistrictController::class, 'AddDistrict'])->name('add.district');
     Route::post('/create/district', [DistrictController::class, 'CreateDistrict'])->name('create.district');
@@ -135,7 +134,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/update/district/{district}', [DistrictController::class, 'UpdateDistrict'])->name('update.district');
     Route::get('/delete/district/{district}', [DistrictController::class, 'DeleteDistrict'])->name('delete.district');
 
-// SUBDSTRİCT ALL ROUTE
+    // SUBDSTRİCT ALL ROUTE
     Route::get('/subdistricts', [SubDistrictController::class, 'index'])->name('subdistrict');
     Route::get('/add/subdistrict', [SubDistrictController::class, 'AddSubDistrict'])->name('add.subdistrict');
     Route::post('/create/subdistrict', [SubDistrictController::class, 'CreateSubDistrict'])->name('create.subdistrict');
@@ -143,7 +142,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/update/subdistrict/{subdistrict}', [SubDistrictController::class, 'UpdateSubDistrict'])->name('update.subdistrict');
     Route::post('/subdistrict/active/{id}', [SubDistrictController::class, 'ActiveSubDistrict'])->name('active.subdistrict');
     Route::get('/delete/subdistrict/{subdistrict}', [SubDistrictController::class, 'DeleteSubDistrict'])->name('delete.subdistrict');
-//AUTHORS ALL ROUTES
+    //AUTHORS ALL ROUTES
     Route::get('/authors', [AuthorController::class, 'index'])->name('list.authors');
     Route::get('/add/authors', [AuthorController::class, 'AddAuthors'])->name('add.authors');
     Route::post('/create/authors', [AuthorController::class, 'CreateAuthors'])->name('create.authors');
@@ -163,15 +162,15 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
 
     //Theme Settings
-    Route::get('/theme/index',[ThemeController::class,'index'])->name('theme.index');
-    Route::post('/theme/update/{id}',[ThemeController::class,'update'])->name('theme.update');
+    Route::get('/theme/index', [ThemeController::class, 'index'])->name('theme.index');
+    Route::post('/theme/update/{id}', [ThemeController::class, 'update'])->name('theme.update');
 
-//otomatik altkategori çekmek için route JQERY ROTASI
+    //otomatik altkategori çekmek için route JQERY ROTASI
     Route::get('/get/subcategory/{category_id}', [PostController::class, 'GetSubCategory']);
     Route::get('/get/subdistrict/{district_id}', [PostController::class, 'GetSubDistrict']);
-//    Route::get('/get/subdistrict/{district_id}', [ExtraController::class, 'GetSubDistrict']);
+    //    Route::get('/get/subdistrict/{district_id}', [ExtraController::class, 'GetSubDistrict']);
 
-// POSTS ALL ROUTE
+    // POSTS ALL ROUTE
     Route::get('/add/post', [PostController::class, 'AddPost'])->name('add.post');
     Route::get('/all/post', [PostController::class, 'index'])->name('all.post');
     //  Route::get('/all/orderImagesPage/{id}', [PostController::class, 'orderImagesPage'])->name('all.orderImagesPage');
@@ -210,20 +209,20 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
 
 
-//Social Settings
+    //Social Settings
     Route::get('/social/settings', [SettingController::class, 'SocialSetting'])->name('social.setting');
     Route::post('/social/update/{id}', [SettingController::class, 'UpdateSocial'])->name('social.update');
     Route::get('/seo/setting/', [SettingController::class, 'SeoSetting'])->name('seo.setting');
     Route::post('/seo/update/{seos}', [SettingController::class, 'UpdateSeo'])->name('seos.update');
 
-//Website Setting Settings
+    //Website Setting Settings
     Route::get('/webiste/settings', [WebsiteSettingController::class, 'index'])->name('website.setting');
     Route::post('/webiste/update/{websetting}', [WebsiteSettingController::class, 'Update'])->name('websetting.update');
 
-//    Route::post('/social/update/{id}', [SettingController::class, 'UpdateSocial'])->name('social.update');
-//    Route::get('/seo/setting/', [SettingController::class, 'SeoSetting'])->name('seo.setting');
-//    Route::post('/seo/update/{id}', [SettingController::class, 'UpdateSeo'])->name('seos.update');
-// GALERY CATEGORY
+    //    Route::post('/social/update/{id}', [SettingController::class, 'UpdateSocial'])->name('social.update');
+    //    Route::get('/seo/setting/', [SettingController::class, 'SeoSetting'])->name('seo.setting');
+    //    Route::post('/seo/update/{id}', [SettingController::class, 'UpdateSeo'])->name('seos.update');
+    // GALERY CATEGORY
     Route::get('/galery/categories', [GaleryCategoryController::class, 'index'])->name('galeri.categories');
     Route::get('/add/galery/category', [GaleryCategoryController::class, 'AddCategory'])->name('add.galerycategory');
     Route::post('/create/galery/category', [GaleryCategoryController::class, 'CreateCategory'])->name('create.galerycategory');
@@ -233,10 +232,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/galery/galerycategory/active/{id}', [GaleryCategoryController::class, 'ActiveGalery'])->name('active.galerycategory');
 
 
-// PHOTO GALERY ROUTES
+    // PHOTO GALERY ROUTES
     Route::get('/photo/galery', [GalleryController::class, 'PhotoGalery'])->name('photo.galery'); //Galerilerin listelendiği sayfa
     Route::get('/add/photogalery', [GalleryController::class, 'AddPhotoGalery'])->name('add.photogalery'); // Fotogaleri ekleme sayfası
-    Route::post('/create/photo', [GalleryController::class, 'CreatePhoto'])->name('create.photo');// Fotogaleri ekleme sayfasında create ederek galeriyi oluşturur
+    Route::post('/create/photo', [GalleryController::class, 'CreatePhoto'])->name('create.photo'); // Fotogaleri ekleme sayfasında create ederek galeriyi oluşturur
     Route::get('/galery/detail/{id}', [GalleryController::class, 'GaleryDetail'])->name('galery.detail'); //fotogaleriye eklenen tüm fotğrafları gösterir
 
     Route::get('/galery/Add/{id}', [GalleryController::class, 'GaleryDetailAdd'])->name('galery.detailAdd');
@@ -249,7 +248,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/photo/galery/update', [GalleryController::class, 'GaleryUpdate'])->name('update.galery');
     Route::get('/galery/photo/delete/{id}', [GalleryController::class, 'DeletePhoto'])->name('delete.photo');
 
-// Route::get('/subdistrict', [DistrictController::class, 'index'])->name('subdistrict');
+    // Route::get('/subdistrict', [DistrictController::class, 'index'])->name('subdistrict');
     //ADS BACKEND
     Route::get('/list/ad', [AdController::class, 'ListAds'])->name('list.add');
     Route::get('/add/ads', [AdController::class, 'AddAds'])->name('add.ads');
@@ -258,7 +257,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::post('/update/ad/{ad}', [AdController::class, 'UpdateAds'])->name('update.ads');
     Route::post('/update/ads/{ad}', [AdController::class, 'adsStatus'])->name('update.adsStatus');
     Route::get('/ad/delete/{ad}', [AdController::class, 'DeleteAds'])->name('delete.ads');
-
 });
 
 
@@ -386,6 +384,8 @@ Route::get('/json/authorsposts/{id}', [MobilAppController::class, 'authorsposts'
 Route::get('/json/sondakika/', [MobilAppController::class, 'sondakika']);
 Route::get('/json/videogallary/', [MobilAppController::class, 'videogallary']);
 Route::get('/json/fotogaleriDetailid/{id}', [MobilAppController::class, 'fotogaleriDetailid']);
+Route::get('/json/cities', [MobilAppController::class, 'cities']);
+Route::get('/json/districts', [MobilAppController::class, 'districts']);
 
 //LİKE AND DİSLİKE
 
@@ -426,6 +426,3 @@ Route::get('/Category/{slug}/{id}', [ExtraController::class, 'CategoryPost']);
 Route::get('/{id}/', [ExtraController::class, 'GetDistrict']);
 
 //Route::get('/', [ExtraController::class, 'akbankkur']);
-
-
-
