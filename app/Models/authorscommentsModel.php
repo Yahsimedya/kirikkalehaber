@@ -14,10 +14,14 @@ class authorscommentsModel extends Model
         'authors_posts_id',
         'created_at',
     ];
-    public function scopeStatus($query) {
-        return $query->where('status',1);
+    protected $table = 'authorscomments'; // Add this line to specify the table
+
+    public function scopeStatus($query)
+    {
+        return $query->where('status', 1);
     }
-    public function scopeDrafted($query) {
-        return $query->where('status',0);
+    public function scopeDrafted($query)
+    {
+        return $query->where('status', 0);
     }
 }
