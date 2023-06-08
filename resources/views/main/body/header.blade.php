@@ -362,7 +362,10 @@
                                                 style="font-size: 13px;">{{ number_format($kurlar['DOLAR']['satis'], 3) }}</span>
                                         </div>
                                     @else
-                                        0000
+                                        <div class="d-inline-block" style="font-size: 13px; line-height: 14px;">
+                                            <span style="font-weight: bold">Dolar</span><br />
+                                            <span style="font-size: 13px;">{{ number_format(0, 3) }}</span>
+                                        </div>
                                     @endif
                                 </li>
                                 <li class="deger list-unstyled mr-2 d-flex align-items-center">
@@ -378,7 +381,10 @@
                                                 style="font-size: 13px;">{{ number_format($kurlar['EURO']['satis'], 3) }}</span>
                                         </div>
                                     @else
-                                        0000
+                                        <div class="d-inline-block" style="font-size: 13px; line-height: 14px;">
+                                            <span style="font-weight: bold">Euro</span><br />
+                                            <span style="font-size: 13px;">{{ number_format(0, 3) }}</span>
+                                        </div>
                                     @endif
                                 </li>
                                 <li class="deger list-unstyled mr-2 d-flex align-items-center">
@@ -394,7 +400,10 @@
                                                 style="font-size: 13px;">{{ number_format((float) $kurlar['ceyrekaltin']['satis'], 3) }}</span>
                                         </div>
                                     @else
-                                        0000
+                                        <div class="d-inline-block" style="font-size: 13px; line-height: 14px;">
+                                            <span style="font-weight: bold">Ç.Altın</span><br />
+                                            <span style="font-size: 13px;">{{ number_format((float) 0, 3) }}</span>
+                                        </div>
                                     @endif
                                 </li>
                                 <li class="deger list-unstyled mr-2 d-flex align-items-center">
@@ -410,7 +419,10 @@
                                                 style="font-size: 13px;">{{ number_format((float) $kurlar['ALTIN']['satis'], 3) }}</span>
                                         </div>
                                     @else
-                                        0000
+                                        <div class="d-inline-block" style="font-size: 13px; line-height: 14px;">
+                                            <span style="font-weight: bold">Altın</span><br />
+                                            <span style="font-size: 13px;">{{ number_format((float) 0, 3) }}</span>
+                                        </div>
                                     @endif
                                 </li>
                             </ul>
