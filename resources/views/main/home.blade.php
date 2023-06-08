@@ -426,69 +426,70 @@
             <div class="row mb-2">
                 <div class="col-md-9 shadow border-left border-3 ml-0 mr-0"
                     style="border-color:{{ $themeSetting[0]->siteColorTheme }}!important;">
-                    <div class="col-md-3 col-3 text-dark float-left text-center"><b>Dolar </b>
+                    <div class="col-md-3 col-3 text-dark float-left text-center">
+                        <b>Dolar </b>
                         <div class="deger ">
-                            @if (number_format($kurlar['DOLAR']['oranyonu'], 2) > 0)
-                                <i class="fa fa-sort-up align-middle pt-1 pr-1 text-success"></i>
+                            @if ($kurlar['DOLAR']['oran'] != '0')
+                                @if (number_format($kurlar['DOLAR']['oranyonu'], 2) > 0)
+                                    <i class="fa fa-sort-up align-middle pt-1 pr-1 text-success"></i>
+                                @else
+                                    <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
+                                @endif
+                                {{ number_format($kurlar['DOLAR']['satis'], 3) }}
                             @else
-                                <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
+                                0000
                             @endif
-                            {{ number_format($kurlar['DOLAR']['satis'], 3) }}
                         </div>
                     </div>
-                    <div class="col-md-3 col-3 text-dark float-left text-center"><b>Euro</b>
-                        <div class="deger">
-                            @if (number_format($kurlar['EURO']['oranyonu'], 2) > 0)
-                                <i class="fa fa-sort-up align-middle pt-1 pr-1 text-success"></i>
+                    <div class="col-md-3 col-3 text-dark float-left text-center">
+                        <b>Euro</b>
+                        <div class="deger ">
+                            @if ($kurlar['EURO']['oran'] != '0')
+                                @if (number_format($kurlar['EURO']['oranyonu'], 2) > 0)
+                                    <i class="fa fa-sort-up align-middle pt-1 pr-1 text-success"></i>
+                                @else
+                                    <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
+                                @endif
+                                {{ number_format($kurlar['EURO']['satis'], 3) }}
                             @else
-                                <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
+                                0000
                             @endif
-                            {{ number_format($kurlar['EURO']['satis'], 3) }}
                         </div>
                     </div>
-                    <div class="col-md-3 col-3 float-left text-dark text-center"><b>Çeyrek Altın</b>
-                        <div class="deger">
-                            @if (isset($kurlar['ceyrekaltin']['oranyonu']) > 0)
-                                <i class="fa fa-sort-up align-middle pt-1 pr-1 text-success"></i>
+                    <div class="col-md-3 col-3 float-left text-dark text-center">
+                        <b>Çeyrek Altın</b>
+                        <div class="deger ">
+                            @if ($kurlar['ceyrekaltin']['oran'] != '0')
+                                @if ($kurlar['ceyrekaltin']['oranyonu'] > 0)
+                                    <i class="fa fa-sort-up align-middle pt-1 pr-1 text-success"></i>
+                                @else
+                                    <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
+                                @endif
+                                {{ $kurlar['ceyrekaltin']['satis'] }}
                             @else
-                                <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
+                                0000
                             @endif
-                            {{ $kurlar['ceyrekaltin']['satis'] }}
                         </div>
-
                     </div>
-                    <div class="col-md-3 col-3 float-left text-dark text-center"><b>Altın</b>
-                        <div class="deger">
-                            @if (isset($kurlar['ALTIN']['oranyonu']) > 0)
-                                <i class="fa fa-sort-up align-middle pt-1 pr-1 text-success"></i>
+                    <div class="col-md-3 col-3 float-left text-dark text-center">
+                        <b>Altın</b>
+                        <div class="deger ">
+                            @if ($kurlar['ALTIN']['oran'] != '0')
+                                @if ($kurlar['ALTIN']['oranyonu'] > 0)
+                                    <i class="fa fa-sort-up align-middle pt-1 pr-1 text-success"></i>
+                                @else
+                                    <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
+                                @endif
+                                {{ $kurlar['ALTIN']['satis'] }}
                             @else
-                                <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
+                                0000
                             @endif
-                            {{ $kurlar['ALTIN']['satis'] }}
                         </div>
-
                     </div>
                 </div>
-                <div class="col-md-3 shadow" style="background-color: {{ $themeSetting[0]->siteColorTheme }}">
-                    <div class="mx-auto my-auto h-100 row d-flex align-items-center">
-                        <form id="havadurum" class="col-md-8 col-8">
-                            <select id="ilsec"
-                                class=" form-select align-middle custom-select bg-transparent border-light text-light "
-                                name="">
-                                <option value="{{ Str::upper('KIRIKKALE') }}">KIRIKKALE</option>
-                                @foreach ($sehir as $il)
-                                    <option value="{{ Str::upper($il->sehir_ad) }}">{{ $il->sehir_ad }}</option>
-                                @endforeach
-                            </select>
-                            {{-- </div> --}}
-                        </form>
-                        <div class="col-md-4 col-4 text-white" id="cek"> {!! $icon !!}
-                            {{ $veri }}</div>
-
-                    </div>
-                </div>
-
+                <!-- Diğer divler -->
             </div>
+
         </div>
         <!-- DÖVİZ KURLARI-->
 
