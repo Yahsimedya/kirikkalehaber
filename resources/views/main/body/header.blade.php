@@ -351,7 +351,7 @@
                             <ul class="d-flex flex-wrap list-group-horizontal-sm d-inline-block my-auto  float-right">
                                 <li class="deger list-unstyled mr-2 d-flex align-items-center">
                                     @if ($kurlar['DOLAR']['oran'] != '0')
-                                        @if (number_format($kurlar['DOLAR']['oranyonu'], 2) > 0)
+                                        @if (isset($kurlar['DOLAR']['oranyonu']) && number_format($kurlar['DOLAR']['oranyonu'], 2) > 0)
                                             <i class="fa fa-sort-up align-middle pt-1 pr-1 text-success"></i>
                                         @else
                                             <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
@@ -370,7 +370,7 @@
                                 </li>
                                 <li class="deger list-unstyled mr-2 d-flex align-items-center">
                                     @if ($kurlar['EURO']['oran'] != '0')
-                                        @if (number_format($kurlar['EURO']['oranyonu'], 2) > 0)
+                                        @if (isset($kurlar['EURO']['oranyonu']) && number_format($kurlar['EURO']['oranyonu'], 2) > 0)
                                             <i class="fa fa-sort-up align-middle pt-1 pr-1 text-success"></i>
                                         @else
                                             <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
@@ -389,7 +389,7 @@
                                 </li>
                                 <li class="deger list-unstyled mr-2 d-flex align-items-center">
                                     @if ($kurlar['ceyrekaltin']['oran'] != '0')
-                                        @if ($kurlar['ceyrekaltin']['oranyonu'] > 0)
+                                        @if (isset($kurlar['ceyrekaltin']['oranyonu']) && $kurlar['ceyrekaltin']['oranyonu'] > 0)
                                             <i class="fa fa-sort-up align-middle pt-1 pr-1 text-success"></i>
                                         @else
                                             <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
@@ -408,7 +408,7 @@
                                 </li>
                                 <li class="deger list-unstyled mr-2 d-flex align-items-center">
                                     @if ($kurlar['ALTIN']['oran'] != '0')
-                                        @if ($kurlar['ALTIN']['oranyonu'] > 0)
+                                        @if (isset($kurlar['ALTIN']['oranyonu']) && $kurlar['ALTIN']['oranyonu'] > 0)
                                             <i class="fa fa-sort-up align-middle pt-1 pr-1 text-success"></i>
                                         @else
                                             <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
