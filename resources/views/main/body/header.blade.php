@@ -166,19 +166,20 @@
 
 
                     <div class=" col-12 col-md-2 d-none d-md-block text-center ">
-                        @php$now = Carbon\Carbon::now()->format('H:i');
-                            $imsak = $vakitler['imsak'];
-                            $gunes = $vakitler['gunes'];
-                            $ogle = $vakitler['ogle'];
-                            $ikindi = $vakitler['ikindi'];
-                            $aksam = $vakitler['aksam'];
-                            $yatsi = $vakitler['yatsi'];
-                        @endphp
+                        {{ dd($now = \Carbon\Carbon::now()->format('H:i')) }}
+                        @php$now = \Carbon\Carbon::now()->format('H:i');
+                                                                                    $imsak = $vakitler['imsak'];
+                                                                                    $gunes = $vakitler['gunes'];
+                                                                                    $ogle = $vakitler['ogle'];
+                                                                                    $ikindi = $vakitler['ikindi'];
+                                                                                    $aksam = $vakitler['aksam'];
+                                                                                    $yatsi = $vakitler['yatsi'];
+                                                                        @endphp ?> ?>
                         @if ($now < $imsak)
                             @php$startTime = Carbon\Carbon::parse($now);
-                                $finishTime = Carbon\Carbon::parse($gunes);
-                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                            @endphp
+                                                                                                $finishTime = Carbon\Carbon::parse($gunes);
+                                                                                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                                                                                    @endphp ?> ?>
 
                             <div class="kalansure">
                                 <span>{{ $totalDuration }}</span>
@@ -186,9 +187,9 @@
                             </div>
                         @elseif($now < $ogle)
                             @php$startTime = Carbon\Carbon::parse($now);
-                                $finishTime = Carbon\Carbon::parse($ogle);
-                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                            @endphp
+                                                                                                $finishTime = Carbon\Carbon::parse($ogle);
+                                                                                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                                                                                    @endphp ?> ?>
 
                             <div class="kalansure">
                                 <span>{{ $totalDuration }}</span>
@@ -196,9 +197,9 @@
                             </div>
                         @elseif($now < $ikindi)
                             @php$startTime = Carbon\Carbon::parse($now);
-                                $finishTime = Carbon\Carbon::parse($ikindi);
-                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                            @endphp
+                                                                                                $finishTime = Carbon\Carbon::parse($ikindi);
+                                                                                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                                                                                    @endphp ?> ?>
                             {{--                    <span style="    font-size: 16px;font-weight: 700;color: #006726;letter-spacing: .25px;padding: 5px 6px;background: #e6f0e7;display: block;position: relative;">{{ $totalDuration}}</span> --}}
                             <div class="kalansure pt-2">
                                 <span>{{ $totalDuration }}</span>
@@ -206,9 +207,9 @@
                             </div>
                         @elseif ($now < $aksam)
                             @php$startTime = Carbon\Carbon::parse($now);
-                                $finishTime = Carbon\Carbon::parse($aksam);
-                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                            @endphp
+                                                                                                $finishTime = Carbon\Carbon::parse($aksam);
+                                                                                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                                                                                    @endphp ?> ?>
                             <div class="kalansure">
                                 <span>{{ $totalDuration }}</span>
                                 <p>Akşam'a Kalan Süre</p>
@@ -216,9 +217,9 @@
                             </div>
                         @elseif($now < $yatsi)
                             @php$startTime = Carbon\Carbon::parse($now);
-                                $finishTime = Carbon\Carbon::parse($yatsi);
-                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                            @endphp
+                                                                                                $finishTime = Carbon\Carbon::parse($yatsi);
+                                                                                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                                                                                    @endphp ?> ?>
                             <div class="kalansure">
                                 <span>{{ $totalDuration }}</span>
                                 <p>Yatsı'ya Kalan Süre</p>
@@ -420,18 +421,18 @@
                     </div>
                     <div class="col-md-2 col-5 my-auto text-success text-center" style="font-size: 13px">
                         @php$now = Carbon\Carbon::now()->format('H:i');
-                            $imsak = $vakitler['imsak'];
-                            $gunes = $vakitler['gunes'];
-                            $ogle = $vakitler['ogle'];
-                            $ikindi = $vakitler['ikindi'];
-                            $aksam = $vakitler['aksam'];
-                            $yatsi = $vakitler['yatsi'];
-                        @endphp
+                                                                                    $imsak = $vakitler['imsak'];
+                                                                                    $gunes = $vakitler['gunes'];
+                                                                                    $ogle = $vakitler['ogle'];
+                                                                                    $ikindi = $vakitler['ikindi'];
+                                                                                    $aksam = $vakitler['aksam'];
+                                                                                    $yatsi = $vakitler['yatsi'];
+                                                                        @endphp ?> ?>
                         @if ($now < $imsak)
                             @php$startTime = Carbon\Carbon::parse($now);
-                                $finishTime = Carbon\Carbon::parse($gunes);
-                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                            @endphp
+                                                                                                $finishTime = Carbon\Carbon::parse($gunes);
+                                                                                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                                                                                    @endphp ?> ?>
 
                             <div class="kalansure">
                                 <span>{{ $totalDuration }}</span>
@@ -439,9 +440,9 @@
                             </div>
                         @elseif($now < $ogle)
                             @php$startTime = Carbon\Carbon::parse($now);
-                                $finishTime = Carbon\Carbon::parse($ogle);
-                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                            @endphp
+                                                                                                $finishTime = Carbon\Carbon::parse($ogle);
+                                                                                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                                                                                    @endphp ?> ?>
 
                             <div class="kalansure">
                                 <span>{{ $totalDuration }}</span>
@@ -449,9 +450,9 @@
                             </div>
                         @elseif($now < $ikindi)
                             @php$startTime = Carbon\Carbon::parse($now);
-                                $finishTime = Carbon\Carbon::parse($ikindi);
-                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                            @endphp
+                                                                                                $finishTime = Carbon\Carbon::parse($ikindi);
+                                                                                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                                                                                    @endphp ?> ?>
                             {{--                    <span style="    font-size: 16px;font-weight: 700;color: #006726;letter-spacing: .25px;padding: 5px 6px;background: #e6f0e7;display: block;position: relative;">{{ $totalDuration}}</span> --}}
                             <div class="kalansure">
                                 <span>{{ $totalDuration }}</span>
@@ -459,9 +460,9 @@
                             </div>
                         @elseif ($now < $aksam)
                             @php$startTime = Carbon\Carbon::parse($now);
-                                $finishTime = Carbon\Carbon::parse($aksam);
-                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                            @endphp
+                                                                                                $finishTime = Carbon\Carbon::parse($aksam);
+                                                                                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                                                                                    @endphp ?> ?>
                             <div class="kalansure">
                                 <span>{{ $totalDuration }}</span>
                                 <p>Akşam'a Kalan Süre</p>
@@ -469,9 +470,9 @@
                             </div>
                         @elseif($now < $yatsi)
                             @php$startTime = Carbon\Carbon::parse($now);
-                                $finishTime = Carbon\Carbon::parse($yatsi);
-                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                            @endphp
+                                                                                                $finishTime = Carbon\Carbon::parse($yatsi);
+                                                                                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                                                                                    @endphp ?> ?>
                             <div class="kalansure">
                                 <span>{{ $totalDuration }}</span>
                                 <p>Yatsı'ya Kalan Süre</p>
