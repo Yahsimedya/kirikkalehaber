@@ -428,94 +428,93 @@
                             </ul>
                         @endif
                     </div>
+
+                    <div class="col-md-1 col-4 my-auto border-left border-right text-center">
+                        <span style="color:#31958a; font-size: 13px ">{{ $gelenil }}<br>
+
+                            {!! $icon !!}
+                            {{ $veri }}&deg;</span>
+                    </div>
+                    <div class="col-md-2 col-5 my-auto text-success text-center" style="font-size: 13px">
+                        @php
+                            $now = Carbon\Carbon::now()->format('H:i');
+                            $imsak = $vakitler['imsak'];
+                            $gunes = $vakitler['gunes'];
+                            $ogle = $vakitler['ogle'];
+                            $ikindi = $vakitler['ikindi'];
+                            $aksam = $vakitler['aksam'];
+                            $yatsi = $vakitler['yatsi'];
+                        @endphp
+                        @if ($now < $imsak)
+                            @php
+                                $startTime = Carbon\Carbon::parse($now);
+                                $finishTime = Carbon\Carbon::parse($gunes);
+                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                            @endphp
+
+                            <div class="kalansure">
+                                <span>{{ $totalDuration }}</span>
+                                <p> İmsak'a Kalan Süre</p>
+                            </div>
+                        @elseif($now < $ogle)
+                            @php
+                                $startTime = Carbon\Carbon::parse($now);
+                                $finishTime = Carbon\Carbon::parse($ogle);
+                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                            @endphp
+
+                            <div class="kalansure">
+                                <span>{{ $totalDuration }}</span>
+                                <p> Öğleye kalan Süre</p>
+                            </div>
+                        @elseif($now < $ikindi)
+                            @php
+                                $startTime = Carbon\Carbon::parse($now);
+                                $finishTime = Carbon\Carbon::parse($ikindi);
+                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                            @endphp
+                            {{--                    <span style="    font-size: 16px;font-weight: 700;color: #006726;letter-spacing: .25px;padding: 5px 6px;background: #e6f0e7;display: block;position: relative;">{{ $totalDuration}}</span> --}}
+                            <div class="kalansure">
+                                <span>{{ $totalDuration }}</span>
+                                <p>İkindi'ye Kalan Süre</p>
+                            </div>
+                        @elseif ($now < $aksam)
+                            @php
+                                $startTime = Carbon\Carbon::parse($now);
+                                $finishTime = Carbon\Carbon::parse($aksam);
+                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                            @endphp
+                            <div class="kalansure">
+                                <span>{{ $totalDuration }}</span>
+                                <p>Akşam'a Kalan Süre</p>
+
+                            </div>
+                        @elseif($now < $yatsi)
+                            @php
+                                $startTime = Carbon\Carbon::parse($now);
+                                $finishTime = Carbon\Carbon::parse($yatsi);
+                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                            @endphp
+                            <div class="kalansure">
+                                <span>{{ $totalDuration }}</span>
+                                <p>Yatsı'ya Kalan Süre</p>
+                            </div>
+                        @endif
+                    </div>
+
+                    {{--        <div class="col-md-2"> --}}
+                    {{--        </div> --}}
+                    {{--        <div class="col-md-6 my-auto"> --}}
+
+                    {{--        </div> --}}
+                    {{--        <div class="col-md-2 my-auto"> --}}
+
+
+                    {{--        </div> --}}
+
+
+
                 </div>
-
-                <div class="col-md-1 col-4 my-auto border-left border-right text-center">
-                    <span style="color:#31958a; font-size: 13px ">{{ $gelenil }}<br>
-
-                        {!! $icon !!}
-                        {{ $veri }}&deg;</span>
-                </div>
-                <div class="col-md-2 col-5 my-auto text-success text-center" style="font-size: 13px">
-                    @php
-                        $now = Carbon\Carbon::now()->format('H:i');
-                        $imsak = $vakitler['imsak'];
-                        $gunes = $vakitler['gunes'];
-                        $ogle = $vakitler['ogle'];
-                        $ikindi = $vakitler['ikindi'];
-                        $aksam = $vakitler['aksam'];
-                        $yatsi = $vakitler['yatsi'];
-                    @endphp
-                    @if ($now < $imsak)
-                        @php
-                            $startTime = Carbon\Carbon::parse($now);
-                            $finishTime = Carbon\Carbon::parse($gunes);
-                            $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                        @endphp
-
-                        <div class="kalansure">
-                            <span>{{ $totalDuration }}</span>
-                            <p> İmsak'a Kalan Süre</p>
-                        </div>
-                    @elseif($now < $ogle)
-                        @php
-                            $startTime = Carbon\Carbon::parse($now);
-                            $finishTime = Carbon\Carbon::parse($ogle);
-                            $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                        @endphp
-
-                        <div class="kalansure">
-                            <span>{{ $totalDuration }}</span>
-                            <p> Öğleye kalan Süre</p>
-                        </div>
-                    @elseif($now < $ikindi)
-                        @php
-                            $startTime = Carbon\Carbon::parse($now);
-                            $finishTime = Carbon\Carbon::parse($ikindi);
-                            $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                        @endphp
-                        {{--                    <span style="    font-size: 16px;font-weight: 700;color: #006726;letter-spacing: .25px;padding: 5px 6px;background: #e6f0e7;display: block;position: relative;">{{ $totalDuration}}</span> --}}
-                        <div class="kalansure">
-                            <span>{{ $totalDuration }}</span>
-                            <p>İkindi'ye Kalan Süre</p>
-                        </div>
-                    @elseif ($now < $aksam)
-                        @php
-                            $startTime = Carbon\Carbon::parse($now);
-                            $finishTime = Carbon\Carbon::parse($aksam);
-                            $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                        @endphp
-                        <div class="kalansure">
-                            <span>{{ $totalDuration }}</span>
-                            <p>Akşam'a Kalan Süre</p>
-
-                        </div>
-                    @elseif($now < $yatsi)
-                        @php
-                            $startTime = Carbon\Carbon::parse($now);
-                            $finishTime = Carbon\Carbon::parse($yatsi);
-                            $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                        @endphp
-                        <div class="kalansure">
-                            <span>{{ $totalDuration }}</span>
-                            <p>Yatsı'ya Kalan Süre</p>
-                        </div>
-                    @endif
-                </div>
-
-                {{--        <div class="col-md-2"> --}}
-                {{--        </div> --}}
-                {{--        <div class="col-md-6 my-auto"> --}}
-
-                {{--        </div> --}}
-                {{--        <div class="col-md-2 my-auto"> --}}
-
-
-                {{--        </div> --}}
-
-
-
-            </div>
             </div>
         </section>
         <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light bg-white p-0 m-0 shadow-sm border-top">
