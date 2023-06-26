@@ -168,7 +168,7 @@
                                                 data-src="{{ asset($ad->ads) }}"> </a></div>
                                     <div class="swiper-slide"><a target="_blank" href="https://kirikkale.bel.tr"> <img
                                                 class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250"
-                                                data-src="storage/ads/2022/8/30agustos-saygili.jpeg"> </a></div>
+                                                data-src="{{ asset($ad->ads) }}"> </a></div>
                                 </div>
 
 
