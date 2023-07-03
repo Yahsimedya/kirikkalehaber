@@ -822,34 +822,36 @@
                     </div>
                     <div class="col-md-6 ">
                         <div class="row">
-                            <div class="col-md-6 mt-2 videogaleri_dortlu">
-                                <a
-                                    href="{{ URL::to('/' . Str::slug($video_gallary[1]->title_tr) . '/' . $video_gallary[1]->id . '/' . 'haberi') }}">
-                                    <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                                    <img width="100%" height="150" src="{{ $video_gallary[1]->image }}">
-                                </a>
-                            </div>
-                            <div class="col-md-6 mt-2 videogaleri_dortlu">
-                                <a
-                                    href="{{ URL::to('/' . Str::slug($video_gallary[2]->title_tr) . '/' . $video_gallary[2]->id . '/' . 'haberi') }}">
-                                    <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                                    <img width="100%" height="150" src="{{ $video_gallary[2]->image }}">
-                                </a>
-                            </div>
-                            <div class="col-md-6 mt-2 videogaleri_dortlu">
-                                <a
-                                    href="{{ URL::to('/' . Str::slug($video_gallary[3]->title_tr) . '/' . $video_gallary[3]->id . '/' . 'haberi') }}">
-                                    <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                                    <img width="100%" height="150" src="{{ $video_gallary[3]->image }}">
-                                </a>
-                            </div>
-                            <div class="col-md-6 mt-2 videogaleri_dortlu">
-                                <a
-                                    href="{{ URL::to('/' . Str::slug($video_gallary[4]->title_tr) . '/' . $video_gallary[4]->id . '/' . 'haberi') }}">
-                                    <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
-                                    <img width="100%" height="150" src="{{ $video_gallary[4]->image }}">
-                                </a>
-                            </div>
+                            @if ($video_gallary)
+                                <div class="col-md-6 mt-2 videogaleri_dortlu">
+                                    <a
+                                        href="{{ URL::to('/' . Str::slug($video_gallary[1]->title_tr) . '/' . $video_gallary[1]->id . '/' . 'haberi') }}">
+                                        <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+                                        <img width="100%" height="150" src="{{ $video_gallary[1]->image }}">
+                                    </a>
+                                </div>
+                                <div class="col-md-6 mt-2 videogaleri_dortlu">
+                                    <a
+                                        href="{{ URL::to('/' . Str::slug($video_gallary[2]->title_tr) . '/' . $video_gallary[2]->id . '/' . 'haberi') }}">
+                                        <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+                                        <img width="100%" height="150" src="{{ $video_gallary[2]->image }}">
+                                    </a>
+                                </div>
+                                <div class="col-md-6 mt-2 videogaleri_dortlu">
+                                    <a
+                                        href="{{ URL::to('/' . Str::slug($video_gallary[3]->title_tr) . '/' . $video_gallary[3]->id . '/' . 'haberi') }}">
+                                        <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+                                        <img width="100%" height="150" src="{{ $video_gallary[3]->image }}">
+                                    </a>
+                                </div>
+                                <div class="col-md-6 mt-2 videogaleri_dortlu">
+                                    <a
+                                        href="{{ URL::to('/' . Str::slug($video_gallary[4]->title_tr) . '/' . $video_gallary[4]->id . '/' . 'haberi') }}">
+                                        <div class="video-overlay"><i class="fa fa-play-circle"></i></div>
+                                        <img width="100%" height="150" src="{{ $video_gallary[4]->image }}">
+                                    </a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-3 d-flex videogaleri_dortlu">
