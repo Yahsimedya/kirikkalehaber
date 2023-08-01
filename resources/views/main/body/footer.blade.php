@@ -1,12 +1,16 @@
 @php
-
+    
     use App\Models\WebsiteSetting;
     use App\Models\Theme;
-
-        $websetting=WebsiteSetting::first();
-
-        $fixedPages = DB::table('fixedpage')->where('status','=',1)->limit(5)->latest('id')->get();
-     $themeSetting=Theme::get();
+    
+    $websetting = WebsiteSetting::first();
+    
+    $fixedPages = DB::table('fixedpage')
+        ->where('status', '=', 1)
+        ->limit(5)
+        ->latest('id')
+        ->get();
+    $themeSetting = Theme::get();
 @endphp
 
 <div class="text-light footer">
@@ -63,7 +67,7 @@
             <h6 class="text-uppercase font-weight-bold">Hakkımızda</h6>
             <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
             <p>
-                {{$websetting->about}}
+                {{ $websetting->about }}
             </p>
 
         </div>
@@ -75,12 +79,12 @@
             <!-- Links -->
             <h6 class="text-uppercase font-weight-bold">Sayfalar</h6>
             <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-            @foreach($fixedPages as $pages)
+            @foreach ($fixedPages as $pages)
                 <p>
-                    <a class="dark-grey-text" href="{{route('Open.fixedPage',$pages->id)}}">{{$pages->title}}</a>
+                    <a class="dark-grey-text" href="{{ route('Open.fixedPage', $pages->id) }}">{{ $pages->title }}</a>
                 </p>
-        @endforeach
-        <!-- <p>
+            @endforeach
+            <!-- <p>
           <a class="dark-grey-text" href="#!">MDWordPress</a>
         </p>
         <p>
@@ -94,55 +98,57 @@
         <!-- Grid column -->
 
         <!-- Grid column -->
-        @if($themeSetting[0]->apps==1 || $themeSetting[0]->subscription==1)
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+        @if ($themeSetting[0]->apps == 1 || $themeSetting[0]->subscription == 1)
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
-            @if($themeSetting[0]->apps==1)
-        <!-- Links -->
-            <h6 class="text-uppercase font-weight-bold">Uygulamamız</h6>
-            <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-            <p>
-                <a class="dark-grey-text" href="https://apps.apple.com/us/developer/yah%C5%9Fi-medya/id1495158559?l=tr"><img
-                        class="img-fluid lazyload" style="max-width: 150px" data-src="{{asset('image/apple.png')}}"></a>
-            </p>
-            <p>
-                <a class="dark-grey-text"
-                   href="https://play.google.com/store/apps/developer?id=Yah%C5%9Fi+Medya&hl=tr&gl=US"><img
-                        class="img-fluid lazyload" style="max-width: 150px" data-src="{{asset('image/play.png')}}"></a>
-            </p>
-            <p>
-                <a class="dark-grey-text"
-                   href="https://appgallery.huawei.com/app/C104177315"><img
-                        class="img-fluid lazyload" style="max-width: 150px" data-src="{{asset('image/huawei.png')}}"></a>
-            </p>
+                @if ($themeSetting[0]->apps == 1)
+                    <!-- Links -->
+                    <h6 class="text-uppercase font-weight-bold">Uygulamamız</h6>
+                    <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                    <p>
+                        <a class="dark-grey-text"
+                            href="https://apps.apple.com/us/developer/yah%C5%9Fi-medya/id1495158559?l=tr"><img
+                                class="img-fluid lazyload" style="max-width: 150px"
+                                data-src="{{ asset('image/apple.png') }}"></a>
+                    </p>
+                    <p>
+                        <a class="dark-grey-text"
+                            href="https://play.google.com/store/apps/developer?id=Yah%C5%9Fi+Medya&hl=tr&gl=US"><img
+                                class="img-fluid lazyload" style="max-width: 150px"
+                                data-src="{{ asset('image/play.png') }}"></a>
+                    </p>
+                    <p>
+                        <a class="dark-grey-text" href="https://appgallery.huawei.com/app/C104177315"><img
+                                class="img-fluid lazyload" style="max-width: 150px"
+                                data-src="{{ asset('image/huawei.png') }}"></a>
+                    </p>
                 @endif
-            @if($themeSetting[0]->subscription==1)
-
-            <h6 class="text-uppercase font-weight-bold">Üyeliklerimiz</h6>
-            <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-            <p>
-            <a href="https://www.sanalbasin.com/?ref=32626" id="hash-963df865d91ae3bf30841066f06b8ab52f323508"
-               title="Bu site sanalbasin.com üyesidir" target="_blank"><img class="img-fluid lazyload"
-                    data-src="{{asset('
-image/sanalbasin_üyesidir.png')}}" style="width: 120px"
-                    alt="sanalbasin.com üyesidir"/></a>
-            </p>
-            <p>
+                @if ($themeSetting[0]->subscription == 1)
+                    <h6 class="text-uppercase font-weight-bold">Üyeliklerimiz</h6>
+                    <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                    <p>
+                        <a href="https://www.sanalbasin.com/?ref=32626"
+                            id="hash-963df865d91ae3bf30841066f06b8ab52f323508" title="Bu site sanalbasin.com üyesidir"
+                            target="_blank"><img class="img-fluid lazyload"
+                                data-src="{{ asset('
+                                image/sanalbasin_üyesidir.png') }}" style="width: 120px"
+                                alt="sanalbasin.com üyesidir" /></a>
+                    </p>
+                    {{-- <p>
             <a href="https://www.aa.com.tr/tr" id="hash-963df865d91ae3bf30841066f06b8ab52f323508"
                title="Bu site Anadolu Ajans üyesidir" target="_blank"><img class
 "lazyload"
                     src="{{asset('image/aaajans.png')}}" style="width: 120px"
                     alt="Anadolu Ajans üyesidir"/></a>
-            </p>
-            <p>
-            <a href="https://www.aa.com.tr/tr" id="hash-963df865d91ae3bf30841066f06b8ab52f323508"
-               title="Bu site İha üyesidir" target="_blank"><img class="img-fluid lazyload"
-                    data-src="{{asset('image/iha.png')}}" style="width: 120px"
-                    alt="İha üyesidir"/></a>
-            </p>
-            @endif
-        </div>
-    @endif
+            </p> --}}
+                    <p>
+                        <a href="https://www.aa.com.tr/tr" id="hash-963df865d91ae3bf30841066f06b8ab52f323508"
+                            title="Bu site İha üyesidir" target="_blank"><img class="img-fluid lazyload"
+                                data-src="{{ asset('image/iha.png') }}" style="width: 120px" alt="İha üyesidir" /></a>
+                    </p>
+                @endif
+            </div>
+        @endif
         <!-- Grid column -->
 
         <!-- Grid column -->
@@ -151,31 +157,31 @@ image/sanalbasin_üyesidir.png')}}" style="width: 120px"
             <!-- Links -->
             <h6 class="text-uppercase font-weight-bold">İletişim</h6>
             <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-            <p >
+            <p>
                 <i class="fas fa-home mr-3">
 
                 </i>
-                {{$websetting->adress}}
+                {{ $websetting->adress }}
             </p>
             <p>
                 <i class="fas fa-envelope mr-3">
 
 
                 </i>
-                {{$websetting->email}}
+                {{ $websetting->email }}
             </p>
             <p>
                 <i class="fas fa-phone mr-3">
 
 
-                </i>   {{$websetting->phone}}
+                </i> {{ $websetting->phone }}
             </p>
             <p>
                 <i class="fas fa-print mr-3">
 
 
                 </i>
-                {{$websetting->phone}}
+                {{ $websetting->phone }}
             </p>
 
         </div>
@@ -189,7 +195,9 @@ image/sanalbasin_üyesidir.png')}}" style="width: 120px"
 
 <!-- Copyright -->
 <div class="footer-copyright text-center text-black-50 py-3 ">
-     <a class="dark-grey-text " rel="noopener" target="_blank" href="https://yahsimedya.com/">© 2020 Copyright: &nbsp<img width="80" class="img-fluid lazyload yahsilogo" src="https://yahsimedya.com/yonetim/dimg/settings/yahsi-logo.png"></a>
+    <a class="dark-grey-text " rel="noopener" target="_blank" href="https://yahsimedya.com/">© 2020 Copyright: &nbsp<img
+            width="80" class="img-fluid lazyload yahsilogo"
+            src="https://yahsimedya.com/yonetim/dimg/settings/yahsi-logo.png"></a>
 </div>
 <!-- Copyright -->
 
