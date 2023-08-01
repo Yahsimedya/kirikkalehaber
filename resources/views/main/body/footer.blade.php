@@ -126,14 +126,14 @@
                 @if ($themeSetting[0]->subscription == 1)
                     <h6 class="text-uppercase font-weight-bold">Üyeliklerimiz</h6>
                     <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-                    <p>
+                    {{-- <p>
                         <a href="https://www.sanalbasin.com/?ref=32626"
                             id="hash-963df865d91ae3bf30841066f06b8ab52f323508" title="Bu site sanalbasin.com üyesidir"
                             target="_blank"><img class="img-fluid lazyload"
                                 data-src="{{ asset('
                                 image/sanalbasin_üyesidir.png') }}" style="width: 120px"
                                 alt="sanalbasin.com üyesidir" /></a>
-                    </p>
+                    </p> --}}
                     {{-- <p>
             <a href="https://www.aa.com.tr/tr" id="hash-963df865d91ae3bf30841066f06b8ab52f323508"
                title="Bu site Anadolu Ajans üyesidir" target="_blank"><img class
