@@ -112,7 +112,9 @@
                     <span style="font-size: 30px; color:#29b6f6"><i class="fas fa-check-double"></i></span>
 
                     <div class="ml-3">
-                        <h5 class="font-weight-semibold mb-0">{{ $userTypesWeek[1]['sessions'] }}</h5>
+                        @if (isset($userTypesWeek[1]['sessions']))
+                            <h5 class="font-weight-semibold mb-0">{{ $userTypesWeek[1]['sessions'] }}</h5>
+                        @endif
                         <span class="badge badge-mark border-danger mr-1"></span> <span class="text-muted">Son 7 günde geri
                             gelen yeni kullanıcı</span>
                     </div>
