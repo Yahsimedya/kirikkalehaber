@@ -51,7 +51,7 @@ class SitemapController extends Controller
                 $sitemaphome->model->resetItems();
                 $counter = 0;
             }
-            $sitemaphome->add("https://" . $host . "/" . "haber-" . str_slug($p->title_tr) . "-" . $p->id, $p->created_at, 0.8, "daily");
+            $sitemaphome->add("https://" . $host . "/" . str_slug($p->title_tr) . "/" . $p->id . "/" . "haberi" . $p->created_at, 0.8, "daily");
             $counter++;
 
             // Her sayfa eklemesinde güncelleme tarihini sıfırlayın
@@ -102,7 +102,7 @@ class SitemapController extends Controller
                 $sitemapimages->model->resetItems();
                 $counter = 0;
             }
-            $sitemapimages->add("https://" . $host . "/" . "haber-" . str_slug($p->title_tr) . "-" . $p->id, $p->created_at, 0.8, "daily");
+            $sitemapimages->add("https://" . $host . "/" . str_slug($p->title_tr) . "/" . $p->id . "/" . "haberi", 0.8, "daily");
             $counter++;
         }
 
@@ -142,7 +142,7 @@ class SitemapController extends Controller
                 $sitemapvideogaleri->model->resetItems();
                 $counter = 0;
             }
-            $sitemapvideogaleri->add("https://" . $host . "/" . "haber-" . str_slug($v->title_tr) . "-" . $v->id, $v->created_at, 0.8, "daily");
+            $sitemapvideogaleri->add("https://" . $host . "/" . str_slug($v->title_tr) . "/" . $v->id . "/" . "haberi", $v->created_at, 0.8, "daily");
             $counter++;
         }
         // if (!empty($sitemaphome->model->getItems())) {
@@ -218,7 +218,7 @@ class SitemapController extends Controller
 
         foreach ($recentPosts as $p) {
             $slug = Str::slug($p->title_tr);  // Laravel 6+ için Str::slug kullanılır
-            $url = "https://{$host}/haber-{$slug}-{$p->id}";
+            $url = "https://{$host}/{$slug}/{$p->id}/haberi";
 
             $xmlOutput .= '<url>';
             $xmlOutput .= "<loc>{$url}</loc>";
@@ -267,7 +267,7 @@ class SitemapController extends Controller
         foreach ($recentPosts as $post) {
             $slug = Str::slug($post->title_tr);  // Laravel 6+ için Str::slug kullanılır
 
-            $url = "https://{$host}/haber-{$slug}-{$post->id}";
+            $url = "https://{$host}/$slug}/{$post->id}/haberi";
             $lastmod = $post->created_at->toW3cString();
 
             $xmlOutput .= '<url>';
