@@ -292,6 +292,8 @@ Route::get('/', [ExtraController::class, 'Home']);
 //SİTEMAP ROUTE
 //SİTEMAP ROUTE
 Route::get('/sitemap', [SitemapController::class, 'sitemap']);
+Route::get('/sitemap-news', [SitemapController::class, 'googleNewsSitemap']);
+Route::get('/sitemap-latest', [SitemapController::class, 'sitemapLatest']);
 Route::get('/sitemaps', [SitemapController::class, 'sitemapcategory'])->name('sitemapcategory');
 
 //Route::get('/best-sitemap', [SitemapController::class, 'bestsitemap']);

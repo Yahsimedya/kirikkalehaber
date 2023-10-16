@@ -69,124 +69,124 @@ class ExtraController extends Controller
         return Redirect::to($replaced . '/haberi');
     }
 
-    public function DBTrans()
-    {
+    // public function DBTrans()
+    // {
 
 
-        ini_set('max_execution_time', 0);
-        $habereski = DB::table('haber')->get(); //eklenecek eski haber tablosu
-        $yeniData = array();
-        DB::beginTransaction();
-        $savedcount = 0;
-        $unsavedcount = 0;
+    //     ini_set('max_execution_time', 0);
+    //     $habereski = DB::table('haber')->get(); //eklenecek eski haber tablosu
+    //     $yeniData = array();
+    //     DB::beginTransaction();
+    //     $savedcount = 0;
+    //     $unsavedcount = 0;
 
-        for ($i = 1; $i <= count($habereski) - 1; $i++) {
-            if ($habereski[$i]->kategori_id == 9) {
-                $newCategoryId = 2;
-            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 10) {
-                $newCategoryId = 6;
-            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 11) {
-                $newCategoryId = 2;
-            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 13) {
-                $newCategoryId = 5;
-            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 36) {
-                $newCategoryId = 11;
-            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 38) {
-                $newCategoryId = 3;
-            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 39) {
-                $newCategoryId = 7;
-            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 49) {
-                $newCategoryId = 9;
-            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 51) {
-                $newCategoryId = 4;
-            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 52) {
-                $newCategoryId = 8;
-            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 64) {
-                $newCategoryId = 10;
-            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 66) {
-                $newCategoryId = 1;
-            } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 67) {
-                $newCategoryId = 2;
-            }
+    //     for ($i = 1; $i <= count($habereski) - 1; $i++) {
+    //         if ($habereski[$i]->kategori_id == 9) {
+    //             $newCategoryId = 2;
+    //         } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 10) {
+    //             $newCategoryId = 6;
+    //         } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 11) {
+    //             $newCategoryId = 2;
+    //         } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 13) {
+    //             $newCategoryId = 5;
+    //         } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 36) {
+    //             $newCategoryId = 11;
+    //         } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 38) {
+    //             $newCategoryId = 3;
+    //         } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 39) {
+    //             $newCategoryId = 7;
+    //         } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 49) {
+    //             $newCategoryId = 9;
+    //         } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 51) {
+    //             $newCategoryId = 4;
+    //         } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 52) {
+    //             $newCategoryId = 8;
+    //         } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 64) {
+    //             $newCategoryId = 10;
+    //         } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 66) {
+    //             $newCategoryId = 1;
+    //         } elseif (substr($habereski[$i]->kategori_id, 0, 2) == 67) {
+    //             $newCategoryId = 2;
+    //         }
 
-            $newImagesroute = "storage/postimg/" . $habereski[$i]->haberfoto_resimyol;
+    //         $newImagesroute = "storage/postimg/" . $habereski[$i]->haberfoto_resimyol;
 
-            $yeniposts = Post::insert([
-                "id" => $habereski[$i]->haber_id,
-                "created_at" => $habereski[$i]->haber_zaman,
-                "title_tr" => $habereski[$i]->haber_ad,
-                "slug_tr" => $habereski[$i]->haber_seourl,
-                "details_tr" => $habereski[$i]->haber_detay,
-                "subtitle_tr" => $habereski[$i]->haber_spot,
-                "title_en" => $habereski[$i]->haber_ad,
-                "slug_en" => $habereski[$i]->haber_seourl,
-                "details_en" => $habereski[$i]->haber_detay,
-                "subtitle_en" => $habereski[$i]->haber_spot,
-                "featured" => 1,
-                "status" => 1,
-                "posts_video" => $habereski[$i]->haber_video,
-                "keywords_tr" => $habereski[$i]->haber_keyword,
-                "keywords_en" => $habereski[$i]->haber_keyword,
-                "image" => $newImagesroute,
-                "manset" => 1,
-                "surmanset" => $habereski[$i]->haber_surmanset,
-                "description_tr" => $habereski[$i]->haber_description,
-                "description_en" => $habereski[$i]->haber_description,
-                "headline" => $habereski[$i]->haber_sondakika,
-                "category_id" => $newCategoryId,
-                "district_id" => 71,
+    //         $yeniposts = Post::insert([
+    //             "id" => $habereski[$i]->haber_id,
+    //             "created_at" => $habereski[$i]->haber_zaman,
+    //             "title_tr" => $habereski[$i]->haber_ad,
+    //             "slug_tr" => $habereski[$i]->haber_seourl,
+    //             "details_tr" => $habereski[$i]->haber_detay,
+    //             "subtitle_tr" => $habereski[$i]->haber_spot,
+    //             "title_en" => $habereski[$i]->haber_ad,
+    //             "slug_en" => $habereski[$i]->haber_seourl,
+    //             "details_en" => $habereski[$i]->haber_detay,
+    //             "subtitle_en" => $habereski[$i]->haber_spot,
+    //             "featured" => 1,
+    //             "status" => 1,
+    //             "posts_video" => $habereski[$i]->haber_video,
+    //             "keywords_tr" => $habereski[$i]->haber_keyword,
+    //             "keywords_en" => $habereski[$i]->haber_keyword,
+    //             "image" => $newImagesroute,
+    //             "manset" => 1,
+    //             "surmanset" => $habereski[$i]->haber_surmanset,
+    //             "description_tr" => $habereski[$i]->haber_description,
+    //             "description_en" => $habereski[$i]->haber_description,
+    //             "headline" => $habereski[$i]->haber_sondakika,
+    //             "category_id" => $newCategoryId,
+    //             "district_id" => 71,
 
-            ]);
-            if ($yeniposts > 0) {
-                $savedcount++;
-            } else {
-                $unsavedcount++;
-            }
-        }
-        if ($unsavedcount > 0) {
-            DB::rollBack();
-        } else {
-            DB::commit();
-        }
-        // return $this->OldDBkoseyazisi();
+    //         ]);
+    //         if ($yeniposts > 0) {
+    //             $savedcount++;
+    //         } else {
+    //             $unsavedcount++;
+    //         }
+    //     }
+    //     if ($unsavedcount > 0) {
+    //         DB::rollBack();
+    //     } else {
+    //         DB::commit();
+    //     }
+    //     // return $this->OldDBkoseyazisi();
 
-    }
+    // }
 
-    public function OldDBkoseyazisi()
-    {
-        ini_set('max_execution_time', 0);
-        $koseyazisieski = DB::table('kose_yazilari')->get(); //eklenecek eski köşe yazıları tablosu
-        $yeniData = array();
-        DB::beginTransaction();
-        $savedcount = 0;
-        $unsavedcount = 0;
+    // public function OldDBkoseyazisi()
+    // {
+    //     ini_set('max_execution_time', 0);
+    //     $koseyazisieski = DB::table('kose_yazilari')->get(); //eklenecek eski köşe yazıları tablosu
+    //     $yeniData = array();
+    //     DB::beginTransaction();
+    //     $savedcount = 0;
+    //     $unsavedcount = 0;
 
-        for ($i = 1; $i <= count($koseyazisieski) - 1; $i++) {
-            $yenikoseyazisi = AuthorsPost::insert([
-                "id" => $koseyazisieski[$i]->koseyazisi_id,
-                "authors_id" => 1,
-                "text" => $koseyazisieski[$i]->koseyazisi_detay,
-                "title" => $koseyazisieski[$i]->koseyazisi_baslik,
-                "created_at" => $koseyazisieski[$i]->koseyazisi_zaman,
-                "updated_at" => $koseyazisieski[$i]->koseyazisi_zaman,
-                "status" => $koseyazisieski[$i]->koseyazisi_durum == null ? 1 : $koseyazisieski[$i]->koseyazisi_durum,
-                "image" => "",
-                "keywords" => $koseyazisieski[$i]->koseyazisi_keyword,
-                "description" => $koseyazisieski[$i]->koseyazisi_description,
-            ]);
-            if ($yenikoseyazisi > 0) {
-                $savedcount++;
-            } else {
-                $unsavedcount++;
-            }
-        }
-        if ($unsavedcount > 0) {
-            DB::rollBack();
-        } else {
-            DB::commit();
-        }
-        return "Veri taşıma başarılı";
-    }
+    //     for ($i = 1; $i <= count($koseyazisieski) - 1; $i++) {
+    //         $yenikoseyazisi = AuthorsPost::insert([
+    //             "id" => $koseyazisieski[$i]->koseyazisi_id,
+    //             "authors_id" => 1,
+    //             "text" => $koseyazisieski[$i]->koseyazisi_detay,
+    //             "title" => $koseyazisieski[$i]->koseyazisi_baslik,
+    //             "created_at" => $koseyazisieski[$i]->koseyazisi_zaman,
+    //             "updated_at" => $koseyazisieski[$i]->koseyazisi_zaman,
+    //             "status" => $koseyazisieski[$i]->koseyazisi_durum == null ? 1 : $koseyazisieski[$i]->koseyazisi_durum,
+    //             "image" => "",
+    //             "keywords" => $koseyazisieski[$i]->koseyazisi_keyword,
+    //             "description" => $koseyazisieski[$i]->koseyazisi_description,
+    //         ]);
+    //         if ($yenikoseyazisi > 0) {
+    //             $savedcount++;
+    //         } else {
+    //             $unsavedcount++;
+    //         }
+    //     }
+    //     if ($unsavedcount > 0) {
+    //         DB::rollBack();
+    //     } else {
+    //         DB::commit();
+    //     }
+    //     return "Veri taşıma başarılı";
+    // }
 
 
     public function PhotoGalleryDetail($photogalery)
