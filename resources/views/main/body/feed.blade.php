@@ -17,7 +17,7 @@
         <sy:updatePeriod>hourly</sy:updatePeriod>
         <sy:updateFrequency>1</sy:updateFrequency>
         <image>
-            <url>"https://gazetekale.com/public/icon/favicon.ico"</url>
+            <url>"{{ url('/public/icon/favicon.ico/') }}"</url>
             <title>{{ $seoset->meta_title }}</title>
             <link>{{ URL::to('/') }}</link>
             <width>32</width>
