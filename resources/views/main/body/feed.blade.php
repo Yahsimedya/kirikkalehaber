@@ -9,7 +9,7 @@
     xmlns:slash="http://purl.org/rss/1.0/modules/slash/" xmlns:media="http://search.yahoo.com/mrss/">
     <channel>
         <title>{{ $seoset->meta_title }}</title>
-        <atom:link href="https://www.gazetekale.com/feed/" rel="self" type="application/rss+xml" />
+        <atom:link href="{{ url('/feed/') }}" rel="self" type="application/rss+xml" />
         <link>{{ url('/') }}</link>
         <description>{{ $seoset->meta_description }}</description>
         <lastBuildDate>{{ now()->toRssString() }}</lastBuildDate>
