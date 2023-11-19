@@ -447,12 +447,12 @@ class ExtraController extends Controller
         $vakit = Vakitler::where('date', $date)->get();
 
         $vakitler = array(
-            "imsak" => $vakit[0]['imsak'],
-            "gunes" => $vakit[0]['gunes'],
-            "ogle" => $vakit[0]['ogle'],
-            "ikindi" => $vakit[0]['ikindi'],
-            "aksam" => $vakit[0]['aksam'],
-            "yatsi" => $vakit[0]['yatsi'],
+            "imsak" => $vakit[0]['imsak'] ?? '',
+            "gunes" => $vakit[0]['gunes'] ?? '',
+            "ogle" => $vakit[0]['ogle'] ?? '',
+            "ikindi" => $vakit[0]['ikindi'] ?? '',
+            "aksam" => $vakit[0]['aksam'] ?? '',
+            "yatsi" => $vakit[0]['yatsi'] ?? '',
         );
         Session::put('vakitler', $vakitler);
 
@@ -915,12 +915,12 @@ class ExtraController extends Controller
             $vakit = Vakitler::where('date', $date)->get();
 
             $vakitler = array(
-                "imsak" => $vakit[0]['imsak'],
-                "gunes" => $vakit[0]['gunes'],
-                "ogle" => $vakit[0]['ogle'],
-                "ikindi" => $vakit[0]['ikindi'],
-                "aksam" => $vakit[0]['aksam'],
-                "yatsi" => $vakit[0]['yatsi'],
+                "imsak" => $vakit[0]['imsak'] ?? '',
+                "gunes" => $vakit[0]['gunes'] ?? '',
+                "ogle" => $vakit[0]['ogle'] ?? '',
+                "ikindi" => $vakit[0]['ikindi'] ?? '',
+                "aksam" => $vakit[0]['aksam'] ?? '',
+                "yatsi" => $vakit[0]['yatsi'] ?? '',
             );
             Session::put('vakitler', $vakitler);
             Session::put('kurlar', $kurlar);
