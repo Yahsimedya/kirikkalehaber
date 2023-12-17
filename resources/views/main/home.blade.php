@@ -56,6 +56,36 @@
             background-size: 5px 5px, 5px 5px, 2.5em 2.5em;
             background-repeat: no-repeat;
         }
+       .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.7);
+        width: 60%; /* veya istediğiniz genişliği belirtin */
+        height: 60%;
+        max-width: 400px; /* veya istediğiniz maksimum genişliği belirtin */
+        padding: 20px;
+        text-align: center;
+        box-sizing: border-box;
+        z-index: 1000;
+        }
+
+        .modal-content {
+        background-color: #fefefe;
+        padding: 20px;
+        border: 1px solid #888;
+        text-align: center;
+        }
+
+        .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 10px;
+        cursor: pointer;
+        }
     </style>
     <script>
         $(document).ready(function(e) {
@@ -111,6 +141,7 @@
             });
         });
     </script>
+
     @if (!empty($sondakika[0]->headline))
         <section class="section-sdk position-relative d-flex w-100 mt-0">
             <div class="container ">
@@ -138,45 +169,41 @@
     @endif
     </section>
     <div class="container text-center mt-2 position-relative">
+
         <div class="row">
+            <!-- HTML -->
+            {{-- <div id="popupModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closePopup()">&times;</span>
+                    <!-- Popup içeriği buraya eklenecek -->
+                    <p>Bu bir popup reklamdır!</p>
+                </div>
+                <button class="close" onclick="closePopup()">X</button>
+            </div> --}}
             <div class="col-12 padding-left">
 
                 <div class="reklam-alani mt-1 mb-1 text-center">
-                    {{-- {{ dd($ads->count()) }} --}}
-                    @foreach ($ads as $ad)
-                        @if ($ad->type == 1 && $ad->category_id == 9)
-                            {{-- <div class="swiper adsSlider">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide"> <a target="_blank" href="{{ $ad->link }}"> <img
-                                                class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250"
-                                                data-src="{{ asset($ad->ads) }}"> </a></div>
-                                    @if (isset($ad->ads1))
-                                        <div class="swiper-slide"><a target="_blank" href="{{ $ad->link }}"> <img
-                                                    class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250"
-                                                    data-src="{{ asset($ad->ads1) }}"> </a></div>
-                                    @elseif (isset($ad->ads2))
-                                        <div class="swiper-slide"><a target="_blank" href="{{ $ad->link }}"> <img
-                                                    class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250"
-                                                    data-src="{{ asset($ad->ads2) }}"> </a></div>
-                                    @endif
-                                </div>
-                            </div> --}}
-                            <div class="swiper adsSlider">
-                                <div class="swiper-wrapper">
-                                    <div class="swiper-slide"><a target="_blank" href="{{ $ad->link }}"> <img
-                                                class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250"
-                                                data-src="{{ asset($ad->ads) }}"> </a></div>
-                                    <div class="swiper-slide"><a target="_blank" href="https://kirikkale.bel.tr"> <img
-                                                class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250"
-                                                data-src="{{ asset($ad->ads) }}"> </a></div>
-                                </div>
-
-
+                    {{-- {{ dd($ads) }} --}}
+                    @if($ads)
+                    <div class="swiper adsSlider">
+                        <div class="swiper-wrapper">
+                            @foreach ($ads as $ad)
+                            @if ($ad->type == 1 && $ad->category_id == 9)
+                            <div class="swiper-slide">
+                                <a target="_blank" href="{{ $ad->link }}">
+                                    <img class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250"
+                                        data-src="{{ asset($ad->ads) }}">
+                                </a>
                             </div>
-                        @elseif($ad->type == 2 && $ad->category_id == 9)
-                            <div class="w-100">{!! $ad->ad_code !!}</div>
-                        @endif
-                    @endforeach
+                            @elseif($ad->type == 2 && $ad->category_id == 9)
+                            <div class="swiper-slide">
+                                <div class="w-100">{!! $ad->ad_code !!}</div>
+                            </div>
+                            @endif
+                            @endforeach
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -424,7 +451,7 @@
         </div>
         <div class="container">
             <div class="row mb-2">
-                <div class="col-md-9 shadow border-left border-3 ml-0 mr-0"
+                <div class="col-md-12 shadow border-left border-3 ml-0 mr-0"
                     style="border-color:{{ $themeSetting[0]->siteColorTheme }}!important;">
                     <div class="col-md-3 col-3 text-dark float-left text-center">
                         <b>Dolar </b>
@@ -498,7 +525,7 @@
     <!-- KÖŞE YAZARLARI -->
     <div class="container">
         <!--  ÜST BLOK 1140x90 REKLAM-->
-        @foreach ($ads as $ad)
+        {{-- @foreach ($ads as $ad)
             @if ($ad->type == 1 && $ad->category_id == 16)
                 <a href="{{ $ad->link }}"><img class="img-fluid pb-1 pt-2 lazyload" width="1140" height="90"
                         onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
@@ -506,8 +533,26 @@
             @elseif($ad->type == 2 && $ad->category_id == 16)
                 <div class="w-100">{!! $ad->ad_code !!}</div>
             @endif
+        @endforeach --}}
+@if($ads)
+<div class="swiper adsSlider">
+    <div class="swiper-wrapper">
+        @foreach ($ads as $ad)
+        @if ($ad->type == 1 && $ad->category_id == 16)
+        <div class="swiper-slide">
+            <a target="_blank" href="{{ $ad->link }}">
+                <img class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250" data-src="{{ asset($ad->ads) }}">
+            </a>
+        </div>
+        @elseif($ad->type == 2 && $ad->category_id == 16)
+        <div class="swiper-slide">
+            <div class="w-100">{!! $ad->ad_code !!}</div>
+        </div>
+        @endif
         @endforeach
-
+    </div>
+</div>
+@endif
         @if (count($authors) > 0)
             <!--  ÜST BLOK 1140x90 REKLAM-->
             <div class="position-relative mt-3 ">
@@ -515,7 +560,7 @@
                 <p class="detay__sidebar-baslik "></p>
             </div>
             <div class="row">
-                <div class="col-md-12 col-12 pr-2">
+                <div class="col-md-8 col-12 pr-2">
                     <div class="swiper-container mySwiper">
                         <div class="swiper-wrapper">
                             @foreach ($authors as $author)
@@ -535,7 +580,156 @@
                         <div class="swiper-pagination"></div>
                     </div>
                 </div>
+<div class="col-md-3 col-12 pt-2">
+        <div class="col-md-12 pb-1 mb-1 namazvakitleri_linear">
+            <div class="">
+                <div class="position-relative position-relative  text-center pt-3 pb-3">
+                    <div class="pb-0 pt-1 mx-auto namazvakitleri_title"><b>NAMAZ</b> <span>VAKİTLERİ</span>
+                    </div>
+                    {{-- <p class="detay__sidebar-baslik "></p> --}}
+                </div>
 
+                <form id="form" class="text-center pb-2">
+                    @csrf
+                    <select class="btn dropdown-toggle btn-light" name="sehirsec" id="">
+                        <option value="548">KIRIKKALE</option>
+
+                        @foreach ($sehir as $row)
+                        <option value="{{ $row->id }}">{{ $row->sehir_ad }}</option>
+                        @endforeach
+                    </select>
+                </form>
+                @php
+                $now = Carbon\Carbon::now()->format('H:i');
+                $vakitler = Session::get('vakitler');
+                $imsak = $vakitler['imsak'];
+                $gunes = $vakitler['gunes'];
+                $ogle = $vakitler['ogle'];
+                $ikindi = $vakitler['ikindi'];
+                $aksam = $vakitler['aksam'];
+                $yatsi = $vakitler['yatsi'];
+
+                @endphp
+                <table class="table table-borderless text-light w-100 mb-2" id="gotur">
+
+                    <tbody>
+
+                        {{-- @if ($now->between($imsak, $gunes)) --}}
+                        @if ($now >= $imsak && $now <= $gunes) <tr data-hour="05:26" data-time-name="imsak"
+                            class="bg-light text-dark">
+                            @else
+                            <tr data-hour="05:26" data-time-name="imsak">
+                                @endif
+                                <td class="text-center"><i class="wi wi-day-fog text-warning"></i></td>
+                                <td class="text-uppercase ">İmsak</td>
+                                <td class="font-weight-bold imsak ">{{ $vakitler['imsak'] }}
+                                </td>
+                                <td>
+                                    @if ($now >= $imsak)
+                                    <i class="fas fa-check-circle text-success"></i>
+                                    @else
+                                    <i class="fas fa-hourglass text-warning"></i>
+                                    @endif
+                                </td>
+                            </tr>
+                            {{-- @if ($now->between($gunes, $ogle)) --}}
+                            @if ($now >= $gunes && $now <= $ogle) <tr data-hour="05:26" data-time-name="imsak"
+                                class="bg-light text-dark">
+                                @else
+                                <tr data-hour="05:26" data-time-name="imsak">
+                                    @endif
+                                    <td class="text-center"><i class="wi wi-sunrise text-warning"></i></td>
+                                    <td class="text-uppercase">Güneş</td>
+                                    <td class="font-weight-bold gunes">{{ $vakitler['gunes'] }}</td>
+                                    <td>
+                                        @if ($now >= $gunes)
+                                        <i class="fas fa-check-circle text-success"></i>
+                                        @else
+                                        <i class="fas fa-hourglass text-warning"></i>
+                                        @endif
+                                    </td>
+                                </tr>
+                                {{-- @if ($now->between($ogle, $ikindi)) --}}
+                                @if ($now >= $ogle && $now <= $ikindi) <tr data-hour="05:26" data-time-name="imsak"
+                                    class="bg-light text-dark">
+                                    @else
+                                    <tr data-hour="05:26" data-time-name="imsak">
+                                        @endif
+                                        <td class="text-center"><i class="wi wi-day-sunny text-warning"></i>
+                                        </td>
+                                        <td class="text-uppercase">Öğle</td>
+                                        <td class="font-weight-bold ogle">{{ $vakitler['ogle'] }}</td>
+                                        <td>
+                                            @if ($now >= $ogle)
+                                            <i class="fas fa-check-circle text-success"></i>
+                                            @else
+                                            <i class="fas fa-hourglass text-warning"></i>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    {{-- @if ($now->between($ikindi, $aksam)) --}}
+                                    @if ($now >= $ikindi && $now <= $aksam) <tr data-hour="05:26" data-time-name="imsak"
+                                        class="bg-light text-dark">
+                                        @endif
+                                        <td class="text-center"><i class="wi wi-sunset text-warning"></i>
+                                        </td>
+                                        <td class="text-uppercase">İkindi</td>
+                                        <td class="font-weight-bold ikindi">{{ $vakitler['ikindi'] }}
+
+                                            {{-- @if ($now < $ikindi) --}} {{-- {{ $dateDiff=Carbon\Carbon::now()->
+                                                diffInMinutes($ikindi,false)}} --}}
+
+                                                {{-- @endif --}}
+
+                                        </td>
+                                        <td>
+                                            {{-- @if ($now->between($ikindi, $aksam) || $now > $ikindi) --}}
+                                            @if ($now >= $ikindi)
+                                            <i class="fas fa-check-circle text-success"></i>
+                                            @else
+                                            <i class="fas fa-hourglass text-warning"></i>
+                                            @endif
+                                        </td>
+                                        </tr>
+                                        {{-- @if ($now->between($aksam, $yatsi)) --}}
+                                        @if ($now >= $aksam && $now <= $yatsi) <tr data-hour="05:26" data-time-name="imsak"
+                                            class="bg-light text-dark">
+                                            @endif
+                                            <td class="text-center"><i class="wi wi-moonrise text-warning"></i></td>
+                                            <td class="text-uppercase">Akşam</td>
+                                            <td class="font-weight-bold aksam">{{ $vakitler['aksam'] }}
+
+                                            </td>
+                                            <td>
+                                                @if ($now >= $aksam)
+                                                <i class="fas fa-check-circle text-success"></i>
+                                                @else
+                                                <i class="fas fa-hourglass text-warning"></i>
+                                                @endif
+                                            </td>
+                                            </tr>
+                                            @if ($now < $imsak) <tr data-hour="05:26" data-time-name="imsak"
+                                                class="bg-light text-dark">
+                                                @endif
+                                                <td class="text-center"><i class="wi wi-night-clear text-warning"></i></td>
+                                                <td class="text-uppercase">Yatsı</td>
+                                                <td class="font-weight-bold yatsi">{{ $vakitler['yatsi'] }}</td>
+                                                <td>
+                                                    @if ($now >= $yatsi)
+                                                    <i class="fas fa-check-circle text-success"></i>
+                                                    @else
+                                                    <i class="fas fa-hourglass text-warning"></i>
+                                                    @endif
+                                                </td>
+                                                </tr>
+                    </tbody>
+                </table>
+                <div class="w-100" id="al"></div>
+            </div>
+
+
+        </div>
+    </div>
             </div>
 
         @endif
@@ -647,156 +841,7 @@
             </div>
 
 
-            <div class="col-md-3 col-12 pt-2">
-                <div class="col-md-12 pb-1 mb-1 namazvakitleri_linear">
-                    <div class="">
-                        <div class="position-relative position-relative  text-center pt-3 pb-3">
-                            <div class="pb-0 pt-1 mx-auto namazvakitleri_title"><b>NAMAZ</b> <span>VAKİTLERİ</span>
-                            </div>
-                            {{-- <p class="detay__sidebar-baslik "></p> --}}
-                        </div>
 
-                        <form id="form" class="text-center pb-2">
-                            @csrf
-                            <select class="btn dropdown-toggle btn-light" name="sehirsec" id="">
-                                <option value="548">KIRIKKALE</option>
-
-                                @foreach ($sehir as $row)
-                                    <option value="{{ $row->id }}">{{ $row->sehir_ad }}</option>
-                                @endforeach
-                            </select>
-                        </form>
-                        @php
-                            $now = Carbon\Carbon::now()->format('H:i');
-                            $vakitler = Session::get('vakitler');
-                            $imsak = $vakitler['imsak'];
-                            $gunes = $vakitler['gunes'];
-                            $ogle = $vakitler['ogle'];
-                            $ikindi = $vakitler['ikindi'];
-                            $aksam = $vakitler['aksam'];
-                            $yatsi = $vakitler['yatsi'];
-                            
-                        @endphp
-                        <table class="table table-borderless text-light w-100 mb-2" id="gotur">
-
-                            <tbody>
-
-                                {{-- @if ($now->between($imsak, $gunes)) --}}
-                                @if ($now >= $imsak && $now <= $gunes)
-                                    <tr data-hour="05:26" data-time-name="imsak" class="bg-light text-dark">
-                                    @else
-                                    <tr data-hour="05:26" data-time-name="imsak">
-                                @endif
-                                <td class="text-center"><i class="wi wi-day-fog text-warning"></i></td>
-                                <td class="text-uppercase ">İmsak</td>
-                                <td class="font-weight-bold imsak ">{{ $vakitler['imsak'] }}
-                                </td>
-                                <td>
-                                    @if ($now >= $imsak)
-                                        <i class="fas fa-check-circle text-success"></i>
-                                    @else
-                                        <i class="fas fa-hourglass text-warning"></i>
-                                    @endif
-                                </td>
-                                </tr>
-                                {{-- @if ($now->between($gunes, $ogle)) --}}
-                                @if ($now >= $gunes && $now <= $ogle)
-                                    <tr data-hour="05:26" data-time-name="imsak" class="bg-light text-dark">
-                                    @else
-                                    <tr data-hour="05:26" data-time-name="imsak">
-                                @endif
-                                <td class="text-center"><i class="wi wi-sunrise text-warning"></i></td>
-                                <td class="text-uppercase">Güneş</td>
-                                <td class="font-weight-bold gunes">{{ $vakitler['gunes'] }}</td>
-                                <td>
-                                    @if ($now >= $gunes)
-                                        <i class="fas fa-check-circle text-success"></i>
-                                    @else
-                                        <i class="fas fa-hourglass text-warning"></i>
-                                    @endif
-                                </td>
-                                </tr>
-                                {{-- @if ($now->between($ogle, $ikindi)) --}}
-                                @if ($now >= $ogle && $now <= $ikindi)
-                                    <tr data-hour="05:26" data-time-name="imsak" class="bg-light text-dark">
-                                    @else
-                                    <tr data-hour="05:26" data-time-name="imsak">
-                                @endif
-                                <td class="text-center"><i class="wi wi-day-sunny text-warning"></i>
-                                </td>
-                                <td class="text-uppercase">Öğle</td>
-                                <td class="font-weight-bold ogle">{{ $vakitler['ogle'] }}</td>
-                                <td>
-                                    @if ($now >= $ogle)
-                                        <i class="fas fa-check-circle text-success"></i>
-                                    @else
-                                        <i class="fas fa-hourglass text-warning"></i>
-                                    @endif
-                                </td>
-                                </tr>
-                                {{-- @if ($now->between($ikindi, $aksam)) --}}
-                                @if ($now >= $ikindi && $now <= $aksam)
-                                    <tr data-hour="05:26" data-time-name="imsak" class="bg-light text-dark">
-                                @endif
-                                <td class="text-center"><i class="wi wi-sunset text-warning"></i>
-                                </td>
-                                <td class="text-uppercase">İkindi</td>
-                                <td class="font-weight-bold ikindi">{{ $vakitler['ikindi'] }}
-
-                                    {{-- @if ($now < $ikindi) --}}
-                                    {{-- {{ $dateDiff = Carbon\Carbon::now()->diffInMinutes($ikindi,false)}} --}}
-
-                                    {{-- @endif --}}
-
-                                </td>
-                                <td>
-                                    {{-- @if ($now->between($ikindi, $aksam) || $now > $ikindi) --}}
-                                    @if ($now >= $ikindi)
-                                        <i class="fas fa-check-circle text-success"></i>
-                                    @else
-                                        <i class="fas fa-hourglass text-warning"></i>
-                                    @endif
-                                </td>
-                                </tr>
-                                {{-- @if ($now->between($aksam, $yatsi)) --}}
-                                @if ($now >= $aksam && $now <= $yatsi)
-                                    <tr data-hour="05:26" data-time-name="imsak" class="bg-light text-dark">
-                                @endif
-                                <td class="text-center"><i class="wi wi-moonrise text-warning"></i></td>
-                                <td class="text-uppercase">Akşam</td>
-                                <td class="font-weight-bold aksam">{{ $vakitler['aksam'] }}
-
-                                </td>
-                                <td>
-                                    @if ($now >= $aksam)
-                                        <i class="fas fa-check-circle text-success"></i>
-                                    @else
-                                        <i class="fas fa-hourglass text-warning"></i>
-                                    @endif
-                                </td>
-                                </tr>
-                                @if ($now < $imsak)
-                                    <tr data-hour="05:26" data-time-name="imsak" class="bg-light text-dark">
-                                @endif
-                                <td class="text-center"><i class="wi wi-night-clear text-warning"></i></td>
-                                <td class="text-uppercase">Yatsı</td>
-                                <td class="font-weight-bold yatsi">{{ $vakitler['yatsi'] }}</td>
-                                <td>
-                                    @if ($now >= $yatsi)
-                                        <i class="fas fa-check-circle text-success"></i>
-                                    @else
-                                        <i class="fas fa-hourglass text-warning"></i>
-                                    @endif
-                                </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="w-100" id="al"></div>
-                    </div>
-
-
-                </div>
-            </div>
 
         </div>
         <!--Namaz vakitleri-->
@@ -910,18 +955,25 @@
     <div class="container">
         <div class="row">
             <!--  ÜST BLOK 1140x90 REKLAM-->
-            @foreach ($ads as $ad)
+          @if($ads)
+        <div class="swiper adsSlider">
+            <div class="swiper-wrapper">
+                @foreach ($ads as $ad)
                 @if ($ad->type == 1 && $ad->category_id == 18)
-                    <div class="col-md-12">
-                        <a href="{{ $ad->link }}"><img
-                                onerror="this.onerror=null;this.src='{{ $webSiteSetting->defaultImage }}';"
-                                class="img-fluid pb-2 pt-1 lazyload" width="1140" height="90"
-                                data-src="{{ asset($ad->ads) }}"></a>
-                    </div>
+                <div class="swiper-slide">
+                    <a target="_blank" href="{{ $ad->link }}">
+                        <img class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250" data-src="{{ asset($ad->ads) }}">
+                    </a>
+                </div>
                 @elseif($ad->type == 2 && $ad->category_id == 18)
+                <div class="swiper-slide">
                     <div class="w-100">{!! $ad->ad_code !!}</div>
+                </div>
                 @endif
-            @endforeach
+                @endforeach
+            </div>
+        </div>
+        @endif
         </div>
     </div>
     <!---EKONOMİ HABERLERİ-->
@@ -1019,7 +1071,7 @@
     <div class="container pt-2 pb-2">
         <div class="row">
 
-            <!--  ÜST BLOK 1140x90 REKLAM-->
+            {{-- <!--  ÜST BLOK 1140x90 REKLAM-->
             @foreach ($ads as $ad)
                 @if ($ad->type == 1 && $ad->category_id == 19)
                     <div class="col-md-12">
@@ -1031,7 +1083,24 @@
                 @elseif($ad->type == 2 && $ad->category_id == 19)
                     <div class="w-100">{!! $ad->ad_code !!}</div>
                 @endif
-            @endforeach
+            @endforeach --}}
+            <div class="swiper adsSlider">
+                <div class="swiper-wrapper">
+                    @foreach ($ads as $ad)
+                    @if ($ad->type == 1 && $ad->category_id == 19)
+                    <div class="swiper-slide">
+                        <a target="_blank" href="{{ $ad->link }}">
+                            <img class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250" data-src="{{ asset($ad->ads) }}">
+                        </a>
+                    </div>
+                    @elseif($ad->type == 2 && $ad->category_id == 19)
+                    <div class="swiper-slide">
+                        <div class="w-100">{!! $ad->ad_code !!}</div>
+                    </div>
+                    @endif
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1126,7 +1195,7 @@
 
     <div class="container">
         <div class="row">
-            <!--  ÜST BLOK 1140x90 REKLAM-->
+            {{-- <!--  ÜST BLOK 1140x90 REKLAM-->
             @foreach ($ads as $ad)
                 @if ($ad->type == 1 && $ad->category_id == 20)
                     <div class="col-md-12">
@@ -1136,7 +1205,24 @@
                 @elseif($ad->type == 2 && $ad->category_id == 20)
                     <div class="w-100">{!! $ad->ad_code !!}</div>
                 @endif
-            @endforeach
+            @endforeach --}}
+            <div class="swiper adsSlider">
+                <div class="swiper-wrapper">
+                    @foreach ($ads as $ad)
+                    @if ($ad->type == 1 && $ad->category_id == 20)
+                    <div class="swiper-slide">
+                        <a target="_blank" href="{{ $ad->link }}">
+                            <img class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250" data-src="{{ asset($ad->ads) }}">
+                        </a>
+                    </div>
+                    @elseif($ad->type == 2 && $ad->category_id == 20)
+                    <div class="swiper-slide">
+                        <div class="w-100">{!! $ad->ad_code !!}</div>
+                    </div>
+                    @endif
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1223,7 +1309,7 @@
     </div>
     <div class="container">
         <div class="row">
-            @foreach ($ads as $ad)
+            {{-- @foreach ($ads as $ad)
                 @if ($ad->type == 1 && $ad->category_id == 21)
                     <div class="col-md-12">
                         <a href="{{ $ad->link }}"><img
@@ -1234,7 +1320,24 @@
                 @elseif($ad->type == 2 && $ad->category_id == 21)
                     <div class="w-100">{!! $ad->ad_code !!}</div>
                 @endif
-            @endforeach
+            @endforeach --}}
+            <div class="swiper adsSlider">
+                <div class="swiper-wrapper">
+                    @foreach ($ads as $ad)
+                    @if ($ad->type == 1 && $ad->category_id == 21)
+                    <div class="swiper-slide">
+                        <a target="_blank" href="{{ $ad->link }}">
+                            <img class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250" data-src="{{ asset($ad->ads) }}">
+                        </a>
+                    </div>
+                    @elseif($ad->type == 2 && $ad->category_id == 21)
+                    <div class="swiper-slide">
+                        <div class="w-100">{!! $ad->ad_code !!}</div>
+                    </div>
+                    @endif
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
     <section class="spor pb-4">
@@ -1281,7 +1384,7 @@
     </section>
     <div class="container">
         <div class="col-md-12">
-            @foreach ($ads as $ad)
+            {{-- @foreach ($ads as $ad)
                 @if ($ad->type == 1 && $ad->category_id == 23)
                     <div class="col-md-12">
                         <a href="{{ $ad->link }}"><img
@@ -1292,7 +1395,24 @@
                 @elseif($ad->type == 2 && $ad->category_id == 23)
                     <div class="w-100">{!! $ad->ad_code !!}</div>
                 @endif
-            @endforeach
+            @endforeach --}}
+            <div class="swiper adsSlider">
+                <div class="swiper-wrapper">
+                    @foreach ($ads as $ad)
+                    @if ($ad->type == 1 && $ad->category_id == 23)
+                    <div class="swiper-slide">
+                        <a target="_blank" href="{{ $ad->link }}">
+                            <img class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250" data-src="{{ asset($ad->ads) }}">
+                        </a>
+                    </div>
+                    @elseif($ad->type == 2 && $ad->category_id == 23)
+                    <div class="swiper-slide">
+                        <div class="w-100">{!! $ad->ad_code !!}</div>
+                    </div>
+                    @endif
+                    @endforeach
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-lg-8">
@@ -1322,7 +1442,7 @@
                             </div>
                         </div>
                     @endforeach
-                    @foreach ($ads as $ad)
+                    {{-- @foreach ($ads as $ad)
                         @if ($ad->type == 1 && $ad->category_id == 22)
                             <div class="col-md-12">
                                 <a href="{{ $ad->link }}"><img
@@ -1333,7 +1453,24 @@
                         @elseif($ad->type == 2 && $ad->category_id == 22)
                             <div class="w-100">{!! $ad->ad_code !!}</div>
                         @endif
-                    @endforeach
+                    @endforeach --}}
+                    <div class="swiper adsSlider">
+                        <div class="swiper-wrapper">
+                            @foreach ($ads as $ad)
+                            @if ($ad->type == 1 && $ad->category_id == 22)
+                            <div class="swiper-slide">
+                                <a target="_blank" href="{{ $ad->link }}">
+                                    <img class="img-fluid pb-1 pt-3 lazyload" width="1140" height="250" data-src="{{ asset($ad->ads) }}">
+                                </a>
+                            </div>
+                            @elseif($ad->type == 2 && $ad->category_id == 22)
+                            <div class="swiper-slide">
+                                <div class="w-100">{!! $ad->ad_code !!}</div>
+                            </div>
+                            @endif
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4">
