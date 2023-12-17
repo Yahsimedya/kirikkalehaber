@@ -50,7 +50,7 @@
     $veri = Session::get('havadurumu');
     $icon = Session::get('icon');
     $gelenil = Session::get('gelenil');
-    
+
 @endphp
 
 <style>
@@ -175,13 +175,13 @@
                             $ikindi = $vakitler['ikindi'];
                             $aksam = $vakitler['aksam'];
                             $yatsi = $vakitler['yatsi'];
-                        @endphp ?> ?>
+                        @endphp
                         @if ($now < $imsak)
                             @php
                                 $startTime = Carbon\Carbon::parse($now);
                                 $finishTime = Carbon\Carbon::parse($gunes);
                                 $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
-                            @endphp ?> ?> ?>
+                            @endphp
 
                             <div class="kalansure">
                                 <span>{{ $totalDuration }}</span>
@@ -256,7 +256,7 @@
                         @foreach ($category as $row)
                             @php
                                 $subcategory = \App\Models\Subcategory::where('category_id', $row->id)->get();
-                                
+
                                 $say = count($subcategory);
                             @endphp
                             {{-- <li class="nav-item dropdown">
@@ -536,7 +536,7 @@
                         @foreach ($category as $row)
                             @php
                                 $subcategory = \App\Models\Subcategory::where('category_id', $row->id)->get();
-                                
+
                                 $say = count($subcategory);
                             @endphp
                             {{-- <li class="nav-item dropdown">
