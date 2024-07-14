@@ -356,7 +356,7 @@ class ExtraController extends Controller
 
     public function Home()
     {
-        $news = Analytics::fetchMostVisitedPages(Period::days(1));
+        // $news = Analytics::fetchMostVisitedPages(Period::days(1));
         $endNewss = [];
         //        dd($news);
 
