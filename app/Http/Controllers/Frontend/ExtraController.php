@@ -645,76 +645,95 @@ class ExtraController extends Controller
             if (Cache::has('seoset')) return Cache::has('seoset');
             return Seos::first();
         });
+        // MGM'den XML verisini çek
         $mgm = file_get_contents("http://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml");
 
-        $veri = simplexml_load_string($mgm);
-
-        $json = json_encode($veri);
-        $array = json_decode($json, TRUE);
-        $gelenil = "KIRIKKALE";
-        $bul = $gelenil;
-        $bulunacak = array('ç', 'Ç', 'ı', 'ğ', 'Ğ', 'ü', 'İ', 'ö', 'Ş', 'ş', 'Ö', 'Ü', ',', ' ', '(', ')', '[', ']');
-        $degistir = array('c', 'C', 'i', 'g', 'G', 'u', 'I', 'o', 'S', 's', 'O', 'U', '', '_', '', '', '', '');
-        $sonuc = str_replace($bulunacak, $degistir, $bul);
-        $sonuc;
-        function cevir($string)
-        {
-
-            $string = str_replace("SCK", "Sıcak", $string);
-            $string = str_replace("AB", "Az Bulutlu", $string);
-            $string = str_replace("HSY", "Hafif Sağnak Yağış", $string);
-            $string = str_replace("PB", "Parçalı Bulutlu", $string);
-            $string = str_replace("GSY", "Gökgürltülü Sağnak Yağışlı", $string);
-            $string = str_replace("KGY", "Kuvvetli Gökgürltülü Sağnak Yağışlı", $string);
-            $string = str_replace("MSY", "Mevzi Sağnak Yağışlı", $string);
-
-            return $string;
+        if ($mgm === false) {
+            die('Veri çekme hatası.');
         }
 
-        //        dd($array);
+        $veri = simplexml_load_string($mgm);
+        if ($veri === false) {
+            die('XML yükleme hatası.');
+        }
+
+        // XML verisini JSON'a çevir ve diziye dönüştür
+        $json = json_encode($veri);
+        $array = json_decode($json, TRUE);
+
+        $gelenil = "KIRIKKALE";
+
+        // Şehir ismindeki Türkçe karakterleri dönüştür
+        function turkceKarakterleriDonustur($kelime)
+        {
+            $bulunacak = array('ç', 'Ç', 'ı', 'ğ', 'Ğ', 'ü', 'İ', 'ö', 'Ş', 'ş', 'Ö', 'Ü', ',', ' ', '(', ')', '[', ']');
+            $degistir = array('c', 'C', 'i', 'g', 'G', 'u', 'I', 'o', 'S', 's', 'O', 'U', '', '_', '', '', '', '');
+            return str_replace($bulunacak, $degistir, $kelime);
+        }
+
+        $sonuc = turkceKarakterleriDonustur($gelenil);
+
+        // Hava durumu kodlarını açıklamaya dönüştür
+        function havaDurumuAciklamasi($kod)
+        {
+            $kodlar = [
+                "SCK" => "Sıcak",
+                "AB" => "Az Bulutlu",
+                "HSY" => "Hafif Sağnak Yağış",
+                "PB" => "Parçalı Bulutlu",
+                "GSY" => "Gökgürltülü Sağnak Yağışlı",
+                "KGY" => "Kuvvetli Gökgürltülü Sağnak Yağışlı",
+                "MSY" => "Mevzi Sağnak Yağışlı"
+            ];
+
+            return $kodlar[$kod] ?? $kod;
+        }
+
+        // İkonu belirle
+        function havaDurumuIkon($kod)
+        {
+            $ikonlar = [
+                "GSY" => '<i style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>',
+                "SCK" => '<i style="font-size: 20px;" class="wi wi-day-sunny"></i>',
+                "KGY" => '<i style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>',
+                "AB" => '<i style="font-size: 20px;" class="wi wi-night-partly-cloudy"></i>',
+                "PB" => '<i style="font-size: 20px;" class="wi wi-day-cloudy-windy"></i>',
+                "HSY" => '<i style="font-size: 20px;" class="wi wi-day-rain"></i>',
+                "MSY" => '<i style="font-size: 20px;" class="wi wi-day-showers"></i>',
+                "A"   => '<i style="font-size: 20px;" class="wi wi-day-sunny"></i>',
+                "CB"  => '<i style="font-size: 20px;" class="wi wi-cloudy"></i>',
+                "SIS" => '<i style="font-size: 20px;" class="wi wi-fog"></i>',
+                "R"   => '<i style="font-size: 20px;" class="wi wi-fog"></i>'
+            ];
+
+            return $ikonlar[$kod] ?? '<i style="font-size: 20px;" class="wi wi-strong-wind"></i>';
+        }
+
+        // İlgili şehir için hava durumunu bul
+        $day1 = null;
+        $icon = null;
 
         foreach ($array['Merkez'] as $data) {
             if ($data['ilEn'] == $sonuc) {
-                if ($data['d1'] == "GSY") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>';
-                } elseif ($data['d1'] == "SCK") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-sunny"></i>';
-                } elseif ($data['d1'] == "KGY") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>';
-                } elseif ($data['d1'] == "AB") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-night-partly-cloudy"></i>';
-                } elseif ($data['d1'] == "PB") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-cloudy-windy"></i>';
-                } elseif ($data['d1'] == "HSY") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-rain"></i>';
-                } elseif ($data['d1'] == "MSY") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-showers"></i>';
-                } elseif ($data['d1'] == "A") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-day-sunny"></i>';
-                } elseif ($data['d1'] == "CB") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-cloudy"></i>';
-                } elseif ($data['d1'] == "SIS") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
-                } elseif ($data['d1'] == "R") {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
-                } else {
-                    $icon = '<i  style="font-size: 20px;" class="wi wi-strong-wind"></i>';
-                }
-
-
-                $day1 = $data['makk1'];
+                $day1 = $data['makk1'];  // 1. günün sıcaklığı
+                $icon = havaDurumuIkon($data['d1']);  // Hava durumu ikonu
+                break;
             }
         }
 
-        $veri = array(
+        // Eğer şehir verisi bulunamadıysa hata göster
+        if ($day1 === null) {
+            die("Şehir bulunamadı.");
+        }
+
+        // Hava durumu verisini session'a kaydet
+        $veri = [
             'gelenil' => $gelenil,
             'sicaklik' => $day1,
-            //            'icon' =>$icon,
-        );
+        ];
 
         Session::put('icon', $icon);
         Session::put('gelenil', $gelenil);
-
         Session::put('havadurumu', $veri['sicaklik']);
         $webSiteSetting = WebsiteSetting::first();
 
