@@ -645,17 +645,16 @@ class ExtraController extends Controller
             if (Cache::has('seoset')) return Cache::has('seoset');
             return Seos::first();
         });
-        // MGM'den XML verisini çek
-        $mgm = file_get_contents("http://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml");
+        $context = stream_context_create([
+            "ssl" => [
+                "verify_peer" => false,
+                "verify_peer_name" => false,
+            ],
+        ]);
 
-        if ($mgm === false) {
-            die('Veri çekme hatası.');
-        }
-
+        $mgm = file_get_contents("http://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml", false, $context);
         $veri = simplexml_load_string($mgm);
-        if ($veri === false) {
-            die('XML yükleme hatası.');
-        }
+
 
         // XML verisini JSON'a çevir ve diziye dönüştür
         $json = json_encode($veri);
