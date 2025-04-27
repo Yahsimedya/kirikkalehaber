@@ -406,11 +406,12 @@ class ExtraController extends Controller
         curl_setopt_array($ch, [
             CURLOPT_URL => 'https://finans.truncgil.com/today.json',
             CURLOPT_RETURNTRANSFER => true,
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false),
-
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_TIMEOUT => 5, // EN ÖNEMLİ
         ]);
         $output = curl_exec($ch);
         curl_close($ch);
+
 
         $result = json_decode($output, true);
 
@@ -646,13 +647,16 @@ class ExtraController extends Controller
             return Seos::first();
         });
         $context = stream_context_create([
+            'http' => [
+                'timeout' => 5, // 5 saniyede dönmezse iptal et
+            ],
             "ssl" => [
                 "verify_peer" => false,
                 "verify_peer_name" => false,
             ],
         ]);
-
         $mgm = file_get_contents("http://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml", false, $context);
+
         $veri = simplexml_load_string($mgm);
 
 
