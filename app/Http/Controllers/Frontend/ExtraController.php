@@ -1150,28 +1150,25 @@ class ExtraController extends Controller
     //            ->get();
     //        return view('main.body.authors_writes', compact('yazi', 'yazar', 'nextauthors_posts'));
     //    }
-
     public function yazilars($slug_name, $Authorid)
     {
         $expiresAt = now()->addHours(24);
 
         $webSiteSetting = WebsiteSetting::first();
-        $yaziPost = AuthorsPost::whereId($Authorid)->first(); // done bope
-        //        $yaziPost=AuthorsPost::find($Authorid); // done bope
+        $yaziPost = AuthorsPost::whereId($Authorid)->firstOrFail(); // <- değişiklik burada
 
-        //dd($yaziPost->authors_id);
         $yazarID = $yaziPost->authors_id;
-        //        dd($yazarID);
+
         $nextauthors_posts = AuthorsPost::status()->where('authors_id', $yazarID)->latest()->limit(8)->get();
-        $OtherAuthors = AuthorsPost::whereId($Authorid)->limit(10)->orderBy('id', 'desc')->get(); //
+        $OtherAuthors = AuthorsPost::whereId($Authorid)->limit(10)->orderBy('id', 'desc')->get();
         $seoset = Seos::first();
-
         $comments = DB::table('authorscomments')->where('authors_posts_id', $yaziPost->id)->where('status', 1)->get();
-
         $themeSetting = Theme::get();
         $yazardes = DB::table('authors')->where('id', '=', $yaziPost->authors_id)->first();
+
         return view('main.body.authors_writes', compact('yaziPost', 'webSiteSetting', 'nextauthors_posts', 'OtherAuthors', 'seoset', 'yazardes', 'themeSetting', 'comments'));
     }
+
 
 
     public function Author_post($slug_name, $Authorid)
