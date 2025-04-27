@@ -457,7 +457,7 @@
                     <div class="col-md-3 col-3 text-dark float-left text-center">
                         <b>Dolar </b>
                         <div class="deger ">
-                            @if ($kurlar["DOLAR"]["oran"] != "0")
+                            @if (isset($kurlar["DOLAR"]) && $kurlar["DOLAR"]["oran"] != "0")
                                 @if (isset($kurlar["DOLAR"]["oranyonu"]) && number_format($kurlar["DOLAR"]["oranyonu"], 2) > 0)
                                     <i class="fa fa-sort-up align-middle pt-1 pr-1 text-success"></i>
                                 @else
