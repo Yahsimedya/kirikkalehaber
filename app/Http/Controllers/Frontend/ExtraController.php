@@ -649,18 +649,31 @@ class ExtraController extends Controller
             if (Cache::has('seoset')) return Cache::has('seoset');
             return Seos::first();
         });
-        $context = stream_context_create([
-            'http' => [
-                'timeout' => 5, // 5 saniyede dönmezse iptal et
-            ],
-            "ssl" => [
-                "verify_peer" => false,
-                "verify_peer_name" => false,
-            ],
-        ]);
-        $mgm = file_get_contents("http://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml", false, $context);
+        $mgmData = Cache::remember('hava_durumu_mgm', 300, function () {
+            $context = stream_context_create([
+                "ssl" => [
+                    "verify_peer" => false,
+                    "verify_peer_name" => false,
+                ],
+                "http" => [
+                    "timeout" => 5,
+                ],
+            ]);
+            $mgm = @file_get_contents("http://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml", false, $context);
+            if (!$mgm) {
+                return null;
+            }
+            return $mgm;
+        });
 
-        $veri = simplexml_load_string($mgm);
+        // Sonrasında kullanırken:
+        if ($mgmData) {
+            $veri = simplexml_load_string($mgmData);
+            $json = json_encode($veri);
+            $array = json_decode($json, TRUE);
+        } else {
+            $array = null;
+        }
 
 
         // XML verisini JSON'a çevir ve diziye dönüştür
