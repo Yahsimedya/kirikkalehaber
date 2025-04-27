@@ -628,6 +628,17 @@ class ExtraController extends Controller
                 ->latest('created_at')
                 ->get();
         });
+        $ekonomi = $ekonomi ?? collect();
+        $gundem = $gundem ?? collect();
+        $siyaset = $siyaset ?? collect();
+        $spor = $spor ?? collect();
+
+        $ekonomimanset = $ekonomimanset ?? collect();
+        $gundemmanset = $gundemmanset ?? collect();
+        $siyasetmanset = $siyasetmanset ?? collect();
+        $spormanset = $spormanset ?? collect();
+
+        $endNews = $endNews ?? collect();
 
 
         return view('main.home', compact(
