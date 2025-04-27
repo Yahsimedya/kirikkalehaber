@@ -403,17 +403,20 @@ class ExtraController extends Controller
         });
 
         $ch = curl_init();
-        curl_setopt_array($ch, [
-            CURLOPT_URL => 'https://finans.truncgil.com/today.json',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_SSL_VERIFYPEER => false,
-            CURLOPT_TIMEOUT => 5, // EN ÖNEMLİ
-        ]);
-        $output = curl_exec($ch);
-        curl_close($ch);
+        $kurlar = Cache::remember('kurlar', 300, function () {
+            $ch = curl_init();
+            curl_setopt_array($ch, [
+                CURLOPT_URL => 'https://finans.truncgil.com/today.json',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_SSL_VERIFYPEER => false,
+                CURLOPT_TIMEOUT => 5,
+            ]);
+            $output = curl_exec($ch);
+            curl_close($ch);
+            return json_decode($output, true);
+        });
 
 
-        $result = json_decode($output, true);
 
 
         function degistir($string)
