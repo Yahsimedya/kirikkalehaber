@@ -660,7 +660,7 @@ class ExtraController extends Controller
                     "timeout" => 1,
                 ],
             ]);
-            $mgm = @file_get_contents("http://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml", false, $context);
+            $mgm = @file_get_contents("https://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml", false, $context);
             if (!$mgm) {
                 return null;
             }
@@ -966,7 +966,7 @@ class ExtraController extends Controller
 
 
             //dd($kurlar);
-            $mgm = file_get_contents("http://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml");
+            $mgm = file_get_contents("https://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml");
 
             $veri = simplexml_load_string($mgm);
 
