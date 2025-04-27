@@ -356,53 +356,15 @@ class ExtraController extends Controller
 
     public function Home()
     {
-        // $news = Analytics::fetchMostVisitedPages(Period::days(1));
-        $endNewss = [];
-        //        dd($news);
+        $endNews = collect();  // 💥 bunu ekle
 
-        // foreach ($news as $news) {
-        //     $r = $news['url'];
-        //     $r = explode('?', $r);
-        //     $r = array_filter($r);
-        //     $r = array_merge($r, array());
-        //     $id = $r[0];
-        //     // $id = str_replace('/haberi', '', $id);
-        //     $id = explode('-', $id);
-        //     $id = array_filter($id);
-        //     $id = array_merge($id, array());
-        //     $idCount = count($id) - 1;
-        //     $alinanID = $id[$idCount];
-        //     $alinanIDs = explode('/', $alinanID);
-        //     $endNewss[] = $alinanIDs[1];
-        // }
-        //        foreach ($news as $news) {
-        //            $r = $news['url'];
-        //            $r = explode('?', $r);
-        //            $r = array_filter($r);
-        //            $r = array_merge($r, array());
-        //            $id = $r[0];
-        //            $id = str_replace('/haberi', '', $id);
-        //            $id = explode('-', $id);
-        //            $id = array_filter($id);
-        //           $id = array_merge($id, array());
-        //                        $idCount = count($id) - 1;
-        //
-        //        }
-        //
-        $endNews = Post::whereIn('id', $endNewss)->limit(6)->get();
-
-
-
-        $sondakika = Cache::remember("headline", Carbon::now()->addYear(), function () {
-            if (Cache::has('headline')) return Cache::has('headline');
-            return Post::where('posts.headline', 1)
-                ->where('created_at', '>', Carbon::now()->subDay(1))
-                ->status()
-                ->limit(5)
-                ->get();
+        $webSiteSetting = WebsiteSetting::first();
+        $themeSetting = Theme::all();
+        $seoset = Cache::remember('seoset', 3600, function () {
+            return Seos::first();
         });
 
-        $ch = curl_init();
+        // Kurlar (Truncgil)
         $kurlar = Cache::remember('kurlar', 300, function () {
             $ch = curl_init();
             curl_setopt_array($ch, [
@@ -416,239 +378,7 @@ class ExtraController extends Controller
             return json_decode($output, true);
         });
 
-
-
-
-        function degistir($string)
-        {
-            $string = str_replace('%', '', $string);
-
-            return $string;
-        }
-
-        $kurlar = [
-            'DOLAR' => [
-                'oran' => !empty($result['USD']['Değişim']) ? degistir($result['USD']['Değişim']) : '0',
-                'satis' => !empty($result['USD']['Satış']) ? str_replace(',', '.', $result['USD']['Satış']) : '0'
-            ],
-            'EURO' => [
-                'oran' => !empty($result['EUR']['Değişim']) ? degistir($result['EUR']['Değişim']) : '0',
-                'satis' => !empty($result['EUR']['Satış']) ? str_replace(',', '.', $result['EUR']['Satış']) : '0'
-            ],
-            'ALTIN' => [
-                'oran' => !empty($result['gram-altin']['Değişim']) ? $result['gram-altin']['Değişim'] : '0',
-                'satis' => !empty($result['gram-altin']['Satış']) ? str_replace(',', '.', degistir($result['gram-altin']['Satış'])) : '0'
-            ],
-            'ceyrekaltin' => [
-                'oran' => !empty($result['ceyrek-altin']['Değişim']) ? $result['ceyrek-altin']['Değişim'] : '0',
-                'satis' => !empty($result['ceyrek-altin']['Satış']) ? str_replace(',', '.', degistir($result['ceyrek-altin']['Satış'])) : '0'
-            ]
-        ];
-
-
-        $date = Carbon::now()->format('d.m.Y');
-
-        $vakit = Vakitler::where('date', $date)->get();
-
-        $vakitler = array(
-            "imsak" => $vakit[0]['imsak'] ?? '',
-            "gunes" => $vakit[0]['gunes'] ?? '',
-            "ogle" => $vakit[0]['ogle'] ?? '',
-            "ikindi" => $vakit[0]['ikindi'] ?? '',
-            "aksam" => $vakit[0]['aksam'] ?? '',
-            "yatsi" => $vakit[0]['yatsi'] ?? '',
-        );
-        Session::put('vakitler', $vakitler);
-
-
-        //dd($kurlar);
-        Session::put('kurlar', $kurlar);
-
-        $video_gallarySliderAlti = Cache::remember("video_gallarySliderAlti", Carbon::now()->addYear(), function () {
-            if (Cache::has('video_gallarySliderAlti')) return Cache::has('video_gallarySliderAlti');
-            return Post::status()->where('posts_video', '!=', NULL)->orderByDesc('updated_at')->limit(5)->get();
-        });
-        $video_gallary = Cache::remember("video_gallary", Carbon::now()->addYear(), function () {
-            if (Cache::has('video_gallary')) return Cache::has('video_gallary');
-            return Post::status()->where('posts_video', '!=', NULL)->orderByDesc('updated_at')->limit(10)->get();
-        });
-        //        $home =
-        ////            Cache::remember("home", Carbon::now()->addYear(), function () {
-        ////            if (Cache::has('home')) return Cache::has('home');
-        //            Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
-        //                ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
-        //                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
-        //                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
-        //                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-        //                ->status()->latest('updated_at')
-        //                ->get();
-        ////            });
-
-        $home = Cache::remember("home", Carbon::now()->addYear(), function () {
-            if (Cache::has('home')) return Cache::has('home');
-            return Post::status()->where('manset', 1)
-                ->latest('created_at')
-                ->get();
-        });
-        $ads = Cache::remember("ads", Carbon::now()->addYear(), function () {
-            if (Cache::has('ads')) return Cache::has('ads');
-            return Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
-                //            ->join('ads','ad_categories.id','ads.category_id')
-                ->select(['ads.*', 'ad_categories.id'])
-                ->status()
-                // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
-                ->get();
-        });
-        foreach ($ads as $ad) {
-            $home = $home; //collect([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12,13,14,15,16,17,18,19]);
-            if ($ad->category_id == 28) {
-                $adsSlider = 1;
-                $home = $home->chunk(4)->each->push($adsSlider)->collapse();
-            }
-        }
-
-        //        $home = $home->chunk(4)->each->push($ads)->collapse();
-        //        dd($home);
-        //        $surmanset =
-        ////            Cache::remember("surmanset", Carbon::now()->addYear(), function () {
-        ////            if (Cache::has('surmanset')) return Cache::has('surmanset');
-        //            Post::leftjoin('categories', 'posts.category_id', '=', 'categories.id')
-        //                ->leftjoin('subcategories', 'posts.subcategory_id', '=', 'subcategories.id')
-        //                ->leftjoin('districts', 'posts.district_id', '=', 'districts.id')
-        //                ->leftjoin('subdistricts', 'posts.subdistrict_id', 'subdistricts.id')
-        //                ->select(['posts.*', 'categories.category_tr', 'districts.district_tr', 'subdistricts.subdistrict_tr'])
-        //                ->status()->latest('updated_at')->limit(4)
-        //                ->get();
-        ////            });
-
-        $themeSettings = Theme::latest()->get();
-        $category1 = $themeSettings[0]->category1;
-        $category2 = $themeSettings[0]->category2;
-        $category3 = $themeSettings[0]->category3;
-        $category4 = $themeSettings[0]->category4;
-        $surmanset = Cache::remember("surmanset", Carbon::now()->addYear(), function () {
-            if (Cache::has('surmanset')) return Cache::has('surmanset');
-            return Post::status()
-                ->where('surmanset', 1)
-                ->with('category')
-                ->limit(4)
-                ->latest('created_at')
-                ->get();
-        });
-
-        $sagmanset = Cache::remember("sagmanset", Carbon::now()->addYear(), function () {
-            if (Cache::has('sagmanset')) return Cache::has('sagmanset'); //here am simply trying Laravel Collection method -find
-            $themeSettings = Theme::latest()->get();
-            foreach ($themeSettings as $row) {
-                $multiple_category = $row->multiple_category;
-                $explode_id = json_decode($multiple_category, true);
-            }
-            return Post::with(['category:id'])->whereIn('category_id', $explode_id)->status()->latest('updated_at')->limit(15)->get();
-            //            return Post::with(['category' => function($query){
-            //                $query->whereIn('category_id', $explode_id)->status()->latest('updated_at')->limit(15);
-            //            }])->get();
-
-        });
-
-
-        $sehir = Cache::remember("sehir", Carbon::now()->addYear(), function () {
-            if (Cache::has('sehir')) return Cache::has('sehir');
-            return Sehirler::orderByRaw('sehir_ad')->get();
-        });
-
-
-        $ekonomi = Cache::remember("ekeonomi", Carbon::now()->addYear(), function () use ($category1) {
-            if (Cache::has('ekeonomi')) return Cache::has('ekeonomi');
-            return Post::with(['category:id,category_tr'])->where('category_id', $category1)->status()
-                ->Where(function ($query) {
-                    $query->orWhere('featured', 0)
-                        ->orWhere('featured', null);
-                })
-                ->limit(9)->latest('created_at')->get();
-        });
-
-        $gundem = Cache::remember("gundem", Carbon::now()->addYear(), function () use ($category2) {
-            if (Cache::has('gundem')) return Cache::has('gundem');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category2)->status()->Where(function ($query) {
-                $query->orWhere('featured', 0)
-                    ->orWhere('featured', null);
-            })
-                ->limit(9)->latest('created_at')->get();
-        });
-
-        $siyaset = Cache::remember("siyaset", Carbon::now()->addYear(), function () use ($category3) {
-            if (Cache::has('siyaset')) return Cache::has('siyaset');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category3)->status()->Where(function ($query) {
-                $query->orWhere('featured', 0)
-                    ->orWhere('featured', null);
-            })
-                ->limit(9)->latest('created_at')->get();
-        });
-
-        $spor = Cache::remember("spor", Carbon::now()->addYear(), function () use ($category4) {
-            if (Cache::has('spor')) return Cache::has('spor');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->status()->Where(function ($query) {
-                $query->orWhere('featured', 0)
-                    ->orWhere('featured', null);
-            })
-                ->limit(6)->latest('created_at')->get();
-        });
-
-
-        $ekonomimanset = Cache::remember("ekeonomimanset", Carbon::now()->addYear(), function () use ($category1) {
-            if (Cache::has('ekeonomimanset')) return Cache::has('ekeonomimanset');
-            return Post::with(['category:id,category_tr'])->where('category_id', $category1)->status()->where('featured', 1)->limit(9)->latest('created_at')->get();
-        });
-
-        $gundemmanset = Cache::remember("gundemmanset", Carbon::now()->addYear(), function () use ($category2) {
-            if (Cache::has('gundemmanset')) return Cache::has('gundemmanset');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category2)->status()->where('featured', 1)->limit(9)->latest('created_at')->get();
-        });
-
-        $siyasetmanset = Cache::remember("siyasetmanset", Carbon::now()->addYear(), function () use ($category3) {
-            if (Cache::has('siyasetmanset')) return Cache::has('siyasetmanset');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category3)->status()->where('featured', 1)->limit(9)->latest('created_at')->get();
-        });
-
-        $spormanset = Cache::remember("spormanset", Carbon::now()->addYear(), function () use ($category4) {
-            if (Cache::has('spormanset')) return Cache::has('spormanset');
-            return Post::with(['category:id,category_tr'])->where('category_id', '=', $category4)->status()->where('featured', 1)->limit(9)->latest('created_at')->get();
-        });
-
-
-        $themeSetting = Cache::remember("themeSetting", Carbon::now()->addYear(), function () {
-            if (Cache::has('themeSetting')) return Cache::has('themeSetting');
-            return Theme::get();
-        });
-
-
-        //       $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-        //           ->select(['authors.id','authors.name', 'authors_posts.*'])
-        //           ->where('authors.status', 1)->where('authors_posts.status', 1)->groupBy("authors.id")
-        //           ->orderBy('authors_posts.updated_at','ASC')
-        //           ->get();
-        $authors = Authors::leftjoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
-            ->where('authors.status', 1)->where('authors_posts.status', 1)
-            //            ->select(['authors_posts.*', 'authors.id','authors.image'])
-            ->whereRaw('authors_posts.id in (select max(id) from authors_posts group by (authors_posts.authors_id))')
-            ->latest("authors_posts.created_at")->limit(8)
-            ->get();
-        //        dd($authors);
-        //        $authors = AuthorsPost::leftjoin('authors', 'authors_posts.id', '=', 'authors.id')
-        //            ->select(['authors_posts.*', 'authors.id',])
-        //            ->where('authors.status', 1)->where('authors_posts.status', 1)
-        //            ->groupBy("authors_posts.authors_id")->orderBy("authors_posts.id",'desc')
-        //            ->get();
-
-        //        $authors= AuthorsPost::latest('id')->groupBy('authors_id')->get();
-        //        $authors=AuthorsPost::whereAuthorsId($Authorid)->first(); // done bope
-
-
-
-        $seoset = Cache::remember("seoset", Carbon::now()->addYear(), function () {
-            if (Cache::has('seoset')) return Cache::has('seoset');
-            return Seos::first();
-        });
+        // Hava Durumu (MGM)
         $mgmData = Cache::remember('hava_durumu_mgm', 300, function () {
             $context = stream_context_create([
                 "ssl" => [
@@ -659,116 +389,275 @@ class ExtraController extends Controller
                     "timeout" => 5,
                 ],
             ]);
-            $mgm = @file_get_contents("http://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml", false, $context);
-            if (!$mgm) {
-                return null;
-            }
-            return $mgm;
+            return @file_get_contents("http://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml", false, $context);
         });
 
-        // Sonrasında kullanırken:
         if ($mgmData) {
             $veri = simplexml_load_string($mgmData);
             $json = json_encode($veri);
-            $array = json_decode($json, TRUE);
-        } else {
-            $array = null;
-        }
+            $array = json_decode($json, true);
 
+            // Hava durumu verilerini session'a kaydet
+            $gelenil = "KIRIKKALE"; // İstersen burayı dinamik yaparız
 
-        // XML verisini JSON'a çevir ve diziye dönüştür
-        $json = json_encode($veri);
-        $array = json_decode($json, TRUE);
+            $bulunacak = ['ç', 'Ç', 'ı', 'ğ', 'Ğ', 'ü', 'İ', 'ö', 'Ş', 'ş', 'Ö', 'Ü', ',', ' ', '(', ')', '[', ']'];
+            $degistir = ['c', 'C', 'i', 'g', 'G', 'u', 'I', 'o', 'S', 's', 'O', 'U', '', '_', '', '', '', ''];
+            $sonuc = str_replace($bulunacak, $degistir, $gelenil);
 
-        $gelenil = "KIRIKKALE";
+            $day1 = null;
+            $icon = null;
 
-        // Şehir ismindeki Türkçe karakterleri dönüştür
-        function turkceKarakterleriDonustur($kelime)
-        {
-            $bulunacak = array('ç', 'Ç', 'ı', 'ğ', 'Ğ', 'ü', 'İ', 'ö', 'Ş', 'ş', 'Ö', 'Ü', ',', ' ', '(', ')', '[', ']');
-            $degistir = array('c', 'C', 'i', 'g', 'G', 'u', 'I', 'o', 'S', 's', 'O', 'U', '', '_', '', '', '', '');
-            return str_replace($bulunacak, $degistir, $kelime);
-        }
+            if (isset($array['Merkez'])) {
+                foreach ($array['Merkez'] as $data) {
+                    if ($data['ilEn'] == $sonuc) {
+                        $day1 = $data['makk1'];
+                        $icon = $data['d1'];
+                        break;
+                    }
+                }
+            }
 
-        $sonuc = turkceKarakterleriDonustur($gelenil);
-
-        // Hava durumu kodlarını açıklamaya dönüştür
-        function havaDurumuAciklamasi($kod)
-        {
-            $kodlar = [
-                "SCK" => "Sıcak",
-                "AB" => "Az Bulutlu",
-                "HSY" => "Hafif Sağnak Yağış",
-                "PB" => "Parçalı Bulutlu",
-                "GSY" => "Gökgürltülü Sağnak Yağışlı",
-                "KGY" => "Kuvvetli Gökgürltülü Sağnak Yağışlı",
-                "MSY" => "Mevzi Sağnak Yağışlı"
-            ];
-
-            return $kodlar[$kod] ?? $kod;
-        }
-
-        // İkonu belirle
-        function havaDurumuIkon($kod)
-        {
-            $ikonlar = [
-                "GSY" => '<i style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>',
-                "SCK" => '<i style="font-size: 20px;" class="wi wi-day-sunny"></i>',
-                "KGY" => '<i style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>',
-                "AB" => '<i style="font-size: 20px;" class="wi wi-night-partly-cloudy"></i>',
-                "PB" => '<i style="font-size: 20px;" class="wi wi-day-cloudy-windy"></i>',
-                "HSY" => '<i style="font-size: 20px;" class="wi wi-day-rain"></i>',
-                "MSY" => '<i style="font-size: 20px;" class="wi wi-day-showers"></i>',
-                "A"   => '<i style="font-size: 20px;" class="wi wi-day-sunny"></i>',
-                "CB"  => '<i style="font-size: 20px;" class="wi wi-cloudy"></i>',
-                "SIS" => '<i style="font-size: 20px;" class="wi wi-fog"></i>',
-                "R"   => '<i style="font-size: 20px;" class="wi wi-fog"></i>'
-            ];
-
-            return $ikonlar[$kod] ?? '<i style="font-size: 20px;" class="wi wi-strong-wind"></i>';
-        }
-
-        // İlgili şehir için hava durumunu bul
-        $day1 = null;
-        $icon = null;
-
-        foreach ($array['Merkez'] as $data) {
-            if ($data['ilEn'] == $sonuc) {
-                $day1 = $data['makk1'];  // 1. günün sıcaklığı
-                $icon = havaDurumuIkon($data['d1']);  // Hava durumu ikonu
-                break;
+            if ($day1) {
+                Session::put('gelenil', $gelenil);
+                Session::put('havadurumu', $day1);
+                Session::put('icon', $icon);
             }
         }
 
-        // Eğer şehir verisi bulunamadıysa hata göster
-        if ($day1 === null) {
-            die("Şehir bulunamadı.");
-        }
+        // Postlar
+        $home = Cache::remember('home_posts', 300, function () {
+            return Post::status()->where('manset', 1)->latest('created_at')->get();
+        });
 
-        // Hava durumu verisini session'a kaydet
-        $veri = [
-            'gelenil' => $gelenil,
-            'sicaklik' => $day1,
-        ];
+        $surmanset = Cache::remember('surmanset', 300, function () {
+            return Post::status()->where('surmanset', 1)->limit(4)->latest('created_at')->get();
+        });
 
-        Session::put('icon', $icon);
-        Session::put('gelenil', $gelenil);
-        Session::put('havadurumu', $veri['sicaklik']);
-        $webSiteSetting = WebsiteSetting::first();
+        $sondakika = Cache::remember('sondakika', 300, function () {
+            return Post::status()->where('headline', 1)->where('created_at', '>', Carbon::now()->subDay())->limit(5)->get();
+        });
+        $sagmanset = Cache::remember('sagmanset', 300, function () {
+            $themeSettings = Theme::latest()->first();
+            $explode_id = [];
 
-        //$fotogaleri=Photo::where('status',1)->groupBY('photocategory_id')->get();
-        $fotogaleri = Photo::leftjoin('photocategories', 'photos.photocategory_id', '=', 'photocategories.id')
-            ->where('photocategories.status', 1)->where('photos.status', 1)->groupBY('photocategories.id')
-            ->latest("photocategories.updated_at")
-            ->get();
-        $egazete = Cache()->remember("home-egazete", Carbon::now()->addYear(), function () {
+            if ($themeSettings && $themeSettings->multiple_category) {
+                $explode_id = json_decode($themeSettings->multiple_category, true);
+            }
+
+            if (empty($explode_id)) {
+                return collect(); // boş koleksiyon döndür, hata verme
+            }
+
+            return Post::with(['category:id'])
+                ->whereIn('category_id', $explode_id)
+                ->status()
+                ->latest('updated_at')
+                ->limit(15)
+                ->get();
+        });
+
+
+        $authors = Cache::remember('authors', 300, function () {
+            return Authors::leftJoin('authors_posts', 'authors.id', '=', 'authors_posts.authors_id')
+                ->where('authors.status', 1)
+                ->where('authors_posts.status', 1)
+                ->whereRaw('authors_posts.id in (select max(id) from authors_posts group by (authors_posts.authors_id))')
+                ->latest("authors_posts.created_at")
+                ->limit(8)
+                ->get();
+        });
+
+        $ads = Cache::remember('ads', 300, function () {
+            return Ad::leftJoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
+                ->status()
+                ->select(['ads.*', 'ad_categories.id'])
+                ->get();
+        });
+
+        $sehir = Cache::remember('sehirler', 3600, function () {
+            return Sehirler::orderByRaw('sehir_ad')->get();
+        });
+
+        $video_gallary = Cache::remember('video_gallary', 300, function () {
+            return Post::status()->where('posts_video', '!=', null)->orderByDesc('updated_at')->limit(10)->get();
+        });
+
+        $video_gallarySliderAlti = Cache::remember('video_gallarySliderAlti', 300, function () {
+            return Post::status()->where('posts_video', '!=', null)->orderByDesc('updated_at')->limit(5)->get();
+        });
+
+        $fotogaleri = Cache::remember('fotogaleri', 300, function () {
+            return Photo::leftJoin('photocategories', 'photos.photocategory_id', '=', 'photocategories.id')
+                ->where('photocategories.status', 1)
+                ->where('photos.status', 1)
+                ->groupBy('photocategories.id')
+                ->latest("photocategories.updated_at")
+                ->get();
+        });
+
+        $egazete = Cache::remember('home_egazete', 3600, function () {
             return Gazetesayis::latest()->where('status', 1)->limit(9)->get();
         });
-        return view('main.home', compact('home', 'fotogaleri', 'egazete', 'ekonomi', 'endNews', 'ekonomimanset', 'webSiteSetting', 'surmanset', 'gundem', 'gundemmanset', 'spor', 'siyaset', 'spormanset', 'siyasetmanset', 'sagmanset', 'themeSetting', 'sondakika', 'sehir', 'authors', 'ads', 'seoset', 'video_gallary', 'video_gallarySliderAlti'));
-        //        return view('main.home_master', compact('seoset'))
-        //        return view('main.body.header', compact('vakitler'));
+        $ekonomimanset = Cache::remember('ekonomimanset', 300, function () {
+            $themeSettings = Theme::latest()->first();
+            $category1 = $themeSettings->category1 ?? null;
 
+            if (!$category1) return collect();
+
+            return Post::with(['category:id,category_tr'])
+                ->where('category_id', $category1)
+                ->where('featured', 1)
+                ->status()
+                ->limit(9)
+                ->latest('created_at')
+                ->get();
+        });
+
+        $gundemmanset = Cache::remember('gundemmanset', 300, function () {
+            $themeSettings = Theme::latest()->first();
+            $category2 = $themeSettings->category2 ?? null;
+
+            if (!$category2) return collect();
+
+            return Post::with(['category:id,category_tr'])
+                ->where('category_id', $category2)
+                ->where('featured', 1)
+                ->status()
+                ->limit(9)
+                ->latest('created_at')
+                ->get();
+        });
+
+        $siyasetmanset = Cache::remember('siyasetmanset', 300, function () {
+            $themeSettings = Theme::latest()->first();
+            $category3 = $themeSettings->category3 ?? null;
+
+            if (!$category3) return collect();
+
+            return Post::with(['category:id,category_tr'])
+                ->where('category_id', $category3)
+                ->where('featured', 1)
+                ->status()
+                ->limit(9)
+                ->latest('created_at')
+                ->get();
+        });
+
+        $spormanset = Cache::remember('spormanset', 300, function () {
+            $themeSettings = Theme::latest()->first();
+            $category4 = $themeSettings->category4 ?? null;
+
+            if (!$category4) return collect();
+
+            return Post::with(['category:id,category_tr'])
+                ->where('category_id', $category4)
+                ->where('featured', 1)
+                ->status()
+                ->limit(9)
+                ->latest('created_at')
+                ->get();
+        });
+        // Ekonomi Haberleri
+        $ekonomi = Cache::remember('ekonomi', 300, function () {
+            $themeSettings = Theme::latest()->first();
+            $category1 = $themeSettings->category1 ?? null;
+
+            if (!$category1) return collect();
+
+            return Post::with(['category:id,category_tr'])
+                ->where('category_id', $category1)
+                ->where(function ($query) {
+                    $query->where('featured', 0)->orWhereNull('featured');
+                })
+                ->status()
+                ->limit(9)
+                ->latest('created_at')
+                ->get();
+        });
+
+        // Gündem Haberleri
+        $gundem = Cache::remember('gundem', 300, function () {
+            $themeSettings = Theme::latest()->first();
+            $category2 = $themeSettings->category2 ?? null;
+
+            if (!$category2) return collect();
+
+            return Post::with(['category:id,category_tr'])
+                ->where('category_id', $category2)
+                ->where(function ($query) {
+                    $query->where('featured', 0)->orWhereNull('featured');
+                })
+                ->status()
+                ->limit(9)
+                ->latest('created_at')
+                ->get();
+        });
+
+        // Siyaset Haberleri
+        $siyaset = Cache::remember('siyaset', 300, function () {
+            $themeSettings = Theme::latest()->first();
+            $category3 = $themeSettings->category3 ?? null;
+
+            if (!$category3) return collect();
+
+            return Post::with(['category:id,category_tr'])
+                ->where('category_id', $category3)
+                ->where(function ($query) {
+                    $query->where('featured', 0)->orWhereNull('featured');
+                })
+                ->status()
+                ->limit(9)
+                ->latest('created_at')
+                ->get();
+        });
+
+        // Spor Haberleri
+        $spor = Cache::remember('spor', 300, function () {
+            $themeSettings = Theme::latest()->first();
+            $category4 = $themeSettings->category4 ?? null;
+
+            if (!$category4) return collect();
+
+            return Post::with(['category:id,category_tr'])
+                ->where('category_id', $category4)
+                ->where(function ($query) {
+                    $query->where('featured', 0)->orWhereNull('featured');
+                })
+                ->status()
+                ->limit(6)
+                ->latest('created_at')
+                ->get();
+        });
+
+
+        return view('main.home', compact(
+            'home',
+            'webSiteSetting',
+            'themeSetting',
+            'seoset',
+            'kurlar',
+            'surmanset',
+            'sondakika',
+            'sagmanset',
+            'authors',
+            'ads',
+            'sehir',
+            'video_gallary',
+            'video_gallarySliderAlti',
+            'fotogaleri',
+            'egazete',
+            'endNews',
+            'ekonomimanset',
+            'gundemmanset',
+            'siyasetmanset',
+            'spormanset',
+            'ekonomi',  // 💥 EKLENDİ
+            'gundem',   // 💥 EKLENDİ
+            'siyaset',  // 💥 EKLENDİ
+            'spor'      // 💥 EKLENDİ
+        ));
     }
+
     //    public function setCookie(Request $request) {
     //
     //        Cookie::queue('name', $request->test, 10);
