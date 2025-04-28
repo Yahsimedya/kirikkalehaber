@@ -409,8 +409,8 @@ class ExtraController extends Controller
                 CURLOPT_URL => 'https://finans.truncgil.com/today.json',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_SSL_VERIFYPEER => false,
-                CURLOPT_TIMEOUT => 1,
-                CURLOPT_CONNECTTIMEOUT => 1,
+                // CURLOPT_TIMEOUT => 1,
+                // CURLOPT_CONNECTTIMEOUT => 1,
             ]);
             $output = curl_exec($ch);
             curl_close($ch);
@@ -657,7 +657,7 @@ class ExtraController extends Controller
                     "verify_peer_name" => false,
                 ],
                 "http" => [
-                    "timeout" => 1,
+                    "timeout" => 7,
                 ],
             ]);
             $mgm = @file_get_contents("https://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml", false, $context);
