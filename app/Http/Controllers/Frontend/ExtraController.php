@@ -409,12 +409,19 @@ class ExtraController extends Controller
                 CURLOPT_URL => 'https://finans.truncgil.com/today.json',
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_SSL_VERIFYPEER => false,
-                // CURLOPT_TIMEOUT => 1,
-                // CURLOPT_CONNECTTIMEOUT => 1,
+                CURLOPT_CONNECTTIMEOUT => 3, // ❗ 3 saniyede bağlanamazsa bırak
+                // CURLOPT_TIMEOUT kaldırıldı, yok!
             ]);
+
             $output = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
-            return json_decode($output, true);
+
+            if ($output && $httpCode == 200) {
+                return json_decode($output, true);
+            } else {
+                return []; // Bağlantı sorunu olursa boş array
+            }
         });
 
 
@@ -651,20 +658,23 @@ class ExtraController extends Controller
             return Seos::first();
         });
         $mgmData = Cache::remember('hava_durumu_mgm', 300, function () {
-            $context = stream_context_create([
-                "ssl" => [
-                    "verify_peer" => false,
-                    "verify_peer_name" => false,
-                ],
-                "http" => [
-                    "timeout" => 7,
-                ],
+            $ch = curl_init();
+            curl_setopt_array($ch, [
+                CURLOPT_URL => 'https://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_SSL_VERIFYPEER => false,
+                CURLOPT_CONNECTTIMEOUT => 3, // Bağlantı için 3 saniye bekle
+                // CURLOPT_TIMEOUT kaldırıldı, sadece connect timeout var
             ]);
-            $mgm = @file_get_contents("https://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml", false, $context);
-            if (!$mgm) {
-                return null;
+            $output = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+
+            if ($output && $httpCode == 200) {
+                return $output;
+            } else {
+                return null; // MGM yanıt vermezse null dön
             }
-            return $mgm;
         });
 
         // Sonrasında kullanırken:
