@@ -3,53 +3,53 @@
     use App\Models\WebsiteSetting;
     $category = Category::limit(11)->get();
     $websetting = WebsiteSetting::first();
-    $themeSetting = DB::table("themes")->get();
-    $themeSetting = DB::table("themes")->get();
-    if (!empty(Session::get("kurlar"))) {
-        $vakitler = Session::get("vakitler");
+    $themeSetting = DB::table('themes')->get();
+    $themeSetting = DB::table('themes')->get();
+    if (!empty(Session::get('kurlar'))) {
+        $vakitler = Session::get('vakitler');
     } else {
         $vakitler = [
-            "imsak" => "0",
-            "gunes" => "0",
-            "ogle" => "0",
-            "ikindi" => "0",
-            "aksam" => "0",
-            "yatsi" => "0",
+            'imsak' => '0',
+            'gunes' => '0',
+            'ogle' => '0',
+            'ikindi' => '0',
+            'aksam' => '0',
+            'yatsi' => '0',
         ];
     }
-    if (!empty(Session::get("kurlar"))) {
-        $kurlar = Session::get("kurlar");
+    if (!empty(Session::get('kurlar'))) {
+        $kurlar = Session::get('kurlar');
     } else {
         $kurlar = [
-            "DOLAR" => [
-                "oran" => "0",
-                "oranyonu" => 0,
+            'DOLAR' => [
+                'oran' => '0',
+                'oranyonu' => 0,
                 00,
-                "satis" => "0",
+                'satis' => '0',
             ],
-            "EURO" => [
-                "oran" => "0",
-                "oranyonu" => 0,
+            'EURO' => [
+                'oran' => '0',
+                'oranyonu' => 0,
                 00,
-                "satis" => "0",
+                'satis' => '0',
             ],
-            "ALTIN" => [
-                "oran" => "0",
-                "oranyonu" => 0,
+            'ALTIN' => [
+                'oran' => '0',
+                'oranyonu' => 0,
                 00,
-                "satis" => "0",
+                'satis' => '0',
             ],
-            "ceyrekaltin" => [
-                "oran" => "0",
-                "oranyonu" => 0,
+            'ceyrekaltin' => [
+                'oran' => '0',
+                'oranyonu' => 0,
                 00,
-                "satis" => "0",
+                'satis' => '0',
             ],
         ];
     }
-    $veri = Session::get("havadurumu");
-    $icon = Session::get("icon");
-    $gelenil = Session::get("gelenil");
+    $veri = Session::get('havadurumu');
+    $icon = Session::get('icon');
+    $gelenil = Session::get('gelenil');
 
 @endphp
 
@@ -75,6 +75,7 @@
     .table-borderless>thead>tr>th {
         border: none;
     }
+
 
     .close {
         position: absolute;
@@ -136,11 +137,13 @@
         display: none;
     }
 
+
     .search.open {
         height: 4000px;
         width: 4000px;
     }
 </style>
+
 
 @foreach ($themeSetting as $navbar)
     @if ($navbar->header == 0)
@@ -155,27 +158,29 @@
                             {{ $veri }}&deg;</span>
                     </div>
 
+
                     <div class=" col-md-5 col-12 text-center mt-3 mb-3">
-                        <a href="{{ URL::to("/") }}">
+                        <a href="{{ URL::to('/') }}">
                             <img class="logo img-fluid" src="{{ asset($websetting->logo) }}" alt=""></a>
                     </div>
+
 
                     <div class=" col-12 col-md-2 d-none d-md-block text-center ">
 
                         @php
-                            $now = \Carbon\Carbon::now()->format("H:i");
-                            $imsak = $vakitler["imsak"];
-                            $gunes = $vakitler["gunes"];
-                            $ogle = $vakitler["ogle"];
-                            $ikindi = $vakitler["ikindi"];
-                            $aksam = $vakitler["aksam"];
-                            $yatsi = $vakitler["yatsi"];
+                            $now = \Carbon\Carbon::now()->format('H:i');
+                            $imsak = $vakitler['imsak'];
+                            $gunes = $vakitler['gunes'];
+                            $ogle = $vakitler['ogle'];
+                            $ikindi = $vakitler['ikindi'];
+                            $aksam = $vakitler['aksam'];
+                            $yatsi = $vakitler['yatsi'];
                         @endphp
                         @if ($now < $imsak)
                             @php
                                 $startTime = Carbon\Carbon::parse($now);
                                 $finishTime = Carbon\Carbon::parse($gunes);
-                                $totalDuration = $finishTime->diff($startTime)->format("%H:%i");
+                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
                             @endphp
 
                             <div class="kalansure">
@@ -186,7 +191,7 @@
                             @php
                                 $startTime = Carbon\Carbon::parse($now);
                                 $finishTime = Carbon\Carbon::parse($ogle);
-                                $totalDuration = $finishTime->diff($startTime)->format("%H:%i");
+                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
                             @endphp
 
                             <div class="kalansure">
@@ -197,7 +202,7 @@
                             @php
                                 $startTime = Carbon\Carbon::parse($now);
                                 $finishTime = Carbon\Carbon::parse($ikindi);
-                                $totalDuration = $finishTime->diff($startTime)->format("%H:%i");
+                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
                             @endphp
                             {{--                    <span style="    font-size: 16px;font-weight: 700;color: #006726;letter-spacing: .25px;padding: 5px 6px;background: #e6f0e7;display: block;position: relative;">{{ $totalDuration}}</span> --}}
                             <div class="kalansure pt-2">
@@ -208,7 +213,7 @@
                             @php
                                 $startTime = Carbon\Carbon::parse($now);
                                 $finishTime = Carbon\Carbon::parse($aksam);
-                                $totalDuration = $finishTime->diff($startTime)->format("%H:%i");
+                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
                             @endphp
                             <div class="kalansure">
                                 <span>{{ $totalDuration }}</span>
@@ -219,7 +224,7 @@
                             @php
                                 $startTime = Carbon\Carbon::parse($now);
                                 $finishTime = Carbon\Carbon::parse($yatsi);
-                                $totalDuration = $finishTime->diff($startTime)->format("%H:%i");
+                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
                             @endphp
                             <div class="kalansure">
                                 <span>{{ $totalDuration }}</span>
@@ -233,6 +238,7 @@
         </section>
         <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light bg-white p-0 m-0 shadow-sm border-top">
 
+
             <div class="container">
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav"
@@ -242,13 +248,14 @@
                 <div class="collapse navbar-collapse navbar-light" id="main_nav"
                     style="z-index:999;background-color: white;">
                     <ul class="navbar-nav ml-auto mx-auto">
-                        <a style="box-shadow: none;" class="btn  " id="dropdownMenuButton" href="{{ URL::to("/") }}">
+                        <a style="box-shadow: none;" class="btn  " id="dropdownMenuButton" href="{{ URL::to('/') }}">
                             Ana Sayfa
                         </a>
 
+
                         @foreach ($category as $row)
                             @php
-                                $subcategory = \App\Models\Subcategory::where("category_id", $row->id)->get();
+                                $subcategory = \App\Models\Subcategory::where('category_id', $row->id)->get();
 
                                 $say = count($subcategory);
                             @endphp
@@ -267,8 +274,8 @@
                                 <a style="box-shadow: none;"
                                     class="btn @if ($say > 0) dropdown-toggle @endif nav-item nav-link"
                                     id="dropdownMenuButton" class=""
-                                    href="{{ URL::to("/Category/" . str_slug($row->category_tr) . "/" . $row->id) }}">
-                                    @if (session()->get("lang") == "english")
+                                    href="{{ URL::to('/Category/' . str_slug($row->category_tr) . '/' . $row->id) }}">
+                                    @if (session()->get('lang') == 'english')
                                         {{ $row->category_en }}
                                     @else
                                         {{ $row->category_tr }}
@@ -281,8 +288,8 @@
 
                                         @foreach ($subcategory as $row)
                                             <a class="dropdown-item" style="box-shadow: none;"
-                                                href="{{ URL::to("/Category/" . str_slug($row->subcategory_tr) . "/" . $row->id) }}">
-                                                @if (session()->get("lang") == "english")
+                                                href="{{ URL::to('/Category/' . str_slug($row->subcategory_tr) . '/' . $row->id) }}">
+                                                @if (session()->get('lang') == 'english')
                                                     {{ $row->subcategory_en }}
                                                 @else
                                                     {{ $row->subcategory_tr }}
@@ -300,11 +307,11 @@
                             </div>
                         @endforeach
                         <a style="box-shadow: none;" class="btn " id="dropdownMenuButton"
-                            href="{{ route("TumKategoriler") }}">
+                            href="{{ route('TumKategoriler') }}">
                             Tümü
                         </a>
                         <a>
-                            <form class="form-inline   position-relative" action="{{ route("search") }}"
+                            <form class="form-inline   position-relative" action="{{ route('search') }}"
                                 method="POST">
                                 @csrf
                                 <div class="close">
@@ -316,11 +323,14 @@
                                         placeholder="Arama Yap">
                                 </div>
 
+
+
                             </form>
 
                         </a>
 
                     </ul>
+
 
                 </div>
 
@@ -333,15 +343,15 @@
             <div class="container" style="background-color:white;">
                 <div class="row">
                     <div class=" col-md-2 col-12 text-center p-2 mt-3 mb-3">
-                        <a class="justify-content-start" href="{{ URL::to("/") }}">
+                        <a class="justify-content-start" href="{{ URL::to('/') }}">
                             <img width="270" src="{{ asset($websetting->logo) }}" alt=""></a>
                     </div>
                     <div class="col-md-4 d-none d-md-block p-2 ml-auto my-auto">
-                        {{-- @if ($kurlar)
+                        @if ($kurlar)
                             <ul class="d-flex flex-wrap list-group-horizontal-sm d-inline-block my-auto  float-right">
                                 <li class="deger list-unstyled mr-2 d-flex align-items-center">
-                                    @if ($kurlar["DOLAR"]["oran"] != "0")
-                                        @if (isset($kurlar["DOLAR"]["oranyonu"]) && number_format($kurlar["DOLAR"]["oranyonu"], 2) > 0)
+                                    @if ($kurlar['DOLAR']['oran'] != '0')
+                                        @if (isset($kurlar['DOLAR']['oranyonu']) && number_format($kurlar['DOLAR']['oranyonu'], 2) > 0)
                                             <i class="fa fa-sort-up align-middle pt-1 pr-1 text-success"></i>
                                         @else
                                             <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
@@ -359,8 +369,8 @@
                                     @endif
                                 </li>
                                 <li class="deger list-unstyled mr-2 d-flex align-items-center">
-                                    @if ($kurlar["EURO"]["oran"] != "0")
-                                        @if (isset($kurlar["EURO"]["oranyonu"]) && number_format($kurlar["EURO"]["oranyonu"], 2) > 0)
+                                    @if ($kurlar['EURO']['oran'] != '0')
+                                        @if (isset($kurlar['EURO']['oranyonu']) && number_format($kurlar['EURO']['oranyonu'], 2) > 0)
                                             <i class="fa fa-sort-up align-middle pt-1 pr-1 text-success"></i>
                                         @else
                                             <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
@@ -378,8 +388,8 @@
                                     @endif
                                 </li>
                                 <li class="deger list-unstyled mr-2 d-flex align-items-center">
-                                    @if ($kurlar["ceyrekaltin"]["oran"] != "0")
-                                        @if (isset($kurlar["ceyrekaltin"]["oranyonu"]) && $kurlar["ceyrekaltin"]["oranyonu"] > 0)
+                                    @if ($kurlar['ceyrekaltin']['oran'] != '0')
+                                        @if (isset($kurlar['ceyrekaltin']['oranyonu']) && $kurlar['ceyrekaltin']['oranyonu'] > 0)
                                             <i class="fa fa-sort-up align-middle pt-1 pr-1 text-success"></i>
                                         @else
                                             <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
@@ -397,8 +407,8 @@
                                     @endif
                                 </li>
                                 <li class="deger list-unstyled mr-2 d-flex align-items-center">
-                                    @if ($kurlar["ALTIN"]["oran"] != "0")
-                                        @if (isset($kurlar["ALTIN"]["oranyonu"]) && $kurlar["ALTIN"]["oranyonu"] > 0)
+                                    @if ($kurlar['ALTIN']['oran'] != '0')
+                                        @if (isset($kurlar['ALTIN']['oranyonu']) && $kurlar['ALTIN']['oranyonu'] > 0)
                                             <i class="fa fa-sort-up align-middle pt-1 pr-1 text-success"></i>
                                         @else
                                             <i class="fa fa-sort-down align-middle pt-1 pr-1 text-danger mb-3 "></i>
@@ -416,7 +426,7 @@
                                     @endif
                                 </li>
                             </ul>
-                        @endif --}}
+                        @endif
                     </div>
 
                     <div class="col-md-1 col-4 my-auto border-left border-right text-center">
@@ -426,7 +436,70 @@
                             {{ $veri }}&deg;</span>
                     </div>
                     <div class="col-md-2 col-5 my-auto text-success text-center" style="font-size: 13px">
+                        @php
+                            $now = Carbon\Carbon::now()->format('H:i');
+                            $imsak = $vakitler['imsak'];
+                            $gunes = $vakitler['gunes'];
+                            $ogle = $vakitler['ogle'];
+                            $ikindi = $vakitler['ikindi'];
+                            $aksam = $vakitler['aksam'];
+                            $yatsi = $vakitler['yatsi'];
+                        @endphp
+                        @if ($now < $imsak)
+                            @php
+                                $startTime = Carbon\Carbon::parse($now);
+                                $finishTime = Carbon\Carbon::parse($gunes);
+                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                            @endphp
 
+                            <div class="kalansure">
+                                <span>{{ $totalDuration }}</span>
+                                <p> İmsak'a Kalan Süre</p>
+                            </div>
+                        @elseif($now < $ogle)
+                            @php
+                                $startTime = Carbon\Carbon::parse($now);
+                                $finishTime = Carbon\Carbon::parse($ogle);
+                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                            @endphp
+
+                            <div class="kalansure">
+                                <span>{{ $totalDuration }}</span>
+                                <p> Öğleye kalan Süre</p>
+                            </div>
+                        @elseif($now < $ikindi)
+                            @php
+                                $startTime = Carbon\Carbon::parse($now);
+                                $finishTime = Carbon\Carbon::parse($ikindi);
+                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                            @endphp
+                            {{--                    <span style="    font-size: 16px;font-weight: 700;color: #006726;letter-spacing: .25px;padding: 5px 6px;background: #e6f0e7;display: block;position: relative;">{{ $totalDuration}}</span> --}}
+                            <div class="kalansure">
+                                <span>{{ $totalDuration }}</span>
+                                <p>İkindi'ye Kalan Süre</p>
+                            </div>
+                        @elseif ($now < $aksam)
+                            @php
+                                $startTime = Carbon\Carbon::parse($now);
+                                $finishTime = Carbon\Carbon::parse($aksam);
+                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                            @endphp
+                            <div class="kalansure">
+                                <span>{{ $totalDuration }}</span>
+                                <p>Akşam'a Kalan Süre</p>
+
+                            </div>
+                        @elseif($now < $yatsi)
+                            @php
+                                $startTime = Carbon\Carbon::parse($now);
+                                $finishTime = Carbon\Carbon::parse($yatsi);
+                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                            @endphp
+                            <div class="kalansure">
+                                <span>{{ $totalDuration }}</span>
+                                <p>Yatsı'ya Kalan Süre</p>
+                            </div>
+                        @endif
                     </div>
 
                     {{--        <div class="col-md-2"> --}}
@@ -436,12 +509,16 @@
                     {{--        </div> --}}
                     {{--        <div class="col-md-2 my-auto"> --}}
 
+
                     {{--        </div> --}}
+
+
 
                 </div>
             </div>
         </section>
         <nav id="navbar_top" class="navbar navbar-expand-lg navbar-light bg-white p-0 m-0 shadow-sm border-top">
+
 
             <div class="container">
 
@@ -453,11 +530,12 @@
                     style="z-index:999;background-color: white;">
                     <ul class="navbar-nav ml-auto mx-auto" style="background-color: white;">
 
-                        <li class="nav-item"><a class="nav-link" href="{{ URL::to("/") }}">Ana Sayfa</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ URL::to('/') }}">Ana Sayfa</a></li>
+
 
                         @foreach ($category as $row)
                             @php
-                                $subcategory = \App\Models\Subcategory::where("category_id", $row->id)->get();
+                                $subcategory = \App\Models\Subcategory::where('category_id', $row->id)->get();
 
                                 $say = count($subcategory);
                             @endphp
@@ -476,8 +554,8 @@
                                 <a style="box-shadow: none;"
                                     class="btn @if ($say > 0) dropdown-toggle @endif nav-item nav-link"
                                     id="dropdownMenuButton" class=""
-                                    href="{{ URL::to("/Category/" . str_slug($row->category_tr) . "/" . $row->id) }}">
-                                    @if (session()->get("lang") == "english")
+                                    href="{{ URL::to('/Category/' . str_slug($row->category_tr) . '/' . $row->id) }}">
+                                    @if (session()->get('lang') == 'english')
                                         {{ $row->category_en }}
                                     @else
                                         {{ $row->category_tr }}
@@ -490,8 +568,8 @@
 
                                         @foreach ($subcategory as $row)
                                             <a class="dropdown-item" style="box-shadow: none;"
-                                                href="{{ URL::to("/Category/" . str_slug($row->subcategory_tr) . "/" . $row->id) }}">
-                                                @if (session()->get("lang") == "english")
+                                                href="{{ URL::to('/Category/' . str_slug($row->subcategory_tr) . '/' . $row->id) }}">
+                                                @if (session()->get('lang') == 'english')
                                                     {{ $row->subcategory_en }}
                                                 @else
                                                     {{ $row->subcategory_tr }}
@@ -509,11 +587,11 @@
                             </div>
                         @endforeach
                         <a style="box-shadow: none;" class="btn  " id="dropdownMenuButton"
-                            href="{{ route("TumKategoriler") }}">
+                            href="{{ route('TumKategoriler') }}">
                             Tümü
                         </a>
                         <a>
-                            <form class="form-inline   position-relative" action="{{ route("search") }}"
+                            <form class="form-inline   position-relative" action="{{ route('search') }}"
                                 method="POST">
                                 @csrf
                                 <div class="close">
@@ -528,7 +606,7 @@
 
                                 <!----- close button
 
-                            <form class="form-inline mt-1 mt-md-0 position-relative" action="{{ route("search") }}" method="POST">
+                            <form class="form-inline mt-1 mt-md-0 position-relative" action="{{ route('search') }}" method="POST">
 
                         <input class="form-control mr-sm-2 rounded-pill" name="searchtext" type="text" placeholder="Arama Yap"
                                style="width: 150px; ">
@@ -537,19 +615,21 @@
                                 class="fa fa-search"></i>
                         </button>----->
 
+
                             </form>
 
                         </a>
                     </ul>
 
+
                 </div>
 
                 <ul class="list-group">
                     <!--
-            @if (session()->get("lang") == "turkish")
-<li class="list-group-item"><a href="{{ route("lang.english") }}">İngilizce</a></li>
+            @if (session()->get('lang') == 'turkish')
+<li class="list-group-item"><a href="{{ route('lang.english') }}">İngilizce</a></li>
 @else
-<li class="list-group-item"><a href="{{ route("lang.turkish") }}">Turkish</a></li>
+<li class="list-group-item"><a href="{{ route('lang.turkish') }}">Turkish</a></li>
 @endif
                     </ul>
 
@@ -558,7 +638,12 @@
 
         </nav>
     @endif
+
 @endforeach
+
+
+
+
 
 <script>
     (function($) {
