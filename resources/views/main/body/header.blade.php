@@ -47,9 +47,10 @@
             ],
         ];
     }
-    // $veri = Session::get('havadurumu');
-    // $icon = Session::get('icon');
-    // $gelenil = Session::get('gelenil');
+    $veri = Session::get("havadurumu");
+    $icon = Session::get("icon");
+    $gelenil = Session::get("gelenil");
+
 @endphp
 
 <style>
@@ -150,8 +151,8 @@
                     <div class="col-12 col-md-2 d-none d-md-block text-center ">
                         <span style="color:#31958a; font-size: 13px ">{{ $gelenil }}<br>
 
-                            {{-- {!! $icon !!} --}}
-                            {{-- {{ $veri }}&deg;</span> --}}
+                            {!! $icon !!}
+                            {{ $veri }}&deg;</span>
                     </div>
 
                     <div class=" col-md-5 col-12 text-center mt-3 mb-3">
@@ -161,20 +162,20 @@
 
                     <div class=" col-12 col-md-2 d-none d-md-block text-center ">
 
-                        {{-- @php
-                            $now = \Carbon\Carbon::now()->format('H:i');
-                            $imsak = $vakitler['imsak'];
-                            $gunes = $vakitler['gunes'];
-                            $ogle = $vakitler['ogle'];
-                            $ikindi = $vakitler['ikindi'];
-                            $aksam = $vakitler['aksam'];
-                            $yatsi = $vakitler['yatsi'];
+                        @php
+                            $now = \Carbon\Carbon::now()->format("H:i");
+                            $imsak = $vakitler["imsak"];
+                            $gunes = $vakitler["gunes"];
+                            $ogle = $vakitler["ogle"];
+                            $ikindi = $vakitler["ikindi"];
+                            $aksam = $vakitler["aksam"];
+                            $yatsi = $vakitler["yatsi"];
                         @endphp
                         @if ($now < $imsak)
                             @php
                                 $startTime = Carbon\Carbon::parse($now);
                                 $finishTime = Carbon\Carbon::parse($gunes);
-                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                                $totalDuration = $finishTime->diff($startTime)->format("%H:%i");
                             @endphp
 
                             <div class="kalansure">
@@ -185,7 +186,7 @@
                             @php
                                 $startTime = Carbon\Carbon::parse($now);
                                 $finishTime = Carbon\Carbon::parse($ogle);
-                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                                $totalDuration = $finishTime->diff($startTime)->format("%H:%i");
                             @endphp
 
                             <div class="kalansure">
@@ -196,9 +197,9 @@
                             @php
                                 $startTime = Carbon\Carbon::parse($now);
                                 $finishTime = Carbon\Carbon::parse($ikindi);
-                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                                $totalDuration = $finishTime->diff($startTime)->format("%H:%i");
                             @endphp
-
+                            {{--                    <span style="    font-size: 16px;font-weight: 700;color: #006726;letter-spacing: .25px;padding: 5px 6px;background: #e6f0e7;display: block;position: relative;">{{ $totalDuration}}</span> --}}
                             <div class="kalansure pt-2">
                                 <span>{{ $totalDuration }}</span>
                                 <p>İkindi'ye Kalan Süre</p>
@@ -207,7 +208,7 @@
                             @php
                                 $startTime = Carbon\Carbon::parse($now);
                                 $finishTime = Carbon\Carbon::parse($aksam);
-                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                                $totalDuration = $finishTime->diff($startTime)->format("%H:%i");
                             @endphp
                             <div class="kalansure">
                                 <span>{{ $totalDuration }}</span>
@@ -218,13 +219,13 @@
                             @php
                                 $startTime = Carbon\Carbon::parse($now);
                                 $finishTime = Carbon\Carbon::parse($yatsi);
-                                $totalDuration = $finishTime->diff($startTime)->format('%H:%i');
+                                $totalDuration = $finishTime->diff($startTime)->format("%H:%i");
                             @endphp
                             <div class="kalansure">
                                 <span>{{ $totalDuration }}</span>
                                 <p>Yatsı'ya Kalan Süre</p>
                             </div>
-                        @endif --}}
+                        @endif
                     </div>
 
                 </div>
@@ -336,7 +337,7 @@
                             <img width="270" src="{{ asset($websetting->logo) }}" alt=""></a>
                     </div>
                     <div class="col-md-4 d-none d-md-block p-2 ml-auto my-auto">
-                        {{-- @if ($kurlar)
+                        @if ($kurlar)
                             <ul class="d-flex flex-wrap list-group-horizontal-sm d-inline-block my-auto  float-right">
                                 <li class="deger list-unstyled mr-2 d-flex align-items-center">
                                     @if ($kurlar["DOLAR"]["oran"] != "0")
@@ -348,7 +349,7 @@
                                         <div class="d-inline-block" style="font-size: 13px; line-height: 14px;">
                                             <span style="font-weight: bold">Dolar</span><br />
                                             <span
-                                                style="font-size: 13px;">{{ number_format($kurlar['DOLAR']['satis'], 3) }}</span>
+                                                style="font-size: 13px;">{{ number_format($kurlar["DOLAR"]["satis"], 3) }}</span>
                                         </div>
                                     @else
                                         <div class="d-inline-block" style="font-size: 13px; line-height: 14px;">
@@ -367,7 +368,7 @@
                                         <div class="d-inline-block" style="font-size: 13px; line-height: 14px;">
                                             <span style="font-weight: bold">Euro</span><br />
                                             <span
-                                                style="font-size: 13px;">{{ number_format($kurlar['EURO']['satis'], 3) }}</span>
+                                                style="font-size: 13px;">{{ number_format($kurlar["EURO"]["satis"], 3) }}</span>
                                         </div>
                                     @else
                                         <div class="d-inline-block" style="font-size: 13px; line-height: 14px;">
@@ -386,7 +387,7 @@
                                         <div class="d-inline-block" style="font-size: 13px; line-height: 14px;">
                                             <span style="font-weight: bold">Ç.Altın</span><br />
                                             <span
-                                                style="font-size: 13px;">{{ number_format((float) $kurlar['ceyrekaltin']['satis'], 3) }}</span>
+                                                style="font-size: 13px;">{{ number_format((float) $kurlar["ceyrekaltin"]["satis"], 3) }}</span>
                                         </div>
                                     @else
                                         <div class="d-inline-block" style="font-size: 13px; line-height: 14px;">
@@ -405,7 +406,7 @@
                                         <div class="d-inline-block" style="font-size: 13px; line-height: 14px;">
                                             <span style="font-weight: bold">Altın</span><br />
                                             <span
-                                                style="font-size: 13px;">{{ number_format((float) $kurlar['ALTIN']['satis'], 3) }}</span>
+                                                style="font-size: 13px;">{{ number_format((float) $kurlar["ALTIN"]["satis"], 3) }}</span>
                                         </div>
                                     @else
                                         <div class="d-inline-block" style="font-size: 13px; line-height: 14px;">
@@ -415,17 +416,80 @@
                                     @endif
                                 </li>
                             </ul>
-                        @endif --}}
+                        @endif
                     </div>
 
                     <div class="col-md-1 col-4 my-auto border-left border-right text-center">
-                        {{-- <span style="color:#31958a; font-size: 13px ">{{ $gelenil }}<br> --}}
+                        <span style="color:#31958a; font-size: 13px ">{{ $gelenil }}<br>
 
-                        {{-- {!! $icon !!} --}}
-                        {{-- {{ $veri }}&deg;</span> --}}
+                            {!! $icon !!}
+                            {{ $veri }}&deg;</span>
                     </div>
                     <div class="col-md-2 col-5 my-auto text-success text-center" style="font-size: 13px">
+                        @php
+                            $now = Carbon\Carbon::now()->format("H:i");
+                            $imsak = $vakitler["imsak"];
+                            $gunes = $vakitler["gunes"];
+                            $ogle = $vakitler["ogle"];
+                            $ikindi = $vakitler["ikindi"];
+                            $aksam = $vakitler["aksam"];
+                            $yatsi = $vakitler["yatsi"];
+                        @endphp
+                        @if ($now < $imsak)
+                            @php
+                                $startTime = Carbon\Carbon::parse($now);
+                                $finishTime = Carbon\Carbon::parse($gunes);
+                                $totalDuration = $finishTime->diff($startTime)->format("%H:%i");
+                            @endphp
 
+                            <div class="kalansure">
+                                <span>{{ $totalDuration }}</span>
+                                <p> İmsak'a Kalan Süre</p>
+                            </div>
+                        @elseif($now < $ogle)
+                            @php
+                                $startTime = Carbon\Carbon::parse($now);
+                                $finishTime = Carbon\Carbon::parse($ogle);
+                                $totalDuration = $finishTime->diff($startTime)->format("%H:%i");
+                            @endphp
+
+                            <div class="kalansure">
+                                <span>{{ $totalDuration }}</span>
+                                <p> Öğleye kalan Süre</p>
+                            </div>
+                        @elseif($now < $ikindi)
+                            @php
+                                $startTime = Carbon\Carbon::parse($now);
+                                $finishTime = Carbon\Carbon::parse($ikindi);
+                                $totalDuration = $finishTime->diff($startTime)->format("%H:%i");
+                            @endphp
+                            {{--                    <span style="    font-size: 16px;font-weight: 700;color: #006726;letter-spacing: .25px;padding: 5px 6px;background: #e6f0e7;display: block;position: relative;">{{ $totalDuration}}</span> --}}
+                            <div class="kalansure">
+                                <span>{{ $totalDuration }}</span>
+                                <p>İkindi'ye Kalan Süre</p>
+                            </div>
+                        @elseif ($now < $aksam)
+                            @php
+                                $startTime = Carbon\Carbon::parse($now);
+                                $finishTime = Carbon\Carbon::parse($aksam);
+                                $totalDuration = $finishTime->diff($startTime)->format("%H:%i");
+                            @endphp
+                            <div class="kalansure">
+                                <span>{{ $totalDuration }}</span>
+                                <p>Akşam'a Kalan Süre</p>
+
+                            </div>
+                        @elseif($now < $yatsi)
+                            @php
+                                $startTime = Carbon\Carbon::parse($now);
+                                $finishTime = Carbon\Carbon::parse($yatsi);
+                                $totalDuration = $finishTime->diff($startTime)->format("%H:%i");
+                            @endphp
+                            <div class="kalansure">
+                                <span>{{ $totalDuration }}</span>
+                                <p>Yatsı'ya Kalan Süre</p>
+                            </div>
+                        @endif
                     </div>
 
                     {{--        <div class="col-md-2"> --}}
@@ -557,6 +621,7 @@
 
         </nav>
     @endif
+
 @endforeach
 
 <script>
