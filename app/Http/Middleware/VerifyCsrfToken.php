@@ -14,4 +14,14 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
     ];
+    protected function tokensMatch($request)
+    {
+        $userAgent = $request->header('User-Agent');
+
+        if ($userAgent && preg_match('/(facebookexternalhit|Facebot|Twitterbot|Pinterest|LinkedInBot|Slackbot)/i', $userAgent)) {
+            return true; // Bot ise CSRF kontrolünü atla
+        }
+
+        return parent::tokensMatch($request);
+    }
 }
