@@ -792,264 +792,81 @@ class ExtraController extends Controller
     //    }
     public function SinglePost($slug, $id)
     {
-
         $post = Post::with(['category:id,category_tr'])->status()->find($id);
-        //        views($post)->record();
-        //        $expiresAt = now()->addMinute(20);
-        ////        views($post)->count();
-        //        $count = views($post)->count();
-        //
-        //        views($post)
-        //            ->cooldown($expiresAt)
-        //            ->record();
+
         $comments = Comments::where('posts_id', $id)->status()->get();
 
-        //dd($comments);
-        //        $slider =  Post::latest('created_at')
-        //            ->status()->where('category_id', $post->category_id)
-        //            ->offset(1)->limit(10)
-        //            ->get();
         $slider = Post::latest('updated_at')
             ->with('category:id,category_tr')->where('manset', 1)
             ->status()->limit(10)
             ->get();
 
-        $ads =
-            //            Ad::leftjoin('ad_categories', 'ads.category_id', '=', 'ad_categories.id')
-            ////            ->join('ads','ad_categories.id','ads.category_id')
-            //            ->select(['ads.*', 'ad_categories.id'])
-            //            ->status()
-            //            ->whereIN('ad_categories.id', [1, 2, 3, 12]) // ad_categories tablosunda bulunan ve haber detayda görünmesi gereken id'ler
-            //            ->get();
-            Ad::latest('updated_at')
+        $ads = Ad::latest('updated_at')
             ->status()
             ->with('adcategory')
             ->get();
+
         $tag_ids = $post->tag()->get();
         $tagCount = $tag_ids->count();
         $ids = array();
         foreach ($tag_ids as $tags) {
             $ids[] = $tags->id;
-            $tag = $tags->id;
         }
-        //        dd($ids);
+
         $maybeRelated = [];
-
-        //        foreach ($ids as $tagId) {
-        if (isset($ids)) {
-
-            if ($ids != []) {
-                //        foreach ($ids as $tagId) {
-                $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
-                    ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
-                    ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-                    ->orWhereIn('post_tags.tag_id', $ids)->skip(1)->limit(3)->inRandomOrder()->groupBy('posts.id')->latest()
-                    ->get();
-            } //        }
-            //        dd($maybeRelated);
+        if (!empty($ids)) {
+            $maybeRelated = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+                ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
+                ->select([
+                    'posts.*',
+                    'post_tags.post_id',
+                    'tags.id',
+                    'tags.name'
+                ])
+                ->orWhereIn('post_tags.tag_id', $ids)
+                ->skip(1)->limit(3)->inRandomOrder()
+                ->groupBy('posts.id')->latest()
+                ->get();
         }
-        //    }
 
-
-        $tagName =
-            Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
+        $tagName = Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
             ->leftjoin('tags', 'post_tags.tag_id', 'tags.id')
             ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
             ->where('posts.id', $id)
             ->where('posts.status', 1)
             ->limit(10)
             ->get();
-        //        Post::find($post)->get();
-        //        dd($tagName);
-        //        $tag_ids = $post->tag()->allRelatedIds()->toArray();
-        //        dd($tag_ids);
-        //        $related = Post::whereHas('post_tags.post_id', function($q) use ($tag_ids) {
-        //            $q->whereIn('id', $tag_ids);
-        //        })
-        //            ->orderBy('created_at')
-        //            ->take(6)
-        //            ->get();
 
-
-        //        $related = Post::whereHas('post_tags')
-        //            Post::
-        //                with('tags')
-        //                ->find($id)
-        //                ->latest()
-        //                ->limit(10)
-        //                ->get();
-        //        dd($related);
         $random = Post::limit(3)->get();
 
-        //        $tag = Tag::get();
-        //        foreach ($tag as $item) {
-        $nextrelated =
-            //                Post::leftjoin('post_tags', 'posts.id', 'post_tags.post_id')
-            //                    ->leftjoin('tags', 'tags.id', 'post_tags.tag_id')
-            //                    ->select(['posts.*', 'post_tags.post_id', 'tags.id', 'tags.name'])
-            //                    ->where('post_tags.tag_id', $item->id)->latest()
-            //                    ->get();
-            Post::latest('updated_at')
-            ->where('id', $post)->status()
-            ->with([
-                'tag' => function ($query) {
-                    // $query->sum('quantity');
-                    $query->select('name'); // without `order_id`
-                }
-            ])
+        $nextrelated = Post::latest('updated_at')
+            ->where('id', $post->id)
+            ->status()
+            ->with(['tag' => function ($query) {
+                $query->select('name');
+            }])
             ->get();
 
-        //            $nextrelated = Post::leftjoin('post_tags','posts.id','post_tags.post_id')
-        //                ->leftjoin('tags','tags.id','post_tags.tag_id')
-        //                ->select(['posts.*','post_tags.post_id','tags.name'])
-        //                ->get();
-        //        }
-
-        //        $related= $post->posttags()->post_id;
-        //        $related=$this->belongsToMany(Post::class, 'post_tags', 'tags');
         $seoset = Seos::first();
         $webSiteSetting = WebsiteSetting::first();
 
+        // Session işlemleri kaldırıldı çünkü dış API'ler yok artık.
 
-        if (Session::get('kurlar') == "") {
-            $ch = curl_init();
-            curl_setopt_array($ch, [
-                CURLOPT_URL => 'https://finans.truncgil.com/today.json',
-                CURLOPT_RETURNTRANSFER => true,
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false),
-
-            ]);
-            $output = curl_exec($ch);
-            curl_close($ch);
-
-            $result = json_decode($output, true);
-            function degistir($string)
-            {
-                $string = str_replace('%', '', $string);
-
-                return $string;
-            }
-            $kurlar = [
-                'DOLAR' => [
-                    'oran' => isset($result['USD']['Değişim']),
-                    'oranyonu' => isset($result['USD']['Değişim']) ? str_replace(',', '.', degistir($result['USD']['Değişim'])) : '0',
-                    //                    'alis' => $usd['Buy'],
-                    'satis' => isset($result['USD']['Satış']) ? str_replace(',', '.', $result['USD']['Satış']) : '0'
-
-                ],
-                'EURO' => [
-                    'oran' => isset($result['EUR']['Değişim']),
-                    'oranyonu' => isset($result['EUR']['Değişim']) ? str_replace(',', '.', degistir($result['EUR']['Değişim'])) : '0',
-                    //                    'alis' => $usd['Buy'],
-                    'satis' => isset($result['EUR']['Satış']) ? str_replace(',', '.', degistir($result['EUR']['Satış'])) : '0'
-                ],
-                'ALTIN' => [
-                    'oran' => isset($result['gram-altin']['Değişim']) ? $result['gram-altin']['Değişim'] : '0',
-                    'oranyonu' => isset($result['gram-altin']['Değişim']) ? $result['gram-altin']['Değişim'] : '0',
-                    //                    'alis' => $usd['Buy'],
-                    'satis' => isset($result['gram-altin']['Satış']) ? str_replace(',', '.', degistir($result['gram-altin']['Satış'])) : '0'
-
-                ],
-                'ceyrekaltin' => [
-                    'oran' => isset($result['ceyrek-altin']['Değişim']) ? $result['ceyrek-altin']['Değişim'] : '0',
-                    'oranyonu' => isset($result['ceyrek-altin']['Değişim']) ? $result['ceyrek-altin']['Değişim'] : '0',
-                    //                    'alis' => $usd['Buy'],
-                    'satis' => isset($result['ceyrek-altin']['Satış']) ? str_replace(',', '.', degistir($result['ceyrek-altin']['Satış'])) : '0'
-                ]
-            ];
-
-
-            $date = Carbon::now()->format('d.m.Y');
-
-            $vakit = Vakitler::where('date', $date)->get();
-
-            $vakitler = array(
-                "imsak" => $vakit[0]['imsak'] ?? '',
-                "gunes" => $vakit[0]['gunes'] ?? '',
-                "ogle" => $vakit[0]['ogle'] ?? '',
-                "ikindi" => $vakit[0]['ikindi'] ?? '',
-                "aksam" => $vakit[0]['aksam'] ?? '',
-                "yatsi" => $vakit[0]['yatsi'] ?? '',
-            );
-            Session::put('vakitler', $vakitler);
-            Session::put('kurlar', $kurlar);
-
-
-            //dd($kurlar);
-            $mgm = file_get_contents("https://www.mgm.gov.tr/FTPDATA/analiz/GunlukTahmin.xml");
-
-            $veri = simplexml_load_string($mgm);
-
-            $json = json_encode($veri);
-            $array = json_decode($json, TRUE);
-            $gelenil = "KIRIKKALE";
-            $bul = $gelenil;
-            $bulunacak = array('ç', 'Ç', 'ı', 'ğ', 'Ğ', 'ü', 'İ', 'ö', 'Ş', 'ş', 'Ö', 'Ü', ',', ' ', '(', ')', '[', ']');
-            $degistir = array('c', 'C', 'i', 'g', 'G', 'u', 'I', 'o', 'S', 's', 'O', 'U', '', '_', '', '', '', '');
-            $sonuc = str_replace($bulunacak, $degistir, $bul);
-            $sonuc;
-            function cevir($string)
-            {
-
-                $string = str_replace("SCK", "Sıcak", $string);
-                $string = str_replace("AB", "Az Bulutlu", $string);
-                $string = str_replace("HSY", "Hafif Sağnak Yağış", $string);
-                $string = str_replace("PB", "Parçalı Bulutlu", $string);
-                $string = str_replace("GSY", "Gökgürltülü Sağnak Yağışlı", $string);
-                $string = str_replace("KGY", "Kuvvetli Gökgürltülü Sağnak Yağışlı", $string);
-                $string = str_replace("MSY", "Mevzi Sağnak Yağışlı", $string);
-
-                return $string;
-            }
-
-            //        dd($array);
-
-            foreach ($array['Merkez'] as $data) {
-                if ($data['ilEn'] == $sonuc) {
-                    if ($data['d1'] == "GSY") {
-                        $icon = '<i  style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>';
-                    } elseif ($data['d1'] == "SCK") {
-                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-sunny"></i>';
-                    } elseif ($data['d1'] == "KGY") {
-                        $icon = '<i  style="font-size: 20px;" class="wi wi-night-thunderstorm"></i>';
-                    } elseif ($data['d1'] == "AB") {
-                        $icon = '<i  style="font-size: 20px;" class="wi wi-night-partly-cloudy"></i>';
-                    } elseif ($data['d1'] == "PB") {
-                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-cloudy-windy"></i>';
-                    } elseif ($data['d1'] == "HSY") {
-                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-rain"></i>';
-                    } elseif ($data['d1'] == "MSY") {
-                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-showers"></i>';
-                    } elseif ($data['d1'] == "A") {
-                        $icon = '<i  style="font-size: 20px;" class="wi wi-day-sunny"></i>';
-                    } elseif ($data['d1'] == "CB") {
-                        $icon = '<i  style="font-size: 20px;" class="wi wi-cloudy"></i>';
-                    } elseif ($data['d1'] == "SIS") {
-                        $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
-                    } elseif ($data['d1'] == "R") {
-                        $icon = '<i  style="font-size: 20px;" class="wi wi-fog"></i>';
-                    } else {
-                        $icon = '<i  style="font-size: 20px;" class="wi wi-strong-wind"></i>';
-                    }
-
-
-                    $day1 = $data['makk1'];
-                }
-            }
-
-            $veri = array(
-                'gelenil' => $gelenil,
-                'sicaklik' => $day1,
-                //            'icon' =>$icon,
-            );
-
-            Session::put('icon', $icon);
-            Session::put('gelenil', $gelenil);
-
-            Session::put('havadurumu', $veri['sicaklik']);
-        }
-        return view('main.body.single_post', compact('post', 'ads', 'webSiteSetting', 'random', 'slider', 'tagName', 'nextrelated', 'comments', 'seoset', 'maybeRelated', 'tagCount'));
+        return view('main.body.single_post', compact(
+            'post',
+            'ads',
+            'webSiteSetting',
+            'random',
+            'slider',
+            'tagName',
+            'nextrelated',
+            'comments',
+            'seoset',
+            'maybeRelated',
+            'tagCount'
+        ));
     }
+
 
     //Fixed Page Open
     public function Sayfa($id)
